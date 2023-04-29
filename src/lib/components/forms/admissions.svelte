@@ -1,0 +1,744 @@
+<script>
+  import { onMount } from "svelte";
+  import {goto} from '$app/navigation';
+  // import { Token } from "../../../routes/_utils/dynamic_store.js";
+  import { ApiUrl } from "../../../routes/_utils/static_store.js";
+  import { get } from "svelte/store";
+  import ImageUpload from "../../../routes/_utils/imageUpload.svelte";
+  
+  // /home/binari/Documents/student_panel/src/routes/admission/create/student_onboarding
+  
+  
+  let date = new Date();
+
+  let streams = [],
+    batches = [],
+    branches = [];
+
+  let myURL = "";
+
+  let cor_address = false;
+  
+  let permanent_address = "", permanent_city = "",
+  permanent_state = "", permanent_pin = "";
+
+ 
+  // let correspondence_address = "", correspondence_city = "",
+  // correspondence_state = "", correspondence_pin = "";
+
+  // var url = null;
+
+  // let centre_scoops = 1;
+  // let stream_scoops = 1;
+  // let course_scoops = 1;
+
+  // let course_opted = 1;
+
+  let src = "../images/";
+
+  let body = {
+    // centre: [],
+    // stream: [],
+    // course_opted: [],
+    // course_opted_class: [],
+    how_came_to_know: [],
+  };
+
+  onMount(async () => {
+    console.log("mounted");
+
+    let token = localStorage.getItem("token");
+    if(!token)
+    {
+    	console.log("yes");
+    	location.href="/login";
+    }
+
+    let loginPath = get(ApiUrl);
+    myURL = loginPath+'/panel/student_create';
+
+    await getstreams();
+    await getBranches();
+    await getBranches();
+    
+  });
+
+  async function handleSubmit(event) {
+    console.log("submitting inquiry form");
+    console.log(body);
+    var token = localStorage.getItem("token");
+
+    var loginPath = get(ApiUrl);
+
+    const res = await fetch(myURL, {
+      method: "POST",
+      headers: { "Content-type": "application/json" },
+      body: JSON.stringify(
+       
+        body
+      ),
+    });
+    // console.log(await res.text());
+    const json = await res.json();
+    if (json.status == "success") {
+      alert("Thankyou for contacting us, our team will reach you shortly");
+      location.reload();
+
+    }else{
+      alert("Thankyou for contacting us, our team will reach you shortly");
+      // location.reload();
+
+    }
+
+
+    // goto('../../../routes/admission/create/student_onboarding');
+    
+
+  }
+
+  async function getBranches() {
+    var token = localStorage.getItem("token");
+    var res;
+    var loginPath = get(ApiUrl);
+    var res = await fetch(loginPath + "/panel/branches/", {
+      mode: "cors",
+      method: "get",
+      headers: {
+        Authorization: "Bearer " + token,
+        "Content-Type": "application/json",
+      },
+    });
+    if (res.status == 200) {
+      try {
+        let response = await res.text();
+        response = await JSON.parse(response);
+        if (response.status == "success") {
+          branches = response.data;
+          // batches= response.data.batches;
+        } else {
+          console.log(response.message);
+        }
+      } catch (e) {
+        console.log("caught1");
+        alert("Some problem has occured, see console for more info.");
+        console.log(e.message);
+      }
+    } else {
+      console.log(await res.text());
+    }
+  }
+
+  async function getstreamsBatches() {
+    var token = localStorage.getItem("token");
+    var res;
+    var loginPath = get(ApiUrl);
+    var res = await fetch(
+      loginPath + "/panel/streams_batches_subjects_schemes/",
+      {
+        mode: "cors",
+        method: "get",
+        headers: {
+          Authorization: "Bearer " + token,
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    if (res.status == 200) {
+      try {
+        let response = await res.text();
+        response = await JSON.parse(response);
+        if (response.status == "success") {
+          streams = response.data.streams;
+          batches = response.data.batches;
+        } else {
+          console.log(response.message);
+        }
+      } catch (e) {
+        console.log("caught1");
+        alert("Some problem has occured, see console for more info.");
+        console.log(e.message);
+      }
+    } else {
+      console.log(await res.text());
+    }
+  }
+</script>
+
+{#if body}
+  <div class="mt-6">
+    <p class="text-center text-xl">ADMISSION FORM</p>
+    <form id="registration" class="w-full mx-auto p-6">
+      <ImageUpload
+        bind:url={body.profilePicture}
+        avatar={body.profilePicture}
+      />
+      <div class=" flex flex-col">
+        {#if branches}
+          <p class="w3-left">Select Branch</p>
+          
+          <select
+            class="w3-input w3-border w3-round w3-margin"
+            bind:value={body.branch}
+          >
+            <option value="-">Select Branch</option>
+            {#each branches as branch}
+              <!-- <label>{}</label> -->
+              <option value={branch._id}>{branch.name.toUpperCase()}</option>
+              <!-- <input class="w3-checkbox w3-input" type="checkbox"  bind:group={body.streams} /> -->
+            {/each}
+          </select>
+        {/if}
+
+        {#if streams}
+          <p class="w3-left">Select Stream</p>
+         
+          <select
+            class="w3-input w3-border w3-round w3-margin"
+            bind:value={body.stream}
+          >
+            <option value="-">Select Stream</option>
+            {#each streams as stream}
+              <!-- <label>{}</label> -->
+              <option value={stream._id}>{stream.name.toUpperCase()}</option>
+              <!-- <input class="w3-checkbox w3-input" type="checkbox"  bind:group={body.streams} /> -->
+            {/each}
+          </select>
+        {/if}
+
+        {#if batches}
+          <p class="w3-left">Select Batch</p>
+          
+          <select
+            class="w3-input w3-border w3-round w3-margin"
+            bind:value={body.batch}
+          >
+            <option value="-">Select Batch</option>
+            {#each batches as batch}
+              <!-- <label>{}</label> -->
+              <option value={batch._id}>{batch.name.toUpperCase()}</option>
+              <!-- <input class="w3-checkbox w3-input" type="checkbox"  bind:group={body.streams} /> -->
+            {/each}
+          </select>
+        {/if}
+
+        <label>Class</label>
+        <select
+          class="w3-input w3-border w3-round w3-margin"
+          bind:value={body.class_number}
+          required
+        >
+          <option value="-">Select Class</option>
+          <option value="13">Passout</option>
+          <option value="7">7th</option>
+          <option value="8">8th</option>
+          <option value="9">9th</option>
+          <option value="10">10th</option>
+          <option value="11">11th</option>
+          <option value="12">12th</option>
+        </select>
+
+        <div class="mx-5 my-6">
+          <div class="flex flex-row">
+            <p class="font-bold">Personal Details</p>
+            <p class="text-[.6em] mt-2 ml-6">
+              Mandatory Fields are marked with asterick(*)
+            </p>
+          </div>
+
+          <div class=" my-1 flex mt-2">
+            <label class="mt-1 mr-2" for="student_name">Student Name:</label>
+            <input
+              class="flex-1 border-2 rounded-md p-1"
+              type="text"
+              id="student_name"
+              bind:value={body.student_name}
+              placeholder="jane"
+            />
+          </div>
+
+          <div class=" my-1 flex mt-2">
+            <label class="mt-1 mr-2" for="father_name">
+              Father's/Guardian's name:</label
+            >
+            <input
+              class="flex-1 border-2 rounded-md p-1"
+              type="text"
+              id="father_name"
+              bind:value={body.father_name}
+              placeholder="jane"
+            />
+          </div>
+
+          <div class=" my-1 flex mt-2">
+            <label class="mt-1 mr-2" for="mother_name"> Mother's Name:</label>
+            <input
+              class="flex-1 border-2 rounded-md p-1"
+              type="text"
+              id="mother_name"
+              bind:value={body.mother_name}
+              placeholder="jane"
+            />
+          </div>
+
+          <div class=" my-1 flex mt-2">
+            <label class="mt-1 mr-2" for="occupation_of_father"
+              >Occupation of Father/Guardian:</label
+            >
+            <input
+              class="flex-1 border-2 rounded-md p-1"
+              type="text"
+              id="occupation_of_father"
+              bind:value={body.occupation_of_father}
+              placeholder="jane"
+            />
+          </div>
+
+          <div class=" my-1 flex mt-2">
+            <label class="mt-1 mr-2" for="occupation_of_mother"
+              >Occupation of Mother:</label
+            >
+            <input
+              class="flex-1 border-2 rounded-md p-1"
+              type="text"
+              id="occupation_of_mother"
+              bind:value={body.occupation_of_mother}
+              placeholder="jane"
+            />
+          </div>
+
+          <div class="flex flex-row">
+            <div class=" my-1 mt-2">
+              <label class="mt-1 mr-1" for="date_of_birth">
+                Date of Birth*:
+              </label>
+              <input
+                class=" border-2 rounded-md p-1"
+                type="date"
+                id="date_of_birth"
+                bind:value={body.date_of_birth}
+              />
+            </div>
+
+            <div class=" ml-20 mt-4">
+              <label class="mt-1 mr-1" for="gender"> Gender: </label>
+              <select id="gender" bind:value={body.gender}>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="non_binary">non-binary</option>
+              </select>
+            </div>
+
+            <div class=" ml-20 mt-4">
+              <label class="mt-1 mr-1" for="blood_group"> Blood Group: </label>
+              <select id="blood_grouprs" bind:value={body.blood_group}>
+                <option value="A+">A+</option>
+                <option value="A-">A-</option>
+                <option value="B+">B+</option>
+                <option value="B-">B-</option>
+                <option value="O+">O+</option>
+                <option value="O-">O-</option>
+                <option value="AB+">AB+</option>
+                <option value="AB-">AB-</option>
+              </select>
+            </div>
+
+            <div class=" ml-20 mt-4">
+              <label class="mt-1 mr-1" for="category"> Category*: </label>
+              <select id="category" bind:value={body.category}>
+                <option value="GEN">GEN</option>
+                <option value="OBC">OBC</option>
+                <option value="SC">SC</option>
+                <option value="ST">ST</option>
+                <option value="PH">PH</option>
+              </select>
+            </div>
+          </div>
+
+          <div class=" my-1 flex mt-2">
+            <label class="mt-1 mr-2" for="nationality"> Nationality </label>
+            <input
+              class="flex-1 border-2 rounded-md p-1"
+              type="text"
+              id="nationality"
+              bind:value={body.nationality}
+              placeholder="INDIA"
+            />
+          </div>
+
+          <div class=" my-1 flex mt-2">
+            <label class="mt-1 mr-2" for="mobile_parents">Mobile Parents:</label
+            >
+            <input
+              class="flex-1 border-2 rounded-md p-1"
+              type="text"
+              id="mobile_parents"
+              bind:value={body.mobile_parents}
+              placeholder="jane"
+            />
+          </div>
+
+          <div class=" my-1 flex mt-2">
+            <label class="mt-1 mr-2" for="mobile_students"
+              >Mobile Students:</label
+            >
+            <input
+              class="flex-1 border-2 rounded-md p-1"
+              type="text"
+              id="mobile_students"
+              bind:value={body.mobile_students}
+              placeholder="jane"
+            />
+          </div>
+
+          <div class=" my-1 flex mt-2">
+            <label class="mt-1 mr-2" for="e_mail_id">E-Mail ID:</label>
+            <input
+              class="flex-1 border-2 rounded-md p-1"
+              type="email"
+              id="e_mail_id"
+              bind:value={body.e_mail_id}
+              placeholder="jane"
+            />
+          </div>
+
+          <div class="flex flex-row">
+            <p class="font-bold mt-8">Permanent Address</p>
+            <!-- <p class="text-[.6em] mt-2 ml-6">
+            Mandatory Fields are marked with asterick(*)
+          </p> -->
+            <hr />
+          </div>
+
+          <div class=" my-1 flex mt-2">
+            <label class="mt-1 mr-2" for="permanent_address">Address:</label>
+            <input
+              class="flex-1 border-2 rounded-md p-1"
+              type="text"
+              id="permanent_address"
+              bind:value={body.permanent_address}
+              placeholder="jane"
+            />
+          </div>
+
+          <div class=" my-1 flex mt-2">
+            <label class="mt-1 mr-2" for="permanent_city"> City:</label>
+            <input
+              class="flex-1 border-2 rounded-md p-1"
+              type="text"
+              id="permanent_city"
+              bind:value={body.permanent_city}
+              placeholder="jane"
+            />
+          </div>
+
+          <div class=" my-1 flex mt-2">
+            <label class="mt-1 mr-2" for="permanent_state"> State:</label>
+            <input
+              class="flex-1 border-2 rounded-md p-1"
+              type="text"
+              id="permanent_state"
+              bind:value={body.permanent_state}
+              placeholder="jane"
+            />
+          </div>
+
+          <div class=" my-1 flex mt-2">
+            <label class="mt-1 mr-2" for="permanent_pin">PIN:</label>
+            <input
+              class="flex-1 border-2 rounded-md p-1"
+              type="text"
+              id="permanent_pin"
+              bind:value={body.permanent_pin}
+              placeholder="jane"
+            />
+          </div>
+
+          <div class="flex flex-row mt-8">
+            <p class="font-bold">Correspondence Address</p>
+            <input class="ml-2 mt-1" type="checkbox" bind:checked={cor_address}>
+            <p class="text-[.6em] mt-2 ml-6">
+              (same as permanent Address)
+            </p>
+          </div>
+
+          {#if cor_address}
+          <div class=" my-1 flex mt-2">
+            <label class="mt-1 mr-2" for="correspondence_address"
+              >Address:</label
+            >
+            <p>{permanent_address}</p>
+          </div>
+
+          <div class=" my-1 flex mt-2">
+            <label class="mt-1 mr-2" for="correspondence_city"> City:</label>
+            <p>{permanent_city}</p>
+          </div>
+
+          <div class=" my-1 flex mt-2">
+            <label class="mt-1 mr-2" for="correspondence_state"> State:</label>
+            <p>{permanent_state}</p>
+          </div>
+
+          <div class=" my-1 flex mt-2">
+            <label class="mt-1 mr-2" for="correspondence_pin">PIN:</label>
+            <p>{permanent_pin}</p>
+          </div>
+          {:else}
+          <div class=" my-1 flex mt-2">
+            <label class="mt-1 mr-2" for="correspondence_address"
+              >Address:</label
+            >
+            <input
+              class="flex-1 border-2 rounded-md p-1"
+              type="text"
+              id="correspondence_address"
+              bind:value={body.correspondence_address}
+              placeholder="jane"
+            />
+          </div>
+
+          <div class=" my-1 flex mt-2">
+            <label class="mt-1 mr-2" for="correspondence_city"> City:</label>
+            <input
+              class="flex-1 border-2 rounded-md p-1"
+              type="text"
+              id="correspondence_city"
+              bind:value={body.correspondence_city}
+              placeholder="jane"
+            />
+          </div>
+
+          <div class=" my-1 flex mt-2">
+            <label class="mt-1 mr-2" for="correspondence_state"> State:</label>
+            <input
+              class="flex-1 border-2 rounded-md p-1"
+              type="text"
+              id="correspondence_state"
+              bind:value={body.correspondence_state}
+              placeholder="jane"
+            />
+          </div>
+
+          <div class=" my-1 flex mt-2">
+            <label class="mt-1 mr-2" for="correspondence_pin">PIN:</label>
+            <input
+              class="flex-1 border-2 rounded-md p-1"
+              type="text"
+              id="correspondence_pin"
+              bind:value={body.correspondence_pin}
+              placeholder="jane"
+            />
+          </div>
+          {/if}
+
+          <div class=" my-1 flex mt-2">
+            <label class="mt-1 mr-2" for="phone_residence"
+              >Phone (Residence):</label
+            >
+            <input
+              class="flex-1 border-2 rounded-md p-1"
+              type="text"
+              id="phone_residence"
+              bind:value={body.phone_residence}
+              placeholder="jane"
+            />
+          </div>
+
+          <div class=" my-1 flex mt-2">
+            <label class="mt-1 mr-2" for="phone_office">Phone (office):</label>
+            <input
+              class="flex-1 border-2 rounded-md p-1"
+              type="text"
+              id="phone_office"
+              bind:value={body.phone_office}
+              placeholder="jane"
+            />
+          </div>
+
+          <div class="flex flex-row">
+            <p class="font-bold mt-8">Last Class Detail</p>
+            <!-- <p class="text-[.6em] mt-2 ml-6">
+            Mandatory Fields are marked with asterick(*)
+          </p> -->
+            <hr />
+          </div>
+
+          <div class=" my-1 flex mt-2">
+            <label class="mt-1 mr-2" for="school_college_name"
+              >Schools/College Name:</label
+            >
+            <input
+              class="flex-1 border-2 rounded-md p-1"
+              type="text"
+              id="school_college_name"
+              bind:value={body.school_college_name}
+              placeholder="jane"
+            />
+          </div>
+
+          <div class=" my-1 flex mt-2">
+            <label class="mt-1 mr-2" for="address_school_college">
+              Address:</label
+            >
+            <input
+              class="flex-1 border-2 rounded-md p-1"
+              type="text"
+              id="address_school_college"
+              bind:value={body.address_school_college}
+              placeholder="jane"
+            />
+          </div>
+
+          <div class="flex flex-row mt-8">
+            <p>Marks Obtained</p>
+
+            <label class="text-xs mt-1 ml-4 mr-2" for="percentage_of_secondary"
+              >Percentage of Class VII/VIII/IX/X</label
+            >
+            <input
+              class="border-2 w-16"
+              type="number"
+              id="percentage_of_secondary"
+              bind:value={body.percentage_of_secondary}
+            />
+
+            <label class="text-xs mt-1 ml-4 mr-2" for="senior_secondary_pcm"
+              >%(X/XII Board, PCM-Aggregate)</label
+            >
+            <input
+              class="border-2 w-16"
+              type="number"
+              id="senior_secondary_pcm"
+              bind:value={body.senior_secondary_pcm}
+            />
+
+            <label class="text-xs mt-1 ml-4 mr-2" for="senior_secondary_pcb"
+              >%(X/XII Board, PCB-Aggregate)</label
+            >
+            <input
+              class="border-2 w-16"
+              type="number"
+              id="senior_secondary_pcb"
+              bind:value={body.senior_secondary_pcb}
+            />
+          </div>
+
+          <div class="flex flex-row mt-8">
+            <p>Grades Obtained</p>
+
+            <label class="text-xs mt-1 ml-4 mr-2" for="science_grades"
+              >In Science</label
+            >
+            <input
+              class="border-2 w-16 h-7"
+              type="text"
+              id="science_grades"
+              bind:value={body.science_grades}
+            />
+
+            <label class="text-xs mt-1 ml-4 mr-2" for="math_grades"
+              >In Math</label
+            >
+            <input
+              class="border-2 w-16 h-7"
+              type="text"
+              id="math_grades"
+              bind:value={body.math_grades}
+            />
+
+            <label class=" mt-1 justify-end ml-24 mr-2 h-7" for="board"
+              >Exam Board</label
+            >
+            <input
+              class="border-2 justify-end h-7"
+              type="text"
+              id="board"
+              bind:value={body.board}
+            />
+            <label class=" mt-1 justify-end ml-4 mr-2" for="board"
+              >(CBSE/ICSE/ISC/UP/Others)</label
+            ><br /><br /><br />
+          </div>
+
+          <div
+            class="flex flex-row p-1 bg-green-700 text-white border-2 w-full"
+          >
+            <p>How did you come to know about Gravity ?</p>
+
+            <label class="mx-3 mt-1" for="promotion_team">
+              Promotion Team
+            </label>
+            <input
+              type="checkbox"
+              bind:group={body.how_came_to_know}
+              name="course_scoops"
+              value="promotion_team"
+              id="promotion_team"
+            />
+
+            <label class="mx-3 mt-1" for="newspaper"> Newspaper </label>
+            <input
+              type="checkbox"
+              bind:group={body.how_came_to_know}
+              name="course_scoops"
+              value="newspaper"
+              id="newspaper"
+            />
+
+            <label class="mx-3 mt-1" for="teacher"> Teacher </label>
+            <input
+              type="checkbox"
+              bind:group={body.how_came_to_know}
+              name="course_scoops"
+              value="teacher"
+              id="teacher"
+            />
+
+            <label class="mx-3 mt-1" for="friend_relatives">
+              Friend/Relatives
+            </label>
+            <input
+              type="checkbox"
+              bind:group={body.how_came_to_know}
+              name="course_scoops"
+              value="friend_relatives"
+              id="friend_relatives"
+            />
+
+            <label class="mx-3 mt-1" for="website"> Website </label>
+            <input
+              type="checkbox"
+              bind:group={body.how_came_to_know}
+              name="course_scoops"
+              value="website"
+              id="website"
+              required
+            />
+
+            <label class="mx-3 mt-1" for="radio_tv"> Radio/Tv </label>
+
+            <input
+              type="checkbox"
+              bind:group={body.how_came_to_know}
+              name="course_scoops"
+              value="radio_tv"
+              id="radio_tv"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="md:flex md:items-center mt-8">
+        <div class="md:w-1/3 flex">
+          <button
+            class="shadow bg-blue-800 hover:bg-blue-700 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded object-right"
+            on:click|preventDefault={handleSubmit}
+            type="button"
+          >
+            Submit
+          </button>
+        </div>
+        <div class="md:w-2/3" />
+      </div>
+    </form>
+  </div>
+{/if}
