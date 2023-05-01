@@ -1,0 +1,1 @@
+export { default as component } from "../../../../src/routes/admission/create/student_onboarding/+page.svelte";

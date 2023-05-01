@@ -205,7 +205,7 @@
           </select>
         {/if}
 
-        {#if batches}
+        <!-- {#if batches}
           <p class="w3-left">Select Batch</p>
           
           <select
@@ -214,12 +214,10 @@
           >
             <option value="-">Select Batch</option>
             {#each batches as batch}
-              <!-- <label>{}</label> -->
-              <option value={batch._id}>{batch.name.toUpperCase()}</option>
-              <!-- <input class="w3-checkbox w3-input" type="checkbox"  bind:group={body.streams} /> -->
-            {/each}
+               <option value={batch._id}>{batch.name.toUpperCase()}</option>
+               {/each}
           </select>
-        {/if}
+        {/if} -->
 
         <label>Class</label>
         <select

@@ -200,7 +200,7 @@
           <p class="w3-input w3-border w3-round w3-margin">{form_data.batch}</p>
 
           <p>Class</p>
-          <p class="w3-input w3-border w3-round w3-margin">{form_data.class}</p>
+          <p class="w3-input w3-border w3-round w3-margin">{form_data.class_number}</p>
 
           <div class="mx-5 my-6">
             <div class="flex flex-row">
@@ -222,7 +222,7 @@
                 Father's/Guardian's name:
               </p>
               <p class="flex-1 border-2 rounded-md p-1">
-                {form_data.father_guardian_name}
+                {form_data.father_name}
               </p>
             </div>
 
@@ -271,7 +271,7 @@
 
               <div class=" ml-20 mt-4">
                 <p class="mt-1 mr-1">Category:</p>
-                <p>{form_data.catrgory}</p>
+                <p>{form_data.category}</p>
               </div>
             </div>
 

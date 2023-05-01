@@ -1,5 +1,13 @@
 <script>
-  let body = {};
+  let body = {
+    arr_inst: [],
+    arr_time: [],
+    arr_paid_by: [],
+  };
+
+  let installments = [{ installment: "", timestamp: "" }];
+
+  let x = [];
 
   async function handleSubmit(event) {
     console.log("submitting inquiry form");
@@ -36,6 +44,24 @@
     // console.log(json.stringify(body,null,2))
     // console.log(body);
   }
+
+  async function handlePlus() {
+    installments.push({ installment: "", timestamp: "" });
+    installments = installments;
+  }
+
+  // async function handleSubmit(){
+  //   console.log(installments);
+  // }
+
+  async function deleteInstallment(index) {
+    console.log(index);
+    // installments.splice(index,1);
+    installments.pop();
+    installments = installments;
+  }
+
+  console.log(body);
 </script>
 
 <div>
@@ -44,145 +70,141 @@
   >
     For Office use only
   </p>
-  <!-- <p class="text-[.6em] mt-2 ml-6">
-      Mandatory Fields are marked with asterick(*)
-    </p> -->
 </div>
 
 <form action="">
   <div class="flex flex-row">
     <p>Fee Details:</p>
 
-    <div class="flex flex-row space-x-3">
-      <div class="mx-3 flex flex-col">
-        <!-- <label for="final_fee">Final Fee</label> -->
+    <div class="flex flex-col">
+      <div class="mx-3 flex flex-row">
         <p>Final Fee</p>
-        <p class="mt-2">Installments Amount</p>
-        <p class="mt-2">Payment Date</p>
-        <p class="mt-2">Paid by</p>
-        <p class="mt-10">Receipt Number</p>
+
+        <input class="border-2" type="number" bind:value={body.final_fee} />
       </div>
 
       <div class="mx-3 flex flex-col">
-        <div class="flex flex-row">
-          <input class="border-2" type="number" bind:value={body.final_fee} />
-        </div>
-
-        <div class="flex flex-row mt-1 space-x-1">
-          <input
-            class="border-2"
-            type="number"
-            placeholder="1st installment"
-            bind:value={body.installment1}
+        <div class="shadow-md bg-slate-200 p-4 my-2">
+          <button class="btn my-2 mr-4" on:click={handlePlus}>+</button>
+          <button class="btn" on:click={() => deleteInstallment()}>-</button><br
           />
-          <input
-            class="border-2"
-            type="number"
-            placeholder="2nd Installment"
-            bind:value={body.installment2}
-          />
-          <input
-            class="border-2"
-            type="number"
-            placeholder="3rd Installment"
-            bind:value={body.installment3}
-          />
-        </div>
-
-        <div class="flex flex-row mt-2 space-x-4">
-          <input
-            class="border-2"
-            type="date"
-            placeholder="date"
-            bind:value={body.installment1_date}
-          />
-          <input
-            class="border-2"
-            type="date"
-            placeholder="date"
-            bind:value={body.installment2_date}
-          />
-          <input
-            class="border-2"
-            type="date"
-            placeholder="date"
-            bind:value={body.installment3_date}
-          />
-        </div>
-        <!-- <p class="mt-1 text-sm">(Cash / Cheque /Demand Draft /NEFT / RTGS)</p> -->
-        <div>
-          <label>
+          {#each installments as install, index}
+            <span>Installment {index + 1}</span>
             <input
-              type="radio"
-              bind:group={body.paid_by}
-              name="location"
-              value="Cash"
+              class="border-2"
+              type="text"
+              bind:value={body.arr_inst[index + 1]}
             />
-            Cash
-          </label>
-
-          <label>
+            <span>Payment Date</span>
             <input
-              type="radio"
-              bind:group={body.paid_by}
-              name="location"
-              value="Cheque"
+              class="border-2"
+              type="date"
+              bind:value={body.arr_time[index + 1]}
             />
-            Cheque
-          </label>
 
-          <label>
-            <input
-              type="radio"
-              bind:group={body.paid_by}
-              name="location"
-              value="Demand Draft"
-            />
-            Demand Draft
-          </label>
+            <div class="mx-3 flex flex-row space-x-3 mt-2">
+              <p class="mr-3">Paid by</p>
 
-          <label>
-            <input
-              type="radio"
-              bind:group={body.paid_by}
-              name="location"
-              value="NEFT"
-            />
-            NEFT
-          </label>
+              <label>
+                <input
+                  type="radio"
+                  bind:group={body.arr_paid_by[index + 1]}
+                  name="location"
+                  value="Cash"
+                />
+                Cash
+              </label>
 
-          <label>
-            <input
-              type="radio"
-              bind:group={body.paid_by}
-              name="location"
-              value="RTGS"
-            />
-            RTGS
-          </label><br />
-        </div>
-        <div class="flex flex-row mt-1">
-          <label for="dd_cheque_number">DD / Cheque Number</label>
-          <input
-            class="border-2 ml-2"
-            type="number"
-            id="dd_cheque_number"
-            bind:value={body.dd_cheque_number}
-          />
-        </div>
-        <div class="flex flex-row mt-3">
-          <input
-            class="border-2 ml-2 w-full"
-            type="text"
-            id="dd_cheque_number"
-            bind:value={body.receipt_number}
-          />
+              <label>
+                <input
+                  type="radio"
+                  bind:group={body.arr_paid_by[index + 1]}
+                  name="location"
+                  value="Cheque"
+                />
+                Cheque
+              </label>
+
+              <label>
+                <input
+                  type="radio"
+                  bind:group={body.arr_paid_by[index + 1]}
+                  name="location"
+                  value="Demand Draft"
+                />
+                Demand Draft
+              </label>
+
+              <label>
+                <input
+                  type="radio"
+                  bind:group={body.arr_paid_by[index + 1]}
+                  name="location"
+                  value="NEFT"
+                />
+                NEFT
+              </label>
+
+              <label>
+                <input
+                  type="radio"
+                  bind:group={body.arr_paid_by[index + 1]}
+                  name="location"
+                  value="RTGS"
+                />
+                RTGS
+              </label>
+              
+              <label>
+                <input
+                  type="radio"
+                  bind:group={body.arr_paid_by[index + 1]}
+                  name="location"
+                  value="ECS"
+                />
+                ECS
+              </label>
+
+              <br />
+            </div>
+
+            <div class="mx-3 flex flex-row space-x-3 mt-2">
+              <div class="flex flex-row mt-1">
+                <label for="dd_cheque_number">DD / Cheque Number</label>
+                <input
+                  class="border-2 ml-2"
+                  type="number"
+                  id="dd_cheque_number"
+                  bind:value={body.dd_cheque_number}
+                />
+              </div>
+            </div>
+
+            <div class="mx-3 flex flex-row space-x-3 mt-2">
+              <div class="mx-3 flex flex-col">
+                <p class="mt-10">Receipt Number</p>
+              </div>
+
+              <div class="flex flex-row mt-3">
+                <input
+                  class="border-2 ml-2 "
+                  type="text"
+                  id="dd_cheque_number"
+                  bind:value={body.receipt_number}
+                />
+              </div>
+            </div>
+
+            <br/>
+            <hr class="w-4">
+          {/each}
+          <!-- <button class="btn" on:click={handleSubmit}>Submit</button> -->
         </div>
       </div>
     </div>
   </div>
 
-  <div class="w-full flex justify-end ">
+  <div class="w-full flex justify-end">
     <button
       class="shadow mr-28 mt-2 bg-blue-800 hover:bg-blue-700 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded object-right"
       on:click|preventDefault={handleSubmit}
