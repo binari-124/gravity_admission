@@ -116,7 +116,7 @@
       location.href="/admission/"+json.data;
 
     }else{
-      alert("Thankyou for contacting us, our team will reach you shortly");
+      alert("Some problem has occured "+json.message);
       // location.reload();
 
     }
