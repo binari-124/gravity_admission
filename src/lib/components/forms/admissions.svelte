@@ -1,7 +1,7 @@
 <script>
   import { onMount } from "svelte";
   import {goto} from '$app/navigation';
-  // import { Token } from "../../../routes/_utils/dynamic_store.js";
+  import { Token } from "../../../routes/_utils/dynamic_store.js";
   import { ApiUrl } from "../../../routes/_utils/static_store.js";
   import { get } from "svelte/store";
   import ImageUpload from "../../../routes/_utils/imageUpload.svelte";
@@ -66,7 +66,7 @@
 
     await getStreams();
     await getBranches();
-    await getBranches();
+    
     
   });
 
@@ -107,6 +107,7 @@
     var token = localStorage.getItem("token");
     var res;
     var loginPath = get(ApiUrl);
+    console.log("trying branches");
     var res = await fetch(loginPath + "/panel/branches/", {
       mode: "cors",
       method: "get",
@@ -140,6 +141,7 @@
         var token = localStorage.getItem("token");
         var loginPath = get(ApiUrl);
         let res;
+        console.log("trying streams");
         res = await fetch(loginPath + "/panel/streams", {
             mode: "cors",
             method: "get",
