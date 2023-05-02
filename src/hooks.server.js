@@ -6,7 +6,7 @@ let api_target = "http://localhost:8000";
 
 /** @type {import('@sveltejs/kit').Handle} */
 export async function handle({ event, resolve }) {
-  console.log("done1",event.request.url);
+  //console.log("done1",event.request.url);
   if (event.request.url.startsWith(host+'/api/user/authentication/')) {
     console.log("done");
     const myHeaders = new Headers();
@@ -28,16 +28,16 @@ export async function handle({ event, resolve }) {
     let req=new Request(event.request.url.replace(host,api_target),r);
     req.setHeaders({"asd": 'ts.grcls.in'});
     req.setHeaders({"Host": 'ts.grcls.in'});
-    console.log("req.headers.host");
+    // console.log("req.headers.host");
 
-    console.log(req.headers.host);
+    // console.log(req.headers.host);
 
     // let response = await fetch(new Request(event.request.url.replace(host,api_target),myInit));
     // let response = await fetch(new Request(event.request.url.replace(host,api_target),event.request));
     let response = await fetch(req);
 
     let data = await response.json();
-    console.log(data);
+    // console.log(data);
 
     var tokbodyObj=data;
 // 				// console.log(tokbodyObj);
@@ -56,7 +56,7 @@ export async function handle({ event, resolve }) {
     console.log("relegating api to other server");
     
     let response = await fetch(new Request(event.request.url.replace(host,api_target),event.request));
-    console.log(response.headers.get("Content-Type"));
+    // console.log(response.headers.get("Content-Type"));
     if(response.headers.get("Content-Type") &&  response.headers.get("Content-Type").includes("image/"))
     {
       let data = await response.blob();
@@ -75,7 +75,7 @@ export async function handle({ event, resolve }) {
  
   const response = await resolve(event);
   console.log("yahan se");
-  console.log(response);
+  // console.log(response);
   return response;
 
 }

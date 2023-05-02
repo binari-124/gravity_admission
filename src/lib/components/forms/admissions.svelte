@@ -5,7 +5,8 @@
   import { ApiUrl } from "../../../routes/_utils/static_store.js";
   import { get } from "svelte/store";
   import ImageUpload from "../../../routes/_utils/imageUpload.svelte";
-  
+  export let edit=false;
+  export let studentId;
   // /home/binari/Documents/student_panel/src/routes/admission/create/student_onboarding
   
   
@@ -72,14 +73,17 @@
 
     let loginPath = get(ApiUrl);
     myURL = loginPath+'/panel/student_create';
-
-
-    // body.batch = "-";
-    body.branch = "-";
-    body.stream = "-";
-
     await getStreams();
     await getBranches();
+
+    if(edit){
+      getStudent();
+    }
+    else{
+      // body.batch = "-";
+      body.branch = "-";
+      body.stream = "-";
+    }
     
     
   });
@@ -91,13 +95,17 @@
 
     var loginPath = get(ApiUrl);
     console.log(body);
-
+    // here we have created the clone of the body, otherwise secondary address will be getting permanently deleted
+    let data = JSON.parse(JSON.stringify(body));
+    if(cor_address){
+      delete data.secondary_address;
+    }
     // const res = await fetch(myURL, {
     //   method: "POST",
     //   headers: { "Content-type": "application/json" },
     //   body: JSON.stringify(
        
-    //     body
+    //     data
     //   ),
     // });
     // // console.log(await res.text());
@@ -137,6 +145,39 @@
         response = await JSON.parse(response);
         if (response.status == "success") {
           branches = response.data;
+          // batches= response.data.batches;
+        } else {
+          console.log(response.message);
+        }
+      } catch (e) {
+        console.log("caught1");
+        alert("Some problem has occured, see console for more info.");
+        console.log(e.message);
+      }
+    } else {
+      console.log(await res.text());
+    }
+  }
+
+  async function getStudent() {
+    var token = localStorage.getItem("token");
+    var res;
+    var loginPath = get(ApiUrl);
+    console.log("trying branches");
+    var res = await fetch(loginPath + "/panel/student/"+studentId, {
+      mode: "cors",
+      method: "get",
+      headers: {
+        Authorization: "Bearer " + token,
+        "Content-Type": "application/json",
+      },
+    });
+    if (res.status == 200) {
+      try {
+        let response = await res.text();
+        response = await JSON.parse(response);
+        if (response.status == "success") {
+          body = response.data;
           // batches= response.data.batches;
         } else {
           console.log(response.message);
@@ -194,6 +235,11 @@
 </script>
 
 {#if body}
+<div class="justify-end">
+  <label for="enrolment">Enrolment No:</label>
+  <input type="text" id="enrolment" bind:value={body.enrolment} />
+
+</div>
   <div class="mt-6">
     <p class="text-center text-xl">ADMISSION FORM</p>
     <form id="registration" class="w-full mx-auto p-6">
@@ -428,6 +474,7 @@
             />
           </div>
 
+          {#if !edit}
           <div class="flex flex-row">
             <p class="font-bold mt-8">Permanent Address</p>
             <!-- <p class="text-[.6em] mt-2 ml-6">
@@ -559,6 +606,8 @@
               placeholder="jane"
             />
           </div>
+          {/if}
+
           {/if}
 
           <div class=" my-1 flex mt-2">

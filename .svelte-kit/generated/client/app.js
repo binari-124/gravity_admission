@@ -16,9 +16,7 @@ export const nodes = [
 	() => import('./nodes/12'),
 	() => import('./nodes/13'),
 	() => import('./nodes/14'),
-	() => import('./nodes/15'),
-	() => import('./nodes/16'),
-	() => import('./nodes/17')
+	() => import('./nodes/15')
 ];
 
 export const server_loads = [];
@@ -27,18 +25,16 @@ export const dictionary = {
 		"/": [3],
 		"/about": [4],
 		"/admission": [5],
-		"/admission/bulk_upload": [6],
-		"/admission/create": [7],
-		"/admission/create/student_onboarding": [8],
-		"/admission/create/student_onboarding/edit_student": [9],
-		"/admission/create/student_onboarding/fee_management": [10],
-		"/admission/edit": [11],
-		"/login": [12],
-		"/students": [13],
-		"/students/batches": [14],
-		"/students/batches/[batches_info]": [15],
-		"/sverdle": [~16],
-		"/sverdle/how-to-play": [17]
+		"/admission/bulk_upload": [7],
+		"/admission/create": [8],
+		"/admission/edit": [9],
+		"/admission/[slug]": [6],
+		"/login": [10],
+		"/students": [11],
+		"/students/batches": [12],
+		"/students/batches/[batches_info]": [13],
+		"/sverdle": [~14],
+		"/sverdle/how-to-play": [15]
 	};
 
 export const hooks = {

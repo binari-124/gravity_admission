@@ -1,10 +1,17 @@
+
 <script>
   import { onMount } from "svelte";
-  import { Token } from "../../../../../src/routes/_utils/dynamic_store.js";
-  import { ApiUrl } from "../../../../../src/routes/_utils/static_store.js";
+  import { Token } from "../../_utils/dynamic_store.js";
+  import { ApiUrl } from "../../_utils/static_store.js";
   import { get } from "svelte/store";
-  import ImageUpload from "../../../../../src/routes/_utils/imageUpload.svelte";
+  // import ImageUpload from "../../../_utils/imageUpload.svelte.js";
 
+   /** @type {import('./$types').PageData} */
+  export let data;
+  export let studentId = data.studentId;
+  console.log("studentID from slug:"+studentId);
+  let body;
+  
   let date = new Date();
 
   let streams = [],
@@ -21,83 +28,12 @@
     permanent_state = "",
     permanent_pin = "";
 
-  // let correspondence_address = "", correspondence_city = "",
-  // correspondence_state = "", correspondence_pin = "";
-
-  // var url = null;
-
-  // let centre_scoops = 1;
-  // let stream_scoops = 1;
-  // let course_scoops = 1;
-
-  // let course_opted = 1;
-
-  let src = "../images/";
-
-  let body = {
-    // centre: [],
-    // stream: [],
-    // course_opted: [],
-    // course_opted_class: [],
-    how_came_to_know: [],
-  };
-
-  onMount(async () => {
-    console.log("mounted");
-
-    // let token = localStorage.getItem("token");
-    // if(!token)
-    // {
-    // 	console.log("yes");
-    // 	centre.href="/login";
-    // }
-    // Token.set(token);
-    let loginPath = get(ApiUrl);
-
-    await getformdata();
-  });
-
-  async function handleSubmit(event) {
-    console.log("submitting inquiry form");
-
-    //email...phone 10 digit, name,
-
-    console.log(body);
-    var token = localStorage.getItem("token");
-    // body.topic = topic;
-    var loginPath = get(ApiUrl);
-
-    const res = await fetch(myURL, {
-      method: "POST",
-      headers: { "Content-type": "application/json" },
-      body: JSON.stringify(
-        //   {
-        //   email: inquiry_email,
-        //   message: inquiry_message,
-        //   phone: inquiry_phone,
-        //   name: inquiry_name,
-        // }
-        body
-      ),
-    });
-    // console.log(await res.text());
-    const json = await res.json();
-    if (json.status == "success") {
-      alert("Thankyou for contacting us, our team will reach you shortly");
-      // centre.reload();
-    }
-    // let result = JSON.stringify(json);
-    // console.log(result);
-
-    // console.log(json.stringify(body,null,2))
-    // console.log(body);
-  }
-
-  async function getformdata() {
+    async function getStudent() {
     var token = localStorage.getItem("token");
     var res;
     var loginPath = get(ApiUrl);
-    var res = await fetch(loginPath + "/panel/branches/", {
+    console.log("trying branches");
+    var res = await fetch(loginPath + "/panel/student/"+studentId, {
       mode: "cors",
       method: "get",
       headers: {
@@ -110,7 +46,7 @@
         let response = await res.text();
         response = await JSON.parse(response);
         if (response.status == "success") {
-          form_data = response.data;
+          body = response.data;
           // batches= response.data.batches;
         } else {
           console.log(response.message);
@@ -125,42 +61,19 @@
     }
   }
 
-  async function getstreamsBatches() {
-    var token = localStorage.getItem("token");
-    var res;
-    var loginPath = get(ApiUrl);
-    var res = await fetch(
-      loginPath + "/panel/streams_batches_subjects_schemes/",
-      {
-        mode: "cors",
-        method: "get",
-        headers: {
-          Authorization: "Bearer " + token,
-          "Content-Type": "application/json",
-        },
-      }
-    );
-    if (res.status == 200) {
-      try {
-        let response = await res.text();
-        response = await JSON.parse(response);
-        if (response.status == "success") {
-          streams = response.data.streams;
-          batches = response.data.batches;
-        } else {
-          console.log(response.message);
-        }
-      } catch (e) {
-        console.log("caught1");
-        alert("Some problem has occured, see console for more info.");
-        console.log(e.message);
-      }
-    } else {
-      console.log(await res.text());
-    }
-  }
+  let src = "../images/";
+
+  
+
+  onMount(async () => {
+    console.log("mounted");
+    let loginPath = get(ApiUrl);
+    await getStudent();
+  });
 </script>
 
+
+{#if body}
 <div class="">
   <!-- <h3 class=" text-5xl">Students</h3> -->
   <div class="container" style="--template-color:red">
@@ -173,15 +86,27 @@
       class="w3-button w3-round w3-card w3-hover-green w3-margin"
       href="/admission/create/student_onboarding/edit_student">Edit</a
     >
+    <a
+      class="w3-button w3-round w3-card w3-hover-green w3-margin"
+      href="/admission/create/student_onboarding/batches"
+      >Fee Management</a
+    >
+    <a
+      class="w3-button w3-round w3-card w3-hover-green w3-margin"
+      href="/admission/create/student_onboarding/addresses"
+      >Fee Management</a
+    >
+
   </div>
 
   {#if body}
+  {JSON.stringify(body)}
     <div class="mt-6">
       <p class="text-center text-xl">ADMISSION FORM</p>
       <form id="registration" class="w-full mx-auto p-6">
-        <ImageUpload
-          bind:url={body.profilePicture}
-          avatar={body.profilePicture}
+        <img
+          src={body.profilePicture}
+          alt=""
         />
         <div class=" flex flex-col">
           <p class="w3-left">Select Branch</p>
@@ -539,13 +464,13 @@
         </div>
         <div class="md:flex md:items-center mt-8">
           <div class="md:w-1/3 flex">
-            <button
+            <!-- <button
               class="shadow bg-blue-800 hover:bg-blue-700 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded object-right"
               on:click|preventDefault={handleSubmit}
               type="button"
             >
               Submit
-            </button>
+            </button> -->
           </div>
           <div class="md:w-2/3" />
         </div>
@@ -553,3 +478,4 @@
     </div>
   {/if}
 </div>
+{/if}

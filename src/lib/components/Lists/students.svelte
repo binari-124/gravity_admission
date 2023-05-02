@@ -65,7 +65,7 @@
             <td>{student.branch?student.branch.name:"-"}</td> -->
                 <td>{student.email}</td>
                 <td
-                    ><a class="w3-text-blue" href="/students/{student._id}"
+                    ><a class="w3-text-blue" href="/admission/{student._id}"
                         >{student._id}</a
                     ></td
                 >
