@@ -16,7 +16,7 @@
     batches = [],
     branches = [];
 
-  let myURL = "";
+  let myURL = "/panel/student_create";
 
   let cor_address = false;
   
@@ -94,31 +94,32 @@
     var token = localStorage.getItem("token");
 
     var loginPath = get(ApiUrl);
-    console.log(body);
+    // console.log(body);
     // here we have created the clone of the body, otherwise secondary address will be getting permanently deleted
     let data = JSON.parse(JSON.stringify(body));
     if(cor_address){
       delete data.secondary_address;
     }
-    // const res = await fetch(myURL, {
-    //   method: "POST",
-    //   headers: { "Content-type": "application/json" },
-    //   body: JSON.stringify(
+    const res = await fetch(myURL, {
+      method: "POST",
+      headers: { "Content-type": "application/json", "Authorization":"Bearer "+token },
+      body: JSON.stringify(
        
-    //     data
-    //   ),
-    // });
-    // // console.log(await res.text());
-    // const json = await res.json();
-    // if (json.status == "success") {
-    //   alert("Thankyou for contacting us, our team will reach you shortly");
-    //   location.reload();
+        data
+      ),
+    });
+    // console.log(await res.text());
+    const json = await res.json();
+    if (json.status == "success") {
+      alert("Thankyou for contacting us, our team will reach you shortly");
+      // location.reload();
+      location.href="/admission/"+json.data;
 
-    // }else{
-    //   alert("Thankyou for contacting us, our team will reach you shortly");
-    //   // location.reload();
+    }else{
+      alert("Thankyou for contacting us, our team will reach you shortly");
+      // location.reload();
 
-    // }
+    }
 
 
     // goto('../../../routes/admission/create/student_onboarding');
