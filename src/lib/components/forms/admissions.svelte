@@ -128,40 +128,45 @@
     }
   }
 
-  async function getstreamsBatches() {
-    var token = localStorage.getItem("token");
-    var res;
-    var loginPath = get(ApiUrl);
-    var res = await fetch(
-      loginPath + "/panel/streams_batches_subjects_schemes/",
-      {
-        mode: "cors",
-        method: "get",
-        headers: {
-          Authorization: "Bearer " + token,
-          "Content-Type": "application/json",
-        },
-      }
-    );
-    if (res.status == 200) {
-      try {
-        let response = await res.text();
-        response = await JSON.parse(response);
-        if (response.status == "success") {
-          streams = response.data.streams;
-          batches = response.data.batches;
+  async function getStreams() {
+        // console.log(body);
+        var token = localStorage.getItem("token");
+        var loginPath = get(ApiUrl);
+        let res;
+        res = await fetch(loginPath + "/panel/streams", {
+            mode: "cors",
+            method: "get",
+            headers: {
+                Authorization: "Bearer " + token,
+                "Content-Type": "application/json",
+            },
+        });
+
+        if (res.status == 200) {
+            try {
+                let response = await res.text();
+                response = await JSON.parse(response);
+                if (response.status == "success") {
+                    streams = response.data;
+                    console.log(streams);
+                } else {
+                    console.log(response.message);
+                    alert(response.message);
+                }
+            } catch (e) {
+                console.log("caught");
+                console.log(e);
+            } finally {
+            }
         } else {
-          console.log(response.message);
+            console.log(await res.text());
+            user.email = "no logged";
         }
-      } catch (e) {
-        console.log("caught1");
-        alert("Some problem has occured, see console for more info.");
-        console.log(e.message);
-      }
-    } else {
-      console.log(await res.text());
     }
-  }
+
+    
+
+  
 </script>
 
 {#if body}
