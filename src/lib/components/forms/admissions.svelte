@@ -76,26 +76,27 @@
     var token = localStorage.getItem("token");
 
     var loginPath = get(ApiUrl);
+    console.log(body);
 
-    const res = await fetch(myURL, {
-      method: "POST",
-      headers: { "Content-type": "application/json" },
-      body: JSON.stringify(
+    // const res = await fetch(myURL, {
+    //   method: "POST",
+    //   headers: { "Content-type": "application/json" },
+    //   body: JSON.stringify(
        
-        body
-      ),
-    });
-    // console.log(await res.text());
-    const json = await res.json();
-    if (json.status == "success") {
-      alert("Thankyou for contacting us, our team will reach you shortly");
-      location.reload();
+    //     body
+    //   ),
+    // });
+    // // console.log(await res.text());
+    // const json = await res.json();
+    // if (json.status == "success") {
+    //   alert("Thankyou for contacting us, our team will reach you shortly");
+    //   location.reload();
 
-    }else{
-      alert("Thankyou for contacting us, our team will reach you shortly");
-      // location.reload();
+    // }else{
+    //   alert("Thankyou for contacting us, our team will reach you shortly");
+    //   // location.reload();
 
-    }
+    // }
 
 
     // goto('../../../routes/admission/create/student_onboarding');
