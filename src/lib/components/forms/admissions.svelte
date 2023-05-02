@@ -54,10 +54,17 @@
     	location.href="/login";
     }
 
+    Token.set(token);
+
     let loginPath = get(ApiUrl);
     myURL = loginPath+'/panel/student_create';
 
-    await getstreams();
+
+    body.batch = "-";
+    body.branch = "-";
+    body.stream = "-";
+
+    await getStreams();
     await getBranches();
     await getBranches();
     
