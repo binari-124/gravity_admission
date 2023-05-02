@@ -405,14 +405,14 @@
           </div>
 
           <div class=" my-1 flex mt-2">
-            <label class="mt-1 mr-2" for="mobile_students"
+            <label class="mt-1 mr-2" for="phone"
               >Mobile Students:</label
             >
             <input
               class="flex-1 border-2 rounded-md p-1"
               type="text"
-              id="mobile_students"
-              bind:value={body.mobile_students}
+              id="phone"
+              bind:value={body.phone}
               placeholder="jane"
             />
           </div>
@@ -594,27 +594,27 @@
           </div>
 
           <div class=" my-1 flex mt-2">
-            <label class="mt-1 mr-2" for="school_college_name"
+            <label class="mt-1 mr-2" for="school_name"
               >Schools/College Name:</label
             >
             <input
               class="flex-1 border-2 rounded-md p-1"
               type="text"
-              id="school_college_name"
-              bind:value={body.school_college_name}
+              id="school_name"
+              bind:value={body.school_name}
               placeholder="jane"
             />
           </div>
 
           <div class=" my-1 flex mt-2">
-            <label class="mt-1 mr-2" for="address_school_college">
+            <label class="mt-1 mr-2" for="school_address">
               Address:</label
             >
             <input
               class="flex-1 border-2 rounded-md p-1"
               type="text"
-              id="address_school_college"
-              bind:value={body.address_school_college}
+              id="school_address"
+              bind:value={body.school_address}
               placeholder="jane"
             />
           </div>
