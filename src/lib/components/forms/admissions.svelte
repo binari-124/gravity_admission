@@ -19,8 +19,7 @@
 
   let cor_address = false;
   
-  let permanent_address = "", permanent_city = "",
-  permanent_state = "", permanent_pin = "";
+ 
 
  
   // let correspondence_address = "", correspondence_city = "",
@@ -42,6 +41,21 @@
     // course_opted: [],
     // course_opted_class: [],
     how_came_to_know: [],
+    primary_address:{
+      address_line_1:"",
+      address_line_2:"",
+      city:"",
+      state:"",
+      pincode:""
+    },
+    secondary_address:{
+      address_line_1:"",
+      address_line_2:"",
+      city:"",
+      state:"",
+      pincode:""
+    },
+    
   };
 
   onMount(async () => {
@@ -60,7 +74,7 @@
     myURL = loginPath+'/panel/student_create';
 
 
-    body.batch = "-";
+    // body.batch = "-";
     body.branch = "-";
     body.stream = "-";
 
@@ -259,12 +273,12 @@
           </div>
 
           <div class=" my-1 flex mt-2">
-            <label class="mt-1 mr-2" for="student_name">Student Name:</label>
+            <label class="mt-1 mr-2" for="name">Student Name:</label>
             <input
               class="flex-1 border-2 rounded-md p-1"
               type="text"
-              id="student_name"
-              bind:value={body.student_name}
+              id="name"
+              bind:value={body.name}
               placeholder="jane"
             />
           </div>
@@ -409,7 +423,7 @@
               class="flex-1 border-2 rounded-md p-1"
               type="email"
               id="e_mail_id"
-              bind:value={body.e_mail_id}
+              bind:value={body.email}
               placeholder="jane"
             />
           </div>
@@ -423,15 +437,27 @@
           </div>
 
           <div class=" my-1 flex mt-2">
-            <label class="mt-1 mr-2" for="permanent_address">Address:</label>
+            <label class="mt-1 mr-2" for="permanent_address">Address Line 1:</label>
             <input
               class="flex-1 border-2 rounded-md p-1"
               type="text"
               id="permanent_address"
-              bind:value={body.permanent_address}
+              bind:value={body.primary_address.address_line_1}
               placeholder="jane"
             />
           </div>
+
+          <div class=" my-1 flex mt-2">
+            <label class="mt-1 mr-2" for="permanent_address">Address Line 2:</label>
+            <input
+              class="flex-1 border-2 rounded-md p-1"
+              type="text"
+              id="permanent_address"
+              bind:value={body.primary_address.address_line_2}
+              placeholder="jane"
+            />
+          </div>
+
 
           <div class=" my-1 flex mt-2">
             <label class="mt-1 mr-2" for="permanent_city"> City:</label>
@@ -439,7 +465,7 @@
               class="flex-1 border-2 rounded-md p-1"
               type="text"
               id="permanent_city"
-              bind:value={body.permanent_city}
+              bind:value={body.primary_address.city}
               placeholder="jane"
             />
           </div>
@@ -450,7 +476,7 @@
               class="flex-1 border-2 rounded-md p-1"
               type="text"
               id="permanent_state"
-              bind:value={body.permanent_state}
+              bind:value={body.primary_address.state}
               placeholder="jane"
             />
           </div>
@@ -461,7 +487,7 @@
               class="flex-1 border-2 rounded-md p-1"
               type="text"
               id="permanent_pin"
-              bind:value={body.permanent_pin}
+              bind:value={body.primary_address.pincode}
               placeholder="jane"
             />
           </div>
@@ -474,29 +500,7 @@
             </p>
           </div>
 
-          {#if cor_address}
-          <div class=" my-1 flex mt-2">
-            <label class="mt-1 mr-2" for="correspondence_address"
-              >Address:</label
-            >
-            <p>{permanent_address}</p>
-          </div>
-
-          <div class=" my-1 flex mt-2">
-            <label class="mt-1 mr-2" for="correspondence_city"> City:</label>
-            <p>{permanent_city}</p>
-          </div>
-
-          <div class=" my-1 flex mt-2">
-            <label class="mt-1 mr-2" for="correspondence_state"> State:</label>
-            <p>{permanent_state}</p>
-          </div>
-
-          <div class=" my-1 flex mt-2">
-            <label class="mt-1 mr-2" for="correspondence_pin">PIN:</label>
-            <p>{permanent_pin}</p>
-          </div>
-          {:else}
+          {#if !cor_address}
           <div class=" my-1 flex mt-2">
             <label class="mt-1 mr-2" for="correspondence_address"
               >Address:</label
@@ -505,7 +509,20 @@
               class="flex-1 border-2 rounded-md p-1"
               type="text"
               id="correspondence_address"
-              bind:value={body.correspondence_address}
+              bind:value={body.secondary_address.address_line_1}
+              placeholder="jane"
+            />
+          </div>
+
+          <div class=" my-1 flex mt-2">
+            <label class="mt-1 mr-2" for="correspondence_address"
+              >Address:</label
+            >
+            <input
+              class="flex-1 border-2 rounded-md p-1"
+              type="text"
+              id="correspondence_address"
+              bind:value={body.secondary_address.address_line_2}
               placeholder="jane"
             />
           </div>
@@ -516,7 +533,7 @@
               class="flex-1 border-2 rounded-md p-1"
               type="text"
               id="correspondence_city"
-              bind:value={body.correspondence_city}
+              bind:value={body.secondary_address.city}
               placeholder="jane"
             />
           </div>
@@ -527,7 +544,7 @@
               class="flex-1 border-2 rounded-md p-1"
               type="text"
               id="correspondence_state"
-              bind:value={body.correspondence_state}
+              bind:value={body.secondary_address.state}
               placeholder="jane"
             />
           </div>
@@ -538,7 +555,7 @@
               class="flex-1 border-2 rounded-md p-1"
               type="text"
               id="correspondence_pin"
-              bind:value={body.correspondence_pin}
+              bind:value={body.secondary_address.pincode}
               placeholder="jane"
             />
           </div>
