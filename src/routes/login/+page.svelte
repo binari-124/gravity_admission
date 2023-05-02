@@ -36,7 +36,7 @@ export async function handleSubmit(){
 				let token =user.token;
 				console.log(token);
 				localStorage.setItem("token",token);
-				location.href = "/dashboard";
+				location.href = "/admissions";
 
 			}
 			else
