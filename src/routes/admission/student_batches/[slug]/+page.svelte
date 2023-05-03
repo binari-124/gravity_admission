@@ -173,7 +173,8 @@
   });
 </script>
 
-
+<h1 class="text-center text-2xl">Batches</h1>
+<p class="text-center">Please Add/Remove student from batches </p>
 <table class="w3-table-all w3-hoverable">
   <thead>
     <tr class="w3-light-grey">
@@ -199,9 +200,9 @@
       <td>{batch.students.length}</td>
       <td>{student_batches.includes(batch._id)}</td>
       {#if student_batches.includes(batch._id)}
-      <td><button on:click={()=>batchRemoveStudent(batch._id)}>Remove</button></td>
+      <td><button class="btn" on:click={()=>batchRemoveStudent(batch._id)}>Remove</button></td>
       {:else}
-      <td><button on:click={()=>batchAddStudent(batch._id)}>Add</button></td> 
+      <td><button class="btn" on:click={()=>batchAddStudent(batch._id)}>Add</button></td> 
       {/if}
   </tr>
   {/each}
