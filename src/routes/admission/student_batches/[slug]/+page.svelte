@@ -35,7 +35,7 @@
     var res;
     var loginPath = get(ApiUrl);
     console.log("trying branches");
-    var res = await fetch(loginPath + "/panel/batches/student_batches_ids"+studentId, {
+    var res = await fetch(loginPath + "/panel/batches/student_batches_ids/"+studentId, {
       mode: "cors",
       method: "get",
       headers: {
@@ -68,7 +68,7 @@
     var res;
     var loginPath = get(ApiUrl);
     console.log("trying branches");
-    var res = await fetch(loginPath + "/panel/student/student_compatible"+studentId, {
+    var res = await fetch(loginPath + "/panel/student/student_compatible/"+studentId, {
       mode: "cors",
       method: "get",
       headers: {
