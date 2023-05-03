@@ -226,7 +226,7 @@
               <p
                 class="flex-1 border-2 rounded-md p-1"
                
-              >{body.mobile_students}</p>
+              >{body.phone}</p>
             </div>
 
             <div class=" my-1 flex mt-2">
@@ -234,7 +234,7 @@
               <p
                 class="flex-1 border-2 rounded-md p-1"
                
-              >{body.e_mail_id}</p>
+              >{body.email}</p>
             </div>
 
             <!-- <div class="flex flex-row">
@@ -342,7 +342,7 @@
               <p
                 class="flex-1 border-2 rounded-md p-1"
                 
-              >{body.school_college_name}</p>
+              >{body.school_name}</p>
             </div>
 
             <div class=" my-1 flex mt-2">
@@ -352,7 +352,7 @@
               <p
                 class="flex-1 border-2 rounded-md p-1"
                 
-              >{body.address_school_college}</p>
+              >{body.school_address}</p>
             </div>
 
             <div class="flex flex-row mt-8">
