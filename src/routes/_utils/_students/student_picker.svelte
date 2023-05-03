@@ -138,7 +138,7 @@
             }
         } else {
             console.log(await res.text());
-            user.email = "no logged";
+            // user.email = "no logged";
         }
     }
 
@@ -174,7 +174,7 @@
             }
         } else {
             console.log(await res.text());
-            user.email = "no logged";
+            // user.email = "no logged";
         }
     }
 
@@ -210,7 +210,7 @@
             }
         } else {
             console.log(await res.text());
-            user.email = "no logged";
+            // user.email = "no logged";
         }
     }
 </script>
