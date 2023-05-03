@@ -13,13 +13,13 @@
   let body={
 
   };
+
+  let student_batches=[];
+  let student_compatible=[];
   
   let date = new Date();
 
-  let streams = [],
-    branches = []
-    student_batches = []
-    student_compatible_batches = [];
+  
 
   let myURL = "";
 
@@ -30,12 +30,12 @@
     permanent_state = "",
     permanent_pin = "";
 
-    async function getStudent() {
+    async function getStudentBatches() {
     var token = localStorage.getItem("token");
     var res;
     var loginPath = get(ApiUrl);
     console.log("trying branches");
-    var res = await fetch(loginPath + "/panel/student/"+studentId, {
+    var res = await fetch(loginPath + "/panel/batches/student_batches_ids"+studentId, {
       mode: "cors",
       method: "get",
       headers: {
@@ -48,8 +48,105 @@
         let response = await res.text();
         response = await JSON.parse(response);
         if (response.status == "success") {
-          body = response.data;
+          student_batches = response.data;
           // batches= response.data.batches;
+        } else {
+          console.log(response.message);
+        }
+      } catch (e) {
+        console.log("caught1");
+        alert("Some problem has occured, see console for more info.");
+        console.log(e.message);
+      }
+    } else {
+      console.log(await res.text());
+    }
+  }
+
+  async function getStudentCompatibleBatches() {
+    var token = localStorage.getItem("token");
+    var res;
+    var loginPath = get(ApiUrl);
+    console.log("trying branches");
+    var res = await fetch(loginPath + "/panel/student/student_compatible"+studentId, {
+      mode: "cors",
+      method: "get",
+      headers: {
+        Authorization: "Bearer " + token,
+        "Content-Type": "application/json",
+      },
+    });
+    if (res.status == 200) {
+      try {
+        let response = await res.text();
+        response = await JSON.parse(response);
+        if (response.status == "success") {
+          student_compatible = response.data;
+          // batches= response.data.batches;
+        } else {
+          console.log(response.message);
+        }
+      } catch (e) {
+        console.log("caught1");
+        alert("Some problem has occured, see console for more info.");
+        console.log(e.message);
+      }
+    } else {
+      console.log(await res.text());
+    }
+  }
+
+  async function batchAddStudent(batchId) {
+    var token = localStorage.getItem("token");
+    var res;
+    var loginPath = get(ApiUrl);
+    console.log("trying branches");
+    var res = await fetch(loginPath + "/panel/batches/batch_add_student/"+batchId+"/"+studentId, {
+      mode: "cors",
+      method: "post",
+      headers: {
+        Authorization: "Bearer " + token,
+        "Content-Type": "application/json",
+      },
+    });
+    if (res.status == 200) {
+      try {
+        let response = await res.text();
+        response = await JSON.parse(response);
+        if (response.status == "success") {
+          location.reload();
+        } else {
+          console.log(response.message);
+        }
+      } catch (e) {
+        console.log("caught1");
+        alert("Some problem has occured, see console for more info.");
+        console.log(e.message);
+      }
+    } else {
+      console.log(await res.text());
+    }
+  }
+
+  async function batchRemoveStudent(batchId) {
+    var token = localStorage.getItem("token");
+    var res;
+    var loginPath = get(ApiUrl);
+    console.log("trying branches");
+    var res = await fetch(loginPath + "/panel/batches/batch_remove_student/"+batchId+"/"+studentId, {
+      mode: "cors",
+      method: "post",
+      headers: {
+        Authorization: "Bearer " + token,
+        "Content-Type": "application/json",
+      }
+    });
+    if (res.status == 200) {
+      try {
+        let response = await res.text();
+        response = await JSON.parse(response);
+        if (response.status == "success") {
+          location.reload();
         } else {
           console.log(response.message);
         }
@@ -70,16 +167,44 @@
   onMount(async () => {
     console.log("mounted");
     let loginPath = get(ApiUrl);
-    await getStudentbatches();
-    await getStudentcompatiblebatches();
+    await getStudentBatches();
+    await getStudentCompatibleBatches();
 
   });
 </script>
 
 
-{#if body}
- 
- hello
+<table class="w3-table-all w3-hoverable">
+  <thead>
+    <tr class="w3-light-grey">
+      <th>Batch ID</th>
+      <th>Class</th>
+      <th>Centre</th>
+      <th>Stream</th>
+      <th>#Lectures</th>
+      <th>#Students</th>
+      <th>Student Added</th>
+      <th>Toggle Entry</th>
+      <!-- <th>Email Id</th>
+      <th>Student ID</th> -->
+    </tr>
+  </thead>
+  {#each student_compatible as batch}
+  <tr class="w3-hover-shadow">
+      <td>{batch._id}</td>
+      <td>{batch.class_number}</td>
+      <td>{batch.centre}</td>
+      <td>{batch.stream}</td>
+      <td>{batch.lectures.length}</td>
+      <td>{batch.students.length}</td>
+      <td>{student_batches.includes(batch._id)}</td>
+      {#if student_batches.includes(batch._id)}
+      <td><button on:click={()=>batchRemoveStudent(batch._id)}>Remove</button></td>
+      {:else}
+      <td><button on:click={()=>batchAddStudent(batch._id)}>Add</button></td> 
+      {/if}
+  </tr>
+  {/each}
+</table>
 
 
-{/if}
