@@ -16,8 +16,7 @@
 
   let streams = [],
     batches = [],
-    branches = [],
-    form_data = [];
+    branches = [];
 
   let myURL = "";
 
@@ -112,20 +111,20 @@
           <p class="w3-left">Select Branch</p>
 
           <p class="w3-input w3-border w3-round w3-margin">
-            {form_data.branch}
+            {body.branch}
           </p>
 
           <p class="w3-left">Select Stream</p>
 
           <p class="w3-input w3-border w3-round w3-margin">
-            {form_data.stream}
+            {body.stream}
           </p>
           <p class="w3-left">Select Batch</p>
 
-          <p class="w3-input w3-border w3-round w3-margin">{form_data.batch}</p>
+          <p class="w3-input w3-border w3-round w3-margin">{body.batch}</p>
 
           <p>Class</p>
-          <p class="w3-input w3-border w3-round w3-margin">{form_data.class_number}</p>
+          <p class="w3-input w3-border w3-round w3-margin">{body.class_number}</p>
 
           <div class="mx-5 my-6">
             <div class="flex flex-row">
@@ -138,7 +137,7 @@
             <div class=" my-1 flex mt-2">
               <p class="mt-1 mr-2" for="student_name">Student Name:</p>
               <p class="flex-1 border-2 rounded-md p-1">
-                {form_data.student_name}
+                {body.student_name}
               </p>
             </div>
 
@@ -147,14 +146,14 @@
                 Father's/Guardian's name:
               </p>
               <p class="flex-1 border-2 rounded-md p-1">
-                {form_data.father_name}
+                {body.father_name}
               </p>
             </div>
 
             <div class=" my-1 flex mt-2">
               <p class="mt-1 mr-2" for="mother_name">Mother's Name:</p>
               <p class="flex-1 border-2 rounded-md p-1">
-                {form_data.mother_name}
+                {body.mother_name}
               </p>
             </div>
 
@@ -163,7 +162,7 @@
                 Occupation of Father/Guardian:
               </p>
               <p class="flex-1 border-2 rounded-md p-1">
-                {form_data.occupation_of_father}
+                {body.occupation_of_father}
               </p>
             </div>
 
@@ -172,7 +171,7 @@
                 Occupation of Mother:
               </p>
               <p class="flex-1 border-2 rounded-md p-1" type="text">
-                {form_data.occupation_of_mother}
+                {body.occupation_of_mother}
               </p>
             </div>
 
@@ -180,23 +179,23 @@
               <div class=" my-1 mt-2">
                 <p class="mt-1 mr-1" for="date_of_birth">Date of Birth:</p>
                 <p class=" border-2 rounded-md p-1">
-                  {form_data.date_of_birth}
+                  {body.date_of_birth}
                 </p>
               </div>
 
               <div class=" ml-20 mt-4">
                 <p class="mt-1 mr-1">Gender:</p>
-                <p id="gender">{form_data.gender}</p>
+                <p id="gender">{body.gender}</p>
               </div>
 
               <div class=" ml-20 mt-4">
                 <p class="mt-1 mr-1">Blood Group:</p>
-                <p>{form_data.blood_group}</p>
+                <p>{body.blood_group}</p>
               </div>
 
               <div class=" ml-20 mt-4">
                 <p class="mt-1 mr-1">Category:</p>
-                <p>{form_data.category}</p>
+                <p>{body.category}</p>
               </div>
             </div>
 
@@ -207,7 +206,7 @@
                 
                
                 
-              >{form_data.nationality}</p>
+              >{body.nationality}</p>
             </div>
 
             <div class=" my-1 flex mt-2">
@@ -217,7 +216,7 @@
               <p
                 class="flex-1 border-2 rounded-md p-1"
                 
-              >{form_data.mobile_parents}</p>
+              >{body.mobile_parents}</p>
             </div>
 
             <div class=" my-1 flex mt-2">
@@ -227,7 +226,7 @@
               <p
                 class="flex-1 border-2 rounded-md p-1"
                
-              >{form_data.mobile_students}</p>
+              >{body.mobile_students}</p>
             </div>
 
             <div class=" my-1 flex mt-2">
@@ -235,7 +234,7 @@
               <p
                 class="flex-1 border-2 rounded-md p-1"
                
-              >{form_data.e_mail_id}</p>
+              >{body.e_mail_id}</p>
             </div>
 
             <div class="flex flex-row">
@@ -251,7 +250,7 @@
               <p
                 class="flex-1 border-2 rounded-md p-1"
                
-              >{form_data.permanent_address}</p>
+              >{body.permanent_address}</p>
             </div>
 
             <div class=" my-1 flex mt-2">
@@ -259,7 +258,7 @@
               <p
                 class="flex-1 border-2 rounded-md p-1"
                 
-              >{form_data.permanent_city}</p>
+              >{body.permanent_city}</p>
             </div>
 
             <div class=" my-1 flex mt-2">
@@ -267,7 +266,7 @@
               <p
                 class="flex-1 border-2 rounded-md p-1"
                 
-              >{form_data.permanent_state}</p>
+              >{body.permanent_state}</p>
             </div>
 
             <div class=" my-1 flex mt-2">
@@ -275,7 +274,7 @@
               <p
                 class="flex-1 border-2 rounded-md p-1"
                
-              >{form_data.permanent_pin}</p>
+              >{body.permanent_pin}</p>
             </div>
 
             <div class="flex flex-row mt-8">
@@ -289,26 +288,26 @@
                 <p class="mt-1 mr-2" 
                   >Address:</p
                 >
-                <p>{form_data.correspondence_address}</p>
+                <p>{body.correspondence_address}</p>
               </div>
 
               <div class=" my-1 flex mt-2">
                 <p class="mt-1 mr-2" >
                   City:</p
                 >
-                <p>{form_data.correspondence_city}</p>
+                <p>{body.correspondence_city}</p>
               </div>
 
               <div class=" my-1 flex mt-2">
                 <p class="mt-1 mr-2" >
                   State:</p
                 >
-                <p>{form_data.correspondence_state}</p>
+                <p>{body.correspondence_state}</p>
               </div>
 
               <div class=" my-1 flex mt-2">
                 <p class="mt-1 mr-2" >PIN:</p>
-                <p>{form_data.correspondence_pin}</p>
+                <p>{body.correspondence_pin}</p>
               </div>
             
 
@@ -318,7 +317,7 @@
               >
               <p
                 class="flex-1 border-2 rounded-md p-1"
-               >{form_data.phone_residence}</p> 
+               >{body.phone_residence}</p> 
             </div>
 
             <div class=" my-1 flex mt-2">
@@ -327,7 +326,7 @@
               <p
                 class="flex-1 border-2 rounded-md p-1"
                 
-              >{form_data.phone_office}</p>
+              >{body.phone_office}</p>
             </div>
 
             <div class="flex flex-row">
@@ -345,7 +344,7 @@
               <p
                 class="flex-1 border-2 rounded-md p-1"
                 
-              >{form_data.school_college_name}</p>
+              >{body.school_college_name}</p>
             </div>
 
             <div class=" my-1 flex mt-2">
@@ -355,7 +354,7 @@
               <p
                 class="flex-1 border-2 rounded-md p-1"
                 
-              >{form_data.address_school_college}</p>
+              >{body.address_school_college}</p>
             </div>
 
             <div class="flex flex-row mt-8">
@@ -369,7 +368,7 @@
               <p
                 class="border-2 w-16"
                 
-              >{form_data.percentage_of_secondary}</p>
+              >{body.percentage_of_secondary}</p>
 
               <p class="text-xs mt-1 ml-4 mr-2" 
                 >%(X/XII Board, PCM-Aggregate)</p
@@ -377,7 +376,7 @@
               <p
                 class="border-2 w-16"
                 
-              >{form_data.senior_secondary_pcm}</p>
+              >{body.senior_secondary_pcm}</p>
 
               <p class="text-xs mt-1 ml-4 mr-2" 
                 >%(X/XII Board, PCB-Aggregate)</p
@@ -385,7 +384,7 @@
               <p
                 class="border-2 w-16"
                 
-              >{form_data.senior_secondary_pcb}</p>
+              >{body.senior_secondary_pcb}</p>
             </div>
 
             <div class="flex flex-row mt-8">
@@ -397,7 +396,7 @@
               <p
                 class="border-2 w-16 h-7"
                 
-              >{form_data.science_grades}</p>
+              >{body.science_grades}</p>
 
               <p class="text-xs mt-1 ml-4 mr-2" 
                 >In Math</p
@@ -405,7 +404,7 @@
               <p
                 class="border-2 w-16 h-7"
                 
-              >{form_data.math_grades}</p>
+              >{body.math_grades}</p>
 
               <p class=" mt-1 justify-end ml-24 mr-2 h-7" 
                 >Exam Board</p
@@ -413,7 +412,7 @@
               <p
                 class="border-2 justify-end h-7"
                 
-              >{form_data.board}</p>
+              >{body.board}</p>
               <p class=" mt-1 justify-end ml-4 mr-2" 
                 >(CBSE/ICSE/ISC/UP/Others)</p
               ><br /><br /><br />
@@ -429,36 +428,36 @@
               </p>
               <p
                 
-              >{form_data.how_came_to_know}</p>
+              >{body.how_came_to_know}</p>
 
               <p class="mx-3 mt-1" for="newspaper"> Newspaper </p>
               <p
                 
-              >{form_data.how_came_to_know}</p>
+              >{body.how_came_to_know}</p>
 
               <p class="mx-3 mt-1" for="teacher"> Teacher </p>
               <p
                 
-              >{form_data.how_came_to_know}</p>
+              >{body.how_came_to_know}</p>
 
               <p class="mx-3 mt-1" for="friend_relatives">
                 Friend/Relatives
               </p>
               <p
                 
-              >{form_data.how_came_to_know}</p>
+              >{body.how_came_to_know}</p>
 
               <p class="mx-3 mt-1" for="website"> Website </p>
               <p
                 
                 required
-              >{form_data.how_came_to_know}</p>
+              >{body.how_came_to_know}</p>
 
               <p class="mx-3 mt-1" for="radio_tv"> Radio/Tv </p>
 
               <p
                 
-              >{form_data.how_came_to_know}</p>
+              >{body.how_came_to_know}</p>
             </div>
           </div>
         </div>
