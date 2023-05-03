@@ -108,20 +108,20 @@
           alt=""
         />
         <div class=" flex flex-col">
-          <p class="w3-left">Select Branch</p>
+          <p class="w3-left">Branch</p>
 
           <p class="w3-input w3-border w3-round w3-margin">
             {body.branch}
           </p>
 
-          <p class="w3-left">Select Stream</p>
+          <p class="w3-left">Stream</p>
 
           <p class="w3-input w3-border w3-round w3-margin">
             {body.stream}
           </p>
-          <p class="w3-left">Select Batch</p>
+          <!-- <p class="w3-left">Select Batch</p>
 
-          <p class="w3-input w3-border w3-round w3-margin">{body.batch}</p>
+          <p class="w3-input w3-border w3-round w3-margin">{body.batch}</p> -->
 
           <p>Class</p>
           <p class="w3-input w3-border w3-round w3-margin">{body.class_number}</p>
@@ -137,7 +137,7 @@
             <div class=" my-1 flex mt-2">
               <p class="mt-1 mr-2" for="student_name">Student Name:</p>
               <p class="flex-1 border-2 rounded-md p-1">
-                {body.student_name}
+                {body.name}
               </p>
             </div>
 
@@ -237,12 +237,10 @@
               >{body.e_mail_id}</p>
             </div>
 
-            <div class="flex flex-row">
-              <p class="font-bold mt-8">Permanent Address</p>
-              <!-- <p class="text-[.6em] mt-2 ml-6">
-            Mandatory Fields are marked with asterick(*)
-          </p> -->
-              <hr />
+            <!-- <div class="flex flex-row">
+              <p class="font-bold mt-8">Permanent Address</p> -->
+             
+              <!-- <hr />
             </div>
 
             <div class=" my-1 flex mt-2">
@@ -275,16 +273,16 @@
                 class="flex-1 border-2 rounded-md p-1"
                
               >{body.permanent_pin}</p>
-            </div>
+            </div> -->
 
-            <div class="flex flex-row mt-8">
+            <!-- <div class="flex flex-row mt-8">
               <p class="font-bold">Correspondence Address</p>
-              <!-- <input class="ml-2 mt-1" type="checkbox" bind:checked={cor_address}> -->
+              
               <p class="text-[.6em] mt-2 ml-6">(same as permanent Address)</p>
-            </div>
+            </div> -->
 
             
-              <div class=" my-1 flex mt-2">
+              <!-- <div class=" my-1 flex mt-2">
                 <p class="mt-1 mr-2" 
                   >Address:</p
                 >
@@ -308,7 +306,7 @@
               <div class=" my-1 flex mt-2">
                 <p class="mt-1 mr-2" >PIN:</p>
                 <p>{body.correspondence_pin}</p>
-              </div>
+              </div> -->
             
 
             <div class=" my-1 flex mt-2">
