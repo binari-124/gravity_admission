@@ -83,23 +83,23 @@
     >
     <a
       class="w3-button w3-round w3-card w3-hover-green w3-margin"
-      href="/admission/create/student_onboarding/fee_management"
+      href="/admission/student_fee/{studentId}"
       >Fee Management</a
     >
     <a
       class="w3-button w3-round w3-card w3-hover-green w3-margin"
-      href="/admission/create/student_onboarding/edit_student">Edit</a
+      href="/admission/student_edit/{studentId}">Edit</a
     >
     
     <a
       class="w3-button w3-round w3-card w3-hover-green w3-margin"
-      href="/admission/create/student_onboarding/addresses"
+      href="/admission/student_address/{studentId}"
       >Addresses</a
     >
 
     <a
       class="w3-button w3-round w3-card w3-hover-red w3-margin"
-      href="/admission/create/student_onboarding/addresses"
+      href="/admission/student_delete/{studentId}"
       >Delete</a
     >
 

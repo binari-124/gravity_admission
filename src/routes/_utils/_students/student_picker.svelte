@@ -53,9 +53,10 @@
         await getStudents();
     });
 
-    const forceUpdate = async (_) => {};``
+    const forceUpdate = async (_) => {};
+    ``;
 
-    async function getStudents(fresh = false) { 
+    async function getStudents(fresh = false) {
         var res;
         var token = localStorage.getItem("token");
 
