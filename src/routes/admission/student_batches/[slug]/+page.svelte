@@ -1,8 +1,8 @@
 
 <script>
   import { onMount } from "svelte";
-  import { Token } from "../../_utils/dynamic_store.js";
-  import { ApiUrl } from "../../_utils/static_store.js";
+  import { Token } from "../../../_utils/dynamic_store.js";
+  import { ApiUrl } from "../../../_utils/static_store.js";
   import { get } from "svelte/store";
   // import ImageUpload from "../../../_utils/imageUpload.svelte.js";
 
@@ -15,8 +15,9 @@
   let date = new Date();
 
   let streams = [],
-    batches = [],
-    branches = [];
+    branches = []
+    student_batches = []
+    student_compatible_batches = [];
 
   let myURL = "";
 
@@ -67,7 +68,9 @@
   onMount(async () => {
     console.log("mounted");
     let loginPath = get(ApiUrl);
-    await getStudent();
+    await getStudentbatches();
+    await getStudentcompatiblebatches();
+
   });
 </script>
 
