@@ -118,13 +118,13 @@
           <p class="w3-left">Branch</p>
 
           <p class="w3-input w3-border w3-round w3-margin">
-            {body.branch}
+            {body.branch.name}
           </p>
 
           <p class="w3-left">Stream</p>
 
           <p class="w3-input w3-border w3-round w3-margin">
-            {body.stream}
+            {body.stream.name}
           </p>
           <!-- <p class="w3-left">Select Batch</p>
 
