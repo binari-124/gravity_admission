@@ -3,7 +3,7 @@
     </script>
     
     {#if results}
-    <table class="w3-table-all w3-hoverable">
+    <table class="w3-table-all w3-hoverable"> 
         <thead>
           <tr class="w3-light-grey">
             <th>Test Name</th>

@@ -54,7 +54,7 @@
 		
 		<ul>
 			<a class="  w3-round"  href="/admission"><li class="w3-hover-blue w3-padding w3-round" aria-current="{segment === "dashboard" ? 'page' : undefined}"><i class="fa-solid fa-gauge-high"></i> Admission </li></a><hr>
-			<a class="  w3-round"  href="/students/batches">  <li class="w3-padding w3-hover-blue w3-round" aria-current="{segment === "students" ? 'page' : undefined}"><i class="fa-solid fa-user"></i>  Batches</li></a><hr>
+			<!-- <a class="  w3-round"  href="/students/batches">  <li class="w3-padding w3-hover-blue w3-round" aria-current="{segment === "students" ? 'page' : undefined}"><i class="fa-solid fa-user"></i>  Batches</li></a><hr> -->
 			<!-- <a class=" " href="/tests/"> <li class="w3-padding w3-hover-blue w3-round w3-padding"  aria-current="{segment === "tests" ? 'page' : undefined}" ><i class="fa-solid fa-vials"></i>  Tests</li></a><hr>
 			<a class="" href="/questions/"><li  class="w3-hover-blue w3-round w3-padding" aria-current="{segment === "questions" ? 'page' : undefined}" ><i class="fa-solid fa-book-open"></i>  Questions</li></a><hr>
 			<a class=" " href="/chapters/"><li class="w3-hover-blue w3-round w3-padding" aria-current="{segment === "chapters" ? 'page' : undefined}" ><i class="fa-solid fa-book-open-reader"></i>  Chapters,Topics & Subtopics</li></a><hr>
