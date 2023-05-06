@@ -75,7 +75,7 @@
   });
 </script>
 
-<Admissions/>
+<Admissions studentId={studentId}/>
 
 <!-- {#if body}
 
