@@ -1,6 +1,5 @@
 
 <script>
-  import Admissions from "../../../../lib/components/forms/admissions.svelte";
   import { onMount } from "svelte";
   import { Token } from "../../../_utils/dynamic_store.js";
   import { ApiUrl } from "../../../_utils/static_store.js";
@@ -75,7 +74,7 @@
   });
 </script>
 
-<Admissions studentId={studentId}/>
+
 
 <!-- {#if body}
 

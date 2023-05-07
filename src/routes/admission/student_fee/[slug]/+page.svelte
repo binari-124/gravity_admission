@@ -16,7 +16,7 @@
     arr_paid_by: [],
   };
 
-  let installments = [{ installment: "", timestamp: "" }];
+  let installments = [{ installment: "50000 ", timestamp: " " },{installment:"50000 ",timestamp:" "}];
 
   let x = [];
 
@@ -26,7 +26,7 @@
 
   let myURL = "";
 
-  let cor_address = false;
+  // let cor_address = false;
 
   
 
@@ -122,8 +122,8 @@
 
   async function deleteInstallment(index) {
     console.log(index);
-    // installments.splice(index,1);
-    installments.pop();
+    installments.splice(index,1);
+    // installments.pop();
     installments = installments;
   }
 
@@ -158,7 +158,7 @@
             <button class="btn my-2 mr-4" on:click={handlePlus}>+</button>
             <button class="btn" on:click={() => deleteInstallment()}>-</button><br
             />
-            {#each installments as install, index}
+            {#each installments as installment, index}
               <span>Installment {index + 1}</span>
               <input
                 class="border-2"
