@@ -132,158 +132,16 @@
   console.log(body);
 </script>
 
-{#if body}
-  <div class="">
-    <div>
-      <p
-        class="font-bold mt-8 mb-6 bg-green-700 text-white border-2 w-full p-2 justify-between text-center"
-      >
-        For Office use only
-      </p>
-    </div>
+<div class="shadow">
+  <button class="btn" on:click={handlePlus}>Plus</button>
+    {#each installments as installment,index}
+    <span>{index}</span>
+    <input type="text" bind:value={installment.installment} />
+    <input type="date" bind:value={installment.timestamp} />
+    <button class="btn" on:click={()=>deleteInstallment(index)}>Delete</button>
 
-    <form action="">
-      <div class="flex flex-row">
-        <p>Fee Details:</p>
+    <br>
+    {/each}
+    <button class="btn" on:click={handleSubmit}>Submit</button>
 
-        <div class="flex flex-col">
-          <div class="mx-3 flex flex-row">
-            <p>Final Fee</p>
-
-            <input class="border-2" type="number" bind:value={body.final_fee} />
-          </div>
-
-          <div class="mx-3 flex flex-col">
-            <div class="shadow-md bg-slate-200 p-4 my-2">
-              <button class="btn my-2 mr-4" on:click={handlePlus}>+</button>
-
-              {#each installments as installment, index}
-                <span>Installment {index + 1}</span>
-                <input
-                  class="border-2"
-                  type="text"
-                  bind:value={body.arr_inst}
-                />
-                <span>Payment Date</span>
-                <input
-                  class="border-2"
-                  type="date"
-                  bind:value={body.arr_time}
-                />
-
-                <div class="mx-3 flex flex-row space-x-3 mt-2">
-                  <p class="mr-3">Paid by</p>
-
-                  <label>
-                    <input
-                      type="radio"
-                      bind:group={body.arr_paid_by}
-                      name="location"
-                      value="Cash"
-                    />
-                    Cash
-                  </label>
-
-                  <label>
-                    <input
-                      type="radio"
-                      bind:group={body.arr_paid_by}
-                      name="location"
-                      value="Cheque"
-                    />
-                    Cheque
-                  </label>
-
-                  <label>
-                    <input
-                      type="radio"
-                      bind:group={body.arr_paid_by}
-                      name="location"
-                      value="Demand Draft"
-                    />
-                    Demand Draft
-                  </label>
-
-                  <label>
-                    <input
-                      type="radio"
-                      bind:group={body.arr_paid_by}
-                      name="location"
-                      value="NEFT"
-                    />
-                    NEFT
-                  </label>
-
-                  <label>
-                    <input
-                      type="radio"
-                      bind:group={body.arr_paid_by}
-                      name="location"
-                      value="RTGS"
-                    />
-                    RTGS
-                  </label>
-
-                  <label>
-                    <input
-                      type="radio"
-                      bind:group={body.arr_paid_by}
-                      name="location"
-                      value="ECS"
-                    />
-                    ECS
-                  </label>
-
-                  <br />
-                </div>
-
-                <div class="mx-3 flex flex-row space-x-3 mt-2">
-                  <div class="flex flex-row mt-1">
-                    <label for="dd_cheque_number">DD / Cheque Number</label>
-                    <input
-                      class="border-2 ml-2"
-                      type="number"
-                      id="dd_cheque_number"
-                      bind:value={body.dd_cheque_number}
-                    />
-                  </div>
-                </div>
-
-                <div class="mx-3 flex flex-row space-x-3 mt-2">
-                  <div class="mx-3 flex flex-col">
-                    <p class="mt-10">Receipt Number</p>
-                  </div>
-
-                  <div class="flex flex-row mt-3">
-                    <input
-                      class="border-2 ml-2"
-                      type="text"
-                      id="dd_cheque_number"
-                      bind:value={body.receipt_number}
-                    />
-                  </div>
-                  <button class="btn" on:click={() => deleteInstallment(index)}>-</button><br>
-                  <button class="btn" on:click={() => editInstallment(index)}>-</button>
-                </div>
-
-                <br />
-                <hr class="w-4" />
-              {/each}
-              <!-- <button class="btn" on:click={handleSubmit}>Submit</button> -->
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="w-full flex justify-end">
-        <button
-          class="shadow mr-28 mt-2 bg-blue-800 hover:bg-blue-700 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded object-right"
-          on:click|preventDefault={handleSubmit}
-          type="button"
-        >
-          Submit
-        </button>
-      </div>
-    </form>
-  </div>
-{/if}
+</div>
