@@ -14,6 +14,8 @@
     arr_inst: [],
     arr_time: [],
     arr_paid_by: [],
+    arr_dd:[],
+    arr_receipt:[],
   };
 
   let installments = [{ installment: "50000 ", timestamp: " " },{installment:"50000 ",timestamp:" "}];
