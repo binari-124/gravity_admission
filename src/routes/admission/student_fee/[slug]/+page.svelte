@@ -131,6 +131,10 @@
 
   }
 
+  async function saveInstallment(index){
+
+  }
+
   console.log(body);
 </script>
 
@@ -156,8 +160,8 @@
           </div>
 
           <div class="mx-3 flex flex-col">
-            <div class="shadow-md bg-slate-200 p-4 my-2">
-              <button class="btn my-2 mr-4" on:click={handlePlus}>+</button>
+            <div class="shadow-md bg-slate-200  p-4 my-2">
+              
 
               {#each installments as installment, index}
                 <span>Installment {index + 1}</span>
@@ -244,7 +248,7 @@
                     <label for="dd_cheque_number">DD / Cheque Number</label>
                     <input
                       class="border-2 ml-2"
-                      type="number"
+                      type="text"
                       id="dd_cheque_number"
                       bind:value={installment.dd_cheque_number}
                     />
@@ -264,13 +268,16 @@
                       bind:value={installment.receipt_number}
                     />
                   </div>
-                  <button class="btn" on:click={() => deleteInstallment(index)}>-</button><br>
-                  <button class="btn" on:click={() => editInstallment(index)}>Edit</button>
-                  <!-- <button class="btn" on:click={() => deleteInstallment(index)}>Delete</button> -->
+                  <div class="mt-8">
+                    <button class="btn" on:click={saveInstallment(index)}>Save</button>
+                  <button class="btn" on:click={editInstallment(index)}>Edit</button>
+                  <button class="btn my-2 mr-4" on:click={handlePlus}>+</button>
+                  <button class="btn" on:click={deleteInstallment(index)}>-</button>
+                  </div>
                 </div>
 
                 <br />
-                <hr class="w-4" />
+                <hr />
               {/each}
               <!-- <button class="btn" on:click={handleSubmit}>Submit</button> -->
             </div>
