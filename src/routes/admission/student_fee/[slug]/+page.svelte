@@ -146,11 +146,11 @@
   }
 
   async function editInstallment(index) {
-    disabled = false;
+    disabled[index] = false;
   }
 
   async function saveInstallment(index) {
-    disabled = true;
+    disabled[index] = true;
   }
 
   console.log(body);
