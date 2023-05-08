@@ -150,7 +150,7 @@
 
         <div class="flex flex-col">
           <div class="mx-3 flex flex-row">
-            <p>Final Fee</p>
+            <p>Total Fee</p>
 
             <input class="border-2" type="number" bind:value={body.final_fee} />
           </div>
@@ -164,13 +164,13 @@
                 <input
                   class="border-2"
                   type="text"
-                  bind:value={installments.installment}
+                  bind:value={installment.installment}
                 />
                 <span>Payment Date</span>
                 <input
                   class="border-2"
                   type="date"
-                  bind:value={installments.timestamp}
+                  bind:value={installment.timestamp}
                 />
 
                 <div class="mx-3 flex flex-row space-x-3 mt-2">
@@ -179,7 +179,7 @@
                   <label>
                     <input
                       type="radio"
-                      bind:group={installments.arr_paid_by}
+                      bind:group={installment.arr_paid_by}
                       name="location"
                       value="Cash"
                     />
@@ -189,7 +189,7 @@
                   <label>
                     <input
                       type="radio"
-                      bind:group={installments.arr_paid_by}
+                      bind:group={installment.arr_paid_by}
                       name="location"
                       value="Cheque"
                     />
@@ -199,7 +199,7 @@
                   <label>
                     <input
                       type="radio"
-                      bind:group={installments.arr_paid_by}
+                      bind:group={installment.arr_paid_by}
                       name="location"
                       value="Demand Draft"
                     />
@@ -209,7 +209,7 @@
                   <label>
                     <input
                       type="radio"
-                      bind:group={installments.arr_paid_by}
+                      bind:group={installment.arr_paid_by}
                       name="location"
                       value="NEFT"
                     />
@@ -219,7 +219,7 @@
                   <label>
                     <input
                       type="radio"
-                      bind:group={installments.arr_paid_by}
+                      bind:group={installment.arr_paid_by}
                       name="location"
                       value="RTGS"
                     />
@@ -229,7 +229,7 @@
                   <label>
                     <input
                       type="radio"
-                      bind:group={installments.arr_paid_by}
+                      bind:group={installment.arr_paid_by}
                       name="location"
                       value="ECS"
                     />
@@ -246,7 +246,7 @@
                       class="border-2 ml-2"
                       type="number"
                       id="dd_cheque_number"
-                      bind:value={installments.dd_cheque_number}
+                      bind:value={installment.dd_cheque_number}
                     />
                   </div>
                 </div>
@@ -261,11 +261,12 @@
                       class="border-2 ml-2"
                       type="text"
                       id="dd_cheque_number"
-                      bind:value={installments.receipt_number}
+                      bind:value={installment.receipt_number}
                     />
                   </div>
                   <button class="btn" on:click={() => deleteInstallment(index)}>-</button><br>
-                  <button class="btn" on:click={() => editInstallment(index)}>-</button>
+                  <button class="btn" on:click={() => editInstallment(index)}>Edit</button>
+                  <!-- <button class="btn" on:click={() => deleteInstallment(index)}>Delete</button> -->
                 </div>
 
                 <br />
