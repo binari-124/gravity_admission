@@ -281,16 +281,18 @@
                     />
                   </div>
                 </div>
-                <div class=" mt-2 ">
-                  <button class="btn float-right mr-2" on:click={() => saveInstallment(index)}
-                    >Save</button
+                <div class=" mt-2 mb-4">
+                  <button class="btn float-right mr-2" on:click={() => deleteInstallment(index)}
+                    >-</button
                   >
                   <button class="btn float-right mr-2" on:click={() => editInstallment(index)}
                     >Edit</button
                   >
-                  <button class="btn float-right mr-2" on:click={() => deleteInstallment(index)}
-                    >-</button
+                  <button class="btn float-right mr-2" on:click={() => saveInstallment(index)}
+                    >Save</button
                   >
+                  
+                  
                 </div>
 
                 <br />
