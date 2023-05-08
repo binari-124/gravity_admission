@@ -262,7 +262,7 @@
 
                   <div class="flex flex-row mt-3">
                     <input
-                      class="border-2 ml-2"
+                      class="border-2 ml-2 h-4"
                       type="text"
                       id="dd_cheque_number"
                       bind:value={installment.receipt_number}
