@@ -18,8 +18,8 @@
   };
 
   let installments = [
-    { installment: "50000 ", timestamp: " " },
-    { installment: "50000 ", timestamp: " " },
+    { installment: "50000 ", timestamp: " " , arr_paid_by:"", dd_cheque_number:" ", receipt_number:" " },
+    { installment: "50000 ", timestamp: " " , arr_paid_by:"", dd_cheque_number:" ", receipt_number:" " }
   ];
 
   let x = [];
@@ -73,7 +73,7 @@
   });
 
   async function handleSubmit(event) {
-    console.log(body);
+    console.log(installments);
     console.log("submitting inquiry form");
 
     //email...phone 10 digit, name,
@@ -110,8 +110,9 @@
   }
 
   async function handlePlus() {
-    installments.push({ installment: "", timestamp: "" });
+    installments.push( { installment: "50000 ", timestamp: " " , arr_paid_by:"", dd_cheque_number:" ", receipt_number:" " });
     installments = installments;
+    
   }
 
   // async function handleSubmit(){
@@ -163,13 +164,13 @@
                 <input
                   class="border-2"
                   type="text"
-                  bind:value={body.arr_inst}
+                  bind:value={installments.installment}
                 />
                 <span>Payment Date</span>
                 <input
                   class="border-2"
                   type="date"
-                  bind:value={body.arr_time}
+                  bind:value={installments.timestamp}
                 />
 
                 <div class="mx-3 flex flex-row space-x-3 mt-2">
@@ -178,7 +179,7 @@
                   <label>
                     <input
                       type="radio"
-                      bind:group={body.arr_paid_by}
+                      bind:group={installments.arr_paid_by}
                       name="location"
                       value="Cash"
                     />
@@ -188,7 +189,7 @@
                   <label>
                     <input
                       type="radio"
-                      bind:group={body.arr_paid_by}
+                      bind:group={installments.arr_paid_by}
                       name="location"
                       value="Cheque"
                     />
@@ -198,7 +199,7 @@
                   <label>
                     <input
                       type="radio"
-                      bind:group={body.arr_paid_by}
+                      bind:group={installments.arr_paid_by}
                       name="location"
                       value="Demand Draft"
                     />
@@ -208,7 +209,7 @@
                   <label>
                     <input
                       type="radio"
-                      bind:group={body.arr_paid_by}
+                      bind:group={installments.arr_paid_by}
                       name="location"
                       value="NEFT"
                     />
@@ -218,7 +219,7 @@
                   <label>
                     <input
                       type="radio"
-                      bind:group={body.arr_paid_by}
+                      bind:group={installments.arr_paid_by}
                       name="location"
                       value="RTGS"
                     />
@@ -228,7 +229,7 @@
                   <label>
                     <input
                       type="radio"
-                      bind:group={body.arr_paid_by}
+                      bind:group={installments.arr_paid_by}
                       name="location"
                       value="ECS"
                     />
@@ -245,7 +246,7 @@
                       class="border-2 ml-2"
                       type="number"
                       id="dd_cheque_number"
-                      bind:value={body.dd_cheque_number}
+                      bind:value={installments.dd_cheque_number}
                     />
                   </div>
                 </div>
@@ -260,7 +261,7 @@
                       class="border-2 ml-2"
                       type="text"
                       id="dd_cheque_number"
-                      bind:value={body.receipt_number}
+                      bind:value={installments.receipt_number}
                     />
                   </div>
                   <button class="btn" on:click={() => deleteInstallment(index)}>-</button><br>
