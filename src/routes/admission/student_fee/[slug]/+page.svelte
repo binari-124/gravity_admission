@@ -18,8 +18,20 @@
   };
 
   let installments = [
-    { installment: "50000 ", timestamp: " " , arr_paid_by:"", dd_cheque_number:" ", receipt_number:" " },
-    { installment: "50000 ", timestamp: " " , arr_paid_by:"", dd_cheque_number:" ", receipt_number:" " }
+    {
+      installment: "50000 ",
+      timestamp: " ",
+      arr_paid_by: "",
+      dd_cheque_number: " ",
+      receipt_number: " ",
+    },
+    {
+      installment: "50000 ",
+      timestamp: " ",
+      arr_paid_by: "",
+      dd_cheque_number: " ",
+      receipt_number: " ",
+    },
   ];
 
   let x = [];
@@ -110,9 +122,14 @@
   }
 
   async function handlePlus() {
-    installments.push( { installment: "50000 ", timestamp: " " , arr_paid_by:"", dd_cheque_number:" ", receipt_number:" " });
+    installments.push({
+      installment: "50000 ",
+      timestamp: " ",
+      arr_paid_by: "",
+      dd_cheque_number: " ",
+      receipt_number: " ",
+    });
     installments = installments;
-    
   }
 
   // async function handleSubmit(){
@@ -126,14 +143,9 @@
     installments = installments;
   }
 
+  async function editInstallment(index) {}
 
-  async function editInstallment(index){
-
-  }
-
-  async function saveInstallment(index){
-
-  }
+  async function saveInstallment(index) {}
 
   console.log(body);
 </script>
@@ -160,7 +172,7 @@
           </div>
 
           <div class="mx-3 flex flex-col">
-            <div class="shadow-md bg-slate-200  p-4 my-2">
+            <div class="shadow-md bg-slate-200 p-4 my-2">
               <button class="btn my-2 mr-4" on:click={handlePlus}>+</button>
 
               {#each installments as installment, index}
@@ -262,19 +274,23 @@
 
                   <div class="flex flex-row mt-3">
                     <input
-                      class="border-2 ml-2 h-4"
+                      class="border-2 ml-2 "
                       type="text"
                       id="dd_cheque_number"
                       bind:value={installment.receipt_number}
                     />
                   </div>
-                  <div class="mt-16">
-                   <button class="btn" on:click={() => saveInstallment(index)}>Save</button>
-                   <button class="btn" on:click={() => editInstallment(index)}>Edit</button>
-                   <button class="btn" on:click={() => deleteInstallment(index)}>-</button>
-                  </div>
-                 
-                  
+                </div>
+                <div>
+                  <button class="btn" on:click={() => saveInstallment(index)}
+                    >Save</button
+                  >
+                  <button class="btn" on:click={() => editInstallment(index)}
+                    >Edit</button
+                  >
+                  <button class="btn" on:click={() => deleteInstallment(index)}
+                    >-</button
+                  >
                 </div>
 
                 <br />
