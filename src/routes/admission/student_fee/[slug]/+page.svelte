@@ -268,7 +268,7 @@
                       bind:value={installment.receipt_number}
                     />
                   </div>
-                  <div class="mt-10">
+                  <div class="mt-16">
                    <button class="btn" on:click={() => saveInstallment(index)}>Save</button>
                    <button class="btn" on:click={() => editInstallment(index)}>Edit</button>
                    <button class="btn" on:click={() => deleteInstallment(index)}>-</button>
