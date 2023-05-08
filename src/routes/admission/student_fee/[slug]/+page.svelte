@@ -269,7 +269,7 @@
 
                 <div class="mx-3 flex flex-row space-x-3 mt-2">
                   <div class="mx-3 flex flex-col">
-                    <p class="mt-10">Receipt Number</p>
+                    <label for="dd_cheque_number">Receipt Number</label>
                   </div>
 
                   <div class="flex flex-row mt-3">
@@ -281,14 +281,14 @@
                     />
                   </div>
                 </div>
-                <div>
-                  <button class="btn" on:click={() => saveInstallment(index)}
+                <div class=" mt-2 ">
+                  <button class="btn float-right mr-2" on:click={() => saveInstallment(index)}
                     >Save</button
                   >
-                  <button class="btn" on:click={() => editInstallment(index)}
+                  <button class="btn float-right mr-2" on:click={() => editInstallment(index)}
                     >Edit</button
                   >
-                  <button class="btn" on:click={() => deleteInstallment(index)}
+                  <button class="btn float-right mr-2" on:click={() => deleteInstallment(index)}
                     >-</button
                   >
                 </div>
