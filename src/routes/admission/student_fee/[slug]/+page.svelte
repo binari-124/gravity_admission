@@ -136,6 +136,8 @@
   //   console.log(installments);
   // }
 
+  let disabled = [];
+
   async function deleteInstallment(index) {
     console.log(index);
     installments.splice(index, 1);
@@ -143,9 +145,13 @@
     installments = installments;
   }
 
-  async function editInstallment(index) {}
+  async function editInstallment(index) {
+    disabled = false;
+  }
 
-  async function saveInstallment(index) {}
+  async function saveInstallment(index) {
+    disabled = true;
+  }
 
   console.log(body);
 </script>
@@ -259,6 +265,7 @@
                   <div class="flex flex-row mt-1">
                     <label for="dd_cheque_number">DD / Cheque Number</label>
                     <input
+                      {disabled}
                       class="border-2 ml-2"
                       type="text"
                       id="dd_cheque_number"
@@ -274,6 +281,7 @@
 
                   <div class="flex flex-row mt-3">
                     <input
+                    {disabled}
                       class="border-2 ml-2 "
                       type="text"
                       id="dd_cheque_number"
