@@ -385,7 +385,7 @@
                   <div class="flex flex-row mt-1">
                     <label for="dd_cheque_number">DD / Cheque Number</label>
                     <input
-                      disable={installment.edit}
+                      disabled={installment.edit}
                       class="border-2 ml-2"
                       type="text"
                       id="dd_cheque_number"
