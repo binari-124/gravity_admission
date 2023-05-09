@@ -316,7 +316,7 @@
                   <label>
                     <input
                       type="radio"
-                      bind:group={installment.arr_paid_by}
+                      bind:group={installments[index].arr_paid_by}
                       name="location"
                       value="Cash"
                     />
@@ -326,7 +326,7 @@
                   <label>
                     <input
                       type="radio"
-                      bind:group={installment.arr_paid_by}
+                      bind:group={installments[index].arr_paid_by}
                       name="location"
                       value="Cheque"
                     />
@@ -336,7 +336,7 @@
                   <label>
                     <input
                       type="radio"
-                      bind:group={installment.arr_paid_by}
+                      bind:group={installments[index].arr_paid_by}
                       name="location"
                       value="Demand Draft"
                     />
@@ -346,7 +346,7 @@
                   <label>
                     <input
                       type="radio"
-                      bind:group={installment.arr_paid_by}
+                      bind:group={installments[index].arr_paid_by}
                       name="location"
                       value="NEFT"
                     />
@@ -356,7 +356,7 @@
                   <label>
                     <input
                       type="radio"
-                      bind:group={installment.arr_paid_by}
+                      bind:group={installments[index].arr_paid_by}
                       name="location"
                       value="RTGS"
                     />
@@ -366,7 +366,7 @@
                   <label>
                     <input
                       type="radio"
-                      bind:group={installment.arr_paid_by}
+                      bind:group={installments[index].arr_paid_by}
                       name="location"
                       value="ECS"
                     />
