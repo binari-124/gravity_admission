@@ -267,7 +267,7 @@
   //   disabled[index] = true;
   // }
 
-  let x = disabled;
+  // let x = disabled;
   console.log(body);
 </script>
 
