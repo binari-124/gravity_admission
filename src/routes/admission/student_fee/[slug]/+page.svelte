@@ -8,6 +8,122 @@
   /** @type {import('./$types').PageData} */
   export let data;
   export let studentId = data.studentId;
+  let booleanCondition1 = false;
+  let booleanCondition2 = false;
+  let booleanCondition3 = false;
+  let booleanCondition4 = false;
+  let booleanCondition5 = false;
+  let booleanCondition6 = false;
+  let booleanCondition7 = false;
+  let booleanCondition8 = false;
+  let booleanCondition9 = false;
+  let booleanCondition10 = false;
+  let booleanCondition11 = false;
+  let booleanCondition12 = false;
+  let booleanCondition13 = false;
+  let booleanCondition14 = false;
+  let booleanCondition15 = false;
+
+  async function saveInstallment(index) {
+    switch (index) {
+      case 1:
+        booleanCondition1 = true;
+        break;
+      case 2:
+        booleanCondition2 = true;
+        break;
+      case 3:
+        booleanCondition3 = true;
+        break;
+      case 4:
+        booleanCondition4 = true;
+        break;
+      case 5:
+        booleanCondition5 = true;
+        break;
+      case 6:
+        booleanCondition6 = true;
+        break;
+      case 7:
+        booleanCondition7 = true;
+        break;
+      case 8:
+        booleanCondition8 = true;
+        break;
+      case 9:
+        booleanCondition9 = true;
+        break;
+      case 10:
+        booleanCondition10 = true;
+        break;
+      case 11:
+        booleanCondition11 = true;
+        break;
+      case 12:
+        booleanCondition12 = true;
+        break;
+      case 13:
+        booleanCondition13 = true;
+        break;
+      case 14:
+        booleanCondition14 = true;
+        break;
+      case 15:
+        booleanCondition15 = true;
+        break;
+    }
+  }
+
+  async function editInstallment(index) {
+    switch (index) {
+      case 1:
+        booleanCondition1 = false;
+        break;
+      case 2:
+        booleanCondition2 = false;
+        break;
+      case 3:
+        booleanCondition3 = false;
+        break;
+      case 4:
+        booleanCondition4 = false;
+        break;
+      case 5:
+        booleanCondition5 = false;
+        break;
+      case 6:
+        booleanCondition6 = false;
+        break;
+      case 7:
+        booleanCondition7 = false;
+        break;
+      case 8:
+        booleanCondition8 = false;
+        break;
+      case 9:
+        booleanCondition9 = false;
+        break;
+      case 10:
+        booleanCondition10 = false;
+        break;
+      case 11:
+        booleanCondition11 = false;
+        break;
+      case 12:
+        booleanCondition12 = false;
+        break;
+      case 13:
+        booleanCondition13 = false;
+        break;
+      case 14:
+        booleanCondition14 = false;
+        break;
+      case 15:
+        booleanCondition15 = false;
+        break;
+    }
+  }
+
   console.log("studentID from slug:" + studentId);
   let body = {
     // arr_inst: [],
@@ -33,8 +149,6 @@
       receipt_number: " ",
     },
   ];
-
-  let x = [];
 
   let date = new Date();
 
@@ -80,8 +194,8 @@
   onMount(async () => {
     console.log("mounted");
     let loginPath = get(ApiUrl);
-    await getStudentbatches();
-    await getStudentcompatiblebatches();
+    // await getStudentbatches();
+    // await getStudentcompatiblebatches();
   });
 
   async function handleSubmit(event) {
@@ -90,30 +204,30 @@
 
     //email...phone 10 digit, name,
 
-    console.log(body);
-    var token = localStorage.getItem("token");
-    // body.topic = topic;
-    var loginPath = get(ApiUrl);
+    // console.log(body);
+    // var token = localStorage.getItem("token");
+    // // body.topic = topic;
+    // var loginPath = get(ApiUrl);
 
-    const res = await fetch(myURL, {
-      method: "POST",
-      headers: { "Content-type": "application/json" },
-      body: JSON.stringify(
-        //   {
-        //   email: inquiry_email,
-        //   message: inquiry_message,
-        //   phone: inquiry_phone,
-        //   name: inquiry_name,
-        // }
-        body
-      ),
-    });
-    // console.log(await res.text());
-    const json = await res.json();
-    if (json.status == "success") {
-      alert("Thankyou for contacting us, our team will reach you shortly");
-      // centre.reload();
-    }
+    // const res = await fetch(myURL, {
+    //   method: "POST",
+    //   headers: { "Content-type": "application/json" },
+    //   body: JSON.stringify(
+    //     //   {
+    //     //   email: inquiry_email,
+    //     //   message: inquiry_message,
+    //     //   phone: inquiry_phone,
+    //     //   name: inquiry_name,
+    //     // }
+    //     body
+    //   ),
+    // });
+    // // console.log(await res.text());
+    // const json = await res.json();
+    // if (json.status == "success") {
+    //   alert("Thankyou for contacting us, our team will reach you shortly");
+    //   // centre.reload();
+    // }
     // let result = JSON.stringify(json);
     // console.log(result);
 
@@ -136,7 +250,7 @@
   //   console.log(installments);
   // }
 
-  let disabled = [];
+  // let disabled = [];
 
   async function deleteInstallment(index) {
     console.log(index);
@@ -145,14 +259,15 @@
     installments = installments;
   }
 
-  async function editInstallment(index) {
-    disabled[index] = false;
-  }
+  // async function editInstallment(index) {
+  //   disabled[index] = false;
+  // }
 
-  async function saveInstallment(index) {
-    disabled[index] = true;
-  }
+  // async function saveInstallment(index) {
+  //   disabled[index] = true;
+  // }
 
+  let x = disabled;
   console.log(body);
 </script>
 
@@ -265,7 +380,7 @@
                   <div class="flex flex-row mt-1">
                     <label for="dd_cheque_number">DD / Cheque Number</label>
                     <input
-                      {disabled}
+                      {x}
                       class="border-2 ml-2"
                       type="text"
                       id="dd_cheque_number"
@@ -281,8 +396,8 @@
 
                   <div class="flex flex-row mt-3">
                     <input
-                    {disabled}
-                      class="border-2 ml-2 "
+                      {x}
+                      class="border-2 ml-2"
                       type="text"
                       id="dd_cheque_number"
                       bind:value={installment.receipt_number}
@@ -290,17 +405,18 @@
                   </div>
                 </div>
                 <div class=" mt-2 mb-12">
-                  <button class="btn float-right mr-2" on:click={() => deleteInstallment(index)}
-                    >-</button
+                  <button
+                    class="btn float-right mr-2"
+                    on:click={() => deleteInstallment(index+1)}>-</button
                   >
-                  <button class="btn float-right mr-2" on:click={() => editInstallment(index)}
-                    >Edit</button
+                  <button
+                    class="btn float-right mr-2"
+                    on:click={() => editInstallment(index+1)}>Edit</button
                   >
-                  <button class="btn float-right mr-2" on:click={() => saveInstallment(index)}
-                    >Save</button
+                  <button
+                    class="btn float-right mr-2"
+                    on:click={() => saveInstallment(index+1)}>Save</button
                   >
-                  
-                  
                 </div>
 
                 <br />
