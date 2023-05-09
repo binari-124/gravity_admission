@@ -380,7 +380,7 @@
                   <div class="flex flex-row mt-1">
                     <label for="dd_cheque_number">DD / Cheque Number</label>
                     <input
-                      {x}
+                      
                       class="border-2 ml-2"
                       type="text"
                       id="dd_cheque_number"
@@ -396,7 +396,7 @@
 
                   <div class="flex flex-row mt-3">
                     <input
-                      {x}
+                      
                       class="border-2 ml-2"
                       type="text"
                       id="dd_cheque_number"
