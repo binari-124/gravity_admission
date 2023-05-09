@@ -25,6 +25,7 @@
   let booleanCondition15 = false;
 
   async function saveInstallment(index) {
+    installments[index].edit=false;
     switch (index) {
       case 1:
         booleanCondition1 = true;
@@ -75,6 +76,7 @@
   }
 
   async function editInstallment(index) {
+    installments[index].edit=true;
     switch (index) {
       case 1:
         booleanCondition1 = false;
@@ -140,6 +142,7 @@
       arr_paid_by: "",
       dd_cheque_number: " ",
       receipt_number: " ",
+      edit:false
     },
     {
       installment: "50000 ",
@@ -147,6 +150,7 @@
       arr_paid_by: "",
       dd_cheque_number: " ",
       receipt_number: " ",
+      edit:false
     },
   ];
 
@@ -242,6 +246,7 @@
       arr_paid_by: "",
       dd_cheque_number: " ",
       receipt_number: " ",
+      edit:false
     });
     installments = installments;
   }
@@ -380,7 +385,7 @@
                   <div class="flex flex-row mt-1">
                     <label for="dd_cheque_number">DD / Cheque Number</label>
                     <input
-                      
+                      disable={installment.edit}
                       class="border-2 ml-2"
                       type="text"
                       id="dd_cheque_number"
