@@ -381,16 +381,17 @@
                   <br />
                 </div>
 
+                
+
                 <div class="mx-3 flex flex-row space-x-3 mt-2">
                   <div class="flex flex-row mt-1">
                     <label for="dd_cheque_number">DD / Cheque Number</label>
-                    <input
-                     {installment.edit==true?"disabled":""}
-                      class="border-2 ml-2"
-                      type="text"
-                      
-                      bind:value={installment.dd_cheque_number}
-                    />
+                    {#if installment.edit}
+                    <input class="border-2 ml-2" type="text" bind:value={installment.dd_cheque_number} />
+                    {:else}
+                    <input disabled class="border-2 ml-2" type="text" bind:value={installment.dd_cheque_number} />
+                     {/if}
+                    
                   </div>
                 </div>
 
