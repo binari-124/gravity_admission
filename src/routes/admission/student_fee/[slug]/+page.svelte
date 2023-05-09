@@ -25,7 +25,7 @@
   let booleanCondition15 = false;
 
   async function saveInstallment(index) {
-    installments[index].edit=false;
+    installments[index-1].edit=false;
     switch (index) {
       case 1:
         booleanCondition1 = true;
@@ -76,7 +76,7 @@
   }
 
   async function editInstallment(index) {
-    installments[index].edit=true;
+    installments[index-1].edit=true;
     switch (index) {
       case 1:
         booleanCondition1 = false;
