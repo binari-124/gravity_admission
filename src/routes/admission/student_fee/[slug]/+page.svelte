@@ -198,7 +198,7 @@
           </div>
 
           <div class="mx-3 flex flex-col">
-            <div class="shadow-md bg-slate-200 p-4 my-2">
+            <div class="shadow-md  p-4 my-2">
               <button class="btn my-2 mr-4" on:click={handlePlus}>+</button>
 
               {#each installments as installment, index}
@@ -289,7 +289,7 @@
                     {#if installment.edit}
                     <input class="border-2 ml-2" type="text" bind:value={installment.dd_cheque_number} />
                     {:else}
-                    <input disabled class="border-2 ml-2" type="text" bind:value={installment.dd_cheque_number} />
+                    <input disabled class="border-2  ml-2" type="text" bind:value={installment.dd_cheque_number} />
                      {/if}
                     
                   </div>
