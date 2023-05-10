@@ -15,7 +15,7 @@
     installments[index-1].edit=false;
     
    if (data_save){
-    alert("Your data has been saved");
+    alert("Your data has been saved \n  Please Submit ");
     data_save =false;
    }
     
