@@ -8,16 +8,25 @@
   /** @type {import('./$types').PageData} */
   export let data;
   export let studentId = data.studentId;
+
+  let data_save = true;
  
   async function saveInstallment(index) {
     installments[index-1].edit=false;
+    
+   if (data_save){
     alert("Your data has been saved");
-   
+    data_save =false;
+   }
     
   }
 
   async function editInstallment(index) {
     installments[index-1].edit=true;
+    if (!data_save){
+    
+    data_save =false;
+   }
    
     
   }
