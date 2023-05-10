@@ -11,6 +11,7 @@
  
   async function saveInstallment(index) {
     installments[index-1].edit=false;
+    alert("Your data has been saved");
    
     
   }
