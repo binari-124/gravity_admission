@@ -25,7 +25,7 @@
     installments[index-1].edit=true;
     if (!data_save){
     
-    data_save =false;
+    data_save =true;
    }
    
     
