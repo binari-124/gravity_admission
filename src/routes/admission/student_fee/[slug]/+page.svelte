@@ -8,122 +8,17 @@
   /** @type {import('./$types').PageData} */
   export let data;
   export let studentId = data.studentId;
-  let booleanCondition1 = false;
-  let booleanCondition2 = false;
-  let booleanCondition3 = false;
-  let booleanCondition4 = false;
-  let booleanCondition5 = false;
-  let booleanCondition6 = false;
-  let booleanCondition7 = false;
-  let booleanCondition8 = false;
-  let booleanCondition9 = false;
-  let booleanCondition10 = false;
-  let booleanCondition11 = false;
-  let booleanCondition12 = false;
-  let booleanCondition13 = false;
-  let booleanCondition14 = false;
-  let booleanCondition15 = false;
-
+ 
   async function saveInstallment(index) {
     installments[index-1].edit=false;
-    switch (index) {
-      case 1:
-        booleanCondition1 = true;
-        break;
-      case 2:
-        booleanCondition2 = true;
-        break;
-      case 3:
-        booleanCondition3 = true;
-        break;
-      case 4:
-        booleanCondition4 = true;
-        break;
-      case 5:
-        booleanCondition5 = true;
-        break;
-      case 6:
-        booleanCondition6 = true;
-        break;
-      case 7:
-        booleanCondition7 = true;
-        break;
-      case 8:
-        booleanCondition8 = true;
-        break;
-      case 9:
-        booleanCondition9 = true;
-        break;
-      case 10:
-        booleanCondition10 = true;
-        break;
-      case 11:
-        booleanCondition11 = true;
-        break;
-      case 12:
-        booleanCondition12 = true;
-        break;
-      case 13:
-        booleanCondition13 = true;
-        break;
-      case 14:
-        booleanCondition14 = true;
-        break;
-      case 15:
-        booleanCondition15 = true;
-        break;
-    }
+   
+    
   }
 
   async function editInstallment(index) {
     installments[index-1].edit=true;
-    switch (index) {
-      case 1:
-        booleanCondition1 = false;
-        break;
-      case 2:
-        booleanCondition2 = false;
-        break;
-      case 3:
-        booleanCondition3 = false;
-        break;
-      case 4:
-        booleanCondition4 = false;
-        break;
-      case 5:
-        booleanCondition5 = false;
-        break;
-      case 6:
-        booleanCondition6 = false;
-        break;
-      case 7:
-        booleanCondition7 = false;
-        break;
-      case 8:
-        booleanCondition8 = false;
-        break;
-      case 9:
-        booleanCondition9 = false;
-        break;
-      case 10:
-        booleanCondition10 = false;
-        break;
-      case 11:
-        booleanCondition11 = false;
-        break;
-      case 12:
-        booleanCondition12 = false;
-        break;
-      case 13:
-        booleanCondition13 = false;
-        break;
-      case 14:
-        booleanCondition14 = false;
-        break;
-      case 15:
-        booleanCondition15 = false;
-        break;
-    }
+   
+    
   }
 
   console.log("studentID from slug:" + studentId);
@@ -142,7 +37,7 @@
       arr_paid_by: "",
       dd_cheque_number: " ",
       receipt_number: " ",
-      edit:false
+      edit:true
     },
     {
       installment: "50000 ",
@@ -150,7 +45,7 @@
       arr_paid_by: "",
       dd_cheque_number: " ",
       receipt_number: " ",
-      edit:false
+      edit:true
     },
   ];
 
@@ -203,7 +98,12 @@
   });
 
   async function handleSubmit(event) {
-    console.log(installments);
+    
+   let body = JSON.parse(JSON.stringify(installments));
+   for(var i in body){
+    delete i.edit;
+   }
+   console.log(body);
     console.log("submitting inquiry form");
 
     //email...phone 10 digit, name,
@@ -246,7 +146,7 @@
       arr_paid_by: "",
       dd_cheque_number: " ",
       receipt_number: " ",
-      edit:false
+      edit:true
     });
     installments = installments;
   }
@@ -294,7 +194,7 @@
           <div class="mx-3 flex flex-row">
             <p>Total Fee</p>
 
-            <input class="border-2" type="number" bind:value={body.final_fee} />
+            <input class="border-2 ml-2" type="number" bind:value={body.final_fee} />
           </div>
 
           <div class="mx-3 flex flex-col">
