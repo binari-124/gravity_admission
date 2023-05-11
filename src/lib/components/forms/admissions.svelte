@@ -96,6 +96,8 @@
     var loginPath = get(ApiUrl);
     // console.log(body);
     // here we have created the clone of the body, otherwise secondary address will be getting permanently deleted
+    
+
     let data = JSON.parse(JSON.stringify(body));
     if(cor_address){
       delete data.secondary_address;
@@ -236,10 +238,10 @@
 </script>
 
 {#if body}
-<div class="justify-end">
-  <label for="enrolment">Enrolment No:</label>
-  <input type="text" id="enrolment" bind:value={body.enrolment} />
-
+<div class="mt-4">
+  <input class="border-2 float-right mr-4" type="text" id="enrolment" bind:value={body.enrolment} />
+  <label class="float-right" for="enrolment">Enrolment No:</label>
+  
 </div>
   <div class="mt-6">
     <p class="text-center text-xl">ADMISSION FORM</p>
@@ -250,16 +252,16 @@
       />
       <div class=" flex flex-col">
         {#if branches}
-          <p class="w3-left">Select Branch</p>
+          <p class="w3-left"  >Select Branch</p>
           
           <select
             class="w3-input w3-border w3-round w3-margin"
-            bind:value={body.branch}
+            bind:value={body.branch} 
           >
             <option value="-">Select Branch</option>
             {#each branches as branch}
               <!-- <label>{}</label> -->
-              <option value={branch._id}>{branch.name.toUpperCase()}</option>
+              <option value={branch._id} required>{branch.name.toUpperCase()}</option>
               <!-- <input class="w3-checkbox w3-input" type="checkbox"  bind:group={body.streams} /> -->
             {/each}
           </select>
@@ -275,7 +277,7 @@
             <option value="-">Select Stream</option>
             {#each streams as stream}
               <!-- <label>{}</label> -->
-              <option value={stream._id}>{stream.name.toUpperCase()}</option>
+              <option value={stream._id} required>{stream.name.toUpperCase()}</option>
               <!-- <input class="w3-checkbox w3-input" type="checkbox"  bind:group={body.streams} /> -->
             {/each}
           </select>
@@ -314,9 +316,9 @@
         <div class="mx-5 my-6">
           <div class="flex flex-row">
             <p class="font-bold">Personal Details</p>
-            <p class="text-[.6em] mt-2 ml-6">
+            <!-- <p class="text-[.6em] mt-2 ml-6">
               Mandatory Fields are marked with asterick(*)
-            </p>
+            </p> -->
           </div>
 
           <div class=" my-1 flex mt-2">
@@ -327,6 +329,7 @@
               id="name"
               bind:value={body.name}
               placeholder="jane"
+              required
             />
           </div>
 
@@ -340,6 +343,7 @@
               id="father_name"
               bind:value={body.father_name}
               placeholder="jane"
+              required
             />
           </div>
 
@@ -418,7 +422,7 @@
 
             <div class=" ml-20 mt-4">
               <label class="mt-1 mr-1" for="category"> Category*: </label>
-              <select id="category" bind:value={body.category}>
+              <select id="category" bind:value={body.category} required>
                 <option value="GEN">GEN</option>
                 <option value="OBC">OBC</option>
                 <option value="SC">SC</option>
@@ -448,6 +452,7 @@
               id="mobile_parents"
               bind:value={body.mobile_parents}
               placeholder="jane"
+              required
             />
           </div>
 
@@ -461,6 +466,7 @@
               id="phone"
               bind:value={body.phone}
               placeholder="jane"
+              required
             />
           </div>
 
