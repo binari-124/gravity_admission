@@ -246,7 +246,7 @@
             <option value="-">Select Branch</option>
             {#each branches as branch}
               <!-- <label>{}</label> -->
-              <option value={branch._id} required
+              <option value={branch._id} 
                 >{branch.name.toUpperCase()}</option
               >
               <!-- <input class="w3-checkbox w3-input" type="checkbox"  bind:group={body.streams} /> -->
@@ -264,7 +264,7 @@
             <option value="-">Select Stream</option>
             {#each streams as stream}
               <!-- <label>{}</label> -->
-              <option value={stream._id} required
+              <option value={stream._id} 
                 >{stream.name.toUpperCase()}</option
               >
               <!-- <input class="w3-checkbox w3-input" type="checkbox"  bind:group={body.streams} /> -->
@@ -290,7 +290,7 @@
         <select
           class="w3-input w3-border w3-round w3-margin"
           bind:value={body.class_number}
-          required
+          
         >
           <option value="-">Select Class</option>
           <option value="13">Passout</option>
