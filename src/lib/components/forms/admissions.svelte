@@ -240,7 +240,7 @@
 {#if body}
 <div class="mt-4">
   <input class="border-2 float-right mr-4" type="text" id="enrolment" bind:value={body.enrolment} />
-  <label class="float-right" for="enrolment">Enrolment No:</label>
+  <label class="float-right" for="enrolment">Enrolment No:</label><br>
   
 </div>
   <div class="mt-6">
