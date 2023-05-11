@@ -110,8 +110,8 @@
   async function handleSubmit(event) {
     
    let body = JSON.parse(JSON.stringify(installments));
-   for(var i in body){
-    delete i.edit;
+   for(let i =0;i<body.length;i++){
+    delete body[i].edit;
    }
    console.log(1);
    console.log(body);
