@@ -1,15 +1,14 @@
 <script>
   import { onMount } from "svelte";
-  import {goto} from '$app/navigation';
+  import { goto } from "$app/navigation";
   import { Token } from "../../../routes/_utils/dynamic_store.js";
   import { ApiUrl } from "../../../routes/_utils/static_store.js";
   import { get } from "svelte/store";
   import ImageUpload from "../../../routes/_utils/imageUpload.svelte";
-  export let edit=false;
+  export let edit = false;
   export let studentId;
   // /home/binari/Documents/student_panel/src/routes/admission/create/student_onboarding
-  
-  
+
   let date = new Date();
 
   let streams = [],
@@ -19,10 +18,7 @@
   let myURL = "/panel/student_create";
 
   let cor_address = false;
-  
- 
 
- 
   // let correspondence_address = "", correspondence_city = "",
   // correspondence_state = "", correspondence_pin = "";
 
@@ -42,50 +38,45 @@
     // course_opted: [],
     // course_opted_class: [],
     how_came_to_know: [],
-    primary_address:{
-      address_line_1:"",
-      address_line_2:"",
-      city:"",
-      state:"",
-      pincode:""
+    primary_address: {
+      address_line_1: "",
+      address_line_2: "",
+      city: "",
+      state: "",
+      pincode: "",
     },
-    secondary_address:{
-      address_line_1:"",
-      address_line_2:"",
-      city:"",
-      state:"",
-      pincode:""
+    secondary_address: {
+      address_line_1: "",
+      address_line_2: "",
+      city: "",
+      state: "",
+      pincode: "",
     },
-    
   };
 
   onMount(async () => {
     console.log("mounted");
 
     let token = localStorage.getItem("token");
-    if(!token)
-    {
-    	console.log("yes");
-    	location.href="/login";
+    if (!token) {
+      console.log("yes");
+      location.href = "/login";
     }
 
     Token.set(token);
 
     let loginPath = get(ApiUrl);
-    myURL = loginPath+'/panel/student_create';
+    myURL = loginPath + "/panel/student_create";
     await getStreams();
     await getBranches();
 
-    if(edit){
+    if (edit) {
       getStudent();
-    }
-    else{
+    } else {
       // body.batch = "-";
       body.branch = "-";
       body.stream = "-";
     }
-    
-    
   });
 
   async function handleSubmit(event) {
@@ -96,37 +87,31 @@
     var loginPath = get(ApiUrl);
     // console.log(body);
     // here we have created the clone of the body, otherwise secondary address will be getting permanently deleted
-    
 
     let data = JSON.parse(JSON.stringify(body));
-    if(cor_address){
+    if (cor_address) {
       delete data.secondary_address;
     }
     const res = await fetch(myURL, {
       method: "POST",
-      headers: { "Content-type": "application/json", "Authorization":"Bearer "+token },
-      body: JSON.stringify(
-       
-        data
-      ),
+      headers: {
+        "Content-type": "application/json",
+        Authorization: "Bearer " + token,
+      },
+      body: JSON.stringify(data),
     });
     // console.log(await res.text());
     const json = await res.json();
     if (json.status == "success") {
       alert("Thankyou for contacting us, our team will reach you shortly");
       // location.reload();
-      location.href="/admission/"+json.data;
-
-    }else{
-      alert("Some problem has occured "+json.message);
+      location.href = "/admission/" + json.data;
+    } else {
+      alert("Some problem has occured " + json.message);
       // location.reload();
-
     }
 
-
     // goto('../../../routes/admission/create/student_onboarding');
-    
-
   }
 
   async function getBranches() {
@@ -167,7 +152,7 @@
     var res;
     var loginPath = get(ApiUrl);
     console.log("trying branches");
-    var res = await fetch(loginPath + "/panel/student/"+studentId, {
+    var res = await fetch(loginPath + "/panel/student/" + studentId, {
       mode: "cors",
       method: "get",
       headers: {
@@ -196,53 +181,53 @@
   }
 
   async function getStreams() {
-        // console.log(body);
-        var token = localStorage.getItem("token");
-        var loginPath = get(ApiUrl);
-        let res;
-        console.log("trying streams");
-        res = await fetch(loginPath + "/panel/streams", {
-            mode: "cors",
-            method: "get",
-            headers: {
-                Authorization: "Bearer " + token,
-                "Content-Type": "application/json",
-            },
-        });
+    // console.log(body);
+    var token = localStorage.getItem("token");
+    var loginPath = get(ApiUrl);
+    let res;
+    console.log("trying streams");
+    res = await fetch(loginPath + "/panel/streams", {
+      mode: "cors",
+      method: "get",
+      headers: {
+        Authorization: "Bearer " + token,
+        "Content-Type": "application/json",
+      },
+    });
 
-        if (res.status == 200) {
-            try {
-                let response = await res.text();
-                response = await JSON.parse(response);
-                if (response.status == "success") {
-                    streams = response.data;
-                    console.log(streams);
-                } else {
-                    console.log(response.message);
-                    alert(response.message);
-                }
-            } catch (e) {
-                console.log("caught");
-                console.log(e);
-            } finally {
-            }
+    if (res.status == 200) {
+      try {
+        let response = await res.text();
+        response = await JSON.parse(response);
+        if (response.status == "success") {
+          streams = response.data;
+          console.log(streams);
         } else {
-            console.log(await res.text());
-            // user.email = "no logged";
+          console.log(response.message);
+          alert(response.message);
         }
+      } catch (e) {
+        console.log("caught");
+        console.log(e);
+      } finally {
+      }
+    } else {
+      console.log(await res.text());
+      // user.email = "no logged";
     }
-
-    
-
-  
+  }
 </script>
 
 {#if body}
-<div class="mt-4">
-  <input class="border-2 float-right mr-4" type="text" id="enrolment" bind:value={body.enrolment} />
-  <label class="float-right" for="enrolment">Enrolment No:</label><br>
-  
-</div>
+  <div class="mt-4">
+    <input
+      class="border-2 float-right mr-4"
+      type="text"
+      id="enrolment"
+      bind:value={body.enrolment}
+    />
+    <label class="float-right" for="enrolment">Enrolment No:</label><br />
+  </div>
   <div class="mt-6">
     <p class="text-center text-xl">ADMISSION FORM</p>
     <form id="registration" class="w-full mx-auto p-6">
@@ -252,16 +237,18 @@
       />
       <div class=" flex flex-col">
         {#if branches}
-          <p class="w3-left"  >Select Branch</p>
-          
+          <p class="w3-left">Select Branch</p>
+
           <select
             class="w3-input w3-border w3-round w3-margin"
-            bind:value={body.branch} 
+            bind:value={body.branch}
           >
             <option value="-">Select Branch</option>
             {#each branches as branch}
               <!-- <label>{}</label> -->
-              <option value={branch._id} required>{branch.name.toUpperCase()}</option>
+              <option value={branch._id} required
+                >{branch.name.toUpperCase()}</option
+              >
               <!-- <input class="w3-checkbox w3-input" type="checkbox"  bind:group={body.streams} /> -->
             {/each}
           </select>
@@ -269,7 +256,7 @@
 
         {#if streams}
           <p class="w3-left">Select Stream</p>
-         
+
           <select
             class="w3-input w3-border w3-round w3-margin"
             bind:value={body.stream}
@@ -277,7 +264,9 @@
             <option value="-">Select Stream</option>
             {#each streams as stream}
               <!-- <label>{}</label> -->
-              <option value={stream._id} required>{stream.name.toUpperCase()}</option>
+              <option value={stream._id} required
+                >{stream.name.toUpperCase()}</option
+              >
               <!-- <input class="w3-checkbox w3-input" type="checkbox"  bind:group={body.streams} /> -->
             {/each}
           </select>
@@ -457,9 +446,7 @@
           </div>
 
           <div class=" my-1 flex mt-2">
-            <label class="mt-1 mr-2" for="phone"
-              >Mobile Students:</label
-            >
+            <label class="mt-1 mr-2" for="phone">Mobile Students:</label>
             <input
               class="flex-1 border-2 rounded-md p-1"
               type="text"
@@ -482,139 +469,147 @@
           </div>
 
           {#if !edit}
-          <div class="flex flex-row">
-            <p class="font-bold mt-8">Permanent Address</p>
-            <!-- <p class="text-[.6em] mt-2 ml-6">
+            <div class="flex flex-row">
+              <p class="font-bold mt-8">Permanent Address</p>
+              <!-- <p class="text-[.6em] mt-2 ml-6">
             Mandatory Fields are marked with asterick(*)
           </p> -->
-            <hr />
-          </div>
+              <hr />
+            </div>
 
-          <div class=" my-1 flex mt-2">
-            <label class="mt-1 mr-2" for="permanent_address">Address Line 1:</label>
-            <input
-              class="flex-1 border-2 rounded-md p-1"
-              type="text"
-              id="permanent_address"
-              bind:value={body.primary_address.address_line_1}
-              placeholder="jane"
-            />
-          </div>
+            <div class=" my-1 flex mt-2">
+              <label class="mt-1 mr-2" for="permanent_address"
+                >Address Line 1:</label
+              >
+              <input
+                class="flex-1 border-2 rounded-md p-1"
+                type="text"
+                id="permanent_address"
+                bind:value={body.primary_address.address_line_1}
+                placeholder="jane"
+              />
+            </div>
 
-          <div class=" my-1 flex mt-2">
-            <label class="mt-1 mr-2" for="permanent_address">Address Line 2:</label>
-            <input
-              class="flex-1 border-2 rounded-md p-1"
-              type="text"
-              id="permanent_address"
-              bind:value={body.primary_address.address_line_2}
-              placeholder="jane"
-            />
-          </div>
+            <div class=" my-1 flex mt-2">
+              <label class="mt-1 mr-2" for="permanent_address"
+                >Address Line 2:</label
+              >
+              <input
+                class="flex-1 border-2 rounded-md p-1"
+                type="text"
+                id="permanent_address"
+                bind:value={body.primary_address.address_line_2}
+                placeholder="jane"
+              />
+            </div>
 
+            <div class=" my-1 flex mt-2">
+              <label class="mt-1 mr-2" for="permanent_city"> City:</label>
+              <input
+                class="flex-1 border-2 rounded-md p-1"
+                type="text"
+                id="permanent_city"
+                bind:value={body.primary_address.city}
+                placeholder="jane"
+              />
+            </div>
 
-          <div class=" my-1 flex mt-2">
-            <label class="mt-1 mr-2" for="permanent_city"> City:</label>
-            <input
-              class="flex-1 border-2 rounded-md p-1"
-              type="text"
-              id="permanent_city"
-              bind:value={body.primary_address.city}
-              placeholder="jane"
-            />
-          </div>
+            <div class=" my-1 flex mt-2">
+              <label class="mt-1 mr-2" for="permanent_state"> State:</label>
+              <input
+                class="flex-1 border-2 rounded-md p-1"
+                type="text"
+                id="permanent_state"
+                bind:value={body.primary_address.state}
+                placeholder="jane"
+              />
+            </div>
 
-          <div class=" my-1 flex mt-2">
-            <label class="mt-1 mr-2" for="permanent_state"> State:</label>
-            <input
-              class="flex-1 border-2 rounded-md p-1"
-              type="text"
-              id="permanent_state"
-              bind:value={body.primary_address.state}
-              placeholder="jane"
-            />
-          </div>
+            <div class=" my-1 flex mt-2">
+              <label class="mt-1 mr-2" for="permanent_pin">PIN:</label>
+              <input
+                class="flex-1 border-2 rounded-md p-1"
+                type="text"
+                id="permanent_pin"
+                bind:value={body.primary_address.pincode}
+                placeholder="jane"
+              />
+            </div>
 
-          <div class=" my-1 flex mt-2">
-            <label class="mt-1 mr-2" for="permanent_pin">PIN:</label>
-            <input
-              class="flex-1 border-2 rounded-md p-1"
-              type="text"
-              id="permanent_pin"
-              bind:value={body.primary_address.pincode}
-              placeholder="jane"
-            />
-          </div>
+            <div class="flex flex-row mt-8">
+              <p class="font-bold">Correspondence Address</p>
+              <input
+                class="ml-2 mt-1"
+                type="checkbox"
+                bind:checked={cor_address}
+              />
+              <p class="text-[.6em] mt-2 ml-6">(same as permanent Address)</p>
+            </div>
 
-          <div class="flex flex-row mt-8">
-            <p class="font-bold">Correspondence Address</p>
-            <input class="ml-2 mt-1" type="checkbox" bind:checked={cor_address}>
-            <p class="text-[.6em] mt-2 ml-6">
-              (same as permanent Address)
-            </p>
-          </div>
+            {#if !cor_address}
+              <div class=" my-1 flex mt-2">
+                <label class="mt-1 mr-2" for="correspondence_address"
+                  >Address:</label
+                >
+                <input
+                  class="flex-1 border-2 rounded-md p-1"
+                  type="text"
+                  id="correspondence_address"
+                  bind:value={body.secondary_address.address_line_1}
+                  placeholder="jane"
+                />
+              </div>
 
-          {#if !cor_address}
-          <div class=" my-1 flex mt-2">
-            <label class="mt-1 mr-2" for="correspondence_address"
-              >Address:</label
-            >
-            <input
-              class="flex-1 border-2 rounded-md p-1"
-              type="text"
-              id="correspondence_address"
-              bind:value={body.secondary_address.address_line_1}
-              placeholder="jane"
-            />
-          </div>
+              <div class=" my-1 flex mt-2">
+                <label class="mt-1 mr-2" for="correspondence_address"
+                  >Address:</label
+                >
+                <input
+                  class="flex-1 border-2 rounded-md p-1"
+                  type="text"
+                  id="correspondence_address"
+                  bind:value={body.secondary_address.address_line_2}
+                  placeholder="jane"
+                />
+              </div>
 
-          <div class=" my-1 flex mt-2">
-            <label class="mt-1 mr-2" for="correspondence_address"
-              >Address:</label
-            >
-            <input
-              class="flex-1 border-2 rounded-md p-1"
-              type="text"
-              id="correspondence_address"
-              bind:value={body.secondary_address.address_line_2}
-              placeholder="jane"
-            />
-          </div>
+              <div class=" my-1 flex mt-2">
+                <label class="mt-1 mr-2" for="correspondence_city">
+                  City:</label
+                >
+                <input
+                  class="flex-1 border-2 rounded-md p-1"
+                  type="text"
+                  id="correspondence_city"
+                  bind:value={body.secondary_address.city}
+                  placeholder="jane"
+                />
+              </div>
 
-          <div class=" my-1 flex mt-2">
-            <label class="mt-1 mr-2" for="correspondence_city"> City:</label>
-            <input
-              class="flex-1 border-2 rounded-md p-1"
-              type="text"
-              id="correspondence_city"
-              bind:value={body.secondary_address.city}
-              placeholder="jane"
-            />
-          </div>
+              <div class=" my-1 flex mt-2">
+                <label class="mt-1 mr-2" for="correspondence_state">
+                  State:</label
+                >
+                <input
+                  class="flex-1 border-2 rounded-md p-1"
+                  type="text"
+                  id="correspondence_state"
+                  bind:value={body.secondary_address.state}
+                  placeholder="jane"
+                />
+              </div>
 
-          <div class=" my-1 flex mt-2">
-            <label class="mt-1 mr-2" for="correspondence_state"> State:</label>
-            <input
-              class="flex-1 border-2 rounded-md p-1"
-              type="text"
-              id="correspondence_state"
-              bind:value={body.secondary_address.state}
-              placeholder="jane"
-            />
-          </div>
-
-          <div class=" my-1 flex mt-2">
-            <label class="mt-1 mr-2" for="correspondence_pin">PIN:</label>
-            <input
-              class="flex-1 border-2 rounded-md p-1"
-              type="text"
-              id="correspondence_pin"
-              bind:value={body.secondary_address.pincode}
-              placeholder="jane"
-            />
-          </div>
-          {/if}
-
+              <div class=" my-1 flex mt-2">
+                <label class="mt-1 mr-2" for="correspondence_pin">PIN:</label>
+                <input
+                  class="flex-1 border-2 rounded-md p-1"
+                  type="text"
+                  id="correspondence_pin"
+                  bind:value={body.secondary_address.pincode}
+                  placeholder="jane"
+                />
+              </div>
+            {/if}
           {/if}
 
           <div class=" my-1 flex mt-2">
@@ -663,9 +658,7 @@
           </div>
 
           <div class=" my-1 flex mt-2">
-            <label class="mt-1 mr-2" for="school_address">
-              Address:</label
-            >
+            <label class="mt-1 mr-2" for="school_address"> Address:</label>
             <input
               class="flex-1 border-2 rounded-md p-1"
               type="text"
@@ -813,13 +806,13 @@
           </div>
         </div>
       </div>
-      <div class="md:flex md:items-center mt-8 float-right">
+      <div class="md:flex md:items-center mt-4 mb-5 float-right">
         <div class="md:w-1/3 flex">
           <button
-            class="shadow bg-blue-800 hover:bg-blue-700 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded object-right "
+            class="shadow bg-blue-800 hover:bg-blue-700 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded object-right"
             on:click|preventDefault={handleSubmit}
             type="button"
-           >
+          >
             Submit
           </button>
         </div>
