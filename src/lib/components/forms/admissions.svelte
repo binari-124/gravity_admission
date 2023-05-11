@@ -816,10 +816,10 @@
       <div class="md:flex md:items-center mt-8">
         <div class="md:w-1/3 flex">
           <button
-            class="shadow bg-blue-800 hover:bg-blue-700 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded object-right"
+            class="shadow bg-blue-800 hover:bg-blue-700 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded object-right float-right"
             on:click|preventDefault={handleSubmit}
             type="button"
-          >
+           >
             Submit
           </button>
         </div>
