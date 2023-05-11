@@ -285,10 +285,11 @@
                {/each}
           </select>
         {/if} -->
-
-        <label>Class</label>
+        
+        <label for="class">Class</label>
         <select
           class="w3-input w3-border w3-round w3-margin"
+          id="class"
           bind:value={body.class_number}
           
         >
@@ -331,7 +332,7 @@
               type="text"
               id="father_name"
               bind:value={body.father_name}
-              placeholder="jane"
+              
               required
             />
           </div>
