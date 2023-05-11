@@ -113,6 +113,7 @@
    for(var i in body){
     delete i.edit;
    }
+   console.log(1);
    console.log(body);
     console.log("submitting inquiry form");
 
@@ -316,7 +317,7 @@
                       class="border-2 ml-2"
                       type="text"
                       bind:value={installment.receipt_number}
-                    />
+                    />h
                   </div>
                 </div>
                 <div class=" mt-2 mb-12">
