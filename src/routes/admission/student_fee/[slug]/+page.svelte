@@ -135,14 +135,14 @@
     
   });
 
-  async function handleSubmit(event) {
+  async function installment_received(index) {
    
    body = JSON.parse(JSON.stringify(installments));
    for(let i =0;i<body.length;i++){
     delete body[i].edit;
    }
    console.log(1);
-   console.log(body);
+   console.log(body.index);
     console.log("submitting inquiry form");
 
     //email...phone 10 digit, name,
@@ -363,7 +363,7 @@
                   >
                   <button
                     class="btn float-right mr-2"
-                    on:click|preventDefault ={() => handleSubmit(index+1)}>Received</button
+                    on:click|preventDefault ={() => installment_received(index+1)}>Received</button
                   >
                 </div>
 
