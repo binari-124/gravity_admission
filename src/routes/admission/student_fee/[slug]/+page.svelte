@@ -202,7 +202,7 @@
 
   async function deleteInstallment(index) {
     console.log(index);
-    installments.splice(index, 0);
+    installments.splice(index-1, 1);
     // installments.pop();
     installments = installments;
   }
