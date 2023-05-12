@@ -71,6 +71,7 @@
     await getBranches();
 
     if (edit) {
+      console.log("edit:"+edit);
       getStudent();
     } else {
       // body.batch = "-";
@@ -167,6 +168,7 @@
       try {
         let response = await res.text();
         response = await JSON.parse(response);
+        console.log(response);
         if (response.status == "success") {
           body = response.data;
           // batches= response.data.batches;
