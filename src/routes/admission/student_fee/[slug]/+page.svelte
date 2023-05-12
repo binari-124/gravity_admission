@@ -357,7 +357,7 @@
                 </div>
 
                 <div class="mx-3 flex flex-row space-x-3 mt-2">
-                  <div class="mx-3 flex flex-col">
+                  <div class="mx-3 flex flex-col mt-3">
                     <label for="dd_cheque_number">Receipt Number</label>
                   </div>
 
