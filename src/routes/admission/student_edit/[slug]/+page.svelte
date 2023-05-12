@@ -75,7 +75,7 @@
 
   // });
 </script>
-<Admissions edit={false} studentId={studentId}/>
+<Admissions edit={true} studentId={studentId}/>
 
 
 <!-- {#if body}
