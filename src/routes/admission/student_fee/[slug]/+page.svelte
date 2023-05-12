@@ -21,6 +21,7 @@
     alert("Your data has been saved \n  Please Submit ");
     data_save =false;
    }
+    condition = true;
     
   }
 
@@ -30,8 +31,7 @@
     
     data_save =true;
    }
-   
-    
+   condition = false;
   }
 
   console.log("studentID from slug:" + studentId);
