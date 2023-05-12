@@ -4,7 +4,7 @@
   import { Token } from "../../../_utils/dynamic_store.js";
   import { ApiUrl } from "../../../_utils/static_store.js";
   import { get } from "svelte/store";
-  import Admissions from "../../../lib/components/forms/admissions.svelte";
+  import Admissions from "../../../../lib/components/forms/admissions.svelte";
 
   // import ImageUpload from "../../../_utils/imageUpload.svelte.js";
 
