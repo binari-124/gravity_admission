@@ -171,6 +171,8 @@
         console.log(response);
         if (response.status == "success") {
           body = response.data;
+          body.stream = body.stream._id;
+          body.branch = body.branch._id;
           // batches= response.data.batches;
         } else {
           console.log(response.message);
