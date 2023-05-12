@@ -244,7 +244,7 @@
             />
           </div>
 
-          <div class="mx-3 flex flex-col p-40">
+          <div class="mx-3 flex flex-col ">
             <div class="shadow-md p-4 my-2">
               <button class="btn my-2 mr-4 mb-6" on:click={handlePlus}
                 >Add Installment</button
