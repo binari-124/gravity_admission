@@ -10,6 +10,9 @@
   export let studentId = data.studentId;
 
   let data_save = true;
+  let x = disabled;
+
+  let myURL = "/panel/student_installment";
  
   async function saveInstallment(index) {
     installments[index-1].edit=false;
@@ -18,6 +21,7 @@
     alert("Your data has been saved \n  Please Submit ");
     data_save =false;
    }
+
     
   }
 
@@ -55,7 +59,7 @@
 
   let date = new Date();
 
-  let myURL = "";
+  
 
   // let cor_address = false;
 
@@ -131,9 +135,19 @@
 
   onMount(async () => {
     console.log("mounted");
+
+    let token = localStorage.getItem("token");
+    if (!token) {
+      console.log("yes");
+      location.href = "/login";
+    }
+
+    Token.set(token);
+
     let loginPath = get(ApiUrl);
+    myURL = loginPath + "/panel/student_installment";
     
-  });
+    });
 
   async function installment_received(index) {
    
@@ -154,22 +168,23 @@
 
     const res = await fetch(myURL, {
       method: "POST",
-      headers: { "Content-type": "application/json" },
+      headers: { 
+        "Content-type": "application/json",
+         Authorization: "Bearer " + token
+        },
       body: JSON.stringify(
-        //   {
-        //   email: inquiry_email,
-        //   message: inquiry_message,
-        //   phone: inquiry_phone,
-        //   name: inquiry_name,
-        // }
-        body
+        
+        body[index-1]
       ),
     });
     // console.log(await res.text());
     const json = await res.json();
     if (json.status == "success") {
-      alert("Thankyou for contacting us, our team will reach you shortly");
+      alert("Thankyou, your Installment has been received");
       // centre.reload();
+    } else {
+      alert("Some problem has occured " + json.message);
+      // location.reload();
     }
     let result = JSON.stringify(json);
     console.log(result);
@@ -325,12 +340,13 @@
                 <div class="mx-3 flex flex-row space-x-3 mt-2">
                   <div class="flex flex-row mt-1">
                     <label for="dd_cheque_number">DD / Cheque Number</label>
-                    {#if installment.edit}
+                    <!-- {#if installment.edit}
                     <input class="border-2 ml-2" type="text" bind:value={installment.dd_cheque_number} />
                     {:else}
                     <input disabled class="border-2  ml-2" type="text" bind:value={installment.dd_cheque_number} />
                      {/if}
-                    
+                     -->
+                     <input x class="border-2 ml-2" type="text" bind:value={installment.dd_cheque_number} />
                   </div>
                 </div>
 
