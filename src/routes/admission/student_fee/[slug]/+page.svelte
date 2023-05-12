@@ -233,7 +233,7 @@
           <div class="mx-3 flex flex-row">
             <p>Total Fee</p>
 
-            <input class="border-2 ml-2" type="number" bind:value={installments.total_fee} />
+            <input class="border-2 ml-2" type="number" bind:value={installments[0].total_fee} />
           </div>
 
           <div class="mx-3 flex flex-col">
