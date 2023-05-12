@@ -230,7 +230,7 @@
     </div>
 
     <form action="">
-      <div class="flex flex-row">
+      <div class="flex flex-row p-6">
         <p>Fee Details:</p>
 
         <div class="flex flex-col">
