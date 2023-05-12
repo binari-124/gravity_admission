@@ -66,7 +66,7 @@
     Token.set(token);
 
     let loginPath = get(ApiUrl);
-    myURL = loginPath + "/panel/student_create";
+    // myURL = loginPath + "/panel/student_create";
     await getStreams();
     await getBranches();
 
@@ -80,6 +80,9 @@
   });
 
   async function handleSubmit(event) {
+    let myCreateURL = loginPath + "/panel/student_create";
+    let myEditURL = loginPath + "/panel/student_edit";
+
     console.log("submitting inquiry form");
     console.log(body);
     var token = localStorage.getItem("token");
@@ -92,7 +95,7 @@
     if (cor_address) {
       delete data.secondary_address;
     }
-    const res = await fetch(myURL, {
+    const res = await fetch(edit?myEditURL:myCreateURL, {
       method: "POST",
       headers: {
         "Content-type": "application/json",

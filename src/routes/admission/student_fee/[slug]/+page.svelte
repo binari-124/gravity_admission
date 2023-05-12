@@ -22,7 +22,7 @@
   let myURL = "/panel/student_installment";
 
   async function saveInstallment(index) {
-    installments[index - 1].edit = false;
+    body.installments[index - 1].edit = false;
 
     if (data_save) {
       alert("Your data has been saved \n  Please Submit ");
@@ -32,7 +32,7 @@
   }
 
   async function editInstallment(index) {
-    installments[index - 1].edit = true;
+    body.installments[index - 1].edit = true;
     if (!data_save) {
       data_save = true;
     }
@@ -48,54 +48,44 @@
     // arr_receipt: [],
   };
 
-  let installments = [
-    {
-      total_fee: " ",
-      installment: "50000 ",
-      timestamp: " ",
-      arr_paid_by: "",
-      dd_cheque_number: " ",
-      receipt_number: " ",
-      edit: true,
-    },
-  ];
+  // let body.installments = [];
 
   let date = new Date();
 
   // let cor_address = false;
 
-  // async function getStudent() {
-  //   var token = localStorage.getItem("token");
-  //   var res;
-  //   var loginPath = get(ApiUrl);
-  //   console.log("trying branches");
-  //   var res = await fetch(loginPath + "/panel/student/" + studentId, {
-  //     mode: "cors",
-  //     method: "get",
-  //     headers: {
-  //       Authorization: "Bearer " + token,
-  //       "Content-Type": "application/json",
-  //     },
-  //   });
-  //   if (res.status == 200) {
-  //     try {
-  //       let response = await res.text();
-  //       response = await JSON.parse(response);
-  //       if (response.status == "success") {
-  //         body = response.data;
-  //         // batches= response.data.batches;
-  //       } else {
-  //         console.log(response.message);
-  //       }
-  //     } catch (e) {
-  //       console.log("caught1");
-  //       alert("Some problem has occured, see console for more info.");
-  //       console.log(e.message);
-  //     }
-  //   } else {
-  //     console.log(await res.text());
-  //   }
-  // }
+  async function getStudentFees() {
+    var token = localStorage.getItem("token");
+    var res;
+    var loginPath = get(ApiUrl);
+    console.log("trying branches");
+    var res = await fetch(loginPath + "/panel/student_fee/" + studentId, {
+      mode: "cors",
+      method: "get",
+      headers: {
+        Authorization: "Bearer " + token,
+        "Content-Type": "application/json",
+      },
+    });
+    if (res.status == 200) {
+      try {
+        let response = await res.text();
+        response = await JSON.parse(response);
+        if (response.status == "success") {
+          body = response.data;
+          // batches= response.data.batches;
+        } else {
+          console.log(response.message);
+        }
+      } catch (e) {
+        console.log("caught1");
+        alert("Some problem has occured, see console for more info.");
+        console.log(e.message);
+      }
+    } else {
+      console.log(await res.text());
+    }
+  }
 
   // async function handleSubmit1(event) {
   //   console.log("Installment Received");
@@ -149,7 +139,7 @@
   });
 
   async function installment_received(index) {
-    body = JSON.parse(JSON.stringify(installments));
+    body = JSON.parse(JSON.stringify(body.installments));
     for (let i = 0; i < body.length; i++) {
       delete body[i].edit;
     }
@@ -189,28 +179,62 @@
   }
 
   async function handlePlus() {
-    installments.push({
+    body.installments.push({
       installment: "50000 ",
       timestamp: " ",
       arr_paid_by: "",
       dd_cheque_number: " ",
       receipt_number: " ",
       edit: true,
+      received:false
     });
-    installments = installments;
+    body.installments = body.installments;
   }
 
   // async function handleSubmit(){
-  //   console.log(installments);
+  //   console.log(body.installments);
   // }
 
   // let disabled = [];
 
   async function deleteInstallment(index) {
-    console.log(index);
-    installments.splice(index-1, 1);
-    // installments.pop();
-    installments = installments;
+    // console.log(index);
+    // body.installments.splice(index-1, 1);
+    // // body.installments.pop();
+    // body.installments = body.installments;
+
+    var token = localStorage.getItem("token");
+    var res;
+    var loginPath = get(ApiUrl);
+    console.log("trying branches");
+    var res = await fetch(loginPath + "/panel/student_fee/" + studentId, {
+      mode: "cors",
+      method: "post",
+      headers: {
+        Authorization: "Bearer " + token,
+        "Content-Type": "application/json",
+      },
+    });
+    if (res.status == 200) {
+      try {
+        let response = await res.text();
+        response = await JSON.parse(response);
+        if (response.status == "success") {
+          // body = response.data;
+          location.reload();
+          // batches= response.data.batches;
+        } else {
+          console.log(response.message);
+        }
+      } catch (e) {
+        console.log("caught1");
+        alert("Some problem has occured, see console for more info.");
+        console.log(e.message);
+      }
+    } else {
+      console.log(await res.text());
+    }
+
   }
 
   // async function editInstallment(index) {
@@ -246,7 +270,7 @@
             <input
               class="border-2 ml-2"
               type="number"
-              bind:value={installments[0].total_fee}
+              bind:value={body.installments[0].total_fee}
             />
           </div>
 
@@ -256,7 +280,7 @@
                 >Add Installment</button
               ><br>
 
-              {#each installments as installment, index}
+              {#each body.installments as installment, index}
                 <span>Installment {index + 1}</span>
                 <input
                   disabled={(index)=>cond(index)}
@@ -279,7 +303,7 @@
                     <input
                       disabled={condition}
                       type="radio"
-                      bind:group={installments[index].arr_paid_by}
+                      bind:group={body.installments[index].arr_paid_by}
                       name={index + 1}
                       value="Cash"
                     />
@@ -290,7 +314,7 @@
                     <input
                       disabled={condition}
                       type="radio"
-                      bind:group={installments[index].arr_paid_by}
+                      bind:group={body.installments[index].arr_paid_by}
                       name={index + 1}
                       value="Cheque"
                     />
@@ -301,7 +325,7 @@
                     <input
                       disabled={condition}
                       type="radio"
-                      bind:group={installments[index].arr_paid_by}
+                      bind:group={body.installments[index].arr_paid_by}
                       name={index + 1}
                       value="Demand Draft"
                     />
@@ -312,7 +336,7 @@
                     <input
                       disabled={condition}
                       type="radio"
-                      bind:group={installments[index].arr_paid_by}
+                      bind:group={body.installments[index].arr_paid_by}
                       name={index + 1}
                       value="NEFT"
                     />
@@ -323,7 +347,7 @@
                     <input
                       disabled={condition}
                       type="radio"
-                      bind:group={installments[index].arr_paid_by}
+                      bind:group={body.installments[index].arr_paid_by}
                       name={index + 1}
                       value="RTGS"
                     />
@@ -334,7 +358,7 @@
                     <input
                       disabled={condition}
                       type="radio"
-                      bind:group={installments[index].arr_paid_by}
+                      bind:group={body.installments[index].arr_paid_by}
                       name={index + 1}
                       value="ECS"
                     />
