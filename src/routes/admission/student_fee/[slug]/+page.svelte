@@ -11,6 +11,12 @@
 
   let data_save = true;
   let condition = false;
+
+  let condition1 = false;
+
+  function cond(index){
+    return condition+index;
+  }
   
 
   let myURL = "/panel/student_installment";
@@ -253,7 +259,7 @@
               {#each installments as installment, index}
                 <span>Installment {index + 1}</span>
                 <input
-                  disabled={condition}
+                  disabled={(index)=>cond(index)}
                   class="border-2"
                   type="text"
                   bind:value={installment.installment}
