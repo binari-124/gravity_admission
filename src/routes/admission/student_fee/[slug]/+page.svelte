@@ -246,7 +246,7 @@
 
           <div class="mx-3 flex flex-col">
             <div class="shadow-md p-4 my-2">
-              <button class=" my-2 mr-4 mb-6" on:click={handlePlus}
+              <button class="btn my-2 mr-4 mb-6" on:click={handlePlus}
                 >Add Installment</button
               ><br>
 
@@ -372,24 +372,24 @@
                 </div>
                 <div class=" mt-2 mb-12">
                   <button
-                    class=" float-right mr-2"
+                    class="btn float-right mr-2"
                     on:click={() => deleteInstallment(index + 1)}
                     >Remove Installment</button
                   >
 
                   {#if !condition}
                     <button
-                      class=" float-right mr-2"
+                      class="btn float-right mr-2"
                       on:click={() => saveInstallment(index + 1)}>Save</button
                     >
                   {:else}
                     <button
-                      class=" float-right mr-2"
+                      class="btn float-right mr-2"
                       on:click={() => editInstallment(index + 1)}>Edit</button
                     >
                   {/if}
                   <button
-                    class=" float-right mr-2"
+                    class="btn float-right mr-2"
                     on:click|preventDefault={() =>
                       installment_received(index + 1)}>Received</button
                   >
@@ -398,7 +398,7 @@
                 <br />
                 <hr />
               {/each}
-              <!-- <button class="" on:click={handleSubmit}>Submit</button> -->
+              <!-- <button class="btn" on:click={handleSubmit}>Submit</button> -->
             </div>
           </div>
         </div>
