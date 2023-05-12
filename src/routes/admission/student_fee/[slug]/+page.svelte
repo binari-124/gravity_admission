@@ -248,7 +248,7 @@
             <div class="shadow-md p-4 my-2">
               <button class="btn my-2 mr-4" on:click={handlePlus}
                 >Add Installment</button
-              >
+              ><br>
 
               {#each installments as installment, index}
                 <span>Installment {index + 1}</span>
