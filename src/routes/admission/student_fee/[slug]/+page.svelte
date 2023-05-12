@@ -11,6 +11,7 @@
 
   let data_save = true;
   let condition = false;
+  
 
   let myURL = "/panel/student_installment";
 
@@ -376,7 +377,7 @@
                     >Remove Installment</button
                   >
 
-                  {#if !installments[index - 1].edit}
+                  {#if !condition}
                     <button
                       class="btn float-right mr-2"
                       on:click={() => saveInstallment(index + 1)}>Save</button
