@@ -49,14 +49,7 @@
       receipt_number: " ",
       edit:true
     },
-    {
-      installment: "50000 ",
-      timestamp: " ",
-      arr_paid_by: "",
-      dd_cheque_number: " ",
-      receipt_number: " ",
-      edit:true
-    },
+    
   ];
 
   let date = new Date();
@@ -65,46 +58,80 @@
 
   // let cor_address = false;
 
-  async function getStudent() {
-    var token = localStorage.getItem("token");
-    var res;
-    var loginPath = get(ApiUrl);
-    console.log("trying branches");
-    var res = await fetch(loginPath + "/panel/student/" + studentId, {
-      mode: "cors",
-      method: "get",
-      headers: {
-        Authorization: "Bearer " + token,
-        "Content-Type": "application/json",
-      },
-    });
-    if (res.status == 200) {
-      try {
-        let response = await res.text();
-        response = await JSON.parse(response);
-        if (response.status == "success") {
-          body = response.data;
-          // batches= response.data.batches;
-        } else {
-          console.log(response.message);
-        }
-      } catch (e) {
-        console.log("caught1");
-        alert("Some problem has occured, see console for more info.");
-        console.log(e.message);
-      }
-    } else {
-      console.log(await res.text());
-    }
-  }
+  // async function getStudent() {
+  //   var token = localStorage.getItem("token");
+  //   var res;
+  //   var loginPath = get(ApiUrl);
+  //   console.log("trying branches");
+  //   var res = await fetch(loginPath + "/panel/student/" + studentId, {
+  //     mode: "cors",
+  //     method: "get",
+  //     headers: {
+  //       Authorization: "Bearer " + token,
+  //       "Content-Type": "application/json",
+  //     },
+  //   });
+  //   if (res.status == 200) {
+  //     try {
+  //       let response = await res.text();
+  //       response = await JSON.parse(response);
+  //       if (response.status == "success") {
+  //         body = response.data;
+  //         // batches= response.data.batches;
+  //       } else {
+  //         console.log(response.message);
+  //       }
+  //     } catch (e) {
+  //       console.log("caught1");
+  //       alert("Some problem has occured, see console for more info.");
+  //       console.log(e.message);
+  //     }
+  //   } else {
+  //     console.log(await res.text());
+  //   }
+  // }
+
+  // async function handleSubmit1(event) {
+  //   console.log("Installment Received");
+  //   console.log(body);
+  //   var token = localStorage.getItem("token");
+
+  //   var loginPath = get(ApiUrl);
+  //   // console.log(body);
+  //   // here we have created the clone of the body, otherwise secondary address will be getting permanently deleted
+
+  //   let data = JSON.parse(JSON.stringify(body));
+  //   if (cor_address) {
+  //     delete data.secondary_address;
+  //   }
+  //   const res = await fetch(myURL, {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-type": "application/json",
+  //       Authorization: "Bearer " + token,
+  //     },
+  //     body: JSON.stringify(data),
+  //   });
+  //   // console.log(await res.text());
+  //   const json = await res.json();
+  //   if (json.status == "success") {
+  //     alert("Thankyou for contacting us, our team will reach you shortly");
+  //     // location.reload();
+  //     location.href = "/admission/" + json.data;
+  //   } else {
+  //     alert("Some problem has occured " + json.message);
+  //     // location.reload();
+  //   }
+
+    
+  // }
 
   let src = "../images/";
 
   onMount(async () => {
     console.log("mounted");
     let loginPath = get(ApiUrl);
-    // await getStudentbatches();
-    // await getStudentcompatiblebatches();
+    
   });
 
   async function handleSubmit(event) {
@@ -124,30 +151,30 @@
     // // body.topic = topic;
     // var loginPath = get(ApiUrl);
 
-    // const res = await fetch(myURL, {
-    //   method: "POST",
-    //   headers: { "Content-type": "application/json" },
-    //   body: JSON.stringify(
-    //     //   {
-    //     //   email: inquiry_email,
-    //     //   message: inquiry_message,
-    //     //   phone: inquiry_phone,
-    //     //   name: inquiry_name,
-    //     // }
-    //     body
-    //   ),
-    // });
-    // // console.log(await res.text());
-    // const json = await res.json();
-    // if (json.status == "success") {
-    //   alert("Thankyou for contacting us, our team will reach you shortly");
-    //   // centre.reload();
-    // }
-    // let result = JSON.stringify(json);
-    // console.log(result);
+    const res = await fetch(myURL, {
+      method: "POST",
+      headers: { "Content-type": "application/json" },
+      body: JSON.stringify(
+        //   {
+        //   email: inquiry_email,
+        //   message: inquiry_message,
+        //   phone: inquiry_phone,
+        //   name: inquiry_name,
+        // }
+        body
+      ),
+    });
+    // console.log(await res.text());
+    const json = await res.json();
+    if (json.status == "success") {
+      alert("Thankyou for contacting us, our team will reach you shortly");
+      // centre.reload();
+    }
+    let result = JSON.stringify(json);
+    console.log(result);
 
-    // console.log(json.stringify(body,null,2))
-    // console.log(body);
+    console.log(json.stringify(body,null,2))
+    console.log(body);
   }
 
   async function handlePlus() {
@@ -210,7 +237,7 @@
 
           <div class="mx-3 flex flex-col">
             <div class="shadow-md  p-4 my-2">
-              <button class="btn my-2 mr-4" on:click={handlePlus}>+</button>
+              <button class="btn my-2 mr-4" on:click={handlePlus}>Add Installment</button>
 
               {#each installments as installment, index}
                 <span>Installment {index + 1}</span>
@@ -317,13 +344,13 @@
                       class="border-2 ml-2"
                       type="text"
                       bind:value={installment.receipt_number}
-                    />h
+                    />
                   </div>
                 </div>
                 <div class=" mt-2 mb-12">
                   <button
                     class="btn float-right mr-2"
-                    on:click={() => deleteInstallment(index+1)}>-</button
+                    on:click={() => deleteInstallment(index+1)}>Remove Installment</button
                   >
                   <button
                     class="btn float-right mr-2"
@@ -332,6 +359,10 @@
                   <button
                     class="btn float-right mr-2"
                     on:click={() => saveInstallment(index+1)}>Save</button
+                  >
+                  <button
+                    class="btn float-right mr-2"
+                    on:click|preventDefault ={() => handleSubmit(index+1)}>Received</button
                   >
                 </div>
 
@@ -345,13 +376,13 @@
       </div>
 
       <div class="w-full flex justify-end">
-        <button
+        <!-- <button
           class="shadow mr-28 mt-2 bg-blue-800 hover:bg-blue-700 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded object-right"
           on:click|preventDefault={handleSubmit}
           type="button"
         >
           Submit
-        </button>
+        </button> -->
       </div>
     </form>
   </div>
