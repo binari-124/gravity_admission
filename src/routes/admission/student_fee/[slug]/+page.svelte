@@ -257,12 +257,14 @@
               {#each installments as installment, index}
                 <span>Installment {index + 1}</span>
                 <input
+                  disabled={condition}
                   class="border-2"
                   type="text"
                   bind:value={installment.installment}
                 />
                 <span>Payment Date</span>
                 <input
+                  disabled={condition}
                   class="border-2"
                   type="date"
                   bind:value={installment.timestamp}
@@ -273,6 +275,7 @@
 
                   <label>
                     <input
+                      disabled={condition}
                       type="radio"
                       bind:group={installments[index].arr_paid_by}
                       name="{index + 1}"
@@ -283,6 +286,7 @@
 
                   <label>
                     <input
+                      disabled={condition}
                       type="radio"
                       bind:group={installments[index].arr_paid_by}
                       name="{index + 1}"
@@ -293,6 +297,7 @@
 
                   <label>
                     <input
+                      disabled={condition}
                       type="radio"
                       bind:group={installments[index].arr_paid_by}
                       name="{index + 1}"
@@ -303,6 +308,7 @@
 
                   <label>
                     <input
+                      disabled={condition}
                       type="radio"
                       bind:group={installments[index].arr_paid_by}
                       name="{index + 1}"
@@ -313,6 +319,7 @@
 
                   <label>
                     <input
+                      disabled={condition}
                       type="radio"
                       bind:group={installments[index].arr_paid_by}
                       name="{index + 1}"
@@ -323,6 +330,7 @@
 
                   <label>
                     <input
+                      disabled={condition}
                       type="radio"
                       bind:group={installments[index].arr_paid_by}
                       name="{index + 1}"
@@ -357,7 +365,7 @@
 
                   <div class="flex flex-row mt-3">
                     <input
-                      
+                      disabled={condition}
                       class="border-2 ml-2"
                       type="text"
                       bind:value={installment.receipt_number}
