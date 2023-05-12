@@ -370,7 +370,7 @@
                     />
                   </div>
                 </div>
-                <div class=" mt-5 mb-12">
+                <div class=" mt-2 mb-12">
                   <button
                     class="btn float-right mr-2"
                     on:click={() => deleteInstallment(index + 1)}
