@@ -12,68 +12,68 @@
   export let data;
   export let studentId = data.studentId;
   console.log("studentID from slug:"+studentId);
-  let body;
+  // let body;
   
-  let date = new Date();
+  // let date = new Date();
 
-  let streams = [],
-    branches = [],
-    student_batches = [],
-    student_compatible_batches = [];
+  // let streams = [],
+  //   branches = [],
+  //   student_batches = [],
+  //   student_compatible_batches = [];
 
-  let myURL = "";
+  // let myURL = "";
 
-  let cor_address = false;
+  // let cor_address = false;
 
-  let permanent_address = "",
-    permanent_city = "",
-    permanent_state = "",
-    permanent_pin = "";
+  // let permanent_address = "",
+  //   permanent_city = "",
+  //   permanent_state = "",
+  //   permanent_pin = "";
 
-    async function getStudent() {
-    var token = localStorage.getItem("token");
-    var res;
-    var loginPath = get(ApiUrl);
-    console.log("trying branches");
-    var res = await fetch(loginPath + "/panel/student/"+studentId, {
-      mode: "cors",
-      method: "get",
-      headers: {
-        Authorization: "Bearer " + token,
-        "Content-Type": "application/json",
-      },
-    });
-    if (res.status == 200) {
-      try {
-        let response = await res.text();
-        response = await JSON.parse(response);
-        if (response.status == "success") {
-          body = response.data;
-          // batches= response.data.batches;
-        } else {
-          console.log(response.message);
-        }
-      } catch (e) {
-        console.log("caught1");
-        alert("Some problem has occured, see console for more info.");
-        console.log(e.message);
-      }
-    } else {
-      console.log(await res.text());
-    }
-  }
+  //   async function getStudent() {
+  //   var token = localStorage.getItem("token");
+  //   var res;
+  //   var loginPath = get(ApiUrl);
+  //   console.log("trying branches");
+  //   var res = await fetch(loginPath + "/panel/student/"+studentId, {
+  //     mode: "cors",
+  //     method: "get",
+  //     headers: {
+  //       Authorization: "Bearer " + token,
+  //       "Content-Type": "application/json",
+  //     },
+  //   });
+  //   if (res.status == 200) {
+  //     try {
+  //       let response = await res.text();
+  //       response = await JSON.parse(response);
+  //       if (response.status == "success") {
+  //         body = response.data;
+  //         // batches= response.data.batches;
+  //       } else {
+  //         console.log(response.message);
+  //       }
+  //     } catch (e) {
+  //       console.log("caught1");
+  //       alert("Some problem has occured, see console for more info.");
+  //       console.log(e.message);
+  //     }
+  //   } else {
+  //     console.log(await res.text());
+  //   }
+  // }
 
-  let src = "../images/";
+  // let src = "../images/";
 
   
 
-  onMount(async () => {
-    console.log("mounted");
-    let loginPath = get(ApiUrl);
-    await getStudentbatches();
-    await getStudentcompatiblebatches();
+  // onMount(async () => {
+  //   console.log("mounted");
+  //   let loginPath = get(ApiUrl);
+  //   await getStudentbatches();
+  //   await getStudentcompatiblebatches();
 
-  });
+  // });
 </script>
 <Admissions edit={false} studentId={studentId}/>
 
