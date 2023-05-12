@@ -17,8 +17,8 @@
   let date = new Date();
 
   let streams = [],
-    branches = []
-    student_batches = []
+    branches = [],
+    student_batches = [],
     student_compatible_batches = [];
 
   let myURL = "";
