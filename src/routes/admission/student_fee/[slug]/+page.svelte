@@ -142,7 +142,7 @@
     delete body[i].edit;
    }
    console.log(1);
-   console.log(body[index]);
+   console.log(body[index-1]);
     console.log("submitting inquiry form");
 
     //email...phone 10 digit, name,
