@@ -13,25 +13,23 @@
   let condition = false;
 
   let myURL = "/panel/student_installment";
- 
+
   async function saveInstallment(index) {
-    installments[index-1].edit=false;
-    
-   if (data_save){
-    alert("Your data has been saved \n  Please Submit ");
-    data_save =false;
-   }
+    installments[index - 1].edit = false;
+
+    if (data_save) {
+      alert("Your data has been saved \n  Please Submit ");
+      data_save = false;
+    }
     condition = true;
-    
   }
 
   async function editInstallment(index) {
-    installments[index-1].edit=true;
-    if (!data_save){
-    
-    data_save =true;
-   }
-   condition = false;
+    installments[index - 1].edit = true;
+    if (!data_save) {
+      data_save = true;
+    }
+    condition = false;
   }
 
   console.log("studentID from slug:" + studentId);
@@ -45,20 +43,17 @@
 
   let installments = [
     {
-      total_fee:" ",
+      total_fee: " ",
       installment: "50000 ",
       timestamp: " ",
       arr_paid_by: "",
       dd_cheque_number: " ",
       receipt_number: " ",
-      edit:true
+      edit: true,
     },
-    
   ];
 
   let date = new Date();
-
-  
 
   // let cor_address = false;
 
@@ -127,7 +122,6 @@
   //     // location.reload();
   //   }
 
-    
   // }
 
   let src = "../images/";
@@ -145,17 +139,15 @@
 
     let loginPath = get(ApiUrl);
     myURL = loginPath + "/panel/student_installment";
-    
-    });
+  });
 
   async function installment_received(index) {
-   
-   body = JSON.parse(JSON.stringify(installments));
-   for(let i =0;i<body.length;i++){
-    delete body[i].edit;
-   }
-   console.log(1);
-   console.log(body[index-1]);
+    body = JSON.parse(JSON.stringify(installments));
+    for (let i = 0; i < body.length; i++) {
+      delete body[i].edit;
+    }
+    console.log(1);
+    console.log(body[index - 1]);
     console.log("submitting inquiry form");
 
     //email...phone 10 digit, name,
@@ -167,14 +159,11 @@
 
     const res = await fetch(myURL, {
       method: "POST",
-      headers: { 
+      headers: {
         "Content-type": "application/json",
-         Authorization: "Bearer " + token
-        },
-      body: JSON.stringify(
-        
-        body[index-1]
-      ),
+        Authorization: "Bearer " + token,
+      },
+      body: JSON.stringify(body[index - 1]),
     });
     // console.log(await res.text());
     const json = await res.json();
@@ -188,7 +177,7 @@
     let result = JSON.stringify(json);
     console.log(result);
 
-    console.log(json.stringify(body,null,2))
+    console.log(json.stringify(body, null, 2));
     console.log(body);
   }
 
@@ -199,7 +188,7 @@
       arr_paid_by: "",
       dd_cheque_number: " ",
       receipt_number: " ",
-      edit:true
+      edit: true,
     });
     installments = installments;
   }
@@ -247,12 +236,18 @@
           <div class="mx-3 flex flex-row">
             <p>Total Fee</p>
 
-            <input class="border-2 ml-2" type="number" bind:value={installments[0].total_fee} />
+            <input
+              class="border-2 ml-2"
+              type="number"
+              bind:value={installments[0].total_fee}
+            />
           </div>
 
           <div class="mx-3 flex flex-col">
-            <div class="shadow-md  p-4 my-2">
-              <button class="btn my-2 mr-4" on:click={handlePlus}>Add Installment</button>
+            <div class="shadow-md p-4 my-2">
+              <button class="btn my-2 mr-4" on:click={handlePlus}
+                >Add Installment</button
+              >
 
               {#each installments as installment, index}
                 <span>Installment {index + 1}</span>
@@ -278,7 +273,7 @@
                       disabled={condition}
                       type="radio"
                       bind:group={installments[index].arr_paid_by}
-                      name="{index + 1}"
+                      name={index + 1}
                       value="Cash"
                     />
                     Cash
@@ -289,7 +284,7 @@
                       disabled={condition}
                       type="radio"
                       bind:group={installments[index].arr_paid_by}
-                      name="{index + 1}"
+                      name={index + 1}
                       value="Cheque"
                     />
                     Cheque
@@ -300,7 +295,7 @@
                       disabled={condition}
                       type="radio"
                       bind:group={installments[index].arr_paid_by}
-                      name="{index + 1}"
+                      name={index + 1}
                       value="Demand Draft"
                     />
                     Demand Draft
@@ -311,7 +306,7 @@
                       disabled={condition}
                       type="radio"
                       bind:group={installments[index].arr_paid_by}
-                      name="{index + 1}"
+                      name={index + 1}
                       value="NEFT"
                     />
                     NEFT
@@ -322,7 +317,7 @@
                       disabled={condition}
                       type="radio"
                       bind:group={installments[index].arr_paid_by}
-                      name="{index + 1}"
+                      name={index + 1}
                       value="RTGS"
                     />
                     RTGS
@@ -333,7 +328,7 @@
                       disabled={condition}
                       type="radio"
                       bind:group={installments[index].arr_paid_by}
-                      name="{index + 1}"
+                      name={index + 1}
                       value="ECS"
                     />
                     ECS
@@ -341,8 +336,6 @@
 
                   <br />
                 </div>
-
-                
 
                 <div class="mx-3 flex flex-row space-x-3 mt-2">
                   <div class="flex flex-row mt-1">
@@ -353,8 +346,12 @@
                     <input disabled class="border-2  ml-2" type="text" bind:value={installment.dd_cheque_number} />
                      {/if}
                      -->
-                    <input disabled={condition} class="border-2 ml-2" type="text" bind:value={installment.dd_cheque_number} />
-
+                    <input
+                      disabled={condition}
+                      class="border-2 ml-2"
+                      type="text"
+                      bind:value={installment.dd_cheque_number}
+                    />
                   </div>
                 </div>
 
@@ -375,25 +372,26 @@
                 <div class=" mt-2 mb-12">
                   <button
                     class="btn float-right mr-2"
-                    on:click={() => deleteInstallment(index+1)}>Remove Installment</button
+                    on:click={() => deleteInstallment(index + 1)}
+                    >Remove Installment</button
                   >
-                  <button
-                    class="btn float-right mr-2"
-                    on:click={() => editInstallment(index+1)}>Edit</button
-                  >
-                  {#if !installments[index-1].edit}
-                  <button
-                    class="btn float-right mr-2"
-                    on:click={() => saveInstallment(index+1)}>Save</button
-                  >
+
+                  {#if !installments[index - 1].edit}
+                    <button
+                      class="btn float-right mr-2"
+                      on:click={() => saveInstallment(index + 1)}>Save</button
+                    >
                   {:else}
+                    <button
+                      class="btn float-right mr-2"
+                      on:click={() => editInstallment(index + 1)}>Edit</button
+                    >
+                  {/if}
                   <button
                     class="btn float-right mr-2"
-                    on:click|preventDefault ={() => installment_received(index+1)}>Received</button
+                    on:click|preventDefault={() =>
+                      installment_received(index + 1)}>Received</button
                   >
-                  {/if}
-                  
-                  
                 </div>
 
                 <br />
