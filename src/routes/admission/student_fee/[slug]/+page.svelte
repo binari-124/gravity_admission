@@ -346,7 +346,7 @@
                     <input disabled class="border-2  ml-2" type="text" bind:value={installment.dd_cheque_number} />
                      {/if}
                      -->
-                     <input x class="border-2 ml-2" type="text" bind:value={installment.dd_cheque_number} />
+                     <input {x} class="border-2 ml-2" type="text" bind:value={installment.dd_cheque_number} />
                   </div>
                 </div>
 
