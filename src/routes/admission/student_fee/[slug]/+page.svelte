@@ -12,7 +12,7 @@
   let data_save = true;
   let condition = false;
 
-  let condition1 = false;
+  let condition1 = true;
 
   function cond(index){
     return condition+index;
