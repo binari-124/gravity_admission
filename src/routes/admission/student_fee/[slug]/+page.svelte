@@ -230,7 +230,7 @@
     </div>
 
     <form action="">
-      <div class="flex flex-row p-6">
+      <div class="flex flex-row ">
         <p>Fee Details:</p>
 
         <div class="flex flex-col">
@@ -244,7 +244,7 @@
             />
           </div>
 
-          <div class="mx-3 flex flex-col">
+          <div class="mx-3 flex flex-col p-6">
             <div class="shadow-md p-4 my-2">
               <button class="btn my-2 mr-4 mb-6" on:click={handlePlus}
                 >Add Installment</button
