@@ -10,7 +10,7 @@
   export let studentId = data.studentId;
 
   let data_save = true;
-  let x = disabled;
+  let condition = true;
 
   let myURL = "/panel/student_installment";
  
@@ -21,7 +21,6 @@
     alert("Your data has been saved \n  Please Submit ");
     data_save =false;
    }
-
     
   }
 
@@ -346,7 +345,8 @@
                     <input disabled class="border-2  ml-2" type="text" bind:value={installment.dd_cheque_number} />
                      {/if}
                      -->
-                     <input {x} class="border-2 ml-2" type="text" bind:value={installment.dd_cheque_number} />
+                    <input disabled={condition} class="border-2 ml-2" type="text" bind:value={installment.dd_cheque_number} />
+
                   </div>
                 </div>
 
