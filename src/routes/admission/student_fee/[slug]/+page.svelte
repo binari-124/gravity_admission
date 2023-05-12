@@ -10,7 +10,7 @@
   export let studentId = data.studentId;
 
   let data_save = true;
-  let condition = true;
+  let condition = false;
 
   let myURL = "/panel/student_installment";
  
