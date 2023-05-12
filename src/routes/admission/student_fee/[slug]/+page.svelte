@@ -42,6 +42,7 @@
 
   let installments = [
     {
+      total_fee:" ",
       installment: "50000 ",
       timestamp: " ",
       arr_paid_by: "",
@@ -135,9 +136,8 @@
   });
 
   async function handleSubmit(event) {
-    
-    
-   let body = JSON.parse(JSON.stringify(installments));
+   
+   body = JSON.parse(JSON.stringify(installments));
    for(let i =0;i<body.length;i++){
     delete body[i].edit;
    }
@@ -233,7 +233,7 @@
           <div class="mx-3 flex flex-row">
             <p>Total Fee</p>
 
-            <input class="border-2 ml-2" type="number" bind:value={body.final_fee} />
+            <input class="border-2 ml-2" type="number" bind:value={installments.total_fee} />
           </div>
 
           <div class="mx-3 flex flex-col">
