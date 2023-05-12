@@ -381,14 +381,19 @@
                     class="btn float-right mr-2"
                     on:click={() => editInstallment(index+1)}>Edit</button
                   >
+                  {#if !installments[index-1].edit}
                   <button
                     class="btn float-right mr-2"
                     on:click={() => saveInstallment(index+1)}>Save</button
                   >
+                  {:else}
                   <button
                     class="btn float-right mr-2"
                     on:click|preventDefault ={() => installment_received(index+1)}>Received</button
                   >
+                  {/if}
+                  
+                  
                 </div>
 
                 <br />
