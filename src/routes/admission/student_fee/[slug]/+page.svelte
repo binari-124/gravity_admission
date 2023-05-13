@@ -18,7 +18,7 @@
     return condition+index;
   }
   
-  let create_body = {amount:0,timestamp:new Date(Date.now()).toISOString().replace('-', '/').split('T')[0].replace('-', '/')};
+  let create_body = {amount:0,timestamp:new Date(Date.now()).toISOString().split('T')[0]};
   console.log(create_body);
 
   async function createInstallment(){
