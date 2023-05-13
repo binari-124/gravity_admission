@@ -187,7 +187,9 @@
         response = await JSON.parse(response);
         if (response.status == "success") {
           body = response.data;
-          body.timestamp = body.timestamp.split("T")[0];
+          for(var i =0;i<body.installments.length;i++){
+            body.installments[i].timestamp = body.installments[i].timestamp.split("T")[0];
+          }
           // batches= response.data.batches;
         } else {
           console.log(response.message);
