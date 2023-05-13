@@ -347,7 +347,7 @@
     <div class="card">
       <input type="text" bind:value={create_body.amount} placeholder="amount" />
       <input type="date" bind:value={create_body.timestamp} placeholder="amount" />
-      <button on:click={createInstallment}>Add new</button>
+      <button on:click|preventDefault={createInstallment}>Add new</button>
 
     </div>
 
