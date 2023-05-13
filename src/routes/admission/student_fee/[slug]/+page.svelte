@@ -18,7 +18,7 @@
     return condition+index;
   }
   
-  let create_body = {amount:0,timestamp:Date.now()};
+  let create_body = {amount:0,timestamp:new Date(Date.now()).toISOString().replace('-', '/').split('T')[0].replace('-', '/')};
 
 
   async function createInstallment(){
@@ -318,6 +318,7 @@
     });
     body.installments = body.installments;
   }
+  
 
   // async function handleSubmit(){
   //   console.log(body.installments);
