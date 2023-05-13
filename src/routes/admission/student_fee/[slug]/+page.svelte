@@ -95,7 +95,7 @@
     var token = localStorage.getItem("token");
 
 
-    const res = await fetch("/api/panel/student_installment_delete/"+body.instllments[index-1]._id, {
+    const res = await fetch("/api/panel/student_installment_delete/"+body.installments[index-1]._id, {
       method: "POST",
       headers: {
         "Content-type": "application/json",
