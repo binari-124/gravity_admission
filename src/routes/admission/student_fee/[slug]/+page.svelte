@@ -94,20 +94,6 @@
   async function deleteInstallment(index) {
     var token = localStorage.getItem("token");
 
-    let data = JSON.parse(JSON.stringify(body.installments));
-    for (let i = 0; i < body.length; i++) {
-      delete data[i].edit;
-    }
-    console.log(1);
-    console.log(data[index - 1]);
-    console.log("submitting inquiry form");
-
-    //email...phone 10 digit, name,
-
-    // console.log(body);
-    // var token = localStorage.getItem("token");
-    // // body.topic = topic;
-    // var loginPath = get(ApiUrl);
 
     const res = await fetch("/api/panel/student_installment_delete/"+body.instllments[index-1]._id, {
       method: "POST",
@@ -115,7 +101,7 @@
         "Content-type": "application/json",
         Authorization: "Bearer " + token,
       },
-      body: JSON.stringify(data)
+      // body: JSON.stringify(data)
 
     });
     // console.log(await res.text());
@@ -499,19 +485,19 @@
                 <div class=" mt-2 mb-12">
                   <button
                     class="btn float-right mr-2"
-                    on:click={() => deleteInstallment(index + 1)}
+                    on:click|preventDefault={() => deleteInstallment(index + 1)}
                     >Remove Installment</button
                   >
 
                   {#if !condition}
                     <button
                       class="btn float-right mr-2"
-                      on:click={() => saveInstallment(index + 1)}>Save</button
+                      on:click|preventDefault={() => saveInstallment(index + 1)}>Save</button
                     >
                   {:else}
                     <button
                       class="btn float-right mr-2"
-                      on:click={() => editInstallment(index + 1)}>Edit</button
+                      on:click|preventDefault={() => editInstallment(index + 1)}>Edit</button
                     >
                   {/if}
                   <button
