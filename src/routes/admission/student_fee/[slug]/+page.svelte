@@ -25,7 +25,7 @@
     console.log(create_body);
     var token = localStorage.getItem("token");
 
-    const res = await fetch("/panel/fees/installments/create/"+body._id, {
+    const res = await fetch("/api/panel/fees/installments/create/"+body._id, {
       method: "POST",
       headers: {
         "Content-type": "application/json",
@@ -65,7 +65,7 @@
     // // body.topic = topic;
     // var loginPath = get(ApiUrl);
 
-    const res = await fetch("/panel/student_installment_edit/"+body.instllments[index-1]._id, {
+    const res = await fetch("/api/panel/student_installment_edit/"+body.instllments[index-1]._id, {
       method: "POST",
       headers: {
         "Content-type": "application/json",
@@ -109,7 +109,7 @@
     // // body.topic = topic;
     // var loginPath = get(ApiUrl);
 
-    const res = await fetch("/panel/student_installment_delete/"+body.instllments[index-1]._id, {
+    const res = await fetch("/api/panel/student_installment_delete/"+body.instllments[index-1]._id, {
       method: "POST",
       headers: {
         "Content-type": "application/json",
@@ -269,7 +269,7 @@
     // // body.topic = topic;
     // var loginPath = get(ApiUrl);
 
-    const res = await fetch("/panel/student_installment_receive/"+body.instllments[index-1]._id, {
+    const res = await fetch("/api/panel/student_installment_receive/"+body.instllments[index-1]._id, {
       method: "POST",
       headers: {
         "Content-type": "application/json",
