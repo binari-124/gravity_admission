@@ -25,24 +25,24 @@
     console.log(create_body);
     var token = localStorage.getItem("token");
 
-    // const res = await fetch("/panel/fees/installments/create/"+body._id, {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-type": "application/json",
-    //     Authorization: "Bearer " + token,
-    //   },
-    //   body: JSON.stringify(create_body),
-    // });
-    // // console.log(await res.text());
-    // const json = await res.json();
-    // if (json.status == "success") {
-    //   alert("Thankyou, your Installment has been created");
-    //   location.reload();
-    //   // centre.reload();
-    // } else {
-    //   alert("Some problem has occured " + json.message);
-    //   // location.reload();
-    // }
+    const res = await fetch("/panel/fees/installments/create/"+body._id, {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+        Authorization: "Bearer " + token,
+      },
+      body: JSON.stringify(create_body),
+    });
+    // console.log(await res.text());
+    const json = await res.json();
+    if (json.status == "success") {
+      alert("Thankyou, your Installment has been created");
+      location.reload();
+      // centre.reload();
+    } else {
+      alert("Some problem has occured " + json.message);
+      // location.reload();
+    }
   } 
 
   let myURL = "/panel/student_installment";
