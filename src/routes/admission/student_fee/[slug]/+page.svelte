@@ -18,20 +18,129 @@
     return condition+index;
   }
   
+  let create_body = {amount:0,timestamp:Date.now()};
+
+
+  async function createInstallment(){
+    var token = localStorage.getItem("token");
+
+    const res = await fetch("/panel/fees/installments/create/"+body._id, {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+        Authorization: "Bearer " + token,
+      },
+      body: JSON.stringify(create_body),
+    });
+    // console.log(await res.text());
+    const json = await res.json();
+    if (json.status == "success") {
+      alert("Thankyou, your Installment has been created");
+      location.reload();
+      // centre.reload();
+    } else {
+      alert("Some problem has occured " + json.message);
+      // location.reload();
+    }
+    let result = JSON.stringify(json);
+    console.log(result);
+
+    console.log(json.stringify(body, null, 2));
+    console.log(body);
+  } 
 
   let myURL = "/panel/student_installment";
 
   async function saveInstallment(index) {
-    body.installments[index - 1].edit = false;
+    var token = localStorage.getItem("token");
 
-    if (data_save) {
-      alert("Your data has been saved \n  Please Submit ");
-      data_save = false;
+    let data = JSON.parse(JSON.stringify(body.installments));
+    for (let i = 0; i < body.length; i++) {
+      delete data[i].edit;
     }
-    condition = true;
+    console.log(1);
+    console.log(data[index - 1]);
+    console.log("submitting inquiry form");
+
+    //email...phone 10 digit, name,
+
+    // console.log(body);
+    // var token = localStorage.getItem("token");
+    // // body.topic = topic;
+    // var loginPath = get(ApiUrl);
+
+    const res = await fetch("/panel/student_installment_edit/"+body.instllments[index-1]._id, {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+        Authorization: "Bearer " + token,
+      },
+      body: JSON.stringify(data)
+
+    });
+    // console.log(await res.text());
+    const json = await res.json();
+    if (json.status == "success") {
+      alert("Thankyou, your Installment has been saved");
+      location.reload();
+      // centre.reload();
+    } else {
+      alert("Some problem has occured " + json.message);
+      // location.reload();
+    }
+    let result = JSON.stringify(json);
+    console.log(result);
+
+    console.log(json.stringify(body, null, 2));
+    console.log(body);
+  }
+
+  async function deleteInstallment(index) {
+    var token = localStorage.getItem("token");
+
+    let data = JSON.parse(JSON.stringify(body.installments));
+    for (let i = 0; i < body.length; i++) {
+      delete data[i].edit;
+    }
+    console.log(1);
+    console.log(data[index - 1]);
+    console.log("submitting inquiry form");
+
+    //email...phone 10 digit, name,
+
+    // console.log(body);
+    // var token = localStorage.getItem("token");
+    // // body.topic = topic;
+    // var loginPath = get(ApiUrl);
+
+    const res = await fetch("/panel/student_installment_delete/"+body.instllments[index-1]._id, {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+        Authorization: "Bearer " + token,
+      },
+      body: JSON.stringify(data)
+
+    });
+    // console.log(await res.text());
+    const json = await res.json();
+    if (json.status == "success") {
+      alert("Thankyou, your Installment has been saved");
+      location.reload();
+      // centre.reload();
+    } else {
+      alert("Some problem has occured " + json.message);
+      // location.reload();
+    }
+    let result = JSON.stringify(json);
+    console.log(result);
+
+    console.log(json.stringify(body, null, 2));
+    console.log(body);
   }
 
   async function editInstallment(index) {
+    var token = localStorage.getItem("token");
     body.installments[index - 1].edit = true;
     if (!data_save) {
       data_save = true;
@@ -40,13 +149,22 @@
   }
 
   console.log("studentID from slug:" + studentId);
-  let body = {
-    // arr_inst: [],
-    // arr_time: [],
-    // arr_paid_by: [],
-    // arr_dd: [],
-    // arr_receipt: [],
-  };
+  let body;
+  // body.installments.push({
+  //     amount: "50000",
+  //     timestamp: "",
+  //     installment_status:{
+  //       received:false,
+  //       timestamp: "",
+  //       payment_mode:"",
+  //       payment_reference_number:"",//receipt number
+  //       staff:"",
+  //     },
+  //     // arr_paid_by: "",
+  //     // dd_cheque_number: " ",
+      
+  //     edit: true,
+  //   });
 
   // let body.installments = [];
 
@@ -136,6 +254,7 @@
 
     let loginPath = get(ApiUrl);
     myURL = loginPath + "/panel/student_installment";
+    await getStudentFees();
   });
 
   async function installment_received(index) {
@@ -154,18 +273,21 @@
     // // body.topic = topic;
     // var loginPath = get(ApiUrl);
 
-    const res = await fetch(myURL, {
+    const res = await fetch("/panel/student_installment_receive/"+body.instllments[index-1]._id, {
       method: "POST",
       headers: {
         "Content-type": "application/json",
         Authorization: "Bearer " + token,
       },
-      body: JSON.stringify(body[index - 1]),
+      body: JSON.stringify({
+        payment_mode:body.installments[index-1].installment_status.payment_mode,
+        payment_reference_number:body.installments[index-1].installment_status.payment_reference_number}),
     });
     // console.log(await res.text());
     const json = await res.json();
     if (json.status == "success") {
       alert("Thankyou, your Installment has been received");
+      location.reload();
       // centre.reload();
     } else {
       alert("Some problem has occured " + json.message);
@@ -180,13 +302,19 @@
 
   async function handlePlus() {
     body.installments.push({
-      installment: "50000 ",
-      timestamp: " ",
-      arr_paid_by: "",
-      dd_cheque_number: " ",
-      receipt_number: " ",
+      amount: "50000",
+      timestamp: "",
+      installment_status:{
+        received:false,
+        timestamp: "",
+        payment_mode:"",
+        payment_reference_number:"",//receipt number
+        staff:"",
+      },
+      // arr_paid_by: "",
+      // dd_cheque_number: " ",
+      
       edit: true,
-      received:false
     });
     body.installments = body.installments;
   }
@@ -197,45 +325,6 @@
 
   // let disabled = [];
 
-  async function deleteInstallment(index) {
-    // console.log(index);
-    // body.installments.splice(index-1, 1);
-    // // body.installments.pop();
-    // body.installments = body.installments;
-
-    var token = localStorage.getItem("token");
-    var res;
-    var loginPath = get(ApiUrl);
-    console.log("trying branches");
-    var res = await fetch(loginPath + "/panel/student_fee/" + studentId, {
-      mode: "cors",
-      method: "post",
-      headers: {
-        Authorization: "Bearer " + token,
-        "Content-Type": "application/json",
-      },
-    });
-    if (res.status == 200) {
-      try {
-        let response = await res.text();
-        response = await JSON.parse(response);
-        if (response.status == "success") {
-          // body = response.data;
-          location.reload();
-          // batches= response.data.batches;
-        } else {
-          console.log(response.message);
-        }
-      } catch (e) {
-        console.log("caught1");
-        alert("Some problem has occured, see console for more info.");
-        console.log(e.message);
-      }
-    } else {
-      console.log(await res.text());
-    }
-
-  }
 
   // async function editInstallment(index) {
   //   disabled[index] = false;
@@ -257,6 +346,12 @@
       >
         For Office use only
       </p>
+    </div>
+    <div class="card">
+      <input type="text" bind:value={create_body.amount} placeholder="amount" />
+      <input type="text" bind:value={create_body.timestamp} placeholder="amount" />
+      <button on:click={createInstallment}>Add new</button>
+
     </div>
 
     <form action="">
@@ -286,7 +381,7 @@
                   disabled={(index)=>cond(index)}
                   class="border-2"
                   type="text"
-                  bind:value={installment.installment}
+                  bind:value={installment.amount}
                 />
                 <span>Payment Date</span>
                 <input
@@ -303,7 +398,7 @@
                     <input
                       disabled={condition}
                       type="radio"
-                      bind:group={body.installments[index].arr_paid_by}
+                      bind:group={body.installments[index].installment_status.payment_mode}
                       name={index + 1}
                       value="Cash"
                     />
@@ -314,7 +409,7 @@
                     <input
                       disabled={condition}
                       type="radio"
-                      bind:group={body.installments[index].arr_paid_by}
+                      bind:group={body.installments[index].installment_status.payment_mode}
                       name={index + 1}
                       value="Cheque"
                     />
@@ -325,7 +420,7 @@
                     <input
                       disabled={condition}
                       type="radio"
-                      bind:group={body.installments[index].arr_paid_by}
+                      bind:group={body.installments[index].installment_status.payment_mode}
                       name={index + 1}
                       value="Demand Draft"
                     />
@@ -336,7 +431,7 @@
                     <input
                       disabled={condition}
                       type="radio"
-                      bind:group={body.installments[index].arr_paid_by}
+                      bind:group={body.installments[index].installment_status.payment_mode}
                       name={index + 1}
                       value="NEFT"
                     />
@@ -347,7 +442,7 @@
                     <input
                       disabled={condition}
                       type="radio"
-                      bind:group={body.installments[index].arr_paid_by}
+                      bind:group={body.installments[index].installment_status.payment_mode}
                       name={index + 1}
                       value="RTGS"
                     />
@@ -358,7 +453,7 @@
                     <input
                       disabled={condition}
                       type="radio"
-                      bind:group={body.installments[index].arr_paid_by}
+                      bind:group={body.installments[index].installment_status.payment_mode}
                       name={index + 1}
                       value="ECS"
                     />
@@ -381,7 +476,7 @@
                       disabled={condition}
                       class="border-2 ml-2"
                       type="text"
-                      bind:value={installment.dd_cheque_number}
+                      bind:value={installment.installment_status.payment_reference_number}
                     />
                   </div>
                 </div>
@@ -396,7 +491,7 @@
                       disabled={condition}
                       class="border-2 ml-2"
                       type="text"
-                      bind:value={installment.receipt_number}
+                      bind:value={installment.installment_status.receipt_number}
                     />
                   </div>
                 </div>
