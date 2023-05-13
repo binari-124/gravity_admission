@@ -365,7 +365,7 @@
             <input
               class="border-2 ml-2"
               type="number"
-              bind:value={body.installments[0].total_fee}
+              bind:value={body.amount}
             />
           </div>
 
