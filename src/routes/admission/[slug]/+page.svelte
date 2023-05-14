@@ -100,7 +100,7 @@
     var loginPath = get(ApiUrl);
     console.log("trying branches");
     var res = await fetch(
-      loginPath + "/panel/student_disable/" + batchId + "/" + studentId,
+      loginPath + "/panel/student_disable/" + "/" + studentId,
       {
         mode: "cors",
         method: "post",
