@@ -360,10 +360,13 @@
       </div>
     </div>
 
-    <div class="card flex flex-col">
-      <input type="text" bind:value={create_body.amount} placeholder="amount" />
+    <div class="card flex flex-row space-x-6">
+      <label for="amount"></label>
+      <input type="text" id="amount" bind:value={create_body.amount} placeholder="amount" />
+      <label for="timestamp"></label>
       <input
         type="date"
+        id="timestamp"
         bind:value={create_body.timestamp}
         placeholder="amount"
       />
