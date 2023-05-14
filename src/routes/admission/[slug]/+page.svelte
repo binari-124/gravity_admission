@@ -65,7 +65,7 @@
     var loginPath = get(ApiUrl);
     console.log("trying branches");
     var res = await fetch(
-      loginPath + "/panel/student_delete/" + "/" + studentId,
+      loginPath + "/panel/student_delete" + "/" + studentId,
       {
         mode: "cors",
         method: "post",
@@ -100,7 +100,7 @@
     var loginPath = get(ApiUrl);
     console.log("trying branches");
     var res = await fetch(
-      loginPath + "/panel/student_disable/" + "/" + studentId,
+      loginPath + "/panel/student_disable" + "/" + studentId,
       {
         mode: "cors",
         method: "post",
@@ -135,7 +135,7 @@
     var loginPath = get(ApiUrl);
     console.log("trying branches");
     var res = await fetch(
-      loginPath + "/panel/student_enable/" + "/" + studentId,
+      loginPath + "/panel/student_enable" + "/" + studentId,
       {
         mode: "cors",
         method: "post",
