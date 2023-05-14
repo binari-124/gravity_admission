@@ -196,11 +196,11 @@
         href="/admission/student_delete/{studentId}">Delete</a
       > -->
 
-      <button on:click={studentDelete(studentId)} class="">Delete</button>
+      <button on:click={studentDelete(studentId)} class="w3-button w3-round w3-card w3-hover-green w3-margin">Delete</button>
 
-      <button on:click={studentDisable(studentId)} class="">Disable</button>
+      <button on:click={studentDisable(studentId)} class="w3-button w3-round w3-card w3-hover-green w3-margin">Disable</button>
 
-      <button on:click={studentEnable(studentId)} class="">Enable</button>
+      <button on:click={studentEnable(studentId)} class="w3-button w3-round w3-card w3-hover-green w3-margin">Enable</button>
 
     </div>
 
