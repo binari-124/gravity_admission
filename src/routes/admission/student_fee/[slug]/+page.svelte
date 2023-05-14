@@ -107,7 +107,7 @@
     // console.log(await res.text());
     const json = await res.json();
     if (json.status == "success") {
-      alert("Thankyou, your Installment has been saved");
+      alert("Thankyou, your Installment has been removed");
       location.reload();
       // centre.reload();
     } else {

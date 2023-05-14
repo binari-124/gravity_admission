@@ -13,7 +13,7 @@
 	// import {ApiUrl} from '../../_utils/static_store.js';
 	// import { get } from 'svelte/store';
 	import XCLUpload from '../../_utils/xcl_upload.svelte';
-	import StatusList from '../../../components/Lists/status_report_bulk_upload.svelte';
+	import StatusList from '../../../lib/components/Lists/status_report_bulk_upload.svelte';
 
 	var returnData = null;
 	
