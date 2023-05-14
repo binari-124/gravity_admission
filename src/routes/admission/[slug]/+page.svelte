@@ -94,6 +94,11 @@
         class="w3-button w3-round w3-card w3-hover-red w3-margin"
         href="/admission/student_delete/{studentId}">Delete</a
       >
+
+      <a
+        class="w3-button w3-round w3-card w3-hover-red w3-margin"
+        href="/admission/student_delete/{studentId}">Delete</a
+      >
     </div>
 
     {#if body}

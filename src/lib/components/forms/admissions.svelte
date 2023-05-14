@@ -81,14 +81,21 @@
   });
 
   async function handleSubmit(event) {
+    let loginPath = get(ApiUrl);
+
     let myCreateURL = loginPath + "/panel/student_create";
     let myEditURL = loginPath + "/panel/student_edit";
+
+    if(edit){
+      myEditURL = myEditURL+"/"+studentId;
+      console.log(myEditURL);
+    }
 
     console.log("submitting inquiry form");
     console.log(body);
     var token = localStorage.getItem("token");
 
-    var loginPath = get(ApiUrl);
+    
     // console.log(body);
     // here we have created the clone of the body, otherwise secondary address will be getting permanently deleted
 
@@ -472,6 +479,17 @@
               type="email"
               id="e_mail_id"
               bind:value={body.email}
+              placeholder="jane"
+            />
+          </div>
+
+          <div class=" my-1 flex mt-2">
+            <label class="mt-1 mr-2" for="aadhaar_number">Aadhaar :</label>
+            <input
+              class="flex-1 border-2 rounded-md p-1"
+              type="number"
+              id="aadhaar_number"
+              bind:value={body.aadhaar_number}
               placeholder="jane"
             />
           </div>
