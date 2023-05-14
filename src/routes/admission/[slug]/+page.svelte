@@ -64,20 +64,23 @@
     var res;
     var loginPath = get(ApiUrl);
     console.log("trying branches");
-    var res = await fetch(loginPath + "/panel/student_delete/"+batchId+"/"+studentId, {
-      mode: "cors",
-      method: "post",
-      headers: {
-        Authorization: "Bearer " + token,
-        "Content-Type": "application/json",
+    var res = await fetch(
+      loginPath + "/panel/student_delete/" + "/" + studentId,
+      {
+        mode: "cors",
+        method: "post",
+        headers: {
+          Authorization: "Bearer " + token,
+          "Content-Type": "application/json",
+        },
       }
-    });
+    );
     if (res.status == 200) {
       try {
         let response = await res.text();
         response = await JSON.parse(response);
         if (response.status == "success") {
-          location.reload();
+          history.back();
         } else {
           console.log(response.message);
         }
@@ -96,14 +99,17 @@
     var res;
     var loginPath = get(ApiUrl);
     console.log("trying branches");
-    var res = await fetch(loginPath + "/panel/student_disable/"+batchId+"/"+studentId, {
-      mode: "cors",
-      method: "post",
-      headers: {
-        Authorization: "Bearer " + token,
-        "Content-Type": "application/json",
+    var res = await fetch(
+      loginPath + "/panel/student_disable/" + batchId + "/" + studentId,
+      {
+        mode: "cors",
+        method: "post",
+        headers: {
+          Authorization: "Bearer " + token,
+          "Content-Type": "application/json",
+        },
       }
-    });
+    );
     if (res.status == 200) {
       try {
         let response = await res.text();
@@ -128,14 +134,17 @@
     var res;
     var loginPath = get(ApiUrl);
     console.log("trying branches");
-    var res = await fetch(loginPath + "/panel/student_enable/"+batchId+"/"+studentId, {
-      mode: "cors",
-      method: "post",
-      headers: {
-        Authorization: "Bearer " + token,
-        "Content-Type": "application/json",
+    var res = await fetch(
+      loginPath + "/panel/student_enable/" + "/" + studentId,
+      {
+        mode: "cors",
+        method: "post",
+        headers: {
+          Authorization: "Bearer " + token,
+          "Content-Type": "application/json",
+        },
       }
-    });
+    );
     if (res.status == 200) {
       try {
         let response = await res.text();
@@ -196,12 +205,25 @@
         href="/admission/student_delete/{studentId}">Delete</a
       > -->
 
-      <button on:click={studentDelete(studentId)} class="w3-button w3-round w3-card w3-hover-green w3-margin">Delete</button>
+      <button
+        on:click={studentDelete(studentId)}
+        class="w3-button w3-round w3-card w3-hover-green w3-margin"
+        >Delete</button
+      >
 
-      <button on:click={studentDisable(studentId)} class="w3-button w3-round w3-card w3-hover-green w3-margin">Disable</button>
-
-      <button on:click={studentEnable(studentId)} class="w3-button w3-round w3-card w3-hover-green w3-margin">Enable</button>
-
+      {#if body.enabled}
+        <button
+          on:click={studentDisable(studentId)}
+          class="w3-button w3-round w3-card w3-hover-green w3-margin"
+          >Disable</button
+        >
+      {:else}
+        <button
+          on:click={studentEnable(studentId)}
+          class="w3-button w3-round w3-card w3-hover-green w3-margin"
+          >Enable</button
+        >
+      {/if}
     </div>
 
     {#if body}
@@ -465,8 +487,6 @@
                 </p>
                 <br /><br /><br />
               </div>
-
-              
             </div>
           </div>
           <div class="md:flex md:items-center mt-8">
