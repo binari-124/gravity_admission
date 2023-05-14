@@ -349,22 +349,18 @@
     </div>
 
     <div class="flex flex-row">
-      <p>Fee Details:</p>
+      <!-- <p>Fee Details:</p> -->
 
       <div class="flex flex-col">
         <div class="mx-3 flex flex-row">
           <p>Total Fee</p>
 
-          <input
-            class="border-2 ml-2"
-            type="number"
-            bind:value={body.amount}
-          />
+          <input class="border-2 ml-2" type="number" bind:value={body.amount} />
         </div>
       </div>
     </div>
 
-    <div class="card">
+    <div class="card flex flex-col">
       <input type="text" bind:value={create_body.amount} placeholder="amount" />
       <input
         type="date"
@@ -395,9 +391,10 @@
 
           <div class="mx-3 flex flex-col">
             <div class="shadow-md p-4 my-2">
-              <button class="btn my-2 mr-4 mb-6" on:click={handlePlus}
+              <!-- <button class="btn my-2 mr-4 mb-6" on:click={handlePlus}
                 >Add Installment</button
-              ><br />
+              > -->
+              <br />
 
               {#each body.installments as installment, index}
                 <span>Installment {index + 1}</span>
