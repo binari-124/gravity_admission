@@ -14,18 +14,21 @@
 
   let condition1 = true;
 
-  function cond(index){
-    return condition+index;
+  function cond(index) {
+    return condition + index;
   }
-  
-  let create_body = {amount:0,timestamp:new Date(Date.now()).toISOString().split('T')[0]};
+
+  let create_body = {
+    amount: 0,
+    timestamp: new Date(Date.now()).toISOString().split("T")[0],
+  };
   console.log(create_body);
 
-  async function createInstallment(){
+  async function createInstallment() {
     console.log(create_body);
     var token = localStorage.getItem("token");
 
-    const res = await fetch("/api/panel/fees/installments/create/"+body._id, {
+    const res = await fetch("/api/panel/fees/installments/create/" + body._id, {
       method: "POST",
       headers: {
         "Content-type": "application/json",
@@ -43,7 +46,7 @@
       alert("Some problem has occured " + json.message);
       // location.reload();
     }
-  } 
+  }
 
   let myURL = "/panel/student_installment";
 
@@ -65,15 +68,17 @@
     // // body.topic = topic;
     // var loginPath = get(ApiUrl);
 
-    const res = await fetch("/api/panel/student_installment_edit/"+body.instllments[index-1]._id, {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json",
-        Authorization: "Bearer " + token,
-      },
-      body: JSON.stringify(data)
-
-    });
+    const res = await fetch(
+      "/api/panel/student_installment_edit/" + body.instllments[index - 1]._id,
+      {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+          Authorization: "Bearer " + token,
+        },
+        body: JSON.stringify(data),
+      }
+    );
     // console.log(await res.text());
     const json = await res.json();
     if (json.status == "success") {
@@ -94,16 +99,18 @@
   async function deleteInstallment(index) {
     var token = localStorage.getItem("token");
 
-
-    const res = await fetch("/api/panel/student_installment_delete/"+body.installments[index-1]._id, {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json",
-        Authorization: "Bearer " + token,
-      },
-      // body: JSON.stringify(data)
-
-    });
+    const res = await fetch(
+      "/api/panel/student_installment_delete/" +
+        body.installments[index - 1]._id,
+      {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+          Authorization: "Bearer " + token,
+        },
+        // body: JSON.stringify(data)
+      }
+    );
     // console.log(await res.text());
     const json = await res.json();
     if (json.status == "success") {
@@ -144,7 +151,7 @@
   //     },
   //     // arr_paid_by: "",
   //     // dd_cheque_number: " ",
-      
+
   //     edit: true,
   //   });
 
@@ -173,8 +180,9 @@
         response = await JSON.parse(response);
         if (response.status == "success") {
           body = response.data;
-          for(var i =0;i<body.installments.length;i++){
-            body.installments[i].timestamp = body.installments[i].timestamp.split("T")[0];
+          for (var i = 0; i < body.installments.length; i++) {
+            body.installments[i].timestamp =
+              body.installments[i].timestamp.split("T")[0];
           }
           // batches= response.data.batches;
         } else {
@@ -258,16 +266,24 @@
     // // body.topic = topic;
     // var loginPath = get(ApiUrl);
 
-    const res = await fetch("/api/panel/student_installment_receive/"+body.instllments[index-1]._id, {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json",
-        Authorization: "Bearer " + token,
-      },
-      body: JSON.stringify({
-        payment_mode:body.installments[index-1].installment_status.payment_mode,
-        payment_reference_number:body.installments[index-1].installment_status.payment_reference_number}),
-    });
+    const res = await fetch(
+      "/api/panel/student_installment_receive/" +
+        body.instllments[index - 1]._id,
+      {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+          Authorization: "Bearer " + token,
+        },
+        body: JSON.stringify({
+          payment_mode:
+            body.installments[index - 1].installment_status.payment_mode,
+          payment_reference_number:
+            body.installments[index - 1].installment_status
+              .payment_reference_number,
+        }),
+      }
+    );
     // console.log(await res.text());
     const json = await res.json();
     if (json.status == "success") {
@@ -289,28 +305,26 @@
     body.installments.push({
       amount: "50000",
       timestamp: "",
-      installment_status:{
-        received:false,
+      installment_status: {
+        received: false,
         timestamp: "",
-        payment_mode:"",
-        payment_reference_number:"",//receipt number
-        staff:"",
+        payment_mode: "",
+        payment_reference_number: "", //receipt number
+        staff: "",
       },
       // arr_paid_by: "",
       // dd_cheque_number: " ",
-      
+
       edit: true,
     });
     body.installments = body.installments;
   }
-  
 
   // async function handleSubmit(){
   //   console.log(body.installments);
   // }
 
   // let disabled = [];
-
 
   // async function editInstallment(index) {
   //   disabled[index] = false;
@@ -333,19 +347,43 @@
         For Office use only
       </p>
     </div>
+
+    <div class="flex flex-row">
+      <p>Fee Details:</p>
+
+      <div class="flex flex-col">
+        <div class="mx-3 flex flex-row">
+          <p>Total Fee</p>
+
+          <input
+            class="border-2 ml-2"
+            type="number"
+            bind:value={body.amount}
+          />
+        </div>
+      </div>
+    </div>
+
     <div class="card">
       <input type="text" bind:value={create_body.amount} placeholder="amount" />
-      <input type="date" bind:value={create_body.timestamp} placeholder="amount" />
-      <button on:click|preventDefault={createInstallment}>Add new</button>
-
+      <input
+        type="date"
+        bind:value={create_body.timestamp}
+        placeholder="amount"
+      />
+      <button
+        on:click|preventDefault={createInstallment}
+        class="w3-button w3-round w3-card w3-hover-green w3-margin"
+        >Add new</button
+      >
     </div>
 
     <form action="">
-      <div class="flex flex-row ">
-        <p>Fee Details:</p>
+      <div class="flex flex-row">
+        <!-- <p>Fee Details:</p> -->
 
         <div class="flex flex-col">
-          <div class="mx-3 flex flex-row">
+          <!-- <div class="mx-3 flex flex-row">
             <p>Total Fee</p>
 
             <input
@@ -353,18 +391,18 @@
               type="number"
               bind:value={body.amount}
             />
-          </div>
+          </div> -->
 
-          <div class="mx-3 flex flex-col ">
+          <div class="mx-3 flex flex-col">
             <div class="shadow-md p-4 my-2">
               <button class="btn my-2 mr-4 mb-6" on:click={handlePlus}
                 >Add Installment</button
-              ><br>
+              ><br />
 
               {#each body.installments as installment, index}
                 <span>Installment {index + 1}</span>
                 <input
-                  disabled={(index)=>cond(index)}
+                  disabled={(index) => cond(index)}
                   class="border-2"
                   type="text"
                   bind:value={installment.amount}
@@ -384,7 +422,8 @@
                     <input
                       disabled={condition}
                       type="radio"
-                      bind:group={body.installments[index].installment_status.payment_mode}
+                      bind:group={body.installments[index].installment_status
+                        .payment_mode}
                       name={index + 1}
                       value="Cash"
                     />
@@ -395,7 +434,8 @@
                     <input
                       disabled={condition}
                       type="radio"
-                      bind:group={body.installments[index].installment_status.payment_mode}
+                      bind:group={body.installments[index].installment_status
+                        .payment_mode}
                       name={index + 1}
                       value="Cheque"
                     />
@@ -406,7 +446,8 @@
                     <input
                       disabled={condition}
                       type="radio"
-                      bind:group={body.installments[index].installment_status.payment_mode}
+                      bind:group={body.installments[index].installment_status
+                        .payment_mode}
                       name={index + 1}
                       value="Demand Draft"
                     />
@@ -417,7 +458,8 @@
                     <input
                       disabled={condition}
                       type="radio"
-                      bind:group={body.installments[index].installment_status.payment_mode}
+                      bind:group={body.installments[index].installment_status
+                        .payment_mode}
                       name={index + 1}
                       value="NEFT"
                     />
@@ -428,7 +470,8 @@
                     <input
                       disabled={condition}
                       type="radio"
-                      bind:group={body.installments[index].installment_status.payment_mode}
+                      bind:group={body.installments[index].installment_status
+                        .payment_mode}
                       name={index + 1}
                       value="RTGS"
                     />
@@ -439,7 +482,8 @@
                     <input
                       disabled={condition}
                       type="radio"
-                      bind:group={body.installments[index].installment_status.payment_mode}
+                      bind:group={body.installments[index].installment_status
+                        .payment_mode}
                       name={index + 1}
                       value="ECS"
                     />
@@ -451,7 +495,9 @@
 
                 <div class="mx-3 flex flex-row space-x-3 mt-2">
                   <div class="flex flex-row mt-1">
-                    <label for="dd_cheque_number">Payment Reference Number</label>
+                    <label for="dd_cheque_number"
+                      >Payment Reference Number</label
+                    >
                     <!-- {#if installment.edit}
                     <input class="border-2 ml-2" type="text" bind:value={installment.dd_cheque_number} />
                     {:else}
@@ -463,17 +509,18 @@
                       class="border-2 ml-2"
                       type="text"
                       placeholder="DD/Cheque Number/ UPI transaction Id"
-                      bind:value={installment.installment_status.payment_reference_number}
+                      bind:value={installment.installment_status
+                        .payment_reference_number}
                     />
                   </div>
                 </div>
 
                 <div class="mx-3 flex flex-row space-x-3 mt-2">
-                  <div class="mx-3 flex flex-col ">
+                  <div class="mx-3 flex flex-col">
                     <label for="dd_cheque_number">Receipt Number</label>
                   </div>
 
-                  <div class="flex flex-row ">
+                  <div class="flex flex-row">
                     <input
                       disabled={condition}
                       class="border-2 ml-2"
@@ -492,12 +539,14 @@
                   {#if !condition}
                     <button
                       class="btn float-right mr-2"
-                      on:click|preventDefault={() => saveInstallment(index + 1)}>Save</button
+                      on:click|preventDefault={() => saveInstallment(index + 1)}
+                      >Save</button
                     >
                   {:else}
                     <button
                       class="btn float-right mr-2"
-                      on:click|preventDefault={() => editInstallment(index + 1)}>Edit</button
+                      on:click|preventDefault={() => editInstallment(index + 1)}
+                      >Edit</button
                     >
                   {/if}
                   <button
