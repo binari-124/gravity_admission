@@ -248,24 +248,13 @@
   });
 
   async function installment_received(index) {
-    body = JSON.parse(JSON.stringify(body.installments));
-    for (let i = 0; i < body.length; i++) {
-      delete body[i].edit;
-    }
-    console.log(1);
-    console.log(body[index - 1]);
-    console.log("submitting inquiry form");
+   
 
-    //email...phone 10 digit, name,
-
-    // console.log(body);
-    // var token = localStorage.getItem("token");
-    // // body.topic = topic;
-    // var loginPath = get(ApiUrl);
+    let token = localStorage.getItem("token");
 
     const res = await fetch(
       "/api/panel/student_installment_receive/" +
-        body.instllments[index - 1]._id,
+        body.installments[index - 1]._id,
       {
         method: "POST",
         headers: {
