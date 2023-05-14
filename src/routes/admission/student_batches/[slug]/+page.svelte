@@ -61,7 +61,7 @@
     } else {
       console.log(await res.text());
     }
-    console.log("getStudentBatches  " + student_batches);
+    console.log(student_batches);
     
   }
 
@@ -96,7 +96,7 @@
     } else {
       console.log(await res.text());
     }
-    console.log("getStudentCompatibleBatches  " + student_compatible);
+    console.log(student_compatible);
   }
 
   async function batchAddStudent(batchId) {
