@@ -362,7 +362,7 @@
 
     <div class="card flex flex-row space-x-6 mt-4">
       
-      {#if installment.edit}
+      <!-- {#if installment.edit} -->
       <label for="amount"
       >Installment Amount
       <input
@@ -382,8 +382,8 @@
         placeholder="amount"
       />
     </label>
-      {:else}
-      <label for="amount"
+      <!-- {:else} -->
+      <!-- <label for="amount"
       >Installment Amount
       <input
       disabled
@@ -403,8 +403,8 @@
         bind:value={create_body.timestamp}
         placeholder="amount"
       />
-    </label>
-      {/if}
+    </label> -->
+      <!-- {/if} -->
 
       
       <button
@@ -438,7 +438,7 @@
 
               {#each body.installments as installment, index}
                 <span>Installment {index + 1}</span>
-                <input
+                <!-- <input
                   disabled={(index) => cond(index)}
                   class="border-2"
                   type="text"
@@ -450,14 +450,57 @@
                   class="border-2"
                   type="date"
                   bind:value={installment.timestamp}
+                /> -->
+                {#if installment.edit}
+                <label for="amount"
+                >Installment Amount
+                <input
+                  type="text"
+                  id="amount"
+                  bind:value={installment.amount}
+                  placeholder="amount"
                 />
+              </label>
+          
+              <label for="timestamp"
+                >Installment Date
+                <input
+                  type="date"
+                  id="timestamp"
+                  bind:value={installment.timestamp}
+                  placeholder="amount"
+                />
+              </label>
+                {:else}
+                <label for="amount"
+                >Installment Amount
+                <input
+                disabled
+                  type="text"
+                  id="amount"
+                  bind:value={installment.amount}
+                  placeholder="amount"
+                />
+              </label>
+          
+              <label for="timestamp"
+                >Installment Date
+                <input
+                disabled
+                  type="date"
+                  id="timestamp"
+                  bind:value={installment.timestamp}
+                  placeholder="amount"
+                />
+              </label>
+                {/if}
 
                 <div class="mx-3 flex flex-row space-x-3 mt-2">
                   <p class="mr-3">Paid by</p>
 
                   <label>
                     <input
-                      disabled={condition}
+                      
                       type="radio"
                       bind:group={body.installments[index].installment_status
                         .payment_mode}
@@ -469,7 +512,7 @@
 
                   <label>
                     <input
-                      disabled={condition}
+                      
                       type="radio"
                       bind:group={body.installments[index].installment_status
                         .payment_mode}
@@ -481,7 +524,7 @@
 
                   <label>
                     <input
-                      disabled={condition}
+                      
                       type="radio"
                       bind:group={body.installments[index].installment_status
                         .payment_mode}
@@ -493,7 +536,7 @@
 
                   <label>
                     <input
-                      disabled={condition}
+                      
                       type="radio"
                       bind:group={body.installments[index].installment_status
                         .payment_mode}
@@ -505,7 +548,7 @@
 
                   <label>
                     <input
-                      disabled={condition}
+                      
                       type="radio"
                       bind:group={body.installments[index].installment_status
                         .payment_mode}
@@ -517,7 +560,7 @@
 
                   <label>
                     <input
-                      disabled={condition}
+                      
                       type="radio"
                       bind:group={body.installments[index].installment_status
                         .payment_mode}
