@@ -360,16 +360,19 @@
       </div>
     </div>
 
-    <div class="card flex flex-row space-x-6">
-      <label for="amount">Installment Amount</label>
+    <div class="card flex flex-row space-x-6 mt-4">
+      <label for="amount">
       <input type="text" id="amount" bind:value={create_body.amount} placeholder="amount" />
-      <label for="timestamp">Installment Date</label>
+      Installment Amount</label>
+
+      <label for="timestamp">
       <input
         type="date"
         id="timestamp"
         bind:value={create_body.timestamp}
         placeholder="amount"
       />
+      Installment Date</label>
       <button
         on:click|preventDefault={createInstallment}
         class="w3-button w3-round w3-card w3-hover-green w3-margin"
