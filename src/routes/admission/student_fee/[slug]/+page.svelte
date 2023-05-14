@@ -280,11 +280,7 @@
       alert("Some problem has occured " + json.message);
       // location.reload();
     }
-    let result = JSON.stringify(json);
-    console.log(result);
-
-    console.log(json.stringify(body, null, 2));
-    console.log(body);
+    
   }
 
   async function handlePlus() {
