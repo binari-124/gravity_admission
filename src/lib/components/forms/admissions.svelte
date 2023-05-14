@@ -830,6 +830,19 @@
               id="radio_tv"
             />
           </div>
+          {#if !edit}
+          <div class="flex flex-col mt-2">
+            <hr>
+            <label class="mr-3" for="fees">Total fee</label>
+            <input
+              class="border-2 w-16 h-7"
+              type="text"
+              id="fees"
+              bind:value={body.fees}
+            />
+          </div>
+          {/if}
+      
         </div>
       </div>
       <div class="md:flex md:items-center mt-4 mb-5 float-right">
