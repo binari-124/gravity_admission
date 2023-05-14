@@ -539,7 +539,7 @@
                     >Remove Installment</button
                   >
 
-                  {#if !condition}
+                  {#if condition}
                     <button
                       class="btn float-right mr-2"
                       on:click|preventDefault={() => saveInstallment(index + 1)}
