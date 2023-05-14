@@ -361,18 +361,52 @@
     </div>
 
     <div class="card flex flex-row space-x-6 mt-4">
-      <label for="amount">Installment Amount
-      <input type="text" id="amount" bind:value={create_body.amount} placeholder="amount" />
-      </label>
+      
+      {#if installment.edit}
+      <label for="amount"
+      >Installment Amount
+      <input
+        type="text"
+        id="amount"
+        bind:value={create_body.amount}
+        placeholder="amount"
+      />
+    </label>
 
-      <label for="timestamp">Installment Date
+    <label for="timestamp"
+      >Installment Date
       <input
         type="date"
         id="timestamp"
         bind:value={create_body.timestamp}
         placeholder="amount"
       />
-      </label>
+    </label>
+      {:else}
+      <label for="amount"
+      >Installment Amount
+      <input
+      disabled
+        type="text"
+        id="amount"
+        bind:value={create_body.amount}
+        placeholder="amount"
+      />
+    </label>
+
+    <label for="timestamp"
+      >Installment Date
+      <input
+      disabled
+        type="date"
+        id="timestamp"
+        bind:value={create_body.timestamp}
+        placeholder="amount"
+      />
+    </label>
+      {/if}
+
+      
       <button
         on:click|preventDefault={createInstallment}
         class="w3-button w3-round w3-card w3-hover-green w3-margin"
@@ -501,20 +535,22 @@
                     <label for="dd_cheque_number"
                       >Payment Reference Number</label
                     >
-                    <!-- {#if installment.edit}
-                    <input class="border-2 ml-2" type="text" bind:value={installment.dd_cheque_number} />
-                    {:else}
-                    <input disabled class="border-2  ml-2" type="text" bind:value={installment.dd_cheque_number} />
-                     {/if}
-                     -->
+
                     <input
+                      class="border-2 ml-2"
+                      type="text"
+                      bind:value={installment.installment_status
+                        .payment_reference_number}
+                    />
+
+                    <!-- <input
                       disabled={condition}
                       class="border-2 ml-2"
                       type="text"
                       placeholder="DD/Cheque Number/ UPI transaction Id"
                       bind:value={installment.installment_status
                         .payment_reference_number}
-                    />
+                    /> -->
                   </div>
                 </div>
 
