@@ -69,7 +69,7 @@
     // var loginPath = get(ApiUrl);
 
     const res = await fetch(
-      "/api/panel/student_installment_edit/" + body.instllments[index - 1]._id,
+      "/api/panel/student_installment_edit/" + body.installments[index - 1]._id,
       {
         method: "POST",
         headers: {
