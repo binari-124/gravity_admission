@@ -53,10 +53,11 @@
   async function saveInstallment(index) {
     var token = localStorage.getItem("token");
 
-    let data = JSON.parse(JSON.stringify(body.installments));
-    for (let i = 0; i < body.length; i++) {
-      delete data[i].edit;
-    }
+    let data = {amount:body.installments[index-1].amount,timestamp:body.installments[index-1].timestamp};
+    // for (let i = 0; i < body.length; i++) {
+    //   delete data[i].edit;
+    // }
+    
     console.log(1);
     console.log(data[index - 1]);
     console.log("submitting inquiry form");
