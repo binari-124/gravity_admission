@@ -59,6 +59,102 @@
     }
   }
 
+  async function studentDelete(studentID) {
+    var token = localStorage.getItem("token");
+    var res;
+    var loginPath = get(ApiUrl);
+    console.log("trying branches");
+    var res = await fetch(loginPath + "/panel/student_delete/"+batchId+"/"+studentId, {
+      mode: "cors",
+      method: "post",
+      headers: {
+        Authorization: "Bearer " + token,
+        "Content-Type": "application/json",
+      }
+    });
+    if (res.status == 200) {
+      try {
+        let response = await res.text();
+        response = await JSON.parse(response);
+        if (response.status == "success") {
+          location.reload();
+        } else {
+          console.log(response.message);
+        }
+      } catch (e) {
+        console.log("caught1");
+        alert("Some problem has occured, see console for more info.");
+        console.log(e.message);
+      }
+    } else {
+      console.log(await res.text());
+    }
+  }
+
+  async function studentDisable(studentID) {
+    var token = localStorage.getItem("token");
+    var res;
+    var loginPath = get(ApiUrl);
+    console.log("trying branches");
+    var res = await fetch(loginPath + "/panel/student_disable/"+batchId+"/"+studentId, {
+      mode: "cors",
+      method: "post",
+      headers: {
+        Authorization: "Bearer " + token,
+        "Content-Type": "application/json",
+      }
+    });
+    if (res.status == 200) {
+      try {
+        let response = await res.text();
+        response = await JSON.parse(response);
+        if (response.status == "success") {
+          location.reload();
+        } else {
+          console.log(response.message);
+        }
+      } catch (e) {
+        console.log("caught1");
+        alert("Some problem has occured, see console for more info.");
+        console.log(e.message);
+      }
+    } else {
+      console.log(await res.text());
+    }
+  }
+
+  async function studentEnable(studentID) {
+    var token = localStorage.getItem("token");
+    var res;
+    var loginPath = get(ApiUrl);
+    console.log("trying branches");
+    var res = await fetch(loginPath + "/panel/student_enable/"+batchId+"/"+studentId, {
+      mode: "cors",
+      method: "post",
+      headers: {
+        Authorization: "Bearer " + token,
+        "Content-Type": "application/json",
+      }
+    });
+    if (res.status == 200) {
+      try {
+        let response = await res.text();
+        response = await JSON.parse(response);
+        if (response.status == "success") {
+          location.reload();
+        } else {
+          console.log(response.message);
+        }
+      } catch (e) {
+        console.log("caught1");
+        alert("Some problem has occured, see console for more info.");
+        console.log(e.message);
+      }
+    } else {
+      console.log(await res.text());
+    }
+  }
+
   let src = "../images/";
 
   onMount(async () => {
@@ -90,15 +186,22 @@
         href="/admission/student_address/{studentId}">Addresses</a
       >
 
-      <a
+      <!-- <a
         class="w3-button w3-round w3-card w3-hover-red w3-margin"
-        href="/admission/student_delete/{studentId}">Delete</a
+        href="/admission/student_disable/{studentId}">Disable</a
       >
 
       <a
         class="w3-button w3-round w3-card w3-hover-red w3-margin"
         href="/admission/student_delete/{studentId}">Delete</a
-      >
+      > -->
+
+      <button on:click={studentDelete(studentId)} class="">Delete</button>
+
+      <button on:click={studentDisable(studentId)} class="">Disable</button>
+
+      <button on:click={studentEnable(studentId)} class="">Enable</button>
+
     </div>
 
     {#if body}
