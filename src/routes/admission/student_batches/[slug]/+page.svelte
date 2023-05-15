@@ -198,8 +198,8 @@
   <tr class="w3-hover-shadow">
       <td>{batch._id}</td>
       <td>{batch.class_number}</td>
-      <td>{batch.centre}</td>
-      <td>{batch.stream}</td>
+      <td>{batch.batch.name}</td>
+      <td>{batch.stream.name}</td>
       <td>{batch.lectures.length}</td>
       <td>{batch.students.length}</td>
       <td>{student_batches.includes(batch._id)}</td>
