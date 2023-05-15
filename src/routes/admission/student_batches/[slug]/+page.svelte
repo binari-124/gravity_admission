@@ -96,6 +96,7 @@
     } else {
       console.log(await res.text());
     }
+    console.log("Student compatible");
     console.log(student_compatible);
   }
 
