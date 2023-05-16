@@ -86,6 +86,9 @@
     let myCreateURL = loginPath + "/panel/student_create";
     let myEditURL = loginPath + "/panel/student_edit";
 
+    
+
+
     if(edit){
       myEditURL = myEditURL+"/"+studentId;
       console.log(myEditURL);
@@ -103,6 +106,16 @@
     if (cor_address) {
       delete data.secondary_address;
     }
+
+    var val = number.value
+    if (/^\d{10}$/.test(data.number)) {
+       // value is ok, use it
+       } else {
+    alert("Invalid number; must be ten digits")
+    number.focus()
+    return false
+     }
+
     const res = await fetch(edit?myEditURL:myCreateURL, {
       method: "POST",
       headers: {
