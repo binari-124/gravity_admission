@@ -343,27 +343,30 @@
 
     <div class="card flex flex-row space-x-6 mt-4">
       <!-- {#if installment.edit} -->
+     <div class="mt-2">
       <label for="amount"
-        >Installment Amount
-        <input
-          class="border-2 ml-2"
-          type="text"
-          id="amount"
-          bind:value={create_body.amount}
-          placeholder="amount"
-        />
-      </label>
+      >Installment Amount
+      <input
+        class="border-2 ml-2"
+        type="text"
+        id="amount"
+        bind:value={create_body.amount}
+        placeholder="amount"
+      />
+    </label>
 
-      <label for="timestamp"
-        >Installment Date
-        <input
-          class="border-2 ml-2"
-          type="date"
-          id="timestamp"
-          bind:value={create_body.timestamp}
-          placeholder="amount"
-        />
-      </label>
+    <label for="timestamp"
+      >Installment Date
+      <input
+        class="border-2 ml-2"
+        type="date"
+        id="timestamp"
+        bind:value={create_body.timestamp}
+        placeholder="amount"
+      />
+    </label>
+     </div>
+    
       <!-- {:else} -->
       <!-- <label for="amount"
       >Installment Amount
@@ -418,7 +421,7 @@
               <br />
 
               {#each body.installments as installment, index}
-                <span>Installment {index + 1}</span>
+                <span>Installment {index + 1}</span><br>
                 <!-- <input
                   disabled={(index) => cond(index)}
                   class="border-2"
