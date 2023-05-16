@@ -836,11 +836,11 @@
             />
           </div>
           {#if !edit}
-          <div class="flex flex-col mt-2">
+          <div class="flex flex-row mt-2">
             <hr>
             <label class="mr-3" for="fees">Total fee</label>
             <input
-              class="border-2 w-16 h-7"
+              class="border-2 "
               type="text"
               id="fees"
               bind:value={body.fees}
