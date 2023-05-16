@@ -53,11 +53,14 @@
   async function saveInstallment(index) {
     var token = localStorage.getItem("token");
 
-    let data = {amount:body.installments[index-1].amount,timestamp:body.installments[index-1].timestamp};
+    let data = {
+      amount: body.installments[index - 1].amount,
+      timestamp: body.installments[index - 1].timestamp,
+    };
     // for (let i = 0; i < body.length; i++) {
     //   delete data[i].edit;
     // }
-    
+
     console.log(1);
     console.log(data[index - 1]);
     console.log("submitting inquiry form");
@@ -90,7 +93,6 @@
       alert("Some problem has occured " + json.message);
       // location.reload();
     }
-
   }
 
   async function deleteInstallment(index) {
@@ -248,8 +250,6 @@
   });
 
   async function installment_received(index) {
-   
-
     let token = localStorage.getItem("token");
 
     const res = await fetch(
@@ -280,7 +280,6 @@
       alert("Some problem has occured " + json.message);
       // location.reload();
     }
-    
   }
 
   async function handlePlus() {
@@ -343,29 +342,28 @@
     </div>
 
     <div class="card flex flex-row space-x-6 mt-4">
-      
       <!-- {#if installment.edit} -->
       <label for="amount"
-      >Installment Amount
-      <input
-        class="border-2 ml-2"
-        type="text"
-        id="amount"
-        bind:value={create_body.amount}
-        placeholder="amount"
-      />
-    </label>
+        >Installment Amount
+        <input
+          class="border-2 ml-2"
+          type="text"
+          id="amount"
+          bind:value={create_body.amount}
+          placeholder="amount"
+        />
+      </label>
 
-    <label for="timestamp"
-      >Installment Date
-      <input
-        class="border-2 ml-2"
-        type="date"
-        id="timestamp"
-        bind:value={create_body.timestamp}
-        placeholder="amount"
-      />
-    </label>
+      <label for="timestamp"
+        >Installment Date
+        <input
+          class="border-2 ml-2"
+          type="date"
+          id="timestamp"
+          bind:value={create_body.timestamp}
+          placeholder="amount"
+        />
+      </label>
       <!-- {:else} -->
       <!-- <label for="amount"
       >Installment Amount
@@ -390,10 +388,9 @@
     </label> -->
       <!-- {/if} -->
 
-      
       <button
         on:click|preventDefault={createInstallment}
-        class="w3-button w3-round w3-card w3-hover-green w3-margin"
+        class="w3-button w3-round w3-card w3-hover-green "
         >Add new</button
       >
     </div>
@@ -436,47 +433,47 @@
                   bind:value={installment.timestamp}
                 /> -->
                 {#if installment.edit}
-                <label for="amount"
-                >Installment Amount
-                <input
-                  type="text"
-                  id="amount"
-                  bind:value={installment.amount}
-                  placeholder="amount"
-                />
-              </label>
-          
-              <label for="timestamp"
-                >Installment Date
-                <input
-                  type="date"
-                  id="timestamp"
-                  bind:value={installment.timestamp}
-                  placeholder="amount"
-                />
-              </label>
+                  <label for="amount"
+                    >Installment Amount
+                    <input
+                      type="text"
+                      id="amount"
+                      bind:value={installment.amount}
+                      placeholder="amount"
+                    />
+                  </label>
+
+                  <label for="timestamp"
+                    >Installment Date
+                    <input
+                      type="date"
+                      id="timestamp"
+                      bind:value={installment.timestamp}
+                      placeholder="amount"
+                    />
+                  </label>
                 {:else}
-                <label for="amount"
-                >Installment Amount
-                <input
-                disabled
-                  type="text"
-                  id="amount"
-                  bind:value={installment.amount}
-                  placeholder="amount"
-                />
-              </label>
-          
-              <label for="timestamp"
-                >Installment Date
-                <input
-                disabled
-                  type="date"
-                  id="timestamp"
-                  bind:value={installment.timestamp}
-                  placeholder="amount"
-                />
-              </label>
+                  <label for="amount"
+                    >Installment Amount
+                    <input
+                      disabled
+                      type="text"
+                      id="amount"
+                      bind:value={installment.amount}
+                      placeholder="amount"
+                    />
+                  </label>
+
+                  <label for="timestamp"
+                    >Installment Date
+                    <input
+                      disabled
+                      type="date"
+                      id="timestamp"
+                      bind:value={installment.timestamp}
+                      placeholder="amount"
+                    />
+                  </label>
                 {/if}
 
                 <div class="mx-3 flex flex-row space-x-3 mt-2">
@@ -484,7 +481,6 @@
 
                   <label>
                     <input
-                      
                       type="radio"
                       bind:group={body.installments[index].installment_status
                         .payment_mode}
@@ -496,7 +492,6 @@
 
                   <label>
                     <input
-                      
                       type="radio"
                       bind:group={body.installments[index].installment_status
                         .payment_mode}
@@ -508,7 +503,6 @@
 
                   <label>
                     <input
-                      
                       type="radio"
                       bind:group={body.installments[index].installment_status
                         .payment_mode}
@@ -520,7 +514,6 @@
 
                   <label>
                     <input
-                      
                       type="radio"
                       bind:group={body.installments[index].installment_status
                         .payment_mode}
@@ -532,7 +525,6 @@
 
                   <label>
                     <input
-                      
                       type="radio"
                       bind:group={body.installments[index].installment_status
                         .payment_mode}
@@ -544,7 +536,6 @@
 
                   <label>
                     <input
-                      
                       type="radio"
                       bind:group={body.installments[index].installment_status
                         .payment_mode}
