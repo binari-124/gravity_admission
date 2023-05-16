@@ -116,7 +116,12 @@
     if (json.status == "success") {
       alert("Thankyou for contacting us, our team will reach you shortly");
       // location.reload();
-      location.href = "/admission/" + json.data;
+      if(edit){
+        history.back();
+      } else{
+        location.href = "/admission/" + json.data;
+      }
+      
     } else {
       alert("Some problem has occured " + json.message);
       // location.reload();
