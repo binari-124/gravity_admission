@@ -348,6 +348,7 @@
       <label for="amount"
       >Installment Amount
       <input
+        class="border-2 ml-2"
         type="text"
         id="amount"
         bind:value={create_body.amount}
@@ -358,6 +359,7 @@
     <label for="timestamp"
       >Installment Date
       <input
+        class="border-2 ml-2"
         type="date"
         id="timestamp"
         bind:value={create_body.timestamp}
