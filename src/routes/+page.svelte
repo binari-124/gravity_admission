@@ -2,6 +2,10 @@
 </script>
 
 <script>
-import Dashboard from "../pages/dashboard.svelte";
+    import Admissions from "../lib/components/forms/admissions.svelte";
+
+// import Dashboard from "../pages/dashboard.svelte";
+location.href = "./Admissions";
  </script>
-<Dashboard />
+
+<!-- <Dashboard /> -->
