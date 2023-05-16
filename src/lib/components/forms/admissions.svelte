@@ -98,6 +98,36 @@
     console.log(body);
     var token = localStorage.getItem("token");
 
+    if(body.stream == " " || body.branch==" " || body.class==" " )
+		{
+			alert("Make sure you have selected a branch, stream and a class !");
+			return;
+		}
+
+    if(body.name == " " )
+		{
+			alert("Make sure you have provided your name!");
+			return;
+		}
+
+    if(body.father_name == " " )
+		{
+			alert("Make sure you have provided Father's/Guardian's name!");
+			return;
+		}
+
+    if(body.phone == " " && !/^\d{10}$/.test(data.number) )
+		{
+			alert("Make sure you have provided a valid 10 digit Students' Mobile !");
+			return;
+		}
+
+    if(body.mobile_parents == " " && !/^\d{10}$/.test(data.number) )
+		{
+			alert("Make sure you have provided a valid 10 digit Parents' Mobile !");
+			return;
+		}
+
     
     // console.log(body);
     // here we have created the clone of the body, otherwise secondary address will be getting permanently deleted
@@ -107,14 +137,14 @@
       delete data.secondary_address;
     }
 
-    var val = number.value
-    if (/^\d{10}$/.test(data.number)) {
-       // value is ok, use it
-       } else {
-    alert("Invalid number; must be ten digits")
-    number.focus()
-    return false
-     }
+    
+    // if (/^\d{10}$/.test(data.number)) {
+    //    // value is ok, use it
+    //    } else {
+    // alert("Invalid number; must be ten digits")
+    // number.focus()
+    // return false
+    //  }
 
     const res = await fetch(edit?myEditURL:myCreateURL, {
       method: "POST",
@@ -351,7 +381,7 @@
               id="name"
               bind:value={body.name}
               placeholder="jane"
-              required
+              
             />
           </div>
 
@@ -365,7 +395,7 @@
               id="father_name"
               bind:value={body.father_name}
               
-              required
+              
             />
           </div>
 
@@ -444,7 +474,7 @@
 
             <div class=" ml-20 mt-4">
               <label class="mt-1 mr-1" for="category"> Category*: </label>
-              <select id="category" bind:value={body.category} required>
+              <select id="category" bind:value={body.category} >
                 <option value="GEN">GEN</option>
                 <option value="OBC">OBC</option>
                 <option value="SC">SC</option>
@@ -474,7 +504,7 @@
               id="mobile_parents"
               bind:value={body.mobile_parents}
               placeholder="jane"
-              required
+              
             />
           </div>
 
@@ -486,7 +516,7 @@
               id="phone"
               bind:value={body.phone}
               placeholder="jane"
-              required
+              
             />
           </div>
 
@@ -867,7 +897,7 @@
         <div class="md:w-1/3 flex">
           <button
             class="shadow bg-blue-800 hover:bg-blue-700 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded object-right"
-            on:click={handleSubmit}
+            on:click|preventDefault={handleSubmit}
             type="button"
           >
             Submit
