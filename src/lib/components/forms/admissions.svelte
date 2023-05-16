@@ -835,7 +835,7 @@
               name="course_scoops"
               value="website"
               id="website"
-              required
+              
             />
 
             <label class="mx-3 mt-1" for="radio_tv"> Radio/Tv </label>
@@ -867,7 +867,7 @@
         <div class="md:w-1/3 flex">
           <button
             class="shadow bg-blue-800 hover:bg-blue-700 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded object-right"
-            on:click|preventDefault={handleSubmit}
+            on:click={handleSubmit}
             type="button"
           >
             Submit
