@@ -841,7 +841,7 @@
             <label class="mr-3" for="fees">Total fee</label>
             <input
               class="border-2 "
-              type="text"
+              type="number"
               id="fees"
               bind:value={body.fees}
             />
