@@ -70,7 +70,7 @@
 					<input
 						type="text"
 						id="email"
-						
+						class="bg-gray-200 rounded w-full text-gray-700 "
 						name="email"
 						bind:value={email}
 					/>
@@ -84,7 +84,7 @@
 					<input
 						type="password"
 						id="password"
-						
+						class="bg-gray-200 rounded w-full text-gray-700 "
 						name="password"
 						bind:value={password}
 					/>
