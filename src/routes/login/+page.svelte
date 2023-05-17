@@ -62,7 +62,7 @@
 
 		<section class="mt-10">
 			<form class="flex flex-col" on:submit|preventDefault={handleSubmit}>
-				<div class="mb-6 pt-3 rounded bg-gray-200">
+				<div class="mb-6 pt-3 rounded bg-slate-600">
 					<label
 						class="block text-gray-700 text-sm font-bold mb-2 ml-3"
 						for="email">Email</label
