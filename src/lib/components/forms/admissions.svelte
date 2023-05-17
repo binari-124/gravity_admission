@@ -98,7 +98,7 @@
     console.log(body);
     var token = localStorage.getItem("token");
 
-    if(body.stream == " " || body.branch==" " || body.class==" " )
+    if(body.stream == "-" || body.branch=="-" || body.class==" " )
 		{
 			alert("Make sure you have selected a branch, stream and a class !");
 			return;
@@ -116,13 +116,13 @@
 			return;
 		}
 
-    if(body.phone == " " && !/^\d{10}$/.test(data.number) )
+    if(body.phone == " " && !/^\d{10}$/.test(body.number) )
 		{
 			alert("Make sure you have provided a valid 10 digit Students' Mobile !");
 			return;
 		}
 
-    if(body.mobile_parents == " " && !/^\d{10}$/.test(data.number) )
+    if(body.mobile_parents == " " && !/^\d{10}$/.test(body.mobile_parents) )
 		{
 			alert("Make sure you have provided a valid 10 digit Parents' Mobile !");
 			return;
