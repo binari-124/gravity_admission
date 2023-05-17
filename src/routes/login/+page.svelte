@@ -120,7 +120,7 @@
 <p>created by: <a href="https://neoned71.com">neoned71</a></p>
 
 <style>
-	h1,
+	/* h1,
 	figure,
 	p {
 		text-align: left;
@@ -154,7 +154,7 @@
 		}
 	}
 
-	/* input {
+	input {
 		width: 50%;
 	} */
 
