@@ -158,13 +158,14 @@
 		width: 50%;
 	} */
 
-	/* .main {
+	.main {
 		background: white;
 		padding: 20;
-	} */
+	}
 
 	.body-bg {
-		background-color: #9921e8;
-		background-image: linear-gradient(315deg, #9921e8 0%, #5f72be 74%);
+		/* background-color: #9921e8; */
+		/* background-image: linear-gradient(315deg, #9921e8 0%, #5f72be 74%); */
+		background-image: ('../../lib/images/background-image');
 	}
 </style>
