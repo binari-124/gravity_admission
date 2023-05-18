@@ -67,10 +67,8 @@
 						class="block text-gray-700 text-sm font-bold mb-2 ml-3"
 						for="email">Email</label
 					>
-					<input
-						type="text"
-						
-						bind:value={email}
+					<input type="text"
+					
 					/>
 				</div>
 
