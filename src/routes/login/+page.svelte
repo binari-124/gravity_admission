@@ -210,7 +210,7 @@
 		width: 50%;
 	} */
 
-	.main {
+	/* .main {
 		background: white;
 		padding: 20;
 	}
@@ -218,6 +218,6 @@
 	.body-bg {
 		background-color: #9921e8;
 		background-image: linear-gradient(315deg, #9921e8 0%, #5f72be 74%);
-		/* background-image: url('../../lib/images/pexels-karolina-grabowska-6256066\ \(1\).jpg'); */
-	}
+		
+	} */
 </style>
