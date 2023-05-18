@@ -67,13 +67,13 @@
 						class="block text-gray-700 text-sm font-bold mb-2 ml-3"
 						for="email">Email</label
 					>
-					<input
+					<!-- <input
 						type="text"
 						id="email"
 						class="bg-gray-200 rounded w-full text-gray-700 focus:outline-none border-b-4 border-gray-300 focus:border-purple-600 transition duration-500 px-3 pb-3"
 						name="email"
 						bind:value={email}
-					/>
+					/> -->
 				</div>
 
 				<div class="mb-6 pt-3 rounded bg-gray-200">
@@ -164,8 +164,8 @@
 	}
 
 	.body-bg {
-		/* background-color: #9921e8; */
-		/* background-image: linear-gradient(315deg, #9921e8 0%, #5f72be 74%); */
-		background-image: ('../../lib/images/background-image');
+		background-color: #9921e8;
+		background-image: linear-gradient(315deg, #9921e8 0%, #5f72be 74%);
+		/* background-image: ('../../lib/images/'); */
 	}
 </style>
