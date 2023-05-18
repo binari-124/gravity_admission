@@ -44,12 +44,12 @@
 
 	<main class=" flex flex-row">
 		{#if $page.url.pathname != "/login" && $page.url.pathname != "/"}
-		<div class="w-1/4 p-2 border-l-2 border-gray-300"> 
+		<div class="w-1/4 p-2 "> 
 		<Hnav  segment={$page.url.pathname} />
 		</div>
 		{/if}
 	
-		<div class="grow">
+		<div class="grow border-r-2 border-gray-300">
 		<slot/>
 		</div>
 	</main>
