@@ -46,7 +46,7 @@
 	}
 </style>
 
-<nav class="nav w3-padding sticky">
+<nav class="nav w3-padding sticky border-r-2 border-gray-500">
 	<img class="w3-padding" src="/images/glogoG.png" />
 	<!-- <p class="w3-heading w3-text-teal" style="font-size:400%">Gravity</p> -->
 	<hr>
