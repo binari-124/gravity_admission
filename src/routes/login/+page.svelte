@@ -55,7 +55,7 @@
 <body>
 	<section class="flex flex-col md:flex-row h-screen items-center">
   
-	  <div class="bg-gray-50 hidden lg:block w-full md:w-1/2 xl:w-2/3 h-screen">
+	  <div class="bg-gray-50 hidden lg:block w-full md:w-1/2 xl:w-2/3 h-screen p-10 mt-24">
 		<img src="/images/glogoG.png" alt="abcd" class="w-fit h-fit object-cover">
 	  </div>
 	
