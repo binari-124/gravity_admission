@@ -15,7 +15,7 @@
 	onMount(async () => {
 		var token = localStorage.getItem("token");
 		if (token && token != "null") {
-			location.href = "/dashboard";
+			location.href = "/admission";
 		}
 	});
 	export async function handleSubmit() {
