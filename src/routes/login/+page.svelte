@@ -178,7 +178,7 @@
 	}
 
 	.body-bg {
-		background-color: #9921e8;
+		/* background-color: #9921e8; */
 		background-image: linear-gradient(315deg, #9921e8 0%, #5f72be 74%);
 		/* background-image: ('../../lib/images/'); */
 	}
