@@ -55,7 +55,7 @@
 <body>
 	<section class="flex flex-col md:flex-row h-screen items-center">
 		<div
-			class="bg-gray-50 hidden lg:block w-full md:w-1/2 xl:w-2/3 h-screen p-32 mt-60 border-2 border-green-400"
+			class="bg-gray-50 hidden lg:block w-full md:w-1/2 xl:w-2/3 h-screen p-32 mt-60 "
 		>
 			<img
 				src="/images/glogoG.png"
@@ -66,7 +66,7 @@
 
 		<div
 			class="bg-gray-50 w-full md:max-w-md lg:max-w-full md:mx-auto md:mx-0 md:w-1/2 xl:w-1/3 h-screen px-6 lg:px-16 xl:px-12
-			flex items-center justify-center"
+			flex items-center justify-center border-2 border-green-400"
 		>
 			<div class="w-full h-100">
 				<h1 class="text-xl font-bold">Welcome to Gravity</h1>
