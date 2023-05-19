@@ -741,9 +741,9 @@
                   </div>
                 {:else}
                   <div class=" mt-2 mb-12 ">
-                    <div class="container">
+                    <div class="float-right p-6 bg-slate-500 ">
                       <p class="text-xl">
-                        Thank you, your Installment has been successfully received
+                        Thank you,\n your Installment has been successfully received
                       </p>
 
                     </div>
