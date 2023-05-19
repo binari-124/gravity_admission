@@ -36,7 +36,7 @@
 </script>
 
 <div
-    class="mx-auto max-w-screen-xl px-10 py-40 sm:px-6 lg:px-8 pt-[10%] w-1/3 border-2 "
+    class="mx-auto max-w-screen-xl px-10 py-40 sm:px-6 lg:px-8 pt-[10%] w-1/3 "
 >
     <div class="mx-auto max-w-lg text-center">
         <h1 class="text-2xl font-bold sm:text-3xl">Forgot Password</h1>
@@ -49,7 +49,8 @@
                 class="rounded border border-red-200 bg-red-50 p-4"
             >
                 <p class="text-sm text-red-700">
-                    Username is already taken, please try another one.
+                    <!-- Username is already taken, please try another one. -->
+                    Please type your registered E-mail address
                 </p>
             </div>
         {/if}
