@@ -598,6 +598,7 @@
                     <label>
                       <input
                         type="radio"
+                        disabled
                         bind:group={body.installments[index].installment_status
                           .payment_mode}
                         name={index + 1}
@@ -609,6 +610,7 @@
                     <label>
                       <input
                         type="radio"
+                        disabled
                         bind:group={body.installments[index].installment_status
                           .payment_mode}
                         name={index + 1}
@@ -620,6 +622,7 @@
                     <label>
                       <input
                         type="radio"
+                        disabled
                         bind:group={body.installments[index].installment_status
                           .payment_mode}
                         name={index + 1}
@@ -631,6 +634,7 @@
                     <label>
                       <input
                         type="radio"
+                        disabled
                         bind:group={body.installments[index].installment_status
                           .payment_mode}
                         name={index + 1}
@@ -642,6 +646,7 @@
                     <label>
                       <input
                         type="radio"
+                        disabled
                         bind:group={body.installments[index].installment_status
                           .payment_mode}
                         name={index + 1}
@@ -653,6 +658,7 @@
                     <label>
                       <input
                         type="radio"
+                        disabled
                         bind:group={body.installments[index].installment_status
                           .payment_mode}
                         name={index + 1}
@@ -672,6 +678,7 @@
 
                       <input
                         class="border-2 ml-2"
+                        disabled
                         type="text"
                         bind:value={installment.installment_status
                           .payment_reference_number}
@@ -695,7 +702,7 @@
 
                     <div class="flex flex-row">
                       <input
-                        disabled={condition}
+                        disabled
                         class="border-2 ml-2"
                         type="text"
                         bind:value={installment.installment_status
