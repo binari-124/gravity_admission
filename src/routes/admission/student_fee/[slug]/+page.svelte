@@ -741,8 +741,8 @@
                   </div>
                 {:else}
                   <div class=" mt-2 mb-12 ">
-                    <div class="float-right p-6 border-2 ">
-                      <p class="text-xl italic block">
+                    <div class="float-right p-4 ">
+                      <p class="text-xl italic font-extrabold">
                         your Installment has been received
                       </p>
 
