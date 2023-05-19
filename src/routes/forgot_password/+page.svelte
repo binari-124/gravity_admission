@@ -35,9 +35,7 @@
     }
 </script>
 
-<div
-    class="mx-auto max-w-screen-xl px-10 py-40 sm:px-6 lg:px-8 pt-[10%] w-1/3 "
->
+<div class="mx-auto max-w-screen-xl px-10 py-40 sm:px-6 lg:px-8 pt-[10%] w-1/3">
     <div class="mx-auto max-w-lg text-center">
         <h1 class="text-2xl font-bold sm:text-3xl">Forgot Password</h1>
     </div>
@@ -58,9 +56,12 @@
     <br />
 
     <!-- <form action="?/register" method="POST" class="mx-auto mt-8 mb-0 max-w-md space-y-4" use:enhance> -->
-    <form class="flex flex-col mx-auto mt-8 mb-0 max-w-md space-y-4" on:submit|preventDefault={handleSubmit}>
+    <form
+        class="flex flex-col mx-auto mt-8 mb-0 max-w-md space-y-4"
+        on:submit|preventDefault={handleSubmit}
+    >
         <div>
-            <label for="username" >Email Address</label><br>
+            <label for="username">Email Address</label><br />
 
             <div class=" ">
                 <input
@@ -101,7 +102,7 @@
                 <span class="text-sm font-medium"> Submit </span>
 
                 <svg
-                    class="ml-3 h-5 w-5"
+                    class="ml-3 h-5 w-full"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
@@ -115,6 +116,17 @@
                     />
                 </svg>
             </button>
+            {#if true}
+                <div
+                    role="alert"
+                    class="rounded border border-red-200 bg-red-50 p-4"
+                >
+                    <p class="text-sm text-red-700">
+                        <!-- Username is already taken, please try another one. -->
+                        Please type your registered E-mail address
+                    </p>
+                </div>
+            {/if}
         </div>
     </form>
 </div>
