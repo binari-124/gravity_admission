@@ -36,7 +36,7 @@
 
   </script>
   
-  <div class="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8 pt-[10%]">
+  <div class="mx-auto max-w-screen-xl px-10 py-40 sm:px-6 lg:px-8 pt-[10%] border-2">
     <div class="mx-auto max-w-lg text-center">
       <h1 class="text-2xl font-bold sm:text-3xl">Forgot Password</h1>
     </div>
