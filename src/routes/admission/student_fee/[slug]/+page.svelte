@@ -740,10 +740,13 @@
                     >
                   </div>
                 {:else}
-                  <div class=" mt-2 mb-12">
-                    <p>
-                      Thank you, your Installment has been successfully received
-                    </p>
+                  <div class=" mt-2 mb-12 bg-slate-400">
+                    <div class="float-right bg-orange-600">
+                      <p>
+                        Thank you, your Installment has been successfully received
+                      </p>
+
+                    </div>
                   </div>
                 {/if}
 
