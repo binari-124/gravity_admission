@@ -36,7 +36,7 @@
 </script>
 
 <div
-    class="mx-auto max-w-screen-xl px-10 py-40 sm:px-6 lg:px-8 pt-[10%] w-1/2 border-2 "
+    class="mx-auto max-w-screen-xl px-10 py-40 sm:px-6 lg:px-8 pt-[10%] w-1/3 border-2 "
 >
     <div class="mx-auto max-w-lg text-center">
         <h1 class="text-2xl font-bold sm:text-3xl">Forgot Password</h1>
@@ -57,7 +57,7 @@
     <br />
 
     <!-- <form action="?/register" method="POST" class="mx-auto mt-8 mb-0 max-w-md space-y-4" use:enhance> -->
-    <form class="flex flex-col" on:submit|preventDefault={handleSubmit}>
+    <form class="flex flex-col mx-auto mt-8 mb-0 max-w-md space-y-4" on:submit|preventDefault={handleSubmit}>
         <div>
             <label for="username" >Email Address</label><br>
 
