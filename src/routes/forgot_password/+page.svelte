@@ -42,7 +42,7 @@
     </div>
   
     <div class="mx-auto mt-12 mb-0 max-w-md">
-      {#if true}
+      {#if false}
         <div role="alert" class="rounded border border-red-200 bg-red-50 p-4">
           <p class="text-sm text-red-700">Username is already taken, please try another one.</p>
         </div>
