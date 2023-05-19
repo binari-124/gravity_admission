@@ -67,7 +67,7 @@
                     type="text"
                     name="username"
                     id="username"
-                    class="w-1/4 rounded-lg border-gray-200 p-4 pr-12 text-sm shadow-sm"
+                    class="w-1/2 rounded-lg border-gray-200 p-4 pr-12 text-sm shadow-sm"
                     placeholder="Enter username"
                 />
             </div>
