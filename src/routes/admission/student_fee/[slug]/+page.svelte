@@ -743,7 +743,7 @@
                   <div class=" mt-2 mb-12 ">
                     <div class="float-right p-6 bg-slate-500 ">
                       <p class="text-xl">
-                        Thank you,\n your Installment has been successfully received
+                        your Installment has been received
                       </p>
 
                     </div>
