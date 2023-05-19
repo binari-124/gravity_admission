@@ -274,6 +274,7 @@
     const json = await res.json();
     if (json.status == "success") {
       alert("Thankyou, your Installment has been received");
+
       location.reload();
       // centre.reload();
     } else {
@@ -343,30 +344,30 @@
 
     <div class="card flex flex-row space-x-6 mt-4">
       <!-- {#if installment.edit} -->
-     <div class="mt-2">
-      <label for="amount"
-      >Installment Amount
-      <input
-        class="border-2 ml-2"
-        type="text"
-        id="amount"
-        bind:value={create_body.amount}
-        placeholder="amount"
-      />
-    </label>
+      <div class="mt-2">
+        <label for="amount"
+          >Installment Amount
+          <input
+            class="border-2 ml-2"
+            type="text"
+            id="amount"
+            bind:value={create_body.amount}
+            placeholder="amount"
+          />
+        </label>
 
-    <label for="timestamp"
-      >Installment Date
-      <input
-        class="border-2 ml-2"
-        type="date"
-        id="timestamp"
-        bind:value={create_body.timestamp}
-        placeholder="amount"
-      />
-    </label>
-     </div>
-    
+        <label for="timestamp"
+          >Installment Date
+          <input
+            class="border-2 ml-2"
+            type="date"
+            id="timestamp"
+            bind:value={create_body.timestamp}
+            placeholder="amount"
+          />
+        </label>
+      </div>
+
       <!-- {:else} -->
       <!-- <label for="amount"
       >Installment Amount
@@ -393,8 +394,7 @@
 
       <button
         on:click|preventDefault={createInstallment}
-        class="w3-button w3-round w3-card w3-hover-green "
-        >Add new</button
+        class="w3-button w3-round w3-card w3-hover-green">Add new</button
       >
     </div>
 
@@ -421,7 +421,7 @@
               <br />
 
               {#each body.installments as installment, index}
-                <span>Installment {index + 1}</span><br>
+                <span>Installment {index + 1}</span><br />
                 <!-- <input
                   disabled={(index) => cond(index)}
                   class="border-2"
@@ -593,6 +593,7 @@
                     />
                   </div>
                 </div>
+                {#if !body.installments[index].installment_status.received}
                 <div class=" mt-2 mb-12">
                   <button
                     class="btn float-right mr-2"
@@ -619,6 +620,13 @@
                       installment_received(index + 1)}>Received</button
                   >
                 </div>
+                {:else}
+                <div class=" mt-2 mb-12">
+                 <p>Installment has been received</p>
+                </div>
+                
+                {/if}
+                
 
                 <br />
                 <hr />
