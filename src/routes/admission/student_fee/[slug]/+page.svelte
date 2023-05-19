@@ -457,6 +457,117 @@
                       placeholder="amount"
                     />
                   </label>
+                  <div class="mx-3 flex flex-row space-x-3 mt-2">
+                    <p class="mr-3">Paid by</p>
+
+                    <label>
+                      <input
+                        type="radio"
+                        bind:group={body.installments[index].installment_status
+                          .payment_mode}
+                        name={index + 1}
+                        value="Cash"
+                      />
+                      Cash
+                    </label>
+
+                    <label>
+                      <input
+                        type="radio"
+                        bind:group={body.installments[index].installment_status
+                          .payment_mode}
+                        name={index + 1}
+                        value="Cheque"
+                      />
+                      Cheque
+                    </label>
+
+                    <label>
+                      <input
+                        type="radio"
+                        bind:group={body.installments[index].installment_status
+                          .payment_mode}
+                        name={index + 1}
+                        value="Demand Draft"
+                      />
+                      Demand Draft
+                    </label>
+
+                    <label>
+                      <input
+                        type="radio"
+                        bind:group={body.installments[index].installment_status
+                          .payment_mode}
+                        name={index + 1}
+                        value="NEFT"
+                      />
+                      NEFT
+                    </label>
+
+                    <label>
+                      <input
+                        type="radio"
+                        bind:group={body.installments[index].installment_status
+                          .payment_mode}
+                        name={index + 1}
+                        value="RTGS"
+                      />
+                      RTGS
+                    </label>
+
+                    <label>
+                      <input
+                        type="radio"
+                        bind:group={body.installments[index].installment_status
+                          .payment_mode}
+                        name={index + 1}
+                        value="ECS"
+                      />
+                      ECS
+                    </label>
+
+                    <br />
+                  </div>
+
+                  <div class="mx-3 flex flex-row space-x-3 mt-2">
+                    <div class="flex flex-row mt-1">
+                      <label for="dd_cheque_number"
+                        >Payment Reference Number</label
+                      >
+
+                      <input
+                        class="border-2 ml-2"
+                        type="text"
+                        bind:value={installment.installment_status
+                          .payment_reference_number}
+                      />
+
+                      <!-- <input
+                        disabled={condition}
+                        class="border-2 ml-2"
+                        type="text"
+                        placeholder="DD/Cheque Number/ UPI transaction Id"
+                        bind:value={installment.installment_status
+                          .payment_reference_number}
+                      /> -->
+                    </div>
+                  </div>
+
+                  <div class="mx-3 flex flex-row space-x-3 mt-2">
+                    <div class="mx-3 flex flex-col">
+                      <label for="dd_cheque_number">Receipt Number</label>
+                    </div>
+
+                    <div class="flex flex-row">
+                      <input
+                        disabled={condition}
+                        class="border-2 ml-2"
+                        type="text"
+                        bind:value={installment.installment_status
+                          .receipt_number}
+                      />
+                    </div>
+                  </div>
                 {:else}
                   <label for="amount"
                     >Installment Amount
@@ -481,152 +592,153 @@
                       placeholder="amount"
                     />
                   </label>
+                  <div class="mx-3 flex flex-row space-x-3 mt-2">
+                    <p class="mr-3">Paid by</p>
+
+                    <label>
+                      <input
+                        type="radio"
+                        bind:group={body.installments[index].installment_status
+                          .payment_mode}
+                        name={index + 1}
+                        value="Cash"
+                      />
+                      Cash
+                    </label>
+
+                    <label>
+                      <input
+                        type="radio"
+                        bind:group={body.installments[index].installment_status
+                          .payment_mode}
+                        name={index + 1}
+                        value="Cheque"
+                      />
+                      Cheque
+                    </label>
+
+                    <label>
+                      <input
+                        type="radio"
+                        bind:group={body.installments[index].installment_status
+                          .payment_mode}
+                        name={index + 1}
+                        value="Demand Draft"
+                      />
+                      Demand Draft
+                    </label>
+
+                    <label>
+                      <input
+                        type="radio"
+                        bind:group={body.installments[index].installment_status
+                          .payment_mode}
+                        name={index + 1}
+                        value="NEFT"
+                      />
+                      NEFT
+                    </label>
+
+                    <label>
+                      <input
+                        type="radio"
+                        bind:group={body.installments[index].installment_status
+                          .payment_mode}
+                        name={index + 1}
+                        value="RTGS"
+                      />
+                      RTGS
+                    </label>
+
+                    <label>
+                      <input
+                        type="radio"
+                        bind:group={body.installments[index].installment_status
+                          .payment_mode}
+                        name={index + 1}
+                        value="ECS"
+                      />
+                      ECS
+                    </label>
+
+                    <br />
+                  </div>
+
+                  <div class="mx-3 flex flex-row space-x-3 mt-2">
+                    <div class="flex flex-row mt-1">
+                      <label for="dd_cheque_number"
+                        >Payment Reference Number</label
+                      >
+
+                      <input
+                        class="border-2 ml-2"
+                        type="text"
+                        bind:value={installment.installment_status
+                          .payment_reference_number}
+                      />
+
+                      <!-- <input
+                        disabled={condition}
+                        class="border-2 ml-2"
+                        type="text"
+                        placeholder="DD/Cheque Number/ UPI transaction Id"
+                        bind:value={installment.installment_status
+                          .payment_reference_number}
+                      /> -->
+                    </div>
+                  </div>
+
+                  <div class="mx-3 flex flex-row space-x-3 mt-2">
+                    <div class="mx-3 flex flex-col">
+                      <label for="dd_cheque_number">Receipt Number</label>
+                    </div>
+
+                    <div class="flex flex-row">
+                      <input
+                        disabled={condition}
+                        class="border-2 ml-2"
+                        type="text"
+                        bind:value={installment.installment_status
+                          .receipt_number}
+                      />
+                    </div>
+                  </div>
                 {/if}
 
-                <div class="mx-3 flex flex-row space-x-3 mt-2">
-                  <p class="mr-3">Paid by</p>
-
-                  <label>
-                    <input
-                      type="radio"
-                      bind:group={body.installments[index].installment_status
-                        .payment_mode}
-                      name={index + 1}
-                      value="Cash"
-                    />
-                    Cash
-                  </label>
-
-                  <label>
-                    <input
-                      type="radio"
-                      bind:group={body.installments[index].installment_status
-                        .payment_mode}
-                      name={index + 1}
-                      value="Cheque"
-                    />
-                    Cheque
-                  </label>
-
-                  <label>
-                    <input
-                      type="radio"
-                      bind:group={body.installments[index].installment_status
-                        .payment_mode}
-                      name={index + 1}
-                      value="Demand Draft"
-                    />
-                    Demand Draft
-                  </label>
-
-                  <label>
-                    <input
-                      type="radio"
-                      bind:group={body.installments[index].installment_status
-                        .payment_mode}
-                      name={index + 1}
-                      value="NEFT"
-                    />
-                    NEFT
-                  </label>
-
-                  <label>
-                    <input
-                      type="radio"
-                      bind:group={body.installments[index].installment_status
-                        .payment_mode}
-                      name={index + 1}
-                      value="RTGS"
-                    />
-                    RTGS
-                  </label>
-
-                  <label>
-                    <input
-                      type="radio"
-                      bind:group={body.installments[index].installment_status
-                        .payment_mode}
-                      name={index + 1}
-                      value="ECS"
-                    />
-                    ECS
-                  </label>
-
-                  <br />
-                </div>
-
-                <div class="mx-3 flex flex-row space-x-3 mt-2">
-                  <div class="flex flex-row mt-1">
-                    <label for="dd_cheque_number"
-                      >Payment Reference Number</label
-                    >
-
-                    <input
-                      class="border-2 ml-2"
-                      type="text"
-                      bind:value={installment.installment_status
-                        .payment_reference_number}
-                    />
-
-                    <!-- <input
-                      disabled={condition}
-                      class="border-2 ml-2"
-                      type="text"
-                      placeholder="DD/Cheque Number/ UPI transaction Id"
-                      bind:value={installment.installment_status
-                        .payment_reference_number}
-                    /> -->
-                  </div>
-                </div>
-
-                <div class="mx-3 flex flex-row space-x-3 mt-2">
-                  <div class="mx-3 flex flex-col">
-                    <label for="dd_cheque_number">Receipt Number</label>
-                  </div>
-
-                  <div class="flex flex-row">
-                    <input
-                      disabled={condition}
-                      class="border-2 ml-2"
-                      type="text"
-                      bind:value={installment.installment_status.receipt_number}
-                    />
-                  </div>
-                </div>
                 {#if !body.installments[index].installment_status.received}
-                <div class=" mt-2 mb-12">
-                  <button
-                    class="btn float-right mr-2"
-                    on:click|preventDefault={() => deleteInstallment(index + 1)}
-                    >Remove Installment</button
-                  >
+                  <div class=" mt-2 mb-12">
+                    <button
+                      class="btn float-right mr-2"
+                      on:click|preventDefault={() =>
+                        deleteInstallment(index + 1)}>Remove Installment</button
+                    >
 
-                  {#if body.installments[index].edit}
+                    {#if body.installments[index].edit}
+                      <button
+                        class="btn float-right mr-2"
+                        on:click|preventDefault={() =>
+                          saveInstallment(index + 1)}>Save</button
+                      >
+                    {:else}
+                      <button
+                        class="btn float-right mr-2"
+                        on:click|preventDefault={() =>
+                          editInstallment(index + 1)}>Edit</button
+                      >
+                    {/if}
                     <button
                       class="btn float-right mr-2"
-                      on:click|preventDefault={() => saveInstallment(index + 1)}
-                      >Save</button
+                      on:click|preventDefault={() =>
+                        installment_received(index + 1)}>Received</button
                     >
-                  {:else}
-                    <button
-                      class="btn float-right mr-2"
-                      on:click|preventDefault={() => editInstallment(index + 1)}
-                      >Edit</button
-                    >
-                  {/if}
-                  <button
-                    class="btn float-right mr-2"
-                    on:click|preventDefault={() =>
-                      installment_received(index + 1)}>Received</button
-                  >
-                </div>
+                  </div>
                 {:else}
-                <div class=" mt-2 mb-12">
-                 <p>Installment has been received</p>
-                </div>
-                
+                  <div class=" mt-2 mb-12">
+                    <p>
+                      Thank you, your Installment has been successfully received
+                    </p>
+                  </div>
                 {/if}
-                
 
                 <br />
                 <hr />
