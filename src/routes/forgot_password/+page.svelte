@@ -42,12 +42,12 @@
     </div>
   
     <div class="mx-auto mt-12 mb-0 max-w-md">
-      {#if false}
+      {#if true}
         <div role="alert" class="rounded border border-red-200 bg-red-50 p-4">
           <p class="text-sm text-red-700">Username is already taken, please try another one.</p>
         </div>
       {/if}
-    </div>
+    </div><br>
   
     <!-- <form action="?/register" method="POST" class="mx-auto mt-8 mb-0 max-w-md space-y-4" use:enhance> -->
         <form
