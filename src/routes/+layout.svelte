@@ -43,7 +43,7 @@
 	{/if} -->
 
 	<main class=" flex flex-row">
-		{#if $page.url.pathname != "/login" && $page.url.pathname != "/"}
+		{#if $page.url.pathname != "/login" && $page.url.pathname != "/" && $page.url.pathname != "/forgot_password" && $page.url.pathname != "/"}
 		<div class="w-1/4 p-2 "> 
 		<Hnav  segment={$page.url.pathname} />
 		</div>
