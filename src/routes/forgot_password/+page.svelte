@@ -59,15 +59,15 @@
     <!-- <form action="?/register" method="POST" class="mx-auto mt-8 mb-0 max-w-md space-y-4" use:enhance> -->
     <form class="flex flex-col" on:submit|preventDefault={handleSubmit}>
         <div>
-            <label for="username" >Username</label>
+            <label for="username" >Email Address</label><br>
 
-            <div class="relative">
+            <div class=" ">
                 <input
                     required
                     type="text"
                     name="username"
                     id="username"
-                    class="w-full rounded-lg border-gray-200 p-4 pr-12 text-sm shadow-sm"
+                    class="w-1/4 rounded-lg border-gray-200 p-4 pr-12 text-sm shadow-sm"
                     placeholder="Enter username"
                 />
             </div>
