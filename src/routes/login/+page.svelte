@@ -110,7 +110,7 @@
 
 					<div class="text-right mt-2">
 						<a
-							href="#"
+							href="/forgot_password"
 							class="text-sm font-semibold text-gray-700 hover:text-blue-700 focus:text-blue-700"
 							>Forgot Password?</a
 						>
@@ -125,7 +125,7 @@
 
 				<hr class="my-6 border-gray-300 w-full" />
 
-				<button
+				<!-- <button
 					type="button"
 					class="w-full block bg-white hover:bg-gray-100 focus:bg-gray-100 text-gray-900 font-semibold rounded-lg px-4 py-3 border border-gray-300"
 				>
@@ -165,9 +165,9 @@
 						>
 						<span class="ml-4"> Log in with Google </span>
 					</div>
-				</button>
+				</button> -->
 
-				<p class="mt-8">
+				<!-- <p class="mt-8">
 					Need an account?
 					<a
 						href="#"
@@ -175,9 +175,9 @@
 					>
 						Create an account
 					</a>
-				</p>
+				</p> -->
 
-				<p class="text-sm text-gray-500 mt-12">
+				<p class="text-sm text-gray-500 mt-12 justify-between">
 					&copy; Gravity - All Rights Reserved.
 				</p>
 			</div>

@@ -49,7 +49,7 @@
 		</div>
 		{/if}
 	
-		<div class="grow border-r-2 border-gray-300">
+		<div class="grow ">
 		<slot/>
 		</div>
 	</main>
