@@ -198,7 +198,7 @@
   <tr class="w3-hover-shadow">
       <td>{batch._id}</td>
       <td>{batch.class_number}</td>
-      <td>{batch.batch.name}</td>
+      <td>{batch.branch.name}</td>
       <td>{batch.stream.name}</td>
       <td>{batch.lectures.length}</td>
       <td>{batch.students.length}</td>
