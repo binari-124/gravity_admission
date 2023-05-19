@@ -36,7 +36,7 @@
 </script>
 
 <div
-    class="mx-auto max-w-screen-xl px-52 py-40 sm:px-6 lg:px-8 pt-[10%] border-2"
+    class="mx-auto max-w-screen-xl px-10 py-40 sm:px-6 lg:px-8 pt-[10%] border-2"
 >
     <div class="mx-auto max-w-lg text-center">
         <h1 class="text-2xl font-bold sm:text-3xl">Forgot Password</h1>
@@ -59,7 +59,7 @@
     <!-- <form action="?/register" method="POST" class="mx-auto mt-8 mb-0 max-w-md space-y-4" use:enhance> -->
     <form class="flex flex-col" on:submit|preventDefault={handleSubmit}>
         <div>
-            <label for="username" class="sr-only">Username</label>
+            <label for="username" >Username</label>
 
             <div class="relative">
                 <input
@@ -69,7 +69,7 @@
                     id="username"
                     class="w-full rounded-lg border-gray-200 p-4 pr-12 text-sm shadow-sm"
                     placeholder="Enter username"
-                />npm run dev
+                />
             </div>
         </div>
 
