@@ -26,6 +26,7 @@
                 let response = await res.text();
                 response = await JSON.parse(response);
                 if (response.status == "success") {
+                    console.log("hello");
                     console.log(response);
                     location.reload();
                 } else {
