@@ -26,6 +26,7 @@
                 let response = await res.text();
                 response = await JSON.parse(response);
                 if (response.status == "success") {
+                    console.log(response);
                     location.reload();
                 } else {
                     console.log(response.message);
@@ -40,6 +41,7 @@
             console.log(await res.text());
         }
     }
+    
 </script>
 
 {#if students}
