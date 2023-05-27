@@ -52,7 +52,7 @@
                 <!-- <th>Stream</th>
             <th>Batch</th>
             <th>Brach</th> -->
-                <th>Email Id</th>
+                <th>Email I</th>
                 <th>Student ID</th>
                 <th>Delete?</th><th /></tr
             >
