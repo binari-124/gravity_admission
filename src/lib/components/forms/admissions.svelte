@@ -98,35 +98,35 @@
     console.log(body);
     var token = localStorage.getItem("token");
 
-    if(body.stream == "-" || body.branch=="-" || body.class==" " )
-		{
-			alert("Make sure you have selected a branch, stream and a class !");
-			return;
-		}
+    // if(body.stream == "-" || body.branch=="-" || body.class==" " )
+		// {
+		// 	alert("Make sure you have selected a branch, stream and a class !");
+		// 	return;
+		// }
 
-    if(body.name == " " )
-		{
-			alert("Make sure you have provided your name!");
-			return;
-		}
+    // if(body.name == " " )
+		// {
+		// 	alert("Make sure you have provided your name!");
+		// 	return;
+		// }
 
-    if(body.father_name == " " )
-		{
-			alert("Make sure you have provided Father's/Guardian's name!");
-			return;
-		}
+    // if(body.father_name == " " )
+		// {
+		// 	alert("Make sure you have provided Father's/Guardian's name!");
+		// 	return;
+		// }
 
-    if(body.phone == " " && !/^\d{10}$/.test(body.number) )
-		{
-			alert("Make sure you have provided a valid 10 digit Students' Mobile !");
-			return;
-		}
+    // if(body.phone == " " && !/^\d{10}$/.test(body.number) )
+		// {
+		// 	alert("Make sure you have provided a valid 10 digit Students' Mobile !");
+		// 	return;
+		// }
 
-    if(body.mobile_parents == " " && !/^\d{10}$/.test(body.mobile_parents) )
-		{
-			alert("Make sure you have provided a valid 10 digit Parents' Mobile !");
-			return;
-		}
+    // if(body.mobile_parents == " " && !/^\d{10}$/.test(body.mobile_parents) )
+		// {
+		// 	alert("Make sure you have provided a valid 10 digit Parents' Mobile !");
+		// 	return;
+		// }
 
     
     // console.log(body);
@@ -303,6 +303,7 @@
 
           <select
             class="w3-input w3-border w3-round w3-margin"
+            required
             bind:value={body.branch}
           >
             <option value="-">Select Branch</option>
