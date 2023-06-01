@@ -322,6 +322,7 @@
 
           <select
             class="w3-input w3-border w3-round w3-margin"
+            required
             bind:value={body.stream}
           >
             <option value="-">Select Stream</option>
