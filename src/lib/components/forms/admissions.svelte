@@ -898,7 +898,7 @@
           <button
             class="shadow bg-blue-800 hover:bg-blue-700 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded object-right"
             on:click={handleSubmit}
-            type="button"
+            type="submit"
           >
             Submit
           </button>
