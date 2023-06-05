@@ -21,30 +21,34 @@ export const nodes = [
 	() => import('./nodes/17'),
 	() => import('./nodes/18'),
 	() => import('./nodes/19'),
-	() => import('./nodes/20')
+	() => import('./nodes/20'),
+	() => import('./nodes/21'),
+	() => import('./nodes/22')
 ];
 
 export const server_loads = [];
 
 export const dictionary = {
-		"/": [3],
+		"/": [~3],
 		"/about": [4],
 		"/admission": [5],
 		"/admission/bulk_upload": [7],
 		"/admission/create": [8],
-		"/admission/edit": [9],
-		"/admission/student_address/[slug]": [10],
-		"/admission/student_batches/[slug]": [11],
-		"/admission/student_delete/[slug]": [12],
+		"/admission/student_address/[slug]": [9],
+		"/admission/student_batches/[slug]": [10],
+		"/admission/student_delete/[slug]": [11],
+		"/admission/student_disable/[slug]": [12],
 		"/admission/student_edit/[slug]": [13],
 		"/admission/student_fee/[slug]": [14],
 		"/admission/[slug]": [6],
-		"/login": [15],
-		"/students": [16],
-		"/students/batches": [17],
-		"/students/batches/[batches_info]": [18],
-		"/sverdle": [~19],
-		"/sverdle/how-to-play": [20]
+		"/forgot_password": [15],
+		"/login": [16],
+		"/reset_password": [17],
+		"/students": [18],
+		"/students/batches": [19],
+		"/students/batches/[batches_info]": [20],
+		"/sverdle": [~21],
+		"/sverdle/how-to-play": [22]
 	};
 
 export const hooks = {

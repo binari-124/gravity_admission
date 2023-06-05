@@ -52,8 +52,7 @@ declare module '$env/static/private' {
 	export const COLORTERM: string;
 	export const COLOR: string;
 	export const npm_config_metrics_registry: string;
-	export const IM_CONFIG_PHASE: string;
-	export const WAYLAND_DISPLAY: string;
+	export const GTK_IM_MODULE: string;
 	export const LOGNAME: string;
 	export const _: string;
 	export const npm_config_prefix: string;
@@ -62,6 +61,7 @@ declare module '$env/static/private' {
 	export const TERM: string;
 	export const npm_config_cache: string;
 	export const GNOME_DESKTOP_SESSION_ID: string;
+	export const WINDOWPATH: string;
 	export const npm_config_node_gyp: string;
 	export const PATH: string;
 	export const SESSION_MANAGER: string;
@@ -69,7 +69,6 @@ declare module '$env/static/private' {
 	export const npm_package_name: string;
 	export const XDG_MENU_PREFIX: string;
 	export const GNOME_TERMINAL_SCREEN: string;
-	export const GNOME_SETUP_DISPLAY: string;
 	export const XDG_RUNTIME_DIR: string;
 	export const GDK_BACKEND: string;
 	export const DISPLAY: string;
@@ -92,6 +91,7 @@ declare module '$env/static/private' {
 	export const QT_ACCESSIBILITY: string;
 	export const GDMSESSION: string;
 	export const LESSCLOSE: string;
+	export const GPG_AGENT_INFO: string;
 	export const VSCODE_GIT_ASKPASS_EXTRA_ARGS: string;
 	export const QT_IM_MODULE: string;
 	export const npm_config_globalconfig: string;
@@ -162,8 +162,7 @@ declare module '$env/dynamic/private' {
 		COLORTERM: string;
 		COLOR: string;
 		npm_config_metrics_registry: string;
-		IM_CONFIG_PHASE: string;
-		WAYLAND_DISPLAY: string;
+		GTK_IM_MODULE: string;
 		LOGNAME: string;
 		_: string;
 		npm_config_prefix: string;
@@ -172,6 +171,7 @@ declare module '$env/dynamic/private' {
 		TERM: string;
 		npm_config_cache: string;
 		GNOME_DESKTOP_SESSION_ID: string;
+		WINDOWPATH: string;
 		npm_config_node_gyp: string;
 		PATH: string;
 		SESSION_MANAGER: string;
@@ -179,7 +179,6 @@ declare module '$env/dynamic/private' {
 		npm_package_name: string;
 		XDG_MENU_PREFIX: string;
 		GNOME_TERMINAL_SCREEN: string;
-		GNOME_SETUP_DISPLAY: string;
 		XDG_RUNTIME_DIR: string;
 		GDK_BACKEND: string;
 		DISPLAY: string;
@@ -202,6 +201,7 @@ declare module '$env/dynamic/private' {
 		QT_ACCESSIBILITY: string;
 		GDMSESSION: string;
 		LESSCLOSE: string;
+		GPG_AGENT_INFO: string;
 		VSCODE_GIT_ASKPASS_EXTRA_ARGS: string;
 		QT_IM_MODULE: string;
 		npm_config_globalconfig: string;
