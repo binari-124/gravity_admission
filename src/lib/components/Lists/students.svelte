@@ -49,13 +49,12 @@
             <tr class="w3-light-grey">
                 <th>#</th>
                 <th>Name</th>
-                <!-- <th>Stream</th>
-            <th>Batch</th>
-            <th>Brach</th> -->
+             
                 <th>Email Id</th>
+                <th>Contact</th>
                 <th>Student ID</th>
-                <th>Delete?</th><th /></tr
-            >
+                <!-- <th>Delete?</th><th /></tr
+            > -->
         </thead>
         {#each students as student, ind}
             <tr class="w3-hover-shadow">
@@ -65,11 +64,12 @@
             <td>{student.batch?student.batch.name:"-"}</td>
             <td>{student.branch?student.branch.name:"-"}</td> -->
                 <td>{student.email}</td>
-                <td
+                <td>{student.phone}</td>
+                <!-- <td
                     ><a class="w3-text-blue" href="/admission/{student._id}"
                         >{student._id}</a
                     ></td
-                >
+                > -->
                 <td
                     ><button
                         class="w3-text-red w3-center"
