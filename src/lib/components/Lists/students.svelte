@@ -70,14 +70,14 @@
                         >{student._id}</a
                     ></td
                 > -->
-                <td
+                <!-- <td
                     ><button
                         class="w3-text-red w3-center"
                         on:click={() => {
                             handleDelete(student._id);
                         }}>Delete</button
                     ></td
-                >
+                > -->
             </tr>
         {/each}
     </table>
