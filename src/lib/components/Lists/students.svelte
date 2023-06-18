@@ -65,11 +65,11 @@
             <td>{student.branch?student.branch.name:"-"}</td> -->
                 <td>{student.email}</td>
                 <td>{student.phone}</td>
-                <!-- <td
+                <td
                     ><a class="w3-text-blue" href="/admission/{student._id}"
                         >{student._id}</a
                     ></td
-                > -->
+                >
                 <!-- <td
                     ><button
                         class="w3-text-red w3-center"
