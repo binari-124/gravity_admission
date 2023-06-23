@@ -1,4 +1,4 @@
-<script context="module">
+<!-- <script context="module">
     console.log("hello");
     
 
@@ -8,7 +8,7 @@
 
 
    
-</script>
+</script> -->
 
 <script>
    import ImageUpload from '../_utils/imageUpload.svelte';
