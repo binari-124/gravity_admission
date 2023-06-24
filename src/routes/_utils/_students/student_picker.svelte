@@ -3,7 +3,7 @@
     import { Token } from "../../_utils/dynamic_store.js";
     import { ApiUrl } from "../../_utils/static_store.js";
     import { get } from "svelte/store";
-    // import StudentsList from "../../../lib/components/Lists/students.svelte";
+    import StudentsList from "../../../lib/components/Lists/students.svelte";
     // import StudentsList from "$lib/components/Lists/students.svelte";
 
 
