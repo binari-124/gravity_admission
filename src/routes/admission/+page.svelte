@@ -1,7 +1,7 @@
 <script>
 	// import ImageUpload from '../_utils/imageUpload.svelte';
 	// import DataUpload from '../_utils/dataUpload.svelte';
-	import StudentsList from "../../lib/components/Lists/students.svelte";
+	// import StudentsList from "../../lib/components/Lists/students.svelte";
 
 	import StudentPicker from "../_utils/_students/student_picker.svelte";
 	import { onMount } from "svelte";
