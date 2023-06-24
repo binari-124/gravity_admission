@@ -35,8 +35,9 @@
       console.log(selectedQuestions);
     }
   
-    import {onMount} from 'svelte';
+  import {onMount} from 'svelte';
   import {Token} from '../../routes/_utils/dynamic_store.js';
+  import abcd from "../../../routes"
   import {ApiUrl} from '../../routes/_utils/static_store.js';
   import { get } from 'svelte/store';
   
