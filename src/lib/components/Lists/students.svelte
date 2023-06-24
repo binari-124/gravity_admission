@@ -48,7 +48,7 @@
         <thead>
             <tr class="w3-light-grey">
                 <th>#</th>
-                <th>Nam</th>
+                <th>Name</th>
              
                 <th>Email Id</th>
                 <th>Contact</th>
