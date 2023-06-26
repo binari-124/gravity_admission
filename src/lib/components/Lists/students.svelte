@@ -50,7 +50,7 @@
                 <th>#</th>
                 <th>Name</th>
              
-                <th>Email I</th>
+                <th>Email Id</th>
                 <th>Contact</th>
                 <th>Student ID</th>
                 <!-- <th>Delete?</th><th /></tr
