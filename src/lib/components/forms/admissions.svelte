@@ -4,7 +4,8 @@
   import { Token } from "../../../routes/_utils/dynamic_store.js";
   import { ApiUrl } from "../../../routes/_utils/static_store.js";
   import { get } from "svelte/store";
-  import ImageUpload from "../../../routes/_utils/imageUpload.svelte";
+  // import ImageUpload from "../../../routes/_utils/imageUpload.svelte";
+  import ImageUpload from "$lib/_utils/imageUpload.svelte";
   export let edit = false;
   export let studentId;
   // /home/binari/Documents/student_panel/src/routes/admission/create/student_onboarding
