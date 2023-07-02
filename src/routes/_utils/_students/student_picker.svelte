@@ -4,7 +4,7 @@
     import { ApiUrl } from "$lib/static_store.js";
     import { get } from "svelte/store";
     // import StudentsList from "../../../lib/components/Lists/students.svelte";
-    import StudentsList from "$lib/components/Lists/students.svelte";
+    import StudentsList from "$lib/components/lists/students.svelte";
 
 
     var students = null;

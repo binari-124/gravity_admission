@@ -137,7 +137,7 @@
 		>
 		<a
 			class="w3-button w3-round w3-card w3-hover-green w3-margin"
-			href="/admission/bulk_upload">Bulk Uploa</a
+			href="/admission/bulk_upload">Bulk Upload</a
 		>
 	</div>
 
