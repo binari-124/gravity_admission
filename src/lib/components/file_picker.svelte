@@ -5,7 +5,7 @@
         import {Token} from '../_utils/dynamic_store.js';
         import {ApiUrl} from '../_utils/static_store.js';
         import { get } from 'svelte/store';
-        import Files from './Lists/files.svelte';
+        import Files from './lists/files.svelte';
         var files = null;
 
     

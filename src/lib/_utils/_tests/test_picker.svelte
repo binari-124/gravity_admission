@@ -5,8 +5,8 @@
 	import {Token} from '../../_utils/dynamic_store.js';
 	import {ApiUrl} from '../../_utils/static_store.js';
 	import { get } from 'svelte/store';
-	import Questions from '../../../components/Lists/questions.svelte';
-	import TestsList from '../../../components/Lists/tests.svelte';
+	import Questions from '../../../components/lists/questions.svelte';
+	import TestsList from '../../../components/lists/tests.svelte';
     var tests = null;
 
 	var streams=[],branches=[],batches=[],subjects;

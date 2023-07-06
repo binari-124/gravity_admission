@@ -5,7 +5,7 @@
 	import {Token} from '../../_utils/dynamic_store.js';
 	import {ApiUrl} from '../../_utils/static_store.js';
 	import { get } from 'svelte/store';
-	import Questions from '../../../components/Lists/questions.svelte';
+	import Questions from '../../../lib/components/lists/questions.svelte';
     var chapters = null;
 	var topics = null;
 	var subtopics = null;

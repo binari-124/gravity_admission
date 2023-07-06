@@ -53,7 +53,31 @@
 	<div class="lft">
 		
 		<ul>
-			<a class="  w3-round"  href="/admission"><li class="w3-hover-blue w3-padding w3-round" aria-current="{segment === "dashboard" ? 'page' : undefined}"><i class="fa-solid fa-gauge-high"></i> Admission </li></a><hr>
+			<a class="  w3-round"  href="/dashboard"><li class="w3-hover-blue w3-padding w3-round" aria-current="{segment === "dashboard" ? 'page' : undefined}"><i class="fa-solid fa-gauge-high"></i>  Dashboard</li></a><hr>
+			<a class="  w3-round"  href="/students"><li class="w3-hover-blue w3-padding w3-round" aria-current="{segment === "dashboard" ? 'page' : undefined}"><i class="fa-solid fa-user"></i> Students </li></a><hr>
+
+			<!-- <a class="  w3-round"  href="/students/">  <li class="w3-padding w3-hover-blue w3-round" aria-current="{segment === "students" ? 'page' : undefined}"><i class="fa-solid fa-user"></i>  Students</li></a><hr> -->
+			<a class=" " href="/tests/"> <li class="w3-padding w3-hover-blue w3-round w3-padding"  aria-current="{segment === "tests" ? 'page' : undefined}" ><i class="fa-solid fa-vials"></i>  Tests</li></a><hr>
+			<a class="" href="/questions/"><li  class="w3-hover-blue w3-round w3-padding" aria-current="{segment === "questions" ? 'page' : undefined}" ><i class="fa-solid fa-book-open"></i>  Questions</li></a><hr>
+			<a class=" " href="/chapters/"><li class="w3-hover-blue w3-round w3-padding" aria-current="{segment === "chapters" ? 'page' : undefined}" ><i class="fa-solid fa-book-open-reader"></i>  Chapters,Topics & Subtopics</li></a><hr>
+			<a class=" " href="/staff/"><li class="w3-hover-blue w3-round w3-padding" aria-current="{segment === "staff" ? 'page' : undefined}" ><i class="fa-solid fa-users"></i>  Staff</li></a><hr>
+			<a  href="/packages/"><li class="w3-hover-blue w3-round w3-padding" aria-current="{segment === "packages" ? 'page' : undefined}" ><i class="fa-regular fa-paste"></i>  Packages</li></a><hr>
+			<a  href="/exams/"><li class="w3-hover-blue w3-round w3-padding" aria-current="{segment === "exams" ? 'page' : undefined}" ><i class="fa-solid fa-passport"></i>  Exams</li></a><hr>			
+			<a  href="/comprehensions/"><li class="w3-hover-blue w3-round w3-padding" aria-current="{segment === "comprehensions" ? 'page' : undefined}" ><i class="fa fa-book"></i>  Comprehensions</li></a><hr>
+			<a  href="/instructions/"><li class="w3-hover-blue w3-round w3-padding" aria-current="{segment === "comprehensions" ? 'page' : undefined}" ><i class="fa fa-book"></i>  Instructions</li></a><hr>
+			<a  href="/stream/"><li class="w3-hover-blue w3-round w3-padding" aria-current="{segment === "stream" ? 'page' : undefined}" ><i class="fa-solid fa-bars-staggered"></i>  Streams</li></a><hr>
+			<a  href="/subjects/"><li class="w3-hover-blue w3-round w3-padding" aria-current="{segment === "subjects" ? 'page' : undefined}" ><i class="fa-solid fa-shapes"></i>  Subjects</li></a><hr>
+			<a  href="/batches/"><li class="w3-hover-blue w3-round w3-padding" aria-current="{segment === "batches" ? 'page' : undefined}" ><i class="fa-solid fa-laptop-file"></i>  Batches</li></a><hr>
+			<a  href="/lectures/"><li class="w3-hover-blue w3-round w3-padding" aria-current="{segment === "lectures" ? 'page' : undefined}" ><i class="fa-solid fa-chalkboard-user"></i>  Lectures</li></a><hr>
+			<a  href="/modules/"><li class="w3-hover-blue w3-round w3-padding" aria-current="{segment === "modules" ? 'page' : undefined}" ><i class="fa-solid fa-laptop-file"></i>  Modules</li></a><hr>
+			<a  href="/module_chapters/"><li class="w3-hover-blue w3-round w3-padding" aria-current="{segment === "module_chapters" ? 'page' : undefined}" ><i class="fa-solid fa-laptop-file"></i>  Module-Chapters</li></a><hr>
+			
+
+			<a  href="/branch/"><li class="w3-hover-blue w3-round w3-padding" aria-current="{segment === "branch" ? 'page' : undefined}" ><i class="fa-solid fa-graduation-cap"></i>  Branches</li></a><hr>
+			<a  href="/marking_schemes/"><li class="w3-hover-blue w3-round w3-padding" aria-current="{segment === "marking_scheme" ? 'page' : undefined}" ><i class="fa-solid fa-marker"></i>  Marking Schemes</li></a><hr>
+			<a class=" " href="/files/"><li class="w3-hover-blue w3-round w3-padding" aria-current="{segment === "files" ? 'page' : undefined}" ><i class="fa-solid fa-file"></i>  Files</li></a><hr>
+
+			<a class=" " href="/academic_files/"><li class="w3-hover-blue w3-round w3-padding" aria-current="{segment === "academic_files" ? 'page' : undefined}" ><i class="fa-solid fa-file"></i>  -- Academic Files</li></a><hr>
 			<!-- <a class="  w3-round"  href="/students/batches">  <li class="w3-padding w3-hover-blue w3-round" aria-current="{segment === "students" ? 'page' : undefined}"><i class="fa-solid fa-user"></i>  Batches</li></a><hr> -->
 			<!-- <a class=" " href="/tests/"> <li class="w3-padding w3-hover-blue w3-round w3-padding"  aria-current="{segment === "tests" ? 'page' : undefined}" ><i class="fa-solid fa-vials"></i>  Tests</li></a><hr>
 			<a class="" href="/questions/"><li  class="w3-hover-blue w3-round w3-padding" aria-current="{segment === "questions" ? 'page' : undefined}" ><i class="fa-solid fa-book-open"></i>  Questions</li></a><hr>

@@ -80,7 +80,10 @@
     }
   });
 
+  
+
   async function handleSubmit(event) {
+    
     let loginPath = get(ApiUrl);
 
     let myCreateURL = loginPath + "/panel/student_create";
@@ -145,6 +148,21 @@
     // number.focus()
     // return false
     //  }
+
+    if(data.stream == "-"  )
+		{
+			delete data.stream;
+		}
+
+    if(data.branch == "-"  )
+		{
+			delete data.branch;
+		}
+
+    if(data.class_number == "-"  )
+		{
+			delete data.class_number;
+		}
 
     const res = await fetch(edit?myEditURL:myCreateURL, {
       method: "POST",
@@ -226,8 +244,23 @@
         console.log(response);
         if (response.status == "success") {
           body = response.data;
-          body.stream = body.stream._id;
-          body.branch = body.branch._id;
+          if(body.stream){
+            body.stream = body.stream._id;
+          }else{
+            body.stream ="-";
+          }
+          if(body.branch){
+            body.branch = body.branch._id;
+          }else{
+            body.branch ="-";
+          }
+          if(body.class_number){
+            body.class_number = body.class_number;
+          }else{
+            body.class_number ="-";
+          }
+        
+          
           // batches= response.data.batches;
         } else {
           console.log(response.message);
