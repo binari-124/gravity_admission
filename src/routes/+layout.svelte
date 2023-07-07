@@ -1,68 +1,49 @@
 <script>
 	import "../app.css";
-	import { Modals, closeModal } from 'svelte-modals';
-	import Hnav from '../lib/components/Hnav.svelte';
-  import Footer from "$lib/components/footer.svelte";
-  import {page} from '$app/stores';
-  
-  import { onMount } from 'svelte';
-  import LoggedInNavigation from "$lib/components/logged_in_navigation.svelte";
-  import MainNavigation from "$lib/components/main_navigation.svelte";
+	import { Modals, closeModal } from "svelte-modals";
+	import Hnav from "../lib/components/Hnav.svelte";
+	import Footer from "$lib/components/footer.svelte";
+	import { page } from "$app/stores";
+
+	import { onMount } from "svelte";
+	import LoggedInNavigation from "$lib/components/logged_in_navigation.svelte";
+	import MainNavigation from "$lib/components/main_navigation.svelte";
 	let authStore;
 
 	onMount(_initialization);
-	async function _initialization(){
-	  authStore = (await import('$lib/stores/authentication')).authStore;
-	  console.log($page.url.pathname);
+	async function _initialization() {
+		authStore = (await import("$lib/stores/authentication")).authStore;
+		console.log($page.url.pathname);
 	}
-  </script>
-  
-  <style>
-	.backdrop {
-	  position: fixed;
-	  top: 0;
-	  z-index: 30;
-	  bottom: 0;
-	  right: 0;
-	  left: 0;
-	  background: rgba(0,0,0,0.50)
-	}
-  </style>
-  
-  
-  
-  
-  
-  <Modals>
+</script>
+
+<Modals>
 	<div slot="backdrop" class="backdrop" on:click={closeModal} />
-  </Modals> 
-  
-  <!-- <MainNavigation /> -->
-  <!-- {#if $authStore && $authStore.isAuthenticated()}
+</Modals>
+
+<!-- <MainNavigation /> -->
+<!-- {#if $authStore && $authStore.isAuthenticated()}
 	  <LoggedInNavigation />
 	{/if} -->
 
-	<main class=" flex flex-row">
-		{#if $page.url.pathname != "/login" && $page.url.pathname != "/" && $page.url.pathname != "/forgot_password" && $page.url.pathname != "/reset_password"}
-		<div class="w-1/4 p-2 "> 
-		<Hnav  segment={$page.url.pathname} />
+<main class=" flex flex-row">
+	{#if $page.url.pathname != "/login" && $page.url.pathname != "/" && $page.url.pathname != "/forgot_password" && $page.url.pathname != "/reset_password"}
+		<div class="w-1/4 p-2">
+			<Hnav segment={$page.url.pathname} />
 		</div>
-		{/if}
-	
-		<div class="w-3/4 ">
-		<slot/>
-		</div>
-	</main>
-  
- <!-- <div class="w3-rest" data-theme="emerald"> <slot /></div> -->
-  
-  
-  <!-- <Footer />  -->
+	{/if}
 
+	<div class="w-3/4">
+		<slot />
+	</div>
+</main>
 
+<!-- <div class="w3-rest" data-theme="emerald"> <slot /></div> -->
 
-  <!-- <script> -->
-	<!-- // import Nav from '../components/Nav.svelte';
+<!-- <Footer />  -->
+
+<!-- <script> -->
+<!-- // import Nav from '../components/Nav.svelte';
 	import Hnav from '../lib/components/Hnav.svelte';
 	
 //	import "../tailwind_i.css";
@@ -108,7 +89,7 @@
 <!-- {#if segment != "login"}
 <Nav {segment}/>
 {/if} -->
-	
+
 <!-- {/if} -->
 <!-- <main class="w3-row">
 	{#if segment != "login"}
@@ -121,3 +102,15 @@
 	<slot></slot>
 	</div>
 </main> -->
+
+<style>
+	.backdrop {
+		position: fixed;
+		top: 0;
+		z-index: 30;
+		bottom: 0;
+		right: 0;
+		left: 0;
+		background: rgba(0, 0, 0, 0.5);
+	}
+</style>
