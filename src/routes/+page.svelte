@@ -3,6 +3,6 @@
 
 <script>
 import Dashboard from "../pages/dashboard.svelte";
-// location.href = "/admission"
+location.href = "/dashboard"
  </script>
 <Dashboard />
