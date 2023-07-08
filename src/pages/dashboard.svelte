@@ -22,6 +22,15 @@
 </script>
 
 <div class="bg-white">
+  <EventsHero />
   
+  <Slideshow />
+  <Hero />
+  
+  <!-- <Phone /> -->
+ 
+  <!-- <div class="center w-30"><ContactUs /></div> -->
+  <FAQ />
+  <Footer />
   
 </div>
