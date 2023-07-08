@@ -76,7 +76,17 @@ export const nodes = [
 	() => import('./nodes/72'),
 	() => import('./nodes/73'),
 	() => import('./nodes/74'),
-	() => import('./nodes/75')
+	() => import('./nodes/75'),
+	() => import('./nodes/76'),
+	() => import('./nodes/77'),
+	() => import('./nodes/78'),
+	() => import('./nodes/79'),
+	() => import('./nodes/80'),
+	() => import('./nodes/81'),
+	() => import('./nodes/82'),
+	() => import('./nodes/83'),
+	() => import('./nodes/84'),
+	() => import('./nodes/85')
 ];
 
 export const server_loads = [];
@@ -142,19 +152,29 @@ export const dictionary = {
 		"/stream": [60],
 		"/stream/create": [62],
 		"/stream/[slug]": [61],
-		"/subjects": [63],
-		"/subjects/create": [65],
-		"/subjects/[slug]": [64],
-		"/sverdle": [~66],
-		"/sverdle/how-to-play": [67],
-		"/tests": [68],
-		"/tests/batches": [69],
-		"/tests/batches/[batches_info]": [70],
-		"/tests/create": [71],
-		"/tests/create/general": [72],
-		"/tests/edit": [73],
-		"/tests/edit/general/[slug]": [74],
-		"/tests/edit/simple/[slug]": [75]
+		"/students": [63],
+		"/students/bulk_upload": [65],
+		"/students/create": [66],
+		"/students/student_address/[slug]": [67],
+		"/students/student_batches/[slug]": [68],
+		"/students/student_delete/[slug]": [69],
+		"/students/student_disable/[slug]": [70],
+		"/students/student_edit/[slug]": [71],
+		"/students/student_fee/[slug]": [72],
+		"/students/[slug]": [64],
+		"/subjects": [73],
+		"/subjects/create": [75],
+		"/subjects/[slug]": [74],
+		"/sverdle": [~76],
+		"/sverdle/how-to-play": [77],
+		"/tests": [78],
+		"/tests/batches": [79],
+		"/tests/batches/[batches_info]": [80],
+		"/tests/create": [81],
+		"/tests/create/general": [82],
+		"/tests/edit": [83],
+		"/tests/edit/general/[slug]": [84],
+		"/tests/edit/simple/[slug]": [85]
 	};
 
 export const hooks = {
