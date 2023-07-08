@@ -81,28 +81,28 @@
   <div class="container" style="--template-color:red">
     <a
       class="w3-button w3-round w3-card w3-hover-green w3-margin"
-      href="/admission/student_batches/{studentId}"
+      href="/students/student_batches/{studentId}"
       >Batches</a
     >
     <a
       class="w3-button w3-round w3-card w3-hover-green w3-margin"
-      href="/admission/create/student_onboarding/fee_management"
+      href="/students/create/student_onboarding/fee_management"
       >Fee Management</a
     >
     <a
       class="w3-button w3-round w3-card w3-hover-green w3-margin"
-      href="/admission/create/student_onboarding/edit_student">Edit</a
+      href="/students/create/student_onboarding/edit_student">Edit</a
     >
     
     <a
       class="w3-button w3-round w3-card w3-hover-green w3-margin"
-      href="/admission/create/student_onboarding/addresses"
+      href="/students/create/student_onboarding/addresses"
       >Addresses</a
     >
 
     <a
       class="w3-button w3-round w3-card w3-hover-red w3-margin"
-      href="/admission/create/student_onboarding/addresses"
+      href="/students/create/student_onboarding/addresses"
       >Delete</a
     >
 

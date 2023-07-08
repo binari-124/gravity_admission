@@ -35,7 +35,7 @@
 					let token = user.token;
 					console.log(token);
 					localStorage.setItem("token", token);
-					location.href = "/admission";
+					location.href = "/dashboard";
 				} else {
 					console.log(data.message);
 					alert(data.message);

@@ -180,7 +180,7 @@
       if(edit){
         history.back();
       } else{
-        location.href = "/admission/" + json.data;
+        location.href = "/students/" + json.data;
       }
       
     } else {
