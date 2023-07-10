@@ -8,7 +8,7 @@ export function load({ params }) {
     // }
     console.log(params);
     return {
-      instructionId:params.slug
+      examId:params.slug
     };
 
     // throw error(404, 'Not found');

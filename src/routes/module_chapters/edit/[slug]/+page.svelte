@@ -2,69 +2,97 @@
 
 	/** @type {import('./$types').PageData} */
 export let data;
-export let staffId = data.staffId;
-console.log("staffID from slug:" + staffId);
-	
+export let moduleChapterId = data.moduleChapterId;
+console.log("studentID from slug:" + moduleChapterId);	
 
-	
 
 	import {onMount} from 'svelte';
 	import {Token} from '../../../_utils/dynamic_store.js';
 	import {ApiUrl} from '../../../_utils/static_store.js';
 	import { get } from 'svelte/store';
-	import { bubble } from 'svelte/internal';
-	// import SCQ from '../../_utils/_questions/_scq.svelte';
-	
-	let staff;
-	// let date= new Date(certificate.timestamp);
-	// let d= new Date(date).toLocaleDateString('en-US', {
-	// 	day: '2-digit',
-	// 	month: '2-digit',
-	// 	year: 'numeric',
-	// 	});
-	var token;
-	var loginPath;
-	var jsonQuestion;
 
+	// import YouTubePlayer from 'youtube-player';
 
-	// let day= date.getDay();
 	
+
+	let chapters=[];
+	// let player1;
+	var body;
+	
+	var loginPath=get(ApiUrl);
 	onMount(async ()=>{
-		console.log(staffId);
-		console.log("mounted");
-		// localStorage.setItem("token","some value");
 		
-		 token = localStorage.getItem("token");
+		var loginPath=get(ApiUrl);
+		
+		console.log("mounted");
+		var token = localStorage.getItem("token");
 		if(!token)
 		{
 			console.log("yes");
 			location.href="/login";
 		}
 		Token.set(token);
-		 loginPath=get(ApiUrl);
 
-		// console.log(loginPath+'/auth/whoami');
-		const res = await fetch(loginPath+'/panel/staff_get/'+staffId,{mode:'cors',method:'get',headers:{'Authorization':'Bearer '+token}});
+		await getBody();
+
+		await getChapters();
+	});
+
+	async function getBody(){
+		var token = localStorage.getItem("token");
+		var loginPath=get(ApiUrl);
+		let res = await fetch(loginPath+'/panel/modules/module_chapter/'+moduleChapterId,{mode:'cors',method:'get',headers:{'Authorization':'Bearer '+token,'Content-Type':'application/json'}});
 		if(res.status==200){
 			try{
 					let response= await res.text();
-					console.log(response);
-					jsonQuestion = response;
-					
 					response= await JSON.parse(response);
 					if(response.status == "success")
 					{
-						console.log("got questions")
-						staff = response.data;
-						console.log(staff);
+						body = response.data;
+						body.chapter = body.chapter._id;
+
 					}
-					else
-					{
+					else{
 						console.log(response.message);
 						alert(response.message);
+					}		
+			}
+			catch(e){
+				console.log("caught");
+				console.log(e);
+			}
+			finally{
+				
+			}	
+		}
+		else{
+					console.log(await res.text());
+					// user.email="no logged";
+					
+				}
+	}
+
+	async function handleSubmit(){
+		// body.content= btoa(tinymce.get('content').getContent());
+
+		var token = localStorage.getItem("token");
+		// body.topic = topic;
+		var loginPath=get(ApiUrl);
+		let res;
+		res = await fetch(loginPath+'/panel/modules/module_chapter_edit/'+moduleChapterId,{mode:'cors',method:'post',headers:{'Authorization':'Bearer '+token,'Content-Type':'application/json'},body:JSON.stringify(body)});
+
+		if(res.status==200){
+			try{
+					let response= await res.text();
+					response= await JSON.parse(response);
+					if(response.status == "success")
+					{
+						location.reload();
 					}
-					
-					
+					else{
+						console.log(response.message);
+						alert(response.message);
+					}	
 			}
 			catch(e){
 				console.log("caught");
@@ -73,207 +101,132 @@ console.log("staffID from slug:" + staffId);
 			}
 			finally{
 				
-			}
-			
-			// let data = JSON.parse(text);
-			
+			}	
 		}
 		else{
 					console.log(await res.text());
-					// user.email="no logged";
-					
 				}
-		// 
-	});
+	}
 
-
-	async function handleSubmit(){
-		
+	async function getChapters(){
 		// console.log(body);
 		var token = localStorage.getItem("token");
-		// body.topic = topic;
 		var loginPath=get(ApiUrl);
-		console.log(staff);
-		const res = await fetch(loginPath+'/panel/staff_edit',{mode:'cors',method:'post',headers:{'Authorization':'Bearer '+token,'Content-Type':'application/json'},body:JSON.stringify(staff)});
+		let res;
+		res = await fetch(loginPath+'/panel/chapters',{mode:'cors',method:'get',headers:{'Authorization':'Bearer '+token,'Content-Type':'application/json'}});
+
 		if(res.status==200){
 			try{
 					let response= await res.text();
-					//console.log(response);
 					response= await JSON.parse(response);
 					if(response.status == "success")
 					{
-						alert("Saved Successfully");
-						// location.href="/staff";
+						chapters=response.data;
+						console.log(chapters);
+						// branches=response.data.branches;
+						// console.log(streams);
+						// console.log(branches);
 					}
 					else{
 						console.log(response.message);
-						alert(response.message);
-					}
-					
-					
-					
+						alert("Server Error:"+response.message);
+					}	
 			}
 			catch(e){
 				console.log("caught");
-				
 				console.log(e);
 			}
-		
-			
-			// let data = JSON.parse(text);
-			
+				
 		}
 		else{
 					console.log(await res.text());
-					// user.email="no logged";
+					user.email="no logged";
 					
 				}
 	}
-
-
-
 </script>
+
 <style>
-	*{
-		color:rgb(51, 51, 51);
-	}
-	/*
-		By default, CSS is locally scoped to the component,
-		and any unused styles are dead-code-eliminated.
-		In this page, Svelte can't know which elements are
-		going to appear inside the {{{post.html}}} block,
-		so we have to use the :global(...) modifier to target
-		all elements inside .content
-	*/
-	.content :global(h2) {
-		font-size: 1.4em;
-		font-weight: 500;
+	h1, figure, p {
+		text-align: center;
+		margin: 0 auto;
 	}
 
-	.content :global(pre) {
-		background-color: #dfc502;
-		box-shadow: inset 1px 1px 5px rgba(0, 0, 0, 0.05);
-		padding: 0.5em;
-		border-radius: 2px;
-		overflow-x: auto;
-	}
-
-	.content :global(pre) :global(code) {
-		background-color: transparent;
-		padding: 0;
-	}
-
-	.content :global(ul) {
-		line-height: 1.5;
-	}
-
-	.content :global(li) {
+	h1 {
+		font-size: 2.8em;
+		text-transform: uppercase;
+		font-weight: 700;
 		margin: 0 0 0.5em 0;
 	}
 
-	.container{
-		
-		width:100%;
-		/* border:1px solid rgb(140, 140, 140); */
-		border-radius: 5px;
-		margin:10px;
-		padding: 10px;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
+	figure {
+		margin: 0 0 1em 0;
+	}
 
-		/* background: linear-gradient(45deg,rgb(134, 60, 253),var(--template-color)); */
+	img {
+		width: 100%;
+		max-width: 400px;
+		margin: 0 0 1em 0;
+	}
 
+	p {
+		margin: 1em auto;
 	}
-	img{
-		display:block;
-		width:150px;
-	}
-	.certificate{
-		font-size: 120px;
-		font-family: 'MonteCarlo', cursive;
-	}
-	.organization{
-		color:black;
-		font-size: 80px;
-		font-family: 'MonteCarlo', cursive;
-	}
-	.cont{
-		font-family: 'MonteCarlo', cursive;
-		font-size: 30px;
-	}
-	.straight{
-		font-family: 'Merriweather', serif;
 
-		/* font-family: 'MonteCarlo', cursive; */
+	@media (min-width: 480px) {
+		h1 {
+			font-size: 4em;
+		}
 	}
-	.flex{
-		margin-top: 30px;
-		display:flex;
-		align-items: stretch;
-	}
-	.flexit{
-		flex:1;
-		padding:20px;
-	}
-	p{
-		width:100%;
-		margin:0;
-		text-align: center;
-	}
-	h1{
-		margin:300px;
-	}
-	h2,h3{
-		font-size:300%;
+
+	input[type=checkbox]{
+		display:inline;
+		width:50px;
 	}
 </style>
 
-<div class="w3-card " style="--template-color:red">
-		{#if staff}
-		<h4 class="w3-black w3-round w3-card w3-padding"> Edit a staff member! </h4>
-		<form on:submit|preventDefault={handleSubmit} >
-			<input class="w3-input w3-border w3-round" type="text" bind:value={staff.username} placeholder="User Name(*)"/>
-			<input class="w3-input w3-border w3-round" type="email" bind:value={staff.email} placeholder="Email of the staff member(*)" disabled/>
-			<input class="w3-input w3-border w3-round" type="password" bind:value={staff.password} placeholder="New Password(*)"/>
-			<select class="w3-input w3-border w3-round w3-margin" bind:value={staff.role}>
-				<option  value="">Role(*)</option>
-				<option  value="admin">Administrator</option>
-				<option value="staff">Staff Member</option>
-			</select>
-		
-			{#if staff.role == "staff"}
-			<h4>Permissions</h4>
-			<label>Question Read</label>
-			<input type="checkbox" bind:group={staff.permissions} value="question_read"><br>
-			<label>Question create</label>
-			<input type="checkbox" bind:group={staff.permissions} value="question_create"><br>
-		
-			<label>Test Read</label>
-			<input type="checkbox" bind:group={staff.permissions} value="test_read"><br>
-			<label>Test create</label>
-			<input type="checkbox" bind:group={staff.permissions} value="test_create"><br>
-		
-			<label>Staff Read</label>
-			<input type="checkbox" bind:group={staff.permissions} value="staff_read"><br>
-			<label>Staff create</label>
-			<input type="checkbox" bind:group={staff.permissions} value="staff_create" disabled><br>
-		
-			<label>Students Read</label>
-			<input type="checkbox" bind:group={staff.permissions} value="student_read"><br>
-			<label>Students create</label>
-			<input type="checkbox" bind:group={staff.permissions} value="student_create"><br>
-		
-		
-			<label>Academic Material Read</label>
-			<input type="checkbox" bind:group={staff.permissions} value="academic_desk_read"><br>
-			<label>Academic Material create</label>
-			<input type="checkbox" bind:group={staff.permissions} value="academic_desk_create"><br>
-		
-			{/if}
-			<input class="w3-button w3-border w3-round w3-black w3-card" type="submit" value="Save">
-		
-		</form>
-		
-		{/if}
-</div>
+<svelte:head>
+	<title>Module-Chapter</title>
+</svelte:head>
+
+
+<h4 class=" w3-round w3-margin w3-xlarge"> Edit Module-Chapter</h4>
+<!-- <h4 class=" w3-margin w3-text-grey"> Lectures are later can be added into respective batches</h4> -->
+
+<!-- name: {
+	type: String,
+	required:true
+},
+class_number:{
+	type:String, 
+},
+subject:{
+	type:ObjectId,
+	ref:"subjects",
+},
+enabled_online -->
+
+
+<hr>
+{#if body}
+<form on:submit|preventDefault={handleSubmit} >
+	<label>Name</label>
+	<input class="w3-input w3-border w3-round w3-margin w3-padding" type="text" bind:value={body.name} placeholder="Name(*)" required/>
+	
+
+	<label>Chapter</label>
+	{#if chapters}
+	<label>Select a Chapter</label>
+	<select class="w3-input w3-margin w3-padding w3-white w3-round" bind:value={body.chapter} >
+		<option value="" >Select a Chapter</option>
+		{#each chapters as chapter}
+			<option value={chapter._id}>
+				{chapter.name}
+			</option>
+		{/each}
+	</select>
+	{/if}
+
+	<input class="w3-button w3-right w3-border w3-round w3-green w3-card w3-border" type="submit" value="Done">
+</form>
+{/if}

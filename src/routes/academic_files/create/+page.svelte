@@ -1,29 +1,21 @@
 
-
 <script>
-	import InstructionsList from '../../lib/components/lists/instructions.svelte';
 	import {onMount} from 'svelte';
-	import {Token} from '../_utils/dynamic_store.js';
-	import {ApiUrl} from '../_utils/static_store.js';
-	import { get } from 'svelte/store';
-// import { roomId } from '../room/[slug].svelte';
-	// export var roomId;
+	import {Token} from '../../_utils/dynamic_store.js';
+	import {ApiUrl} from '../../_utils/static_store.js';
+	import FilesList from '../../../lib/components/lists/files/academic.svelte';
+    
+	import AcademicFileCreate from '../../../lib/components/academic_file_create.svelte';
 
-	var instructions = null;
-	 var loginPath=get(ApiUrl);
 	
+	import { get } from 'svelte/store';
+	// import FileUploads from '../_utils/file_upload.svelte.js';
+
+	var files = null;
+	 var loginPath=get(ApiUrl);
 	 onMount(async ()=>{
-		const urlParams = new URLSearchParams(window.location.search);
-    	//  urlParams.has('class_number');
-		
-		// let classQuery="";
-		
-		if(urlParams.has('class_number'))
-		{
-			let classNumber =urlParams.get("class_number");
-			classQuery="?class_number="+classNumber;
-		}
-		
+		// $ = require( "jquery" )( window );
+		console.log("mounted");
 		// localStorage.setItem("token","some value");
 		
 		var token = localStorage.getItem("token");
@@ -36,24 +28,34 @@
 
 
 		// console.log(loginPath+'/auth/whoami');
-		const res = await fetch(loginPath+'/panel/instructions/',{mode:'cors',method:'get',headers:{'Authorization':'Bearer '+token}});
+		const res = await fetch(loginPath+'/panel/institute_files/all_academic',{mode:'cors',method:'get',headers:{'Authorization':'Bearer '+token}});
 		if(res.status==200){
 			try{
 					let response= await res.text();
-					// console.log(response);
+					console.log(response);
 					response= await JSON.parse(response);
-					instructions = response.data;
-					console.log(instructions);
-					console.log("branches are loaded");
+					if(response.status =="success")
+					{
+						files = response.data;
+					}
+					
+					
 			}
 			catch(e){
 				console.log("caught");
+				
 				console.log(e);
 			}
+			finally{
+				
+			}
+			
+			// let data = JSON.parse(text);
+			
 		}
 		else{
 					console.log(await res.text());
-					user.email="no logged";
+					// user.email="no logged";
 					
 				}
 		// 
@@ -125,30 +127,13 @@
 	}
 	a{
 		text-decoration: none;
+		display:block
 	}
 
-	img{
-		width:100px;
-	}
-
-	h2,h3{
+	h3{
 		font-size:300%;
 	}
 </style>
 
-
-<h3>Instructions</h3>
-<a href="/instructions/create/">
-	<button class="w3-button w3-border w3-round">Add new <i class="w3-text-grey fas fa-plus"></i></button>
-</a>
-
-
-<hr>
-<div class="w3-round">
-	{#if instructions}
-		<!-- <p>sad</p> -->
-		<InstructionsList {instructions} />
-	{:else}
-		<p>No Instructions Present</p>
-	{/if}
-</div>
+<!-- <h3>Craete A new Academic File</h3> -->
+<AcademicFileCreate></AcademicFileCreate>

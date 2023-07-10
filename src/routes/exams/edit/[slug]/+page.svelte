@@ -1,19 +1,25 @@
 <script>
 
-/** @type {import('./$types').PageData} */
+	/** @type {import('./$types').PageData} */
 export let data;
-export let instructionId = data.instructionId;
-console.log("instructionID from slug:" + instructionId);	
+export let examId = data.examId;
+console.log("examID from slug:" + examId);	
+
 
 	import {onMount} from 'svelte';
 	import {Token} from '../../../_utils/dynamic_store.js';
 	import {ApiUrl} from '../../../_utils/static_store.js';
 	import { get } from 'svelte/store';
+	import PickUpFiles from '../../../../lib/components/file_picker.svelte';
+	import FilesList from '../../../../lib/components/lists/files.svelte';
+
 
 	
 
 	export var edit = true;
-	export var body = {};
+	export var body = null;
+
+	let date;
 
 	function initializeTinyMice(){
 		tinymce.init({
@@ -44,13 +50,12 @@ console.log("instructionID from slug:" + instructionId);
 	});
 
 	async function getBody(){
-		console.log("instructions Id: "+instructionId);
 		var token = localStorage.getItem("token");
 		var loginPath=get(ApiUrl);
 		let res;
 		
 			
-			res = await fetch(loginPath+'/panel/instructions/single/'+instructionId,{mode:'cors',method:'get',headers:{'Authorization':'Bearer '+token,'Content-Type':'application/json'}});
+			res = await fetch(loginPath+'/panel/exams/single/'+examId,{mode:'cors',method:'get',headers:{'Authorization':'Bearer '+token,'Content-Type':'application/json'}});
 
 		
 		if(res.status==200){
@@ -60,7 +65,13 @@ console.log("instructionID from slug:" + instructionId);
 					if(response.status == "success")
 					{
 						body = response.data;
-						body.instructions= atob(body.instructions);
+						console.log(body);
+						date = new Date(body.exam_date);
+						// date= date.getFullYear()+"-"+date.getMonth()+"-"+date.getDate();
+						// date= date.replace("/","-");
+						date = body.exam_date.split("T")[0];
+						console.log(date);
+						// date = "2022-03-02";
 					}
 					else{
 						console.log(response.message);
@@ -71,19 +82,27 @@ console.log("instructionID from slug:" + instructionId);
 				console.log("caught");
 				console.log(e);
 			}
+			finally{
+				
+			}	
 		}
 		else{
 					console.log(await res.text());
+					user.email="no logged";
+					
 				}
 	}
 
 	async function handleSubmit(){
+		// body.content= btoa(tinymce.get('content').getContent());
+
 		var token = localStorage.getItem("token");
+		// body.topic = topic;
 		var loginPath=get(ApiUrl);
 		let res;
-		body.instructions =btoa(tinymce.get('instructions').getContent());
-
-		res = await fetch(loginPath+'/panel/instructions/edit/'+instructionId,{mode:'cors',method:'post',headers:{'Authorization':'Bearer '+token,'Content-Type':'application/json'},body:JSON.stringify(body)});
+		body.exam_date = new Date(date).toISOString();
+		console.log(body);
+		res = await fetch(loginPath+'/panel/exams/update/'+examId,{mode:'cors',method:'post',headers:{'Authorization':'Bearer '+token,'Content-Type':'application/json'},body:JSON.stringify(body)});
 
 		if(res.status==200){
 			try{
@@ -91,7 +110,8 @@ console.log("instructionID from slug:" + instructionId);
 					response= await JSON.parse(response);
 					if(response.status == "success")
 					{
-						location.reload();
+						alert("Saved Successfully");
+						// location.reload();
 					}
 					else{
 						console.log(response.message);
@@ -111,6 +131,7 @@ console.log("instructionID from slug:" + instructionId);
 					console.log(await res.text());
 				}
 	}
+	
 </script>
 
 <style>
@@ -152,10 +173,17 @@ console.log("instructionID from slug:" + instructionId);
 	}
 </style>
 
+<svelte:head>
+	<title>Exams</title>
+</svelte:head>
 
-<h4 class="w3-black w3-round w3-card w3-padding">Edit Instructions</h4>
+
+<h4 class="w3-black w3-round w3-card w3-padding">Edit Exam</h4>
+{#if body}
 <form on:submit|preventDefault={handleSubmit} >
 	<input class="w3-input w3-border w3-round" type="text" bind:value={body.name} placeholder="Name(*)" required/>
-	<textarea id="instructions" class="w3-input w3-border w3-round" type="text" bind:value={body.instructions} placeholder="Instructions"></textarea>
+	<input class="w3-input w3-border w3-round" type="date" bind:value={date} placeholder="Exam Date" required/>
+	<!-- <input class="w3-input w3-border w3-round" type="text" bind:value={body.contact} placeholder="Contact us" required/> -->
 	<input class="w3-button w3-border w3-round w3-black w3-card" type="submit" value="Save">
 </form>
+{/if}

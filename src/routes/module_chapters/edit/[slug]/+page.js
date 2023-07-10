@@ -8,7 +8,7 @@ export function load({ params }) {
     // }
     console.log(params);
     return {
-      staffId:params.slug
+      moduleChapterId:params.slug
     };
 
     // throw error(404, 'Not found');
