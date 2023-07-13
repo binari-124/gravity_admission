@@ -28,8 +28,12 @@ import { bind, prevent_default } from 'svelte/internal';
 	function initializeTinyMice(){
 		tinymce.init({
 			selector: 'textarea',  // change this value according to your HTML
-			plugins: 'advlist link image lists table'
+			plugins: 'advlist link image lists table',
+			table_appearcance_options:false,
 		});
+	}
+	function clearExam(){
+
 	}
 
 	 onMount(async ()=>{
@@ -54,6 +58,7 @@ import { bind, prevent_default } from 'svelte/internal';
 		 if(edit)
 		 {
 			console.log("editing mode for a question");
+			
 			console.log(body.question);
 
 			
@@ -73,6 +78,8 @@ import { bind, prevent_default } from 'svelte/internal';
 			for(var i = 0 ; i < body.options.length; i++)
 			{ 
 				body.options[i].option_value = atob(body.options[i].option_value);
+
+
 			}
 			
 			return;
@@ -378,6 +385,7 @@ import { bind, prevent_default } from 'svelte/internal';
 					if(response.status == "success")
 					{
 						streams=response.data;
+						console.log("this is streams");
 						console.log(streams);
 					}
 					else{
@@ -472,6 +480,10 @@ import { bind, prevent_default } from 'svelte/internal';
 					console.log(await res.text());
 				}
 	}
+	console.log("this is body");
+	console.log(body);
+	console.log(body.options);
+	console.log("this is body");
 
 </script>
 
@@ -540,8 +552,8 @@ import { bind, prevent_default } from 'svelte/internal';
 		/* background: red; */
 	}
 	label{
-		font-size: 70%;
-		color:grey
+		font-size: 100%;
+		color:#3c3c3c
 	}
 
 	input[type="radio"]{
@@ -648,37 +660,56 @@ import { bind, prevent_default } from 'svelte/internal';
 
 		</select> -->
 
-		{#if streams && body.streams}
+		<!-- {#if streams && body.streams}
 		<p>Select Streams</p><br>
-		<!-- {console.log(streams)} -->
+		<select class="w3-input w3-border w3-round w3-margin" bind:value={body.streams}>
+			<option value="-">Select Stream</option>
             {#each streams as stream}
-            <label>{stream.name.toUpperCase()}</label>
-                <input class="w3-checkbox w3-input" type="checkbox" value={stream._id} bind:group={body.streams} />
+            
+				<option value={stream._id}>{stream.name.toUpperCase()}</option>
+                
             {/each}
-		{/if}
+
+		</select>
+		{/if} -->
 
 
-		{#if subjects && body.subjects}
-		<p>Select Subjects</p><br>
+		{#if subjects}
+		<p>Subject</p><br>
+		<select class="w3-input w3-border w3-round w3-margin" bind:value={body.subject}>
+			<option value="-">Select Subject</option>
             {#each subjects as subject}
-            <label>{subject.name.toUpperCase()}</label>
-                <input class="w3-checkbox w3-input" type="checkbox" value={subject._id} bind:group={body.subjects} />
+            <!-- <label>{}</label> -->
+				<option value={subject._id}>{subject.name.toUpperCase()}</option>
+                <!-- <input class="w3-checkbox w3-input" type="checkbox"  bind:group={body.streams} /> -->
             {/each}
+
+		</select>
 		{/if} 
 
 		{#if exams}
-		<div class="w3-dropdown-hover w3-card  w3-round w3-margin">
+		<p>Exams</p><br>
+		<select class="w3-input w3-border w3-round w3-margin" bind:value={body.subject}>
+			<option value="-">Select Exam</option>
+            {#each exams as exam}
+            <!-- <label>{}</label> -->
+				<option value={exam._id}>{exam.name.toUpperCase()}</option>
+                <!-- <input class="w3-checkbox w3-input" type="checkbox"  bind:group={body.streams} /> -->
+            {/each}
+
+		</select>
+
+		<!-- <div class="w3-dropdown-hover w3-card  w3-round w3-margin">
 			<p class="w3-button">Exams</p>
 			<div class="w3-dropdown-content w3-bar-block w3-border ztop">
 				{#each exams as exam}
-				<!-- {console.log(exam.name)} -->
 				<p class="w3-button w3-center w3-red w3-right" on:click={clearExam}>Clear</p>
 				<div class="w3-margin">
 					<span class="label">{exam.name.toUpperCase()}</span><input class="" type=radio value={exam._id} bind:group={body.exam} />	
 				</div>
 				{/each}
 			</div>		
-		  </div> 
+		  </div>  -->
 		{/if}
 
 		{#if body.exam}
@@ -697,7 +728,7 @@ import { bind, prevent_default } from 'svelte/internal';
 			{#each body.options as option,i}
 			<p>Option {String.fromCharCode(i+65)}</p>
 			
-			<textarea id="option{i}" class="w3-input w3-margin w3-round w3-border" placeholder="Text / Latex" bind:value={option.option_value} />
+			<textarea id="option{i}" class="w3-input w3-margin w3-round w3-border" placeholder="Option {String.fromCharCode(65+i)}" bind:value={option.option_value} />
 			
 			
 			<hr>

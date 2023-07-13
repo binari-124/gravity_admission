@@ -424,6 +424,7 @@ import { bind, prevent_default } from 'svelte/internal';
 					if(response.status == "success")
 					{
 						streams=response.data;
+						console.log("this is streams");
 						console.log(streams);
 					}
 					else{
@@ -481,6 +482,8 @@ import { bind, prevent_default } from 'svelte/internal';
 					
 				}
 	}
+    console.log("this is body");
+	console.log(body);
 
 </script>
 
@@ -549,8 +552,8 @@ import { bind, prevent_default } from 'svelte/internal';
 		/* background: red; */
 	}
 	label{
-		font-size: 70%;
-		color:grey
+		font-size: 100%;
+		color:#3c3c3c
 	}
 
 	input[type="radio"]{
@@ -657,36 +660,55 @@ import { bind, prevent_default } from 'svelte/internal';
 
 		</select> -->
 
-		{#if streams && body.streams}
+		<!-- {#if streams && body.streams}
 		<p>Select Streams</p><br>
-		<!-- {console.log(streams)} -->
+		<select class="w3-input w3-border w3-round w3-margin" bind:value={body.stream}>
+			<option value="-">Select Stream</option>
             {#each streams as stream}
-            <label>{stream.name.toUpperCase()}</label>
-                <input class="w3-checkbox w3-input" type="checkbox" value={stream._id} bind:group={body.streams} />
-            {/each}
-		{/if}
 
-		{#if subjects && body.subjects}
-		<p>Select Subjects</p><br>
-            {#each subjects as subject}
-            <label>{subject.name.toUpperCase()}</label>
-                <input class="w3-checkbox w3-input" type="checkbox" value={subject._id} bind:group={body.subjects} />
+				<option value={stream._id}>{stream.name.toUpperCase()}</option>
+        
             {/each}
+
+		</select>
+		{/if} -->
+
+		{#if subjects}
+		<p>Subject</p><br>
+		<select class="w3-input w3-border w3-round w3-margin" bind:value={body.subject}>
+			<option value="-">Select Subject</option>
+            {#each subjects as subject}
+            <!-- <label>{}</label> -->
+				<option value={subject._id}>{subject.name.toUpperCase()}</option>
+                <!-- <input class="w3-checkbox w3-input" type="checkbox"  bind:group={body.streams} /> -->
+            {/each}
+
+		</select>
 		{/if} 
 
 		{#if exams}
-		<div class="w3-dropdown-hover w3-card  w3-round w3-margin">
+		<p>Exams</p><br>
+		<select class="w3-input w3-border w3-round w3-margin" bind:value={body.subject}>
+			<option value="-">Select Exam</option>
+            {#each exams as exam}
+            <!-- <label>{}</label> -->
+				<option value={exam._id}>{exam.name.toUpperCase()}</option>
+                <!-- <input class="w3-checkbox w3-input" type="checkbox"  bind:group={body.streams} /> -->
+            {/each}
+
+		</select>
+
+		<!-- <div class="w3-dropdown-hover w3-card  w3-round w3-margin">
 			<p class="w3-button">Exams</p>
 			<div class="w3-dropdown-content w3-bar-block w3-border ztop">
 				{#each exams as exam}
-				<!-- {console.log(exam.name)} -->
 				<p class="w3-button w3-center w3-red w3-right" on:click={clearExam}>Clear</p>
 				<div class="w3-margin">
 					<span class="label">{exam.name.toUpperCase()}</span><input class="" type=radio value={exam._id} bind:group={body.exam} />	
 				</div>
 				{/each}
 			</div>		
-		  </div> 
+		  </div>  -->
 		{/if}
 
 

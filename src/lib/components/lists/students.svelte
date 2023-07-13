@@ -53,8 +53,8 @@
                 <th>Email Id</th>
                 <th>Contact</th>
                 <th>Student ID</th>
-                <!-- <th>Delete?</th><th /></tr
-            > -->
+                <th>Delete?</th><th /></tr
+            >
         </thead>
         {#each students as student, ind}
             <tr class="w3-hover-shadow">
@@ -70,14 +70,14 @@
                         >{student._id}</a
                     ></td
                 >
-                <!-- <td
+                <td
                     ><button
                         class="w3-text-red w3-center"
                         on:click={() => {
                             handleDelete(student._id);
                         }}>Delete</button
                     ></td
-                > -->
+                >
             </tr>
         {/each}
     </table>

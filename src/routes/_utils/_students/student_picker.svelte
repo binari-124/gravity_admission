@@ -310,106 +310,107 @@
 </div>
 
 <style>
-    * {
-        color: rgb(51, 51, 51);
-    }
-    .content :global(h2) {
-        font-size: 1.4em;
-        font-weight: 500;
-    }
+	*{
+		color:rgb(51, 51, 51);
+	}
+	.content :global(h2) {
+		font-size: 1.4em;
+		font-weight: 500;
+	}
 
-    .content :global(pre) {
-        background-color: #dfc502;
-        box-shadow: inset 1px 1px 5px rgba(0, 0, 0, 0.05);
-        padding: 0.5em;
-        border-radius: 2px;
-        overflow-x: auto;
-    }
+	.content :global(pre) {
+		background-color: #dfc502;
+		box-shadow: inset 1px 1px 5px rgba(0, 0, 0, 0.05);
+		padding: 0.5em;
+		border-radius: 2px;
+		overflow-x: auto;
+	}
 
-    .content :global(pre) :global(code) {
-        background-color: transparent;
-        padding: 0;
-    }
+	.content :global(pre) :global(code) {
+		background-color: transparent;
+		padding: 0;
+	}
 
-    .content :global(ul) {
-        line-height: 1.5;
-    }
+	.content :global(ul) {
+		line-height: 1.5;
+	}
 
-    .content :global(li) {
-        margin: 0 0 0.5em 0;
-    }
+	.content :global(li) {
+		margin: 0 0 0.5em 0;
+	}
 
-    .container {
-        width: 100%;
-        /* border:1px solid rgb(140, 140, 140); */
-        border-radius: 5px;
-        margin: 10px;
-        padding: 10px;
-        display: flex;
-        flex-direction: column;
-        align-items: left;
+	.container{
+		
+		width:100%;
+		/* border:1px solid rgb(140, 140, 140); */
+		border-radius: 5px;
+		margin:10px;
+		padding: 10px;
+		display: flex;
+		flex-direction: column;
+		align-items: left;
 
-        /* background: linear-gradient(45deg,rgb(134, 60, 253),var(--template-color)); */
-    }
-    img {
-        display: block;
-        width: 150px;
-    }
-    .certificate {
-        font-size: 120px;
-        font-family: "MonteCarlo", cursive;
-    }
-    .organization {
-        color: black;
-        font-size: 80px;
-        font-family: "MonteCarlo", cursive;
-    }
-    .cont {
-        font-family: "MonteCarlo", cursive;
-        font-size: 30px;
-    }
-    .straight {
-        font-family: "Merriweather", serif;
+		/* background: linear-gradient(45deg,rgb(134, 60, 253),var(--template-color)); */
 
-        /* font-family: 'MonteCarlo', cursive; */
-    }
-    .flex {
-        margin-top: 30px;
-        display: flex;
-        align-items: stretch;
-    }
-    .flexit {
-        flex: 1;
-        padding: 20px;
-    }
-    p {
-        /* width:100%; */
-        margin: 0;
-        text-align: left;
-    }
-    h1 {
-        margin: 00px;
-    }
-    div {
-        align-self: left;
-        justify-self: left;
-    }
-    .abs {
-        position: absolute;
-        top: 120px;
-        right: 130px;
-    }
-    a {
-        text-decoration: none;
-    }
+	}
+	img{
+		display:block;
+		width:150px;
+	}
+	.certificate{
+		font-size: 120px;
+		font-family: 'MonteCarlo', cursive;
+	}
+	.organization{
+		color:black;
+		font-size: 80px;
+		font-family: 'MonteCarlo', cursive;
+	}
+	.cont{
+		font-family: 'MonteCarlo', cursive;
+		font-size: 30px;
+	}
+	.straight{
+		font-family: 'Merriweather', serif;
 
-    h2,
-    h3 {
-        font-size: 250%;
-    }
+		/* font-family: 'MonteCarlo', cursive; */
+	}
+	.flex{
+		margin-top: 30px;
+		display:flex;
+		align-items: stretch;
+	}
+	.flexit{
+		flex:1;
+		padding:20px;
+	}
+	p{
+		/* width:100%; */
+		margin:0;
+		text-align: left;
+	}
+	h1{
+		margin:00px;
+	}
+	div{
+		align-self: left;
+		justify-self: left;
+	}
+	.abs{
+		position:absolute;
+		top:120px;
+		right:130px;
+	}
+	a{
+		text-decoration: none;;
+	}
 
-    button {
-        display: inline;
-        width: 200px;
-    }
+	h2,h3{
+		font-size:250%;
+	}
+
+	button{
+		display:inline;
+		width:200px;
+	}
 </style>

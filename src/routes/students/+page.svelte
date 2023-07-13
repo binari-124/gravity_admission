@@ -128,9 +128,9 @@
 	<title>Gravity</title>
 </svelte:head>
 
-<div class="w-4/5 p-6">
+
 	<h3 class=" text-5xl">Students</h3>
-	<div class="container" style="--template-color:red">
+	<div class="grid-container w3-round" style="--template-color:red">
 		<a
 			class="w3-button w3-round w3-card w3-hover-green w3-margin"
 			href="/students/create">Create a Student</a
@@ -146,11 +146,11 @@
 </a> -->
 
 	<hr />
-	<div class="grid-container p-">
+	<div class="grid-container w3-round">
 		<!-- {#if students && students.length >0}
 	<StudentsList {students} />
 	{/if} -->
 
 		<StudentPicker picker={false} />
 	</div>
-</div>
+
