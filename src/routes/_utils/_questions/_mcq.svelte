@@ -714,16 +714,26 @@
 		<hr />
 		<section class=" shadow-2xl border-[1px] p-3 rounded-sm mt-10">
 			<h4>Correct Answer</h4>
+			<div
+				class="shadow-2xl border-[1px] p-2 rounded-md mx-1 w-52 bg-gray-200 border-gray-300"
+			>
 			<label>Partial Marking?</label>
+			
 			<input
 				type="radio"
 				checked={body.partial_marking}
 				on:click={toggleMarkingPartial}
-			/><br />
+			/>
+			</div>
+			<br />
 			<!-- <label for="question_correct"> Correct Answer</label><br /> -->
 			<!-- <h4>Correct Answer</h4> -->
+			
 			{#if body.answers}
 				{#each ["A", "B", "C", "D"] as a}
+				<div
+				class=" flex flex-row shadow-2xl   rounded-sm mx-4 p-1 w-36  "
+			>
 					<label>{a}</label>
 					<input
 						class="w3-checkbox w3-input"
@@ -731,8 +741,11 @@
 						value={a}
 						bind:group={body.answers}
 					/>
+				</div>
+				<br>
 				{/each}
 			{/if}
+			
 		</section>
 
 		<!-- <select id="question_correct" class="w3-input w3-border w3-round w3-margin" bind:value={body.correct_answer}>
@@ -757,7 +770,7 @@
 		<hr />
 
 		<input
-			class="w3-button w3-round w3-border"
+			class="w3-button w3-round w3-border  bg-gray-300 w-48 my-10"
 			type="submit"
 			value="Done"
 		/>
