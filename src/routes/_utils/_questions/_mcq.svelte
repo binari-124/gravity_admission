@@ -470,6 +470,18 @@
 	{edit ? "Edit a" : "Create a"}
 	<span class="w3-text-grey">a Multiple Choice Question</span>
 </h3>
+<div class="w-full float-left">
+	<div
+				class="shadow-2xl border-[1px] p-2 rounded-md mx-1 my-2  w-48 bg-gray-200 border-gray-300"
+			>
+				<label>For Advanced?</label>
+				<input
+					type="radio"
+					checked={body.for_advanced}
+					on:click={toggleAdvanced}
+				/>
+			</div>
+</div>
 <div class="width">
 	{#if edit}
 		<button
@@ -625,16 +637,7 @@
 
 		<section class=" shadow-2xl border-[1px] p-3 rounded-sm mt-10">
 			<h4>Question</h4>
-			<div
-				class="shadow-2xl border-[1px] p-2 rounded-md mx-1 w-48 bg-gray-200 border-gray-300"
-			>
-				<label>For Advanced?</label>
-				<input
-					type="radio"
-					checked={body.for_advanced}
-					on:click={toggleAdvanced}
-				/>
-			</div>
+			
 			<br />
 			<label for="question">Question Body*</label>
 			<textarea
@@ -715,17 +718,7 @@
 		<hr />
 		<section class=" shadow-2xl border-[1px] p-3 rounded-sm mt-10">
 			<h4>Correct Answer</h4>
-			<div
-				class="shadow-2xl border-[1px] p-2 rounded-md mx-1 w-52 bg-gray-200 border-gray-300"
-			>
-			<label>Partial Marking?</label>
 			
-			<input
-				type="radio"
-				checked={body.partial_marking}
-				on:click={toggleMarkingPartial}
-			/>
-			</div>
 			<br />
 			<!-- <label for="question_correct"> Correct Answer</label><br /> -->
 			<!-- <h4>Correct Answer</h4> -->
@@ -735,7 +728,8 @@
 				<div
 				class=" flex flex-row shadow-2xl   rounded-sm mx-4 p-1 w-36  "
 			>
-					<label>{a}</label>
+					<!-- <label class="text-gray-900">{a}</label> -->
+					<p class="text-xl">{a}</p>
 					<input
 						class="w3-checkbox w3-input"
 						type="checkbox"
@@ -746,6 +740,17 @@
 				<br>
 				{/each}
 			{/if}
+			<div
+				class="shadow-2xl border-[1px] p-2 rounded-md mx-1 w-52  border-gray-300"
+			>
+			<label>Partial Marking?</label>
+			
+			<input
+				type="radio"
+				checked={body.partial_marking}
+				on:click={toggleMarkingPartial}
+			/>
+			</div>
 			
 		</section>
 

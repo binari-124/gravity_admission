@@ -67,7 +67,8 @@
 		tinymce.init({
 			selector: "textarea", // change this value according to your HTML
 			plugins: "advlist link image lists table",
-			content_css : '/home/hexagon/Documents/gravity_admission/src/routes/_utils/content.css',
+			content_css:
+				"/home/hexagon/Documents/gravity_admission/src/routes/_utils/content.css",
 		});
 	}
 
@@ -476,6 +477,18 @@
 	{edit ? "Edit a" : "Create a"}
 	<span class="w3-text-grey"> Integer type Question</span>
 </h3>
+<div class="w-full float-left">
+	<div
+		class="shadow-2xl border-[1px] p-2 rounded-md mx-1 my-2 w-48 bg-gray-200 border-gray-300"
+	>
+		<label>For Advanced?</label>
+		<input
+			type="radio"
+			checked={body.for_advanced}
+			on:click={toggleAdvanced}
+		/>
+	</div>
+</div>
 <div class="width">
 	{#if edit}
 		<button
@@ -625,22 +638,13 @@
 		</section>
 		<section class=" shadow-2xl border-[1px] p-3 rounded-sm mt-10">
 			<h4>Question</h4>
-			<div
-				class="shadow-2xl border-[1px] p-2 rounded-md mx-1 w-48 bg-gray-200 border-gray-300"
-			>
-				<label>For Advanced?</label>
-				<input
-					type="radio"
-					checked={body.for_advanced}
-					on:click={toggleAdvanced}
-				/>
-			</div>
+
 			<br />
-			<label for="question">Question Body*</label>
+			<label for="question">Question Body</label>
 			<textarea
 				id="question"
 				class="w3-input w3-round w3-border"
-				placeholder="Text / Latex"
+				placeholder="Question Body"
 				bind:value={body.question}
 			/>
 		</section>
@@ -698,35 +702,45 @@
 		<hr />
 
 		<hr />
+
+		<section class=" shadow-2xl border-[1px] p-3 rounded-sm mt-10">
+			<div>
+				<!-- <label for="question_correct"> Integer Correct Answer</label>
+				<label>Is Range Based?</label><br /> -->
+				<h4>Integer Correct Answer/Range Based</h4>
+				<input type="checkbox" class="my-4 ml-2" bind:checked={isRangeBased} /><br>
+				{#if isRangeBased}
+					<input
+						class="border-[1px] ml-2 p-1"
+						type="text"
+						placeholder="Answer Range Start"
+						bind:value={rangeStart}
+					/>
+					<input
+						class="border-[1px] ml-8 p-1"
+						type="text"
+						placeholder="Answer Range End"
+						bind:value={rangeEnd}
+					/>
+				{:else}
+					<input
+						class="border-[1px] ml-2 p-1"
+						type="text"
+						placeholder="Integer Correct Answer"
+						bind:value={body.correct_answer}
+					/>
+				{/if}
+			</div>
+		</section>
+
 		<section class=" shadow-2xl border-[1px] p-3 rounded-sm mt-10">
 			<h4>Solutions</h4>
-			<label for="question_correct"> Integer Correct Answer</label>
-			<label>Is Range Based?</label><br />
-			<input type="checkbox" class="" bind:checked={isRangeBased} />
-			{#if isRangeBased}
-				<input
-					type="text"
-					placeholder="Answer Range Start"
-					bind:value={rangeStart}
-				/>
-				<input
-					type="text"
-					placeholder="Answer Range End"
-					bind:value={rangeEnd}
-				/>
-			{:else}
-				<input
-					type="text"
-					placeholder="Integer Correct Answer"
-					bind:value={body.correct_answer}
-				/>
-			{/if}
 
-			<label for="solution">Solution </label>
+			<!-- <label for="solution">Solution </label> -->
 			<textarea
 				id="solution"
 				class="w3-input w3-round w3-border"
-				placeholder="Text / Latex"
+				placeholder="Solutions"
 				bind:value={body.solution}
 			/>
 		</section>
@@ -735,7 +749,7 @@
 		<hr />
 
 		<input
-			class="w3-button w3-round w3-border  bg-gray-300 w-48 my-10"
+			class="w3-button w3-round w3-border bg-gray-300 w-48 my-10"
 			type="submit"
 			value="Done"
 		/>

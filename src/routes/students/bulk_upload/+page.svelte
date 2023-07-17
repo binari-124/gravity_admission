@@ -1,3 +1,4 @@
+
 <script context="module">
 	// import * as timeago from 'timeago.js';
 	export async function preload(p,session) {
@@ -97,7 +98,7 @@
 </style>
 
 <h3>Student Data Bulk Upload</h3>
-<a href="/content/files/1664023160691.vnd.ms-excel" class="w3-button w3-padding w3-card w3-margin w3-inline">Download Sample Excel </a>
+<a href="/content/files/sample_student_bulk_upload.xls" class="w3-button w3-padding w3-card w3-margin w3-inline">Download Sample Excel </a>
 
 <XCLUpload bind:returnData={returnData}></XCLUpload>
 

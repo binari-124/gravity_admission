@@ -28,7 +28,8 @@
 			selector: "textarea", // change this value according to your HTML
 			plugins: "advlist link image lists table",
 			table_appearcance_options: false,
-			content_css : '/home/hexagon/Documents/gravity_admission/src/routes/_utils/content.css', 
+			content_css:
+				"/home/hexagon/Documents/gravity_admission/src/routes/_utils/content.css",
 		});
 	}
 
@@ -464,6 +465,15 @@
 	{edit ? "Edit a" : "Create a"}
 	<span class="w3-text-grey"> Single Choice Question</span>
 </h3>
+<div class="w-full float-left">
+	<div
+	class="shadow-2xl border-[1px] p-2 rounded-md mx-1 my-2  w-48 bg-gray-200 border-gray-300"
+>
+	<span>For Advanced?</span>
+	<!-- <label>For Advanced?</label> -->
+	<input type="radio" checked={body.for_advanced} on:click={toggleAdvanced} />
+</div>
+</div>
 <div class="width">
 	{#if edit}
 		<button
@@ -632,17 +642,6 @@
 		<section class=" shadow-2xl border-[1px] p-3 rounded-sm mt-10">
 			<h4>Question</h4>
 
-			<div
-				class="shadow-2xl border-[1px] p-2 rounded-md mx-1 w-48 bg-gray-200 border-gray-300"
-			>
-				<span>For Advanced?</span>
-				<!-- <label>For Advanced?</label> -->
-				<input
-					type="radio"
-					checked={body.for_advanced}
-					on:click={toggleAdvanced}
-				/>
-			</div>
 			<br />
 			<label for="question">Question Body*</label>
 			<textarea
@@ -725,20 +724,20 @@
 		</section>
 		<hr />
 		<section class=" shadow-2xl border-[1px] p-3 rounded-sm mt-8">
-		<!-- <h4>Solutions</h4> -->
-		<!-- <label for="question_correct"> Correct Answer</label> -->
-		<h4>Correct Answer</h4>
-		<select
-			id="question_correct"
-			class="w3-input w3-border w3-round w3-margin"
-			bind:value={body.correct_answer}
-		>
-			<option value="A">Option A</option>
-			<option value="B">Option B</option>
-			<option value="C">Option C</option>
-			<option value="D">Option D</option>
-		</select>
-	    </section>
+			<!-- <h4>Solutions</h4> -->
+			<!-- <label for="question_correct"> Correct Answer</label> -->
+			<h4>Correct Answer</h4>
+			<select
+				id="question_correct"
+				class="w3-input w3-border w3-round w3-margin"
+				bind:value={body.correct_answer}
+			>
+				<option value="A">Option A</option>
+				<option value="B">Option B</option>
+				<option value="C">Option C</option>
+				<option value="D">Option D</option>
+			</select>
+		</section>
 		<section class=" shadow-2xl border-[1px] p-3 rounded-sm mt-8">
 			<!-- <label for="solution">Solution </label> -->
 			<h4>Solutions</h4>
@@ -751,7 +750,7 @@
 		</section>
 		<hr />
 		<input
-			class="w3-button w3-round w3-border  bg-gray-300 w-48 my-10 "
+			class="w3-button w3-round w3-border bg-gray-300 w-48 my-10"
 			type="submit"
 			value="Done"
 		/>

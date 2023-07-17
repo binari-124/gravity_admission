@@ -1,5 +1,5 @@
 <script>
-	export var url=`/api/files/students_excel`;
+	export var url=`/api/panel/files/student_bulk_upload`;
 	export var dontReload=false;
 
 	export var returnData;
@@ -46,7 +46,7 @@
 			let data = await JSON.parse(response);
 			if(data.status == "success")
 			{
-				returnData = data.failed_transactions;
+				returnData = data.data;
 				console.log(returnData);
 			}
 			else{
