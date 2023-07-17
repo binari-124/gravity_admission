@@ -1,5 +1,3 @@
-
-
 <script>
 	import ImageUpload from '../_utils/imageUpload.svelte';
 	import DataUpload from '../_utils/dataUpload.svelte';

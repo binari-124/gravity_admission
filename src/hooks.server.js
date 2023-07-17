@@ -69,7 +69,7 @@ export async function handle({ event, resolve }) {
     return new Response(JSON.stringify(data));
     // event.request = await new Request(event.request.url.replace(host,"http://localhost:16009"),event.request);
   }
-
+  console.log(event.request.url);
   if (event.request.url.startsWith(host+'/api') || event.request.url.startsWith(host+'/content/')) {
     console.log("relegating api to other server");
     var url = event.request.url.replace(host,api_target);
