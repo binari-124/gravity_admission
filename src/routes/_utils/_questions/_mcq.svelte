@@ -633,6 +633,7 @@
 		  </div>  -->
 				{/if}
 			</div>
+			<input class="my-4 p-2 border-2 w-full " type="text" bind:value={body.media} placeholder="Media Link(Youtube)" />
 		</section>
 
 		<section class=" shadow-2xl border-[1px] p-3 rounded-sm mt-10">
