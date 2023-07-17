@@ -1,6 +1,6 @@
 
 <script>
 import Dashboard from "../pages/dashboard.svelte";
-location.href = "/dashboard"
+// window.location.href = "/dashboard"
  </script>
 <!-- <Dashboard /> -->

@@ -28,6 +28,7 @@
 			selector: "textarea", // change this value according to your HTML
 			plugins: "advlist link image lists table",
 			table_appearcance_options: false,
+			content_css : '/home/hexagon/Documents/gravity_admission/src/routes/_utils/content.css',
 		});
 	}
 	function clearExam() {}
@@ -488,7 +489,7 @@
 						bind:value={body.chapter}
 						on:change={getTopics(body.chapter)}
 					>
-						<option value="-">Chapter(*)</option>
+						<option value="-">Chapter</option>
 
 						{#each chapters as chapter}
 							<option value={chapter._id}>{chapter.name}</option>
@@ -538,7 +539,7 @@
 					class="w3-input w3-border w3-round"
 					bind:value={body.difficulty}
 				>
-					<option value="-">Select Difficulty(*)</option>
+					<option value="-">Select Difficulty</option>
 					<option value="very-easy">Very Easy</option>
 					<option value="easy">Easy</option>
 					<option value="medium">Medium</option>

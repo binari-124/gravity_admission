@@ -67,6 +67,7 @@
 		tinymce.init({
 			selector: "textarea", // change this value according to your HTML
 			plugins: "advlist link image lists table",
+			content_css : '/home/hexagon/Documents/gravity_admission/src/routes/_utils/content.css',
 		});
 	}
 
