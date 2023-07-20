@@ -1,1 +1,3 @@
-export { default as component } from "../../../../src/routes/module_chapters/create/+page.svelte";
+import * as universal from "../../../../src/routes/marking_schemes/edit/[slug]/+page.js";
+export { universal };
+export { default as component } from "../../../../src/routes/marking_schemes/edit/[slug]/+page.svelte";

@@ -1,16 +1,25 @@
+<!-- <script context="module">
+	export async function preload(p,session) {
+		let params = p.params;
+		return {comprehensionId:params.slug};
+	}
+</script> -->
 <script>
 
-/** @type {import('./$types').PageData} */
+	/** @type {import('./$types').PageData} */
 export let data;
 export let comprehensionId = data.comprehensionId;
-console.log("comprehensionID from slug:" + comprehensionId);	
+console.log("comprehensionID from slug:" + comprehensionId); 
+
 
 	import {onMount} from 'svelte';
-	import {Token} from '../../_utils/dynamic_store.js';
-	import {ApiUrl} from '../../_utils/static_store.js';
+	import {Token} from '../../../_utils/dynamic_store.js';
+	import {ApiUrl} from '../../../_utils/static_store.js';
 	import { get } from 'svelte/store';
-	import PickUpFiles from '../../../components/file_picker.svelte';
-	import FilesList from '../../../components/Lists/files.svelte';
+	import PickUpFiles from '../../../../lib/components/file_picker.svelte';
+	import FilesList from '../../../../lib/components/lists/files.svelte';
+	
+	
 
 
 	
