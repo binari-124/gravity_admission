@@ -1,6 +1,12 @@
+<!-- <script context="module">
+	export async function preload(p,session) {
+		
+		let params = p.params;
+		return {batchId:params.slug};
+	}
+</script> -->
 <script>
-
-/** @type {import('./$types').PageData} */
+	/** @type {import('./$types').PageData} */
 export let data;
 export let batchId = data.batchId;
 console.log("batchID from slug:" + batchId);
@@ -11,19 +17,19 @@ import TestsList from '../../../lib/components/lists/batches/tests.svelte';
 import StudentsList from '../../../lib/components/lists/batches/students.svelte';
 import FilesList from '../../../lib/components/lists/batches/files.svelte';
 import ModulesList from '../../../lib/components/lists/batches/modules.svelte';
+import FacultiesList from '../../../lib/components/lists/batches/faculties.svelte';
 
 
 
-
-	import {onMount} from 'svelte';
-	import {Token} from '../../_utils/dynamic_store.js';
-	import {ApiUrl} from '../../_utils/static_store.js';
-	import { get } from 'svelte/store';
+import {onMount} from 'svelte';
+import {Token} from '../../_utils/dynamic_store.js';
+import {ApiUrl} from '../../_utils/static_store.js';
+import { get } from 'svelte/store';
 	
 
 	let tab = "lectures";
 	let batch;
-	let lectureId,testId,studentId,fileId,moduleId;
+	let lectureId,testId,studentId,fileId,moduleId,facultyId;
 	
 	onMount(async ()=>{
 		console.log("mounted");
@@ -313,6 +319,43 @@ import ModulesList from '../../../lib/components/lists/batches/modules.svelte';
 					console.log(await res.text());
 				}
 	}
+
+	async function addFacultyToBatch(){
+		var token = localStorage.getItem("token");
+		var loginPath=get(ApiUrl);
+		let res;
+		if(!facultyId || facultyId=="" || facultyId.length != 24){
+			alert("please enter a valid Module Id");
+			return;
+		}
+		res = await fetch(loginPath+'/panel/batches/batch_add_faculty/'+batchId+"/"+facultyId,{mode:'cors',method:'post',headers:{'Authorization':'Bearer '+token,'Content-Type':'application/json'}});
+
+		if(res.status==200){
+			try{
+					let response= await res.text();
+					response= await JSON.parse(response);
+					if(response.status == "success")
+					{
+						location.reload();
+					}
+					else{
+						console.log(response.message);
+						alert(response.message);
+					}	
+			}
+			catch(e){
+				console.log("caught");
+				
+				console.log(e);
+			}
+			finally{
+				
+			}	
+		}
+		else{
+					console.log(await res.text());
+				}
+	}
 	function switchTab(tabName){
 		tab = tabName;
 	}
@@ -463,9 +506,9 @@ import ModulesList from '../../../lib/components/lists/batches/modules.svelte';
 		<tr class="w3-hover-shadow">
 			<!-- <td>{ind+1}</td> -->
 			<td>{batch.name}</td>
-			<td>{batch.stream.name}</td>
-			<td>{batch.branch.name}</td>
-			<td>{batch.class_number.toString()}</td>
+			<td>{batch.stream!=null?batch.stream.name:"-"}</td>
+          <td>{batch.branch!=null?batch.branch.name:"-"}</td>
+          <td>{batch.class_number!=null?batch.class_number.toString():"-"}</td>
 			<td><a class="w3-text-blue" href="/batches/{batch._id}">{batch._id}</a></td>
 			<td><a href="/batches/edit/{batch._id}"><button class="w3-button w3-card w3-round"><i class="w3-text-grey fas fa-edit"></i> Edit</button></a></td>
 			<!-- <td><button class="w3-text-blue w3-center" on:click={()=>{handleDelete(batch._id)}} >Edit</button></td> -->
@@ -480,6 +523,7 @@ import ModulesList from '../../../lib/components/lists/batches/modules.svelte';
 	  <button on:click={()=>{switchTab("students");}}  class="w3-left {tab=="students"?"w3-green":""} w3-inline w3-margin w3-card w3-padding w3-show-inline-block w3-round">Students</button>
 	  <button on:click={()=>{switchTab("files");}}  class="w3-left {tab=="files"?"w3-green":""} w3-inline w3-margin w3-card w3-padding w3-show-inline-block w3-round">Files</button>
 	  <button on:click={()=>{switchTab("modules");}}  class="w3-left {tab=="modules"?"w3-green":""} w3-inline w3-margin w3-card w3-padding w3-show-inline-block w3-round">Modules</button>
+	  <button on:click={()=>{switchTab("faculties");}}  class="w3-left {tab=="faculties"?"w3-green":""} w3-inline w3-margin w3-card w3-padding w3-show-inline-block w3-round">Faculties</button>
 
 	</div>
 		{#if tab=="lectures"}
@@ -531,6 +575,17 @@ import ModulesList from '../../../lib/components/lists/batches/modules.svelte';
 			<button class="w3-green w3-padding w3-margin w3-card w3-round" on:click={addModuleToBatch} >Add</button><br/>
 			<!-- <a href="/files/create"><button class=" w3-card w3-margin w3-text-green w3-padding w3-rounded"><i class="fa-solid fa-plus w3-text-green"></i>Create New</button></a> -->
 			<ModulesList modules={batch.modules} {batchId} />
+
+		</div>
+		{/if}
+
+		{#if tab=="faculties"}
+		<div>
+			<h1 class="w3-xlarge w3-round w3-padding w3-margin "># Faculties: {batch.faculties.length}</h1>
+			<input type="text" class="w3-border w3-round w3-padding" bind:value={facultyId} placeholder="Faculty Id" />
+			<button class="w3-green w3-padding w3-margin w3-card w3-round" on:click={addFacultyToBatch} >Add</button><br/>
+			<!-- <a href="/files/create"><button class=" w3-card w3-margin w3-text-green w3-padding w3-rounded"><i class="fa-solid fa-plus w3-text-green"></i>Create New</button></a> -->
+			<FacultiesList faculties={batch.faculties} {batchId} />
 
 		</div>
 		{/if}

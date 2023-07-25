@@ -61,6 +61,7 @@
 			<a class="" href="/questions/"><li  class="w3-hover-blue w3-round w3-padding" aria-current="{segment === "questions" ? 'page' : undefined}" ><i class="fa-solid fa-book-open"></i>  Questions</li></a><hr>
 			<a class=" " href="/chapters/"><li class="w3-hover-blue w3-round w3-padding" aria-current="{segment === "chapters" ? 'page' : undefined}" ><i class="fa-solid fa-book-open-reader"></i>  Chapters,Topics & Subtopics</li></a><hr>
 			<a class=" " href="/staff/"><li class="w3-hover-blue w3-round w3-padding" aria-current="{segment === "staff" ? 'page' : undefined}" ><i class="fa-solid fa-users"></i>  Staff</li></a><hr>
+			<a class=" " href="/faculties/"><li class="w3-hover-blue w3-round w3-padding" aria-current="{segment === "staff" ? 'page' : undefined}" ><i class="fa-solid fa-users"></i>  faculties</li></a><hr>
 			<a  href="/packages/"><li class="w3-hover-blue w3-round w3-padding" aria-current="{segment === "packages" ? 'page' : undefined}" ><i class="fa-regular fa-paste"></i>  Packages</li></a><hr>
 			<a  href="/exams/"><li class="w3-hover-blue w3-round w3-padding" aria-current="{segment === "exams" ? 'page' : undefined}" ><i class="fa-solid fa-passport"></i>  Exams</li></a><hr>			
 			<a  href="/comprehensions/"><li class="w3-hover-blue w3-round w3-padding" aria-current="{segment === "comprehensions" ? 'page' : undefined}" ><i class="fa fa-book"></i>  Comprehensions</li></a><hr>
