@@ -18,6 +18,8 @@
 	import INTR from '../../../_utils/_questions/_int_range.svelte';
 	import FIB from '../../../_utils/_questions/_fib.svelte';
 	import FIBR from '../../../_utils/_questions/_fib_range.svelte';
+	import COMP from '../../../_utils/_questions/_comprehension.svelte';
+	import MAT from '../../../_utils/_questions/_matrix.svelte';
 
 
 	
@@ -201,6 +203,12 @@
 			{/if}
 			{#if question.question_type=="integer" && question.question_subtype=="range"}
 				<INTR edit={true} body={question} ></INTR>	
+			{/if}
+			{#if question.question_type=="comprehension"}
+				<COMP edit={true} body={question} ></COMP>	
+			{/if}
+			{#if question.question_type=="matrix"}
+				<MAT edit={true} body={question} ></MAT>	
 			{/if}
 		{/if}
 </div>

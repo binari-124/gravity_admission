@@ -1,14 +1,4 @@
-<!-- <script context="module">
-	 console.log("hello");
-	 
 
-	var user =null;
-	export const preload = async function( page, session) {	
-	}
-
-
-	
-</script> -->
 
 <script>
 	import ImageUpload from '../_utils/imageUpload.svelte';

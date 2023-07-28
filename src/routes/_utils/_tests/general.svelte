@@ -468,7 +468,7 @@ import { bind, prevent_default } from 'svelte/internal';
     <form on:submit|preventDefault={saveTest}>
 		<h4>General Test</h4>
 		<label>Enabled</label>
-		<input class="w3-radio w3-input" type="checkbox" bind:checked={body.enabled}/>
+		<input class="w3-radio w3-input" type="checkbox" bind:checked={body.enabled}/><br><br>
 
 		<label for="question">Name*</label>
 		<input type="text"  class="w3-input w3-round w3-border" placeholder="Name" bind:value={body.name} required/>

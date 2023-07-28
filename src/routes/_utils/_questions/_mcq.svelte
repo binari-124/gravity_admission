@@ -62,7 +62,7 @@
 			body.question = atob(body.question);
 			body.solution = atob(body.solution);
 
-			body.answers = JSON.parse(body.correct_answer);
+			body.answers = body.correct_answer;
 
 			for (var i = 0; i < body.options.length; i++) {
 				body.options[i].option_value = atob(
@@ -107,7 +107,7 @@
 		data.question_subtype = "simple";
 		data.question = btoa(tinymce.get("question").getContent());
 		data.solution = btoa(tinymce.get("solution").getContent());
-		data.correct_answer = JSON.stringify(data.answers);
+		data.correct_answer = data.answers;
 		delete data.answers;
 		console.log(data);
 		// alert("continueing");

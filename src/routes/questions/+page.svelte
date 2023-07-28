@@ -182,6 +182,8 @@
 		<a class="w3-button w3-round w3-card w3-hover-green w3-margin" href="/questions/create/scq">Single Choice Question</a>
 		<a class="w3-button w3-round w3-card w3-hover-green w3-margin" href="/questions/create/mcq">Multiple Choice Question</a>
 		<a class="w3-button w3-round w3-card w3-hover-green w3-margin" href="/questions/create/int">Integer Question</a>
+		<a class="w3-button w3-round w3-card w3-hover-green w3-margin" href="/questions/create/comprehension">Comprehension Question</a>
+		<a class="w3-button w3-round w3-card w3-hover-green w3-margin" href="/questions/create/matrix">Matrix Question</a>
 		<!-- <a href="/questions/create/fib">Fill In the blanks</a> -->
 		<!-- <a class="w3-button w3-round w3-card w3-hover-green w3-margin" href="/questions/create/int_range">Integer - Range Based Question</a> -->
 

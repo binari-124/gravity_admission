@@ -21,6 +21,7 @@
 	"type": "module",
 	"dependencies": {
 		"@babel/core": "^7.22.5",
+		"@tinymce/tinymce-svelte": "^1.0.1",
 		"bcrypt": "^5.0.1",
 		"compression": "^1.7.4",
 		"connect-mongo": "^5.0.0",

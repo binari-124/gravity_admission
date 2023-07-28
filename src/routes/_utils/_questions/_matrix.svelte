@@ -60,9 +60,6 @@
 			getsubTopics(body.topic, false);
 
 			body.question = atob(body.question);
-			if(body.comprehension){
-				body.comprehension= body.comprehension._id;
-			}
 			body.solution = atob(body.solution);
 
 			for (var i = 0; i < body.options.length; i++) {
@@ -103,7 +100,7 @@
 
 	async function saveQuestion() {
 		let data = cloneDeep(body);
-		data.question_type = "comprehension";
+		data.question_type = "maitrix";
 		data.question_subtype = "simple";
 		data.question = btoa(tinymce.get("question").getContent());
 		data.solution = btoa(tinymce.get("solution").getContent());
@@ -466,7 +463,7 @@
 
 <h3 class="w3-black w3-round w3-padding width">
 	{edit ? "Edit a" : "Create a"}
-	<span class="w3-text-grey"> Comprehension Question</span>
+	<span class="w3-text-grey"> Matrix Question</span>
 </h3>
 <div class="w-full float-left">
 	<div
@@ -615,7 +612,7 @@
 					<select
 						id="question_exam"
 						class="w3-input w3-border w3-round"
-						bind:value={body.exams}
+						bind:value={body.subject}
 					>
 						<option value="-">Select Exam</option>
 						{#each exams as exam}
@@ -641,24 +638,9 @@
 				{/if}
 			</div>
 
-			<input class="my-4 p-2 w3-border w-full " type="text" bind:value={body.media} placeholder="Media Link(Youtube)" />
+			<input class="my-4 p-2 border-2 w-full " type="text" bind:value={body.media} placeholder="Media Link(Youtube)" />
 		</section>
 
-		
-		<section class=" shadow-2xl border-[1px] p-3 rounded-sm mt-10">
-			<h4>Comprehension Id</h4>
-
-			<br />
-			<!-- <label for="question">Comprehension ID*</label> -->
-			<!-- <textarea
-				id="question"
-				class="w3-input w3-round w3-border"
-				placeholder="Comprehension Id"
-				bind:value={body.comprehension}
-			/> -->
-			<input class="my-4 p-2 w3-border w-full " type="text" bind:value={body.comprehension} placeholder="Comprehension Id" />
-		</section>
-		
 		<section class=" shadow-2xl border-[1px] p-3 rounded-sm mt-10">
 			<h4>Question</h4>
 
