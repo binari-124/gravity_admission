@@ -149,9 +149,24 @@
 		// console.log(data);
 		data.question_type = "integer";
 		data.question_subtype = "simple";
-		if (isNaN(parseInt(body.correct_answer))) {
+		if (isRangeBased) {
+			if (isNaN(parseInt(rangeStart))) {
+				alert("Please enter a correct start range in the answer.");
+				return;
+			}
+			if (isNaN(parseInt(rangeEnd))) {
+				alert("Please enter a correct end range in the answer.");
+				return;
+			}
+			body.correct_answer = rangeStart + "::" + rangeEnd;
+			body.question_subtype = "range";
+		}
+		else{
+			if (isNaN(parseInt(body.correct_answer))) {
 			alert("Please enter a correct Integer in the answer.");
 			return;
+			}
+
 		}
 		data.question = btoa(tinymce.get("question").getContent());
 		data.solution = btoa(tinymce.get("solution").getContent());
@@ -610,7 +625,7 @@
 					<br />
 					<select
 						class="w3-input w3-border w3-round"
-						bind:value={body.subject}
+						bind:value={body.exams}
 					>
 						<option value="-">Select Exam</option>
 						{#each exams as exam}
@@ -646,7 +661,7 @@
 				id="question"
 				class="w3-input w3-round w3-border"
 				placeholder="Question Body"
-				bind:value={body.question}
+				value={body.question}
 			/>
 		</section>
 

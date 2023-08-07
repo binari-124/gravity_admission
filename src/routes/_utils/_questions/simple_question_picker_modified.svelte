@@ -281,7 +281,9 @@
 			<option  value="-">Select Question Type</option>
 			<option  value="scq">Single Choice Question</option>
             <option value="mcq">Multiple Choice Question</option>
-			<option  value="integer">Integer</option>
+			<option  value="integer">Integer Question</option>
+            <option  value="comprehension">comprehension Question</option>
+            <option  value="matrix">matrix Question</option>
 			<option value="fill_in_blanks">Fill in the blanks</option>
 		</select>
     

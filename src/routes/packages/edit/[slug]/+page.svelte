@@ -45,7 +45,10 @@ console.log("packageID from slug:" + packageId);
 					if(response.status == "success")
 					{
 						body = response.data;
-						// console.log(body);
+						console.log("this is body");
+						console.log(body);
+						console.log(body.paid);
+						console.log("if paid or not");
 						// if(body.paid)
 						//body.class_number=body.class_number.toString();
 						// if(body.stream)

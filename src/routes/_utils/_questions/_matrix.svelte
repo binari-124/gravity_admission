@@ -100,7 +100,7 @@
 
 	async function saveQuestion() {
 		let data = cloneDeep(body);
-		data.question_type = "maitrix";
+		data.question_type = "matrix";
 		data.question_subtype = "simple";
 		data.question = btoa(tinymce.get("question").getContent());
 		data.solution = btoa(tinymce.get("solution").getContent());
@@ -612,7 +612,7 @@
 					<select
 						id="question_exam"
 						class="w3-input w3-border w3-round"
-						bind:value={body.subject}
+						bind:value={body.exams}
 					>
 						<option value="-">Select Exam</option>
 						{#each exams as exam}

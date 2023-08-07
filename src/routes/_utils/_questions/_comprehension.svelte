@@ -18,6 +18,7 @@
 	var subjects = [];
 	var streams = [];
 	var exams = [];
+	var comprehensionContent = "";
 	export var bodyJson;
 	export var body = {};
 	export var edit = false;
@@ -27,7 +28,7 @@
 		tinymce.init({
 			selector: "textarea", // change this value according to your HTML
 			plugins: "advlist link image lists table",
-			table_appearcance_options: false, 
+			table_appearcance_options: false,
 			content_css:
 				"/home/hexagon/Documents/gravity_admission/src/routes/_utils/content.css",
 		});
@@ -60,8 +61,9 @@
 			getsubTopics(body.topic, false);
 
 			body.question = atob(body.question);
-			if(body.comprehension){
-				body.comprehension= body.comprehension._id;
+			if (body.comprehension) {
+				comprehensionContent = body.comprehension.content;
+				body.comprehension = body.comprehension._id;
 			}
 			body.solution = atob(body.solution);
 
@@ -111,7 +113,7 @@
 			data.options[i].option_value = btoa(
 				tinymce.get("option" + i).getContent()
 			);
-		}     
+		}
 
 		//checks for the question value!
 		var keys = Object.keys(data);
@@ -470,12 +472,16 @@
 </h3>
 <div class="w-full float-left">
 	<div
-	class="shadow-2xl border-[1px] p-2 rounded-md mx-1 my-2  w-48 bg-gray-200 border-gray-300"
->
-	<span>For Advanced?</span>
-	<!-- <label>For Advanced?</label> -->
-	<input type="radio" checked={body.for_advanced} on:click={toggleAdvanced} />
-</div>
+		class="shadow-2xl border-[1px] p-2 rounded-md mx-1 my-2 w-48 bg-gray-200 border-gray-300"
+	>
+		<span>For Advanced?</span>
+		<!-- <label>For Advanced?</label> -->
+		<input
+			type="radio"
+			checked={body.for_advanced}
+			on:click={toggleAdvanced}
+		/>
+	</div>
 </div>
 <div class="width">
 	{#if edit}
@@ -641,24 +647,60 @@
 				{/if}
 			</div>
 
-			<input class="my-4 p-2 w3-border w-full " type="text" bind:value={body.media} placeholder="Media Link(Youtube)" />
+			<input
+				class="my-4 p-2 w3-border w-full"
+				type="text"
+				bind:value={body.media}
+				placeholder="Media Link(Youtube)"
+			/>
 		</section>
 
-		
-		<section class=" shadow-2xl border-[1px] p-3 rounded-sm mt-10">
-			<h4>Comprehension Id</h4>
+		{#if edit == true}
+			<section class=" shadow-2xl border-[1px] p-3 rounded-sm mt-10">
+				<h4>Comprehension</h4>
 
-			<br />
-			<!-- <label for="question">Comprehension ID*</label> -->
-			<!-- <textarea
+				<br />
+				<!-- <label for="question">Comprehension ID*</label> -->
+				<!-- <textarea
 				id="question"
 				class="w3-input w3-round w3-border"
 				placeholder="Comprehension Id"
 				bind:value={body.comprehension}
 			/> -->
-			<input class="my-4 p-2 w3-border w-full " type="text" bind:value={body.comprehension} placeholder="Comprehension Id" />
-		</section>
-		
+				<!-- <input class="my-4 p-2 w3-border w-full " type="text" bind:value={body.comprehension} placeholder="Comprehension Id" /> -->
+				<!-- <div class="my-4 p-2 w3-border w-full " type="text" bind:value={body.comprehension} placeholder="Comprehension Id" /> -->
+				<p class="my-4 p-2 w3-border w-full">
+					{@html atob(comprehensionContent)}
+				</p>
+				<br />
+				<input
+					class="my-4 p-2 w3-border w-full"
+					type="text"
+					bind:value={body.comprehension}
+					placeholder="Comprehension Id"
+				/>
+			</section>
+		{:else}
+			<section class=" shadow-2xl border-[1px] p-3 rounded-sm mt-10">
+				<h4>Comprehension</h4>
+
+				<br />
+				<!-- <label for="question">Comprehension ID*</label> -->
+				<!-- <textarea
+				id="question"
+				class="w3-input w3-round w3-border"
+				placeholder="Comprehension Id"
+				bind:value={body.comprehension}
+			/> -->
+				<input
+					class="my-4 p-2 w3-border w-full"
+					type="text"
+					bind:value={body.comprehension}
+					placeholder="Comprehension Id"
+				/>
+			</section>
+		{/if}
+
 		<section class=" shadow-2xl border-[1px] p-3 rounded-sm mt-10">
 			<h4>Question</h4>
 

@@ -56,6 +56,7 @@ import { bind, prevent_default } from 'svelte/internal';
 		{
 			console.log("editing mode");
 			body.instructions= atob(body.instructions);
+			console.log(body.end_date);
 			return;
 		}
         body = {
@@ -476,16 +477,16 @@ import { bind, prevent_default } from 'svelte/internal';
 		<label for="marks">Duration*</label>
 		<input type="number" placeholder="Minutes" class="w3-input w3-round w3-border" bind:value={body.duration}  required/>
 
-        <!-- <label for="marks">Number of Attempts*</label>
+         <label for="marks">Number of Attempts*</label>
 		<input type="number" placeholder="Attempts(0=infinite)" class="w3-input w3-round w3-border"  bind:value={body.attempts} required/>
 
         <label for="marks">Start Time</label>
 		<input type="datetime-local" placeholder="Start time for the test" class="w3-input w3-round w3-border"  bind:value={body.start_time} />
         
         <label for="marks">End Time</label>
-		<input type="datetime-local" placeholder="Start time for the test" class="w3-input w3-round w3-border"  bind:value={body.end_time}/>
+		<input type="datetime-local" placeholder="Start time for the test" class="w3-input w3-round w3-border"  bind:value="{body.end_time}"/>
 
-		<label for="question_difficulty"> Test Type</label>
+		<!--<label for="question_difficulty"> Test Type</label>
 		<select id="question_difficulty" class="w3-input w3-border w3-round w3-margin" bind:value={body.test_type}>
 			<option value="-">Select a Type</option>
 			<option value="general">General Test</option>

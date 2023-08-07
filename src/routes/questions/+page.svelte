@@ -188,7 +188,7 @@
 		<!-- <a class="w3-button w3-round w3-card w3-hover-green w3-margin" href="/questions/create/int_range">Integer - Range Based Question</a> -->
 
 		<a class="w3-button w3-round w3-card w3-hover-green w3-margin" href="/questions/create/fib">Fill in the blanks</a>
-		<a class="w3-button w3-round w3-card w3-hover-green w3-margin" href="/questions/create/fib_range">Fill in the blanks - Range</a>
+		<!-- <a class="w3-button w3-round w3-card w3-hover-green w3-margin" href="/questions/create/fib_range">Fill in the blanks - Range</a> -->
 </div>
 
 

@@ -50,6 +50,7 @@ async function handleDelete(batchId){
           <th>Branch</th>
           <th>Batch Id</th>
           <th>Delete?</th>
+		  <th>Result</th>
           
         </tr>
       </thead>
@@ -62,6 +63,7 @@ async function handleDelete(batchId){
           <td>{batch.class_number.toString()}</td>
           <td><a class="w3-text-blue" href="/batches/{batch._id}">{batch._id}</a></td>
           <td><button class="w3-text-red w3-center" on:click={()=>{handleDelete(batch._id)}} >Delete</button></td>
+		  <td><a class="w3-text-blue" href="/batches/results/{batch._id}">{batch._id}</a></td>
 
       </tr>
       {/each}

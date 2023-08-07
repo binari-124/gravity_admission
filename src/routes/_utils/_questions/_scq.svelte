@@ -612,7 +612,7 @@
 					<select
 						id="question_exam"
 						class="w3-input w3-border w3-round"
-						bind:value={body.subject}
+						bind:value={body.exams}
 					>
 						<option value="-">Select Exam</option>
 						{#each exams as exam}

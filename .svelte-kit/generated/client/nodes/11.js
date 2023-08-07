@@ -1,3 +1,3 @@
-import * as universal from "../../../../src/routes/branch/[slug]/+page.js";
+import * as universal from "../../../../src/routes/batches/results/[slug]/+page.js";
 export { universal };
-export { default as component } from "../../../../src/routes/branch/[slug]/+page.svelte";
+export { default as component } from "../../../../src/routes/batches/results/[slug]/+page.svelte";

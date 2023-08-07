@@ -184,7 +184,7 @@
 <h3 class=" w3-white w3-card w3-padding w3-margin width w3-hover-shadow" style="cursor:pointer" on:click={()=>toggleVision(body.id)}><span class="w3-text-green">Section: {body.name}</span> </h3>
 <div class="width w3-light-gray" id="{body.id}">
 	{#if body}
-	<a href="#" class="w3-red w3-card w3-padding w3-center" on:click={()=>{deleteSection(body.id)}}>Remove Section</a>
+	<button class="w3-red w3-card w3-padding w3-center" on:click|preventDefault={()=>{deleteSection(body.id)}}>Remove Section</button>
 	
     <form>
 		<h4>Section {body.name}</h4>
