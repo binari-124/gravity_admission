@@ -47,7 +47,7 @@ async function handleDelete(chapterId){
           <th>#</th>
           <th>Name</th>
           <th>Subject</th>
-          <th>Streams</th>
+          <!-- <th>Streams</th> -->
           <th>Chapter ID</th>
           <th>Delete?<th>
           
@@ -58,7 +58,7 @@ async function handleDelete(chapterId){
         <td>{ind+1}</td>
           <td>{chapter.name}</td>
           <td>{chapter.subject?chapter.subject.name:"-"}</td>
-          <td>{chapter.streams?chapter.streams.map(s=>s.name).join(","):"-"}</td>
+          <!-- <td>{chapter.streams?chapter.streams.map(s=>s.name).join(","):"-"}</td>Streams -->
           <td><a class="w3-text-blue" href="/chapters/{chapter._id}">{chapter._id}</a></td>
           <td><button class="w3-text-red w3-center" on:click={()=>{handleDelete(student._id)}} >Delete</button></td>
       </tr>

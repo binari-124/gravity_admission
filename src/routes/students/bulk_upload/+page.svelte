@@ -99,7 +99,7 @@
 
 <h3>Student Data Bulk Upload</h3>
 <a href="/content/files/sample_student_bulk_upload.xls" class="w3-button w3-padding w3-card w3-margin w3-inline">Download Sample Excel </a>
-
+<!-- /content/files/sample_student_bulk_upload.xls -->
 <XCLUpload bind:returnData={returnData}></XCLUpload>
 
 <hr>

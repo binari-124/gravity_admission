@@ -192,7 +192,7 @@
 	<label>Description</label>
 	<textarea class="w3-ipnut w3-block w3-card w3-margin w3-padding w3-rounded" bind:value={body.description} placeholder="description" ></textarea><br>
 	
-	<label>Select a stream</label>
+	<label>Select a stream</label><br>
 	<select class="w3-input" bind:value={body.stream} >
 		<option value="">Select a Stream</option>
 		{#each streams as stream}
@@ -200,7 +200,7 @@
 				{stream.name}
 			</option>
 		{/each}
-	</select>
+	</select><br>
 
 
 	<label>Select a Class</label>
@@ -213,14 +213,14 @@
 		<option  value="11">11th Class</option>
 		<option value="12">12th Class</option>
 		<option value="13">Passout</option>
-	</select>
+	</select><br>
 
 	{#if subjects && body.subjects}
-		<div class="w3-dropdown-hover w3-card  w3-round w3-margin">
-			<p class="w3-button">Subjects</p>
-			<div class="w3-dropdown-content w3-bar-block w3-border ztop">
+		<div class="w3-dropdown-hover w3-card  w3-round w3-margin  ">
+			<p class="w3-button rounded-sm">Subjects</p>
+			<div class="w3-dropdown-content w3-bar-block w3-border ztop rounded-sm">
 				{#each subjects as subject}
-				<div class="w3-border w3-margin">
+				<div class="w3-border w3-margin ">
 					<input class="w3-checkbox w3-input w3-bar-item w3-button" type="checkbox" value={subject._id} bind:group={body.subjects} />
 					<label>{subject.name.toUpperCase()}</label>
 				</div>

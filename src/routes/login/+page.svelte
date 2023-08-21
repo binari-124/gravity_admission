@@ -180,6 +180,7 @@
 				<p class="text-sm text-gray-500 mt-12 justify-between">
 					&copy; Gravity - All Rights Reserved.
 				</p>
+				<!-- <a href="/students">Student redirection</a> -->
 			</div>
 		</div>
 	</section>
