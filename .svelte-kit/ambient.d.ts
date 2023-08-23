@@ -68,6 +68,7 @@ declare module '$env/static/private' {
 	export const SNAP_CONTEXT: string;
 	export const SNAP_COOKIE: string;
 	export const SNAP_DATA: string;
+	export const SNAP_EUID: string;
 	export const SNAP_INSTANCE_KEY: string;
 	export const SNAP_INSTANCE_NAME: string;
 	export const SNAP_LIBRARY_PATH: string;
@@ -75,6 +76,7 @@ declare module '$env/static/private' {
 	export const SNAP_REAL_HOME: string;
 	export const SNAP_REEXEC: string;
 	export const SNAP_REVISION: string;
+	export const SNAP_UID: string;
 	export const SNAP_USER_COMMON: string;
 	export const SNAP_USER_DATA: string;
 	export const SNAP_VERSION: string;
@@ -194,6 +196,7 @@ declare module '$env/dynamic/private' {
 		SNAP_CONTEXT: string;
 		SNAP_COOKIE: string;
 		SNAP_DATA: string;
+		SNAP_EUID: string;
 		SNAP_INSTANCE_KEY: string;
 		SNAP_INSTANCE_NAME: string;
 		SNAP_LIBRARY_PATH: string;
@@ -201,6 +204,7 @@ declare module '$env/dynamic/private' {
 		SNAP_REAL_HOME: string;
 		SNAP_REEXEC: string;
 		SNAP_REVISION: string;
+		SNAP_UID: string;
 		SNAP_USER_COMMON: string;
 		SNAP_USER_DATA: string;
 		SNAP_VERSION: string;

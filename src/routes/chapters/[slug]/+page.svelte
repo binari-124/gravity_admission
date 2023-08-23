@@ -49,6 +49,10 @@ console.log("studentID from slug:" + chapterId);
 					{
 						console.log("successfully grabbed student");
 						chapter = response.data;
+						// console.log("hERE IS CHAPTER");
+						// console.log(chapter);
+						// console.log("hERE IS CHAPTER");
+
 					}
 					
 					
@@ -243,9 +247,9 @@ console.log("studentID from slug:" + chapterId);
 		
 	
 		<div class="item">
-			<p>Name:{chapter.name}</p>
-			<p>Subject:{chapter.subject}</p>
-			<p>Sequence# :{chapter.sequence}</p>
+			<p>Subject Name: {chapter.name}</p><br>
+			<p>Subject Id: {chapter.subject}</p><br>
+			<p>Sequence# : {chapter.sequence}</p>
 			{#if chapter.content}
 				<div>{@html atob(chapter.content)}</div>
 			{/if}
