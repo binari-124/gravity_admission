@@ -98,7 +98,7 @@
 </style>
 
 <h3>Student Data Bulk Upload</h3>
-<a href="https://doc-0g-5o-docs.googleusercontent.com/docs/securesc/ha0ro937gcuc7l7deffksulhg5h7mbp1/sbv8gpm20vd3bsmb9uuv24rr4dcq2tdp/1692774975000/05255340446852935843/*/14LKh9b-RQiKWS0Q6J_KpfOjgYo_7TZMD?e=download&uuid=dca41a12-6d12-4c22-ba7e-df016a3abd1e" class="w3-button w3-padding w3-card w3-margin w3-inline">Download Sample Excel </a>
+<a href="https://drive.google.com/file/d/14LKh9b-RQiKWS0Q6J_KpfOjgYo_7TZMD/view?usp=drivesdk" class="w3-button w3-padding w3-card w3-margin w3-inline">Download Sample Excel </a>
 <!-- <a href="/content/files/sample_student_bulk_upload.xls" class="w3-button w3-padding w3-card w3-margin w3-inline">Download Sample Excel </a> -->
 
 <!-- /content/files/sample_student_bulk_upload.xls -->
