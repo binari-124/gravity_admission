@@ -79,7 +79,7 @@
             <th>Uploader ID</th>
 			<th>File Type</th>
             <th>Created at</th>
-            <th>Delete?</th>
+            <!-- <th>Delete?</th> -->
           </tr>
         </thead>
         {#each files as file}
@@ -91,7 +91,7 @@
             <td>{file.owner}</td>
 			<td>{file.file_type}</td>
             <td>{file.createdAt}</td>
-            <td><a class="w3-text-white w3-round w3-red w3-margin w3-padding w3-card" on:click={deleteFile(file._id)}>Delete</a></td>
+            <!-- <td><a class="w3-text-white w3-round w3-red w3-margin w3-padding w3-card" on:click={deleteFile(file._id)}>Delete</a></td> -->
         </tr>
         {/each}
       </table>
