@@ -14,6 +14,8 @@
 	var chapters = null;
 	 var loginPath=get(ApiUrl);
 	 let class_number=0;
+
+	 
 	
 	 onMount(async ()=>{
 		const urlParams = new URLSearchParams(window.location.search);

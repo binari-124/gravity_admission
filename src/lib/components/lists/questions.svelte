@@ -85,7 +85,7 @@
       <table class="w3-table-all w3-hoverable ">
         <thead>
           <tr class="w3-light-grey">
-            <th>Sequence Number</th>
+            <th>#</th>
             <th>ID</th>
             <th>Question</th>
             <th>Type</th>

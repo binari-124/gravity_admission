@@ -44,6 +44,9 @@
 					console.log(response);
 					response= await JSON.parse(response);
 					questions = response.data;
+					console.log("Theese are questions");
+					console.log(questions);
+					console.log("Theese are questions");
 					
 					
 					
