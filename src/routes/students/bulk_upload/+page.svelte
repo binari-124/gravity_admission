@@ -98,10 +98,11 @@
 </style>
 
 <h3>Student Data Bulk Upload</h3>
-<a href="https://drive.google.com/file/d/14LKh9b-RQiKWS0Q6J_KpfOjgYo_7TZMD/view?usp=drivesdk" class="w3-button w3-padding w3-card w3-margin w3-inline">Download Sample Excel </a>
+<a href="https://gravity-files.s3.us-east-2.amazonaws.com/1692993729977_sample_student_bulk_upload.xls" class="w3-button w3-padding w3-card w3-margin w3-inline">Download Sample Excel </a>
 <!-- <a href="/content/files/sample_student_bulk_upload.xls" class="w3-button w3-padding w3-card w3-margin w3-inline">Download Sample Excel </a> -->
 
 <!-- /content/files/sample_student_bulk_upload.xls -->
+<!-- https://drive.google.com/file/d/14LKh9b-RQiKWS0Q6J_KpfOjgYo_7TZMD/view?usp=drivesdk -->
 
 <XCLUpload bind:returnData={returnData}></XCLUpload>
 
