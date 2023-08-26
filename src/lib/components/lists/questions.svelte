@@ -81,24 +81,27 @@
     {#if questions}
     <p class="w3-large">#Questions:{questions.length}</p>
     {#if !picker}
-    <table class="w3-table-all w3-hoverable"  width="100%">
+    
+      <table class="w3-table-all w3-hoverable ">
         <thead>
           <tr class="w3-light-grey">
-            <th>#</th>
+            <th>Sequence Number</th>
+            <th>ID</th>
             <th>Question</th>
             <th>Type</th>
-            <th>Class</th>
+            <th>Chapter</th>
             <!-- <th>Subjects</th> -->
             <th>Question ID</th>
             <th>Delete</th>
           </tr>
         </thead>
-        {#each questions as question}
+        {#each questions as question,index}
         <tr class="w3-hover-shadow">
+          <td>{index+1}</td>
           <td>{question.id}</td>
-            <td>{@html atob(question.question)}</td>
+            <td class=" max-w-xs ">{@html atob(question.question)}</td>
             <td>{question.question_type}</td>
-            <td>{question.class_number}</td>
+            <td class="max-w-xs">{question.chapter}</td>
             <!-- <td>{question.subjects}</td> -->
             <!-- <td><Options options={question.options} /></td> -->
             <td><a class="w3-text-blue" href="/questions/edit/{question._id}">{question._id}</a></td>
@@ -116,6 +119,7 @@
         {/each}
         
       </table>
+    
       {setType()}
     
   

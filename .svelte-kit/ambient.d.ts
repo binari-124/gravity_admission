@@ -32,6 +32,7 @@ declare module '$env/static/private' {
 	export const DBUS_SESSION_BUS_ADDRESS: string;
 	export const DBUS_STARTER_ADDRESS: string;
 	export const DBUS_STARTER_BUS_TYPE: string;
+	export const DEFAULTS_PATH: string;
 	export const DESKTOP_SESSION: string;
 	export const DISPLAY: string;
 	export const EDITOR: string;
@@ -53,6 +54,7 @@ declare module '$env/static/private' {
 	export const LESSOPEN: string;
 	export const LOGNAME: string;
 	export const LS_COLORS: string;
+	export const MANDATORY_PATH: string;
 	export const NODE: string;
 	export const ORIGINAL_XDG_CURRENT_DESKTOP: string;
 	export const PATH: string;
@@ -160,6 +162,7 @@ declare module '$env/dynamic/private' {
 		DBUS_SESSION_BUS_ADDRESS: string;
 		DBUS_STARTER_ADDRESS: string;
 		DBUS_STARTER_BUS_TYPE: string;
+		DEFAULTS_PATH: string;
 		DESKTOP_SESSION: string;
 		DISPLAY: string;
 		EDITOR: string;
@@ -181,6 +184,7 @@ declare module '$env/dynamic/private' {
 		LESSOPEN: string;
 		LOGNAME: string;
 		LS_COLORS: string;
+		MANDATORY_PATH: string;
 		NODE: string;
 		ORIGINAL_XDG_CURRENT_DESKTOP: string;
 		PATH: string;

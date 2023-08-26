@@ -49,8 +49,8 @@ import { get } from 'svelte/store';
       <thead>
         <tr class="w3-light-grey">
           <th>Name</th>
+		  <th>Stream ID</th>
           <th>Description</th>
-          <th>Branch ID</th>
           <th>Delete?</th>
           
         </tr>
@@ -58,8 +58,9 @@ import { get } from 'svelte/store';
       {#each streams as stream}
       <tr class="w3-hover-shadow">
           <td>{stream.name}</td>
+		  <td><a class="w3-text-blue" href="/stream/{stream._id}">{stream._id}</a></td>
           <td>{stream.description}</td>
-          <td><a class="w3-text-blue" href="/stream/{stream._id}">{stream._id}</a></td>
+          
           <td><button class="w3-text-red w3-center" on:click={()=>{handleDelete(stream._id)}} >Delete</button></td>
       </tr>
       {/each}
