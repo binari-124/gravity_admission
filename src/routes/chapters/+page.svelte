@@ -22,13 +22,13 @@
  
 	 function next() {
 		body.skip += body.limit;
-		getQuestions(body);
+		getChapters(body);
 	}
 
 	function previous() {
 		body.skip -= body.limit;
 		if (body.skip < 0) body.skip = 0;
-		getQuestions(body);
+		getChapters(body);
 	}
 	 
 	
