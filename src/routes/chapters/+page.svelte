@@ -14,23 +14,42 @@
 	var chapters = null;
 	 var loginPath=get(ApiUrl);
 	 let class_number=0;
+	 let body = {};
 
+	
+	
+
+ 
+	 function next() {
+		body.skip += body.limit;
+		getQuestions(body);
+	}
+
+	function previous() {
+		body.skip -= body.limit;
+		if (body.skip < 0) body.skip = 0;
+		getQuestions(body);
+	}
 	 
 	
 	 onMount(async ()=>{
-		const urlParams = new URLSearchParams(window.location.search);
-    	//  urlParams.has('class_number');
+		// const urlParams = new URLSearchParams(window.location.search);
+    	// //  urlParams.has('class_number');
 		
-		let classQuery="";
+		// let classQuery="";
 		
-		if(urlParams.has('class_number'))
-		{
-			let classNumber =urlParams.get("class_number");
-			classQuery="?class_number="+classNumber;
-		}
+		// if(urlParams.has('class_number'))
+		// {
+		// 	let classNumber =urlParams.get("class_number");
+		// 	classQuery="?class_number="+classNumber;
+		// }
 		
 		
 		// localStorage.setItem("token","some value");
+
+		body.skip = 0;
+		body.limit = 50;
+	
 		
 		var token = localStorage.getItem("token");
 		if(!token)
@@ -40,37 +59,104 @@
 		}
 		Token.set(token);
 
+		
+
 
 		// console.log(loginPath+'/auth/whoami');
-		const res = await fetch(loginPath+'/panel/chapters'+classQuery,{mode:'cors',method:'get',headers:{'Authorization':'Bearer '+token}});
-		if(res.status==200){
-			try{
-					let response= await res.text();
-					console.log(response);
-					response= await JSON.parse(response);
-					chapters = response.data;
+		// const res = await fetch(loginPath+'/panel/chapters',{mode:'cors',method:'get',headers:{'Authorization':'Bearer '+token}});
+		// if(res.status==200){
+		// 	try{
+		// 			let response= await res.text();
+		// 			console.log(response);
+		// 			response= await JSON.parse(response);
+		// 			chapters = response.data;
 					
 					
-			}
-			catch(e){
-				console.log("caught");
+		// 	}
+		// 	catch(e){
+		// 		console.log("caught");
 				
-				console.log(e);
-			}
-			finally{
+		// 		console.log(e);
+		// 	}
+		// 	finally{
 				
-			}
+		// 	}
 			
-			// let data = JSON.parse(text);
+		// 	// let data = JSON.parse(text);
 			
-		}
-		else{
-					console.log(await res.text());
-					user.email="no logged";
+		// }
+		// else{
+		// 			console.log(await res.text());
+		// 			user.email="no logged";
 					
-				}
+		// 		}
 		// 
+		getChapters(body);
 	})
+
+	async function getChapters(body = null, fresh = false) {
+		var res;
+		var token = localStorage.getItem("token");
+
+		if (body) {
+			console.log("fresh: " + fresh);
+			if (fresh) {
+				body.skip = 0;
+			}
+			res = await fetch(
+				loginPath + "/panel/chapters?" + serialize(body),
+				{
+					mode: "cors",
+					method: "get",
+					headers: { Authorization: "Bearer " + token },
+				}
+			);
+		} else {
+			res = await fetch(loginPath + "/panel/chapters", {
+				mode: "cors",
+				method: "get",
+				headers: { Authorization: "Bearer " + token },
+			});
+		}
+
+		if (res.status == 200) {
+			try {
+				let response = await res.text();
+				console.log(response);
+				response = await JSON.parse(response);
+				if (response.status == "success") {
+					console.log("successfully grabbed chapters");
+					chapters = response.data;
+					chapters = chapters;
+					console.log("This is question data");
+					console.log(chapters);
+					console.log("This is question data");
+				}
+			} catch (e) {
+				console.log("caught");
+
+				console.log(e);
+			} finally {
+			}
+		} else {
+			console.log(await res.text());
+		}
+	}
+
+	function serialize(obj) {
+		var str = [];
+		for (var p in obj)
+			if (obj.hasOwnProperty(p)) {
+				if (obj[p] != "-") {
+					str.push(
+						encodeURIComponent(p) + "=" + encodeURIComponent(obj[p])
+					);
+				}
+			}
+		return str.join("&");
+	}
+
+
 </script>
 
 <style>
@@ -150,7 +236,28 @@
 </style>
 
 
-<h3>Chapters</h3>
+{#if chapters}
+<h3>Chapters({body.skip}-{body.skip + body.limit})</h3>
+<div class="flex">
+	<p
+		class="w3-button w3-border w3-round w3-margin"
+		on:click={previous}
+	>
+		Previous
+	</p>
+	<p class="w3-button w3-border w3-round w3-margin" on:click={next}>
+		Next
+	</p>
+</div>
+
+<!-- <div class="w3-padding w3-margin"> -->
+	<!-- {console.log(selectedOptions)} -->
+	<!-- {#await forceUpdate(questions) then _}
+		<Questions {picker} bind:selectedQuestions {questions} />
+	{/await}
+</div> -->
+
+<!-- <h3>Chapters</h3> -->
 <a href="/chapters/create/">
 	<button class="w3-button w3-border w3-round">Add new <i class="w3-text-grey fas fa-plus"></i></button>
 </a>
@@ -162,3 +269,8 @@
 		<ChaptersList {chapters} />
 	{/if}
 </div>
+
+{:else}
+<p>No chapters found!</p>
+{/if}
+

@@ -11,6 +11,21 @@
 
 	var lectures = [];
 	 var loginPath=get(ApiUrl);
+	 let body = {};
+
+	 body.skip = 0;
+	 body.limit = 50;
+
+	 function next() {
+		body.skip += body.limit;
+		getQuestions(body);
+	}
+
+	function previous() {
+		body.skip -= body.limit;
+		if (body.skip < 0) body.skip = 0;
+		getQuestions(body);
+	}
 	
 	 onMount(async ()=>{
 		const urlParams = new URLSearchParams(window.location.search);
@@ -34,28 +49,94 @@
 		}
 		Token.set(token);
 
-		const res = await fetch(loginPath+'/panel/batches/lectures'+classQuery,{mode:'cors',method:'get',headers:{'Authorization':'Bearer '+token}});
-		if(res.status==200){
-			try{
-					let response= await res.text();
-					// console.log(response);
-					response= await JSON.parse(response);
-					lectures = response.data;
-					console.log(lectures);
-					console.log("batches are loaded");
-			}
-			catch(e){
-				console.log("caught");
-				console.log(e);
-			}
-		}
-		else{
-					console.log(await res.text());
-					// user.email="no logged";
+
+
+		// const res = await fetch(loginPath+'/panel/batches/lectures'+classQuery,{mode:'cors',method:'get',headers:{'Authorization':'Bearer '+token}});
+		// if(res.status==200){
+		// 	try{
+		// 			let response= await res.text();
+		// 			// console.log(response);
+		// 			response= await JSON.parse(response);
+		// 			lectures = response.data;
+		// 			console.log(lectures);
+		// 			console.log("batches are loaded");
+		// 	}
+		// 	catch(e){
+		// 		console.log("caught");
+		// 		console.log(e);
+		// 	}
+		// }
+		// else{
+		// 			console.log(await res.text());
+		// 			// user.email="no logged";
 					
-				}
+		// 		}
 		// 
+		getLectures(body);
 	})
+
+	async function getLectures(body = null, fresh = false) {
+		var res;
+		var token = localStorage.getItem("token");
+
+		if (body) {
+			console.log("fresh: " + fresh);
+			if (fresh) {
+				body.skip = 0;
+			}
+			res = await fetch(
+				loginPath + "/panel/batches/lectures?" + serialize(body),
+				{
+					mode: "cors",
+					method: "get",
+					headers: { Authorization: "Bearer " + token },
+				}
+			);
+		} else {
+			res = await fetch(loginPath + "/panel/batches/lectures", {
+				mode: "cors",
+				method: "get",
+				headers: { Authorization: "Bearer " + token },
+			});
+		}
+
+		if (res.status == 200) {
+			try {
+				let response = await res.text();
+				console.log(response);
+				response = await JSON.parse(response);
+				if (response.status == "success") {
+					console.log("successfully grabbed lectures");
+					lectures = response.data;
+					lectures = lectures;
+					console.log("This is lectures data");
+					console.log(lectures);
+					console.log("This is lectures data");
+				}
+			} catch (e) {
+				console.log("caught");
+
+				console.log(e);
+			} finally {
+			}
+		} else {
+			console.log(await res.text());
+		}
+	}
+
+	function serialize(obj) {
+		var str = [];
+		for (var p in obj)
+			if (obj.hasOwnProperty(p)) {
+				if (obj[p] != "-") {
+					str.push(
+						encodeURIComponent(p) + "=" + encodeURIComponent(obj[p])
+					);
+				}
+			}
+		return str.join("&");
+	}
+
 </script>
 
 <style>
@@ -134,8 +215,29 @@
 	}
 </style>
 
+{#if lectures}
+<h3>Lectures({body.skip}-{body.skip + body.limit})</h3>
+<div class="flex">
+	<p
+		class="w3-button w3-border w3-round w3-margin"
+		on:click={previous}
+	>
+		Previous
+	</p>
+	<p class="w3-button w3-border w3-round w3-margin" on:click={next}>
+		Next
+	</p>
+</div>
 
-<h3>Lectures</h3>
+<!-- <div class="w3-padding w3-margin"> -->
+	<!-- {console.log(selectedOptions)} -->
+	<!-- {#await forceUpdate(questions) then _}
+		<Questions {picker} bind:selectedQuestions {questions} />
+	{/await}
+</div> -->
+
+<!-- <h3>Chapters</h3> -->
+<!-- <h3>Lectures</h3> -->
 <a href="/lectures/create/">
 	<button class="w3-button w3-border w3-round">Add new <i class="w3-text-grey fas fa-plus"></i></button>
 </a>
@@ -150,3 +252,10 @@
 		<p class="w3-center	">Loading</p>
 	{/if}
 </div>
+
+
+{:else}
+<p>No lecture found!</p>
+{/if}
+
+
