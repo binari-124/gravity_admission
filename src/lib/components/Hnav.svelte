@@ -48,7 +48,7 @@
 </style>
 
 
-<div class="h-screen overflow-y-auto">
+<div class="h-screen overflow-y-auto sticky">
     <nav class="nav w3-padding sticky border-r-2 ">
 		<img class="w3-padding" src="/images/glogoG.png" />
 		<!-- <p class="w3-heading w3-text-teal" style="font-size:400%">Gravity</p> -->
