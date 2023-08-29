@@ -56,7 +56,12 @@ import { bind, prevent_default } from 'svelte/internal';
 		{
 			console.log("editing mode");
 			body.instructions= atob(body.instructions);
-			console.log(body.end_date);
+			console.log(body.start_time);
+			console.log(body.end_time);
+			console.log(body.name);
+			console.log(body.duration);
+			console.log(body);
+			console.log("editing mode end");
 			return;
 		}
         body = {
@@ -187,7 +192,12 @@ import { bind, prevent_default } from 'svelte/internal';
 
 		let token = localStorage.getItem("token");
 		var res;
+		console.log("This is body");
 		console.log(body);
+        console.log("This is body end");
+		console.log("This is data");
+		console.log(data);
+        console.log("This is data end");
 		
 		if(edit)
 		{

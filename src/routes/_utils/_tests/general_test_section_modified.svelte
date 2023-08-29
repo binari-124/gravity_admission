@@ -9,6 +9,8 @@
 	// export var question;
 	var loginPath=get(ApiUrl);
 	
+	// {subjects} {schemes} {streams} questionInstructions={instructions} {deleteSection} bind:questions={selectedQuestions} {edit} bind:body={section}
+
 	export var body;//single object from section	
 	export var test;//test.questions																					
 	export var edit = false;

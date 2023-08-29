@@ -240,7 +240,7 @@
 <!-- <h3>Lectures</h3> -->
 <a href="/lectures/create/">
 	<button class="w3-button w3-border w3-round">Add new <i class="w3-text-grey fas fa-plus"></i></button>
-</a>
+</a><br>
 
 
 <hr>
