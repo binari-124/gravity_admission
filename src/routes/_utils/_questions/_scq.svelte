@@ -29,10 +29,10 @@
 			plugins: "advlist link image lists table",
 			table_appearcance_options: false, 
 			content_css:
-				"/home/hexagon/Documents/gravity_admission/src/routes/_utils/content.css",
+				"/home/vikas/gits/gravity_admission/src/routes/_utils/content.css",
 		});
 	}
-
+	// "/home/hexagon/Documents/gravity_admission/src/routes/_utils/content.css"
 	onMount(async () => {
 		setTimeout(() => {
 			initializeTinyMice();
