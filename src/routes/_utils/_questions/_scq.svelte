@@ -463,7 +463,7 @@
 
 <h3 class="w3-black w3-round w3-padding width">
 	{edit ? "Edit a" : "Create a"}
-	<span class="w3-text-grey"> Single Choice Question</span>
+	<span class="w3-text-grey"> Sin Choice Question</span>
 </h3>
 <div class="w-full float-left">
 	<div
