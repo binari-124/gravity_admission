@@ -76,6 +76,9 @@
                       console.log(await res.text());
                   }
       }
+      console.log("for question ID"); 
+      console.log(questions);
+      console.log("for question ID"); 
     </script>
     
     {#if questions}

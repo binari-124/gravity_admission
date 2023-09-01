@@ -20,7 +20,7 @@ import { bind, prevent_default } from 'svelte/internal';
 	let selectedQuestions=[];
 	export var body = null;																								
 	export var edit = false;
-	let abcde = "2023-08-28T04:30:00.000";
+	// let abcde = "2023-08-28T04:30:00.000";
 	
 	var categories = null;
     var streams=[],batches=[],subjects=[],schemes=[],packages=[],instructions=[];
@@ -484,7 +484,7 @@ import { bind, prevent_default } from 'svelte/internal';
 
 		<label for="question">Name*</label>
 		<input type="text"  class="w3-input w3-round w3-border" placeholder="Name" bind:value={body.name} required/>
-        <p>{body.name}</p>
+        <!-- <p>{body.name}</p> -->
 		<label for="marks">Duration*</label>
 		<input type="number" placeholder="Minutes" class="w3-input w3-round w3-border" bind:value={body.duration}  required/>
 
@@ -492,9 +492,9 @@ import { bind, prevent_default } from 'svelte/internal';
 		<input type="number" placeholder="Attempts(0=infinite)" class="w3-input w3-round w3-border"  bind:value={body.attempts} required/>
 
         <label for="marks">Start Time</label>
-		<input type="datetime-local" placeholder="Start time for the test" class="w3-input w3-round w3-border"  bind:value={abcde} />
-        <p>{body.start_time}</p>
-		<p>{abcde}</p>
+		<input type="datetime-local" placeholder="Start time for the test" class="w3-input w3-round w3-border"  bind:value={body.start_time} />
+        <!-- <p>{body.start_time}</p>
+		<p>{abcde}</p> -->
         <label for="marks">End Time</label>
 		<input type="datetime-local" placeholder="Start time for the test" class="w3-input w3-round w3-border"  bind:value="{body.end_time}"/>
 

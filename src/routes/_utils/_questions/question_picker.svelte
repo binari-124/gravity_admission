@@ -377,6 +377,24 @@
 						on:click={toggleAdvanced}
 					/>
 				</div>
+
+				<!-- <div class="w-1/4">
+					<label for="question_difficulty">Question Type</label>
+					<select
+						id="question_difficulty"
+						class="w3-input w3-border w3-round mt-1"
+						bind:value={body.question_type}
+					>
+						<option value="-">Select Question Type</option>
+						<option value="scq">Single Choice Question</option>
+						<option value="mcq">Multiple Choice Question</option>
+						<option value="integer">Integer</option>
+						<option value="fill_in_blanks"
+							>Fill in the blanks</option
+						>
+					</select>
+				</div> -->
+
 				<div>
 					<input
 						class="mt-7 border-[1px] h-9 p-2 "
