@@ -102,7 +102,7 @@
         <tr class="w3-hover-shadow">
           <td>{index+1}</td>
           <td>{question.id}</td>
-            <td class=" max-w-xs ">{@html atob(question.question)}</td>
+            <td class=" max-w-xs overflow-hidden">{@html atob(question.question)}</td>
             <td>{question.question_type}</td>
             <td class="max-w-xs">{question.chapter}</td>
             <!-- <td>{question.subjects}</td> -->

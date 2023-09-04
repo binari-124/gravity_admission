@@ -105,7 +105,8 @@ export const nodes = [
 	() => import('./nodes/101'),
 	() => import('./nodes/102'),
 	() => import('./nodes/103'),
-	() => import('./nodes/104')
+	() => import('./nodes/104'),
+	() => import('./nodes/105')
 ];
 
 export const server_loads = [];
@@ -212,7 +213,8 @@ export const dictionary = {
 		"/tests/create/general": [101],
 		"/tests/edit": [102],
 		"/tests/edit/general/[slug]": [103],
-		"/tests/edit/simple/[slug]": [104]
+		"/tests/edit/simple/[slug]": [104],
+		"/tests/result/[slug]": [105]
 	};
 
 export const hooks = {

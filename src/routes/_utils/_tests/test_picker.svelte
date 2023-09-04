@@ -81,7 +81,7 @@
 						console.log("successfully grabbed tests");
 						tests = response.data;
 						tests = tests;
-						console.log(tests);
+						console.log("this is test");
 						// students=questions;
 					}	
 			}

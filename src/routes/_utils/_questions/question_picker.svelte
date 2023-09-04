@@ -10,7 +10,9 @@
 	var subtopics = null;
 
 	var streams = [],
-		subjects = [];
+		subjects = [],
+		chapters = [],
+		topics = [];
 
 	export let selectedQuestions = [];
 	export let picker = false;
@@ -212,6 +214,80 @@
 				response = await JSON.parse(response);
 				if (response.status == "success") {
 					subjects = response.data;
+					console.log("This is subject data");
+					console.log(subjects);
+				} else {
+					console.log(response.message);
+					alert(response.message);
+				}
+			} catch (e) {
+				console.log("caught");
+				console.log(e);
+			} finally {
+			}
+		} else {
+			console.log(await res.text());
+			user.email = "no logged";
+		}
+	}
+
+	async function getChapters(subject_id) {
+		// console.log(body);
+		var token = localStorage.getItem("token");
+		var loginPath = get(ApiUrl);
+		let res;
+		res = await fetch(loginPath + "/panel/chapters/" + subject_id, {
+			mode: "cors",
+			method: "get",
+			headers: {
+				Authorization: "Bearer " + token,
+				"Content-Type": "application/json",
+			},
+		});
+
+		if (res.status == 200) {
+			try {
+				let response = await res.text();
+				response = await JSON.parse(response);
+				if (response.status == "success") {
+					chapters = response.data;
+					console.log("This is topics data");
+					console.log(topics);
+				} else {
+					console.log(response.message);
+					alert(response.message);
+				}
+			} catch (e) {
+				console.log("caught");
+				console.log(e);
+			} finally {
+			}
+		} else {
+			console.log(await res.text());
+			user.email = "no logged";
+		}
+	}
+
+	async function getTopics(chapter_id) {
+		// console.log(body);
+		var token = localStorage.getItem("token");
+		var loginPath = get(ApiUrl);
+		let res;
+		res = await fetch(loginPath + "/panel/topics/" + chapter_id, {
+			mode: "cors",
+			method: "get",
+			headers: {
+				Authorization: "Bearer " + token,
+				"Content-Type": "application/json",
+			},
+		});
+
+		if (res.status == 200) {
+			try {
+				let response = await res.text();
+				response = await JSON.parse(response);
+				if (response.status == "success") {
+					topics = response.data;
 					console.log(subjects);
 				} else {
 					console.log(response.message);
@@ -284,6 +360,7 @@
 						<select
 							class="w3-input w3-border w3-round mt-1"
 							bind:value={body.subject}
+							on:change={getChapters(body.subject)}
 						>
 							<option value="-">Select Subject</option>
 							{#each subjects as subject}
@@ -298,39 +375,43 @@
 				</div>
 			</div>
 
-			<div class="flex flex-row space-x-8 ">
+			<div class="flex flex-row space-x-8">
 				<div class="w-1/2">
-					<!-- {#if chapters && chapters.length > 0} -->
-				<label for="question_topic">Chapter</label>
-				<select
-					id="question_topic"
-					class="w3-input w3-border w3-round  "
-					bind:value={body.chapter}
-					on:change={getTopics(body.chapter)}
-				>
-					<option value="-">Chapter(*)</option>
+					{#if chapters && chapters.length > 0}
+					<label for="question_topic">Chapter</label>
+					<select
+						id="question_topic"
+						class="w3-input w3-border w3-round"
+						bind:value={body.chapter}
+						on:change={getTopics(body.chapter)}
+					>
+						<option value="-">Chapter(*)</option>
 
-					<!-- {#each chapters as chapter}
-						<option value={chapter._id}>{chapter.name}</option>
-					{/each} -->
-				</select>
-				<!-- {/if} -->
+						{#each chapters as chapter}
+							<option value={chapter._id}
+								>{chapter.name.toUpperCase()}</option
+							>
+						{/each}
+					</select>
+					{/if}
 				</div>
 				<div class="w-1/2">
-					<!-- {#if topics && topics.length > 0} -->
+					{#if topics && topics.length > 0}
 					<label for="question_topic">Topic</label>
 					<select
 						id="question_topic"
-						class="w3-input w3-border w3-round  "
+						class="w3-input w3-border w3-round"
 						bind:value={body.topic}
 					>
 						<option value="-">Topic(*)</option>
 
-						<!-- {#each topics as topic}
-							<option value={topic._id}>{topic.name}</option>
-						{/each} -->
+						{#each topics as topic}
+							<option value={topic._id}
+								>{topic.name.toUpperCase()}</option
+							>
+						{/each}
 					</select>
-					<!-- {/if} -->
+					{/if}
 				</div>
 			</div>
 
@@ -346,6 +427,8 @@
 						<option value="scq">Single Choice Question</option>
 						<option value="mcq">Multiple Choice Question</option>
 						<option value="integer">Integer</option>
+						<option value="comprehension">Comprehension </option>
+						<option value="matrix">Matrix</option>
 						<option value="fill_in_blanks"
 							>Fill in the blanks</option
 						>
@@ -367,7 +450,7 @@
 					</select>
 				</div>
 				<div
-					class=" border-[1px] p-2 rounded-sm mx-1 my-2 w-1/4 h-10 mt-7  bg-gray-200 border-gray-300"
+					class=" border-[1px] p-2 rounded-sm mx-1 my-2 w-1/4 h-10 mt-7 bg-gray-200 border-gray-300"
 				>
 					<span>For Advanced?</span>
 					<!-- <label>For Advanced?</label> -->
@@ -378,31 +461,45 @@
 					/>
 				</div>
 
-				<!-- <div class="w-1/4">
-					<label for="question_difficulty">Question Type</label>
+				<div class="w-1/4">
+					<!-- <label for="nta_exam"> NTA Exam </label>
 					<select
-						id="question_difficulty"
+						id="nta_exam"
 						class="w3-input w3-border w3-round mt-1"
-						bind:value={body.question_type}
+						bind:value={body.difficulty}
 					>
-						<option value="-">Select Question Type</option>
-						<option value="scq">Single Choice Question</option>
-						<option value="mcq">Multiple Choice Question</option>
-						<option value="integer">Integer</option>
-						<option value="fill_in_blanks"
-							>Fill in the blanks</option
-						>
-					</select>
-				</div> -->
+						<option value="-">Selected None<i class="fa-solid fa-angle-down"></i></option>
+						<option value="very-easy">
+							<label for="">
+								<input type="checkbox" name="abcde" id=""/> This 
+							</label>
+						</option>
+						<label for="">
+							<input type="checkbox" name="abcde" id=""/> This 
+						</label>
+						<option value="easy" type="checkbox">Easy</option>
+						<option value=""><input type="checkbox" name="abcde" id=""></option>
+						<option value="hard">Hard</option>
+						<option value="vary-hard">Very-Hard</option>
+					</select> -->
 
-				<div>
 					<input
-						class="mt-7 border-[1px] h-9 p-2 "
-						placeholder="Search by text or ID"
+						class="mt-7 border-[1px] w-full p-2"
+						placeholder="Search by ID"
 						bind:value={body.search_by_text_id}
 					/>
 				</div>
-				
+			</div>
+
+			<div>
+				<!-- <input
+					class="mt-7 border-[1px]  w-full p-2"
+					placeholder="Search by text or ID"
+					bind:value={body.search_by_text_id}
+				/> -->
+				<!-- <label for="">
+					<input type="checkbox" name="abcde" id=""/> This 
+				</label> -->
 			</div>
 
 			<!-- {#if chapters && chapters.length > 0}
@@ -456,10 +553,10 @@
 			class="w3-button w3-round w3-border mt-8"
 			type="submit"
 			value="Apply filters"
-		/><br><br>
+		/><br /><br />
 	</form>
 
-	<hr class="mb-4">
+	<hr class="mb-4" />
 
 	{#if questions}
 		<h3>Questions({body.skip}-{body.skip + body.limit})</h3>
@@ -596,5 +693,40 @@
 	button {
 		display: inline;
 		width: 200px;
+	}
+
+	.multipleSelection {
+		width: 300px;
+		background-color: #bcc2c1;
+	}
+
+	.selectBox {
+		position: relative;
+	}
+
+	.selectBox select {
+		width: 100%;
+		font-weight: bold;
+	}
+
+	.overSelect {
+		position: absolute;
+		left: 0;
+		right: 0;
+		top: 0;
+		bottom: 0;
+	}
+
+	#checkBoxes {
+		display: none;
+		border: 1px #8df5e4 solid;
+	}
+
+	#checkBoxes label {
+		display: block;
+	}
+
+	#checkBoxes label:hover {
+		background-color: #4f615e;
 	}
 </style>

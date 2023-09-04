@@ -53,6 +53,7 @@
             <!-- <th>Batches</th> -->
             <th>Duration(minutes)</th>
             <th>Test ID</th>
+            <th>Result</th>
             <th>Delete?</th>
           </tr>
         </thead>
@@ -64,6 +65,7 @@
             <!-- <td>{test.batches.length>0?test.batches.map(s=>s.name).join(","):"-"}</td> -->
             <td >{test.duration}</td>
             <td><a  class="w3-text-blue w3-center"  href="/tests/edit/{test.test_type}/{test._id}">{test._id}</a></td>
+            <td><a  class="w3-text-blue w3-center"  href="/tests/result/{test._id}">Result</a></td>
             <td><button class="w3-text-red w3-center w3-panel w3-border w3-round"  on:click={()=>{handleDelete(subject._id)}} >Delete</button></td>
         </tr>
         {/each}
