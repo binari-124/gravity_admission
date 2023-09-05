@@ -86,11 +86,11 @@
 
 		if (edit) {
 			await getStreams();
-			await getChapters(null, false);
 			await getSubjects();
-			await getExams();
-			getTopics(body.chapter, false);
-			getsubTopics(body.topic, false);
+			await getChapters(body.subject);
+			await getTopics(body.chapter);
+			// getTopics(body.chapter, false);
+			// getsubTopics(body.topic, false);
 			body.question = atob(body.question);
 			body.solution = atob(body.solution);
 

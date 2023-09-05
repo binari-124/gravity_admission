@@ -92,7 +92,8 @@
 
 			await getStreams();
 			await getSubjects();
-			await getExams();
+			await getChapters(body.subject);
+			await getTopics(body.chapter);
 			//await getChapters(null,false);
 
 			getChapters(body.subject, false);
