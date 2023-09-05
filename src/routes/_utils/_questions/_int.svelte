@@ -131,8 +131,8 @@
 
 		await getStreams();
 		await getSubjects();
-		await getChapters(null, false);
-		await getExams();
+		// await getChapters(null, false);
+		// await getExams();
 
 		body.options = [];
 		body.options.push({ option_type: "text", option_value: "" });
@@ -242,129 +242,202 @@
 		}
 	}
 
-	async function getChapters(subject, writeBody = true) {
-		// if(!subject || subject=="")
-		// {
-		// 	console.log("no subject chosen");
-		// 	return ;
-		// }
-		if (writeBody) {
-			chapters = null;
-			topics = null;
-			subtopics = null;
-			body.topic = "-";
+	// async function getChapters(subject, writeBody = true) {
+	// 	// if(!subject || subject=="")
+	// 	// {
+	// 	// 	console.log("no subject chosen");
+	// 	// 	return ;
+	// 	// }
+	// 	if (writeBody) {
+	// 		chapters = null;
+	// 		topics = null;
+	// 		subtopics = null;
+	// 		body.topic = "-";
 
-			body.subtopic = "-";
-			body.chapter = "-";
-		}
+	// 		body.subtopic = "-";
+	// 		body.chapter = "-";
+	// 	}
 
+	// 	var token = localStorage.getItem("token");
+	// 	var res;
+	// 	if (subject)
+	// 		res = await fetch(
+	// 			loginPath + "/panel/chapters/?subject=" + subject,
+	// 			{
+	// 				mode: "cors",
+	// 				method: "get",
+	// 				headers: { Authorization: "Bearer " + token },
+	// 			}
+	// 		);
+	// 	else
+	// 		res = await fetch(loginPath + "/panel/chapters", {
+	// 			mode: "cors",
+	// 			method: "get",
+	// 			headers: { Authorization: "Bearer " + token },
+	// 		});
+	// 	if (res.status == 200) {
+	// 		try {
+	// 			let response = await res.text();
+	// 			response = await JSON.parse(response);
+	// 			chapters = response.data;
+	// 		} catch (e) {
+	// 			console.log("caught");
+
+	// 			console.log(e);
+	// 		} finally {
+	// 		}
+
+	// 		// let data = JSON.parse(text);
+	// 	} else {
+	// 		console.log(await res.text());
+	// 		//user.email="no logged";
+	// 	}
+	// }
+
+	// async function getTopics(chapterId, writeBody = true) {
+	// 	if (!chapterId || chapterId == "") {
+	// 		console.log("no chapters chosen");
+	// 		return;
+	// 	}
+	// 	if (writeBody) {
+	// 		topics = null;
+	// 		subtopics = null;
+	// 		body.topic = "-";
+	// 		body.subtopic = "-";
+	// 	}
+
+	// 	var token = localStorage.getItem("token");
+	// 	const res = await fetch(loginPath + "/panel/topics/" + chapterId, {
+	// 		mode: "cors",
+	// 		method: "get",
+	// 		headers: { Authorization: "Bearer " + token },
+	// 	});
+	// 	if (res.status == 200) {
+	// 		try {
+	// 			let response = await res.text();
+	// 			// console.log(response);
+	// 			response = await JSON.parse(response);
+	// 			topics = response.data;
+	// 		} catch (e) {
+	// 			console.log("caught");
+
+	// 			console.log(e);
+	// 		} finally {
+	// 		}
+
+	// 		// let data = JSON.parse(text);
+	// 	} else {
+	// 		console.log(await res.text());
+	// 		//user.email="no logged";
+	// 	}
+	// }
+
+	// async function getsubTopics(topicId, writeBody = true) {
+	// 	if (!topicId || topicId == "") {
+	// 		console.log("no topic chosen");
+	// 		return;
+	// 	}
+
+	// 	if (writeBody) {
+	// 		subtopics = null;
+	// 		body.subtopic = "-";
+	// 	}
+	// 	var token = localStorage.getItem("token");
+	// 	const res = await fetch(loginPath + "/panel/subtopics/" + topicId, {
+	// 		mode: "cors",
+	// 		method: "get",
+	// 		headers: { Authorization: "Bearer " + token },
+	// 	});
+	// 	if (res.status == 200) {
+	// 		try {
+	// 			let response = await res.text();
+	// 			// console.log(response);
+	// 			response = await JSON.parse(response);
+	// 			subtopics = response.data;
+	// 		} catch (e) {
+	// 			console.log("caught");
+
+	// 			console.log(e);
+	// 		} finally {
+	// 		}
+
+	// 		// let data = JSON.parse(text);
+	// 	} else {
+	// 		console.log(await res.text());
+	// 		//user.email="no logged";
+	// 	}
+	// }
+
+	async function getChapters(subject_id) {
+		// console.log(body);
 		var token = localStorage.getItem("token");
-		var res;
-		if (subject)
-			res = await fetch(
-				loginPath + "/panel/chapters/?subject=" + subject,
-				{
-					mode: "cors",
-					method: "get",
-					headers: { Authorization: "Bearer " + token },
+		var loginPath = get(ApiUrl);
+		let res;
+		res = await fetch(loginPath + "/panel/chapters/" + subject_id, {
+			mode: "cors",
+			method: "get",
+			headers: {
+				Authorization: "Bearer " + token,
+				"Content-Type": "application/json",
+			},
+		});
+
+		if (res.status == 200) {
+			try {
+				let response = await res.text();
+				response = await JSON.parse(response);
+				if (response.status == "success") {
+					chapters = response.data;
+					console.log("This is topics data");
+					console.log(topics);
+				} else {
+					console.log(response.message);
+					alert(response.message);
 				}
-			);
-		else
-			res = await fetch(loginPath + "/panel/chapters", {
-				mode: "cors",
-				method: "get",
-				headers: { Authorization: "Bearer " + token },
-			});
-		if (res.status == 200) {
-			try {
-				let response = await res.text();
-				response = await JSON.parse(response);
-				chapters = response.data;
 			} catch (e) {
 				console.log("caught");
-
 				console.log(e);
 			} finally {
 			}
-
-			// let data = JSON.parse(text);
 		} else {
 			console.log(await res.text());
-			//user.email="no logged";
+			user.email = "no logged";
 		}
 	}
 
-	async function getTopics(chapterId, writeBody = true) {
-		if (!chapterId || chapterId == "") {
-			console.log("no chapters chosen");
-			return;
-		}
-		if (writeBody) {
-			topics = null;
-			subtopics = null;
-			body.topic = "-";
-			body.subtopic = "-";
-		}
-
+	async function getTopics(chapter_id) {
+		// console.log(body);
 		var token = localStorage.getItem("token");
-		const res = await fetch(loginPath + "/panel/topics/" + chapterId, {
+		var loginPath = get(ApiUrl);
+		let res;
+		res = await fetch(loginPath + "/panel/topics/" + chapter_id, {
 			mode: "cors",
 			method: "get",
-			headers: { Authorization: "Bearer " + token },
+			headers: {
+				Authorization: "Bearer " + token,
+				"Content-Type": "application/json",
+			},
 		});
+
 		if (res.status == 200) {
 			try {
 				let response = await res.text();
-				// console.log(response);
 				response = await JSON.parse(response);
-				topics = response.data;
+				if (response.status == "success") {
+					topics = response.data;
+					console.log(subjects);
+				} else {
+					console.log(response.message);
+					alert(response.message);
+				}
 			} catch (e) {
 				console.log("caught");
-
 				console.log(e);
 			} finally {
 			}
-
-			// let data = JSON.parse(text);
 		} else {
 			console.log(await res.text());
-			//user.email="no logged";
-		}
-	}
-
-	async function getsubTopics(topicId, writeBody = true) {
-		if (!topicId || topicId == "") {
-			console.log("no topic chosen");
-			return;
-		}
-
-		if (writeBody) {
-			subtopics = null;
-			body.subtopic = "-";
-		}
-		var token = localStorage.getItem("token");
-		const res = await fetch(loginPath + "/panel/subtopics/" + topicId, {
-			mode: "cors",
-			method: "get",
-			headers: { Authorization: "Bearer " + token },
-		});
-		if (res.status == 200) {
-			try {
-				let response = await res.text();
-				// console.log(response);
-				response = await JSON.parse(response);
-				subtopics = response.data;
-			} catch (e) {
-				console.log("caught");
-
-				console.log(e);
-			} finally {
-			}
-
-			// let data = JSON.parse(text);
-		} else {
-			console.log(await res.text());
-			//user.email="no logged";
+			user.email = "no logged";
 		}
 	}
 
@@ -512,9 +585,90 @@
 		>
 	{/if}
 	<form on:submit|preventDefault={saveQuestion}>
-		<section class=" shadow-2xl border-[1px] p-3 rounded-sm">
-			{#if chapters && chapters.length > 0}
-				<div class="mt-4">
+		<section class=" shadow-2xl border-[1px] p-3 rounded-sm mx-1">
+			<div class="mt-4">
+				<div class="flex flex-row space-x-8">
+					<div class="w-1/2">
+						{#if streams}
+							<p>Select Streams</p>
+							<select
+								class="w3-input w3-border w3-round mt-1"
+								bind:value={body.stream}
+							>
+								<option value="-">Select Stream</option>
+								{#each streams as stream}
+									<!-- <label>{}</label> -->
+									<option value={stream._id}
+										>{stream.name.toUpperCase()}</option
+									>
+									<!-- <input class="w3-checkbox w3-input" type="checkbox"  bind:group={body.streams} /> -->
+								{/each}
+							</select>
+						{/if}
+					</div>
+					<div class="w-1/2">
+						{#if subjects}
+							<p>Select Subjects</p>
+
+							<select
+								class="w3-input w3-border w3-round mt-1"
+								bind:value={body.subject}
+								on:change={getChapters(body.subject)}
+							>
+								<option value="-">Select Subject</option>
+								{#each subjects as subject}
+									<!-- <label>{}</label> -->
+									<option value={subject._id}
+										>{subject.name.toUpperCase()}</option
+									>
+									<!-- <input class="w3-checkbox w3-input" type="checkbox"  bind:group={body.streams} /> -->
+								{/each}
+							</select>
+						{/if}
+					</div>
+				</div>
+
+				<div class="flex flex-row space-x-8">
+					{#if chapters && chapters.length > 0}
+						<div class="w-1/2 mt-6">
+							<label for="question_topic">Chapter</label>
+							<select
+								id="question_topic"
+								class="w3-input w3-border w3-round"
+								bind:value={body.chapter}
+								on:change={getTopics(body.chapter)}
+							>
+								<option value="-">Chapter(*)</option>
+
+								{#each chapters as chapter}
+									<option value={chapter._id}
+										>{chapter.name.toUpperCase()}</option
+									>
+								{/each}
+							</select>
+						</div>
+					{/if}
+					{#if topics && topics.length > 0}
+						<div class="w-1/2 mt-6">
+							<label for="question_topic">Topic</label>
+							<select
+								id="question_topic"
+								class="w3-input w3-border w3-round"
+								bind:value={body.topic}
+							>
+								<option value="-">Topic(*)</option>
+
+								{#each topics as topic}
+									<option value={topic._id}
+										>{topic.name.toUpperCase()}</option
+									>
+								{/each}
+							</select>
+						</div>
+					{/if}
+				</div>
+
+				<!-- {#if chapters && chapters.length > 0}
 					<label for="question_topic">Chapter</label>
 					<select
 						id="question_topic"
@@ -522,46 +676,85 @@
 						bind:value={body.chapter}
 						on:change={getTopics(body.chapter)}
 					>
-						<option value="-">Chapter</option>
+						<option value="-">Select Chapter</option>
 
 						{#each chapters as chapter}
-							<option value={chapter._id}>{chapter.name}</option>
+							<option class="" value={chapter._id}
+								>{chapter.name}</option
+							>
 						{/each}
 					</select>
-				</div>
-				{#if topics && topics.length > 0}
-					<label for="question_topic">Topic</label>
-					<select
-						id="question_topic"
-						class="w3-input w3-border w3-round"
-						bind:value={body.topic}
-						on:change={getsubTopics(body.topic)}
-					>
-						<option value="-">Topic(*)</option>
-
-						{#each topics as topic}
-							<option value={topic._id}>{topic.name}</option>
-						{/each}
-					</select>
-					{#if subtopics && subtopics.length > 0}
-						<label for="question_topic">SubTopic</label>
+					{#if topics && topics.length > 0}
+						<label for="question_topic">Topic</label>
 						<select
 							id="question_topic"
 							class="w3-input w3-border w3-round"
-							bind:value={body.subtopic}
+							bind:value={body.topic}
+							on:change={getsubTopics(body.topic)}
 						>
-							<option value="-">Subtopic(*)</option>
+							<option value="-">Topic</option>
 
-							{#each subtopics as subtopic}
-								<option value={subtopic._id}
-									>{subtopic.name}</option
-								>
+							{#each topics as topic}
+								<option value={topic._id}>{topic.name}</option>
 							{/each}
 						</select>
+						{#if subtopics && subtopics.length > 0}
+							<label for="question_topic">SubTopic</label>
+							<select
+								id="question_topic"
+								class="w3-input w3-border w3-round"
+								bind:value={body.subtopic}
+							>
+								<option value="-">Subtopic</option>
+
+								{#each subtopics as subtopic}
+									<option value={subtopic._id}
+										>{subtopic.name}</option
+									>
+								{/each}
+							</select>
+						{/if}
 					{/if}
-				{/if}
-			{/if}
-			<div class="mt-4">
+				{/if} -->
+			</div>
+
+			<div class="flex flex-row space-x-6 mt-6">
+				<div class="w-1/2">
+					<label for="question_difficulty">Question Type</label>
+					<select
+						id="question_difficulty"
+						class="w3-input w3-border w3-round mt-1"
+						bind:value={body.question_type}
+					>
+						<option value="-">Select Question Type</option>
+						<option value="scq">Single Choice Question</option>
+						<option value="mcq">Multiple Choice Question</option>
+						<option value="integer">Integer</option>
+						<option value="comprehension">Comprehension </option>
+						<option value="matrix">Matrix</option>
+						<option value="fill_in_blanks"
+							>Fill in the blanks</option
+						>
+					</select>
+				</div>
+				<div class="w-1/2">
+					<label for="question_difficulty"> Difficulty</label>
+					<select
+						id="question_difficulty"
+						class="w3-input w3-border w3-round mt-1"
+						bind:value={body.difficulty}
+					>
+						<option value="-">Select Difficulty</option>
+						<option value="very-easy">Very Easy</option>
+						<option value="easy">Easy</option>
+						<option value="medium">Medium</option>
+						<option value="hard">Hard</option>
+						<option value="vary-hard">Very-Hard</option>
+					</select>
+				</div>
+			</div>
+
+			<!-- <div class="mt-4">
 				<label for="question_difficulty"> Difficulty</label>
 				<select
 					id="question_difficulty"
@@ -575,7 +768,7 @@
 					<option value="hard">Hard</option>
 					<option value="vary-hard">Very-Hard</option>
 				</select>
-			</div>
+			</div> -->
 
 			<!-- <label for="question_difficulty"> Stream</label>
 		<select id="question_difficulty" class="w3-input w3-border w3-round w3-margin" bind:value={body.stream}>
@@ -588,69 +781,75 @@
 
 			<!-- {#if streams && body.streams}
 		<p>Select Streams</p><br>
+            {#each streams as stream}
+            <label>{stream.name.toUpperCase()}</label>
+                <input class="w3-checkbox w3-input" type="checkbox" value={stream._id} bind:group={body.streams} />
+            {/each}
+		{/if}
+
+		{#if subjects && body.subjects}
+		<p>Select Subjects</p><br>
+            {#each subjects as subject}
+            <label>{subject.name.toUpperCase()}</label>
+                <input class="w3-checkbox w3-input" type="checkbox" value={subject._id} bind:group={body.subjects} />
+            {/each}
+		{/if}  -->
+
+			<!-- {#if streams && body.streams}
+		<p>Select Streams</p><br>
 		<select class="w3-input w3-border w3-round w3-margin" bind:value={body.stream}>
 			<option value="-">Select Stream</option>
             {#each streams as stream}
-
 				<option value={stream._id}>{stream.name.toUpperCase()}</option>
-        
             {/each}
 
 		</select>
 		{/if} -->
 
-			{#if subjects}
-				<div class="mt-4">
-					<label>Subject</label>
-					<br />
+			<!-- <div class="mt-4">
+				{#if subjects}
+					<label for="question_subject">Subject</label><br />
 					<select
+						id="question_subject"
 						class="w3-input w3-border w3-round"
 						bind:value={body.subject}
 					>
 						<option value="-">Select Subject</option>
 						{#each subjects as subject}
-							<!-- <label>{}</label> -->
 							<option value={subject._id}
 								>{subject.name.toUpperCase()}</option
 							>
-							<!-- <input class="w3-checkbox w3-input" type="checkbox"  bind:group={body.streams} /> -->
 						{/each}
 					</select>
-				</div>
-			{/if}
+				{/if}
+			</div>
 
-			{#if exams}
-				<div class="mt-4">
-					<label>Exams</label>
-					<br />
+			<div class="mt-4">
+				{#if exams}
+					<label for="question_exam">Exams</label><br />
 					<select
+						id="question_exam"
 						class="w3-input w3-border w3-round"
 						bind:value={body.exams}
 					>
 						<option value="-">Select Exam</option>
 						{#each exams as exam}
-							<!-- <label>{}</label> -->
 							<option value={exam._id}
 								>{exam.name.toUpperCase()}</option
 							>
-							<!-- <input class="w3-checkbox w3-input" type="checkbox"  bind:group={body.streams} /> -->
 						{/each}
 					</select>
-				</div>
 
-				<!-- <div class="w3-dropdown-hover w3-card  w3-round w3-margin">
-			<p class="w3-button">Exams</p>
-			<div class="w3-dropdown-content w3-bar-block w3-border ztop">
-				{#each exams as exam}
-				<p class="w3-button w3-center w3-red w3-right" on:click={clearExam}>Clear</p>
-				<div class="w3-margin">
-					<span class="label">{exam.name.toUpperCase()}</span><input class="" type=radio value={exam._id} bind:group={body.exam} />	
-				</div>
-				{/each}
-			</div>		
-		  </div>  -->
-			{/if}
-			<input class="my-4 p-2 border-2 w-full " type="text" bind:value={body.media} placeholder="Media Link(Youtube)" />
+					
+				{/if}
+			</div> -->
+
+			<input
+				class="my-6 p-2 border-2 w-full "
+				type="text"
+				bind:value={body.media}
+				placeholder="Media Link(Youtube)"
+			/>
 		</section>
 		<section class=" shadow-2xl border-[1px] p-3 rounded-sm mt-10">
 			<h4>Question</h4>

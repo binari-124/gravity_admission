@@ -17,6 +17,8 @@
 	var subtopics = null;
 	var subjects = [];
 	var streams = [];
+	var chapters =[];
+	var topics =[];
 	var exams = [];
 	export var bodyJson;
 	export var body = {};
@@ -54,6 +56,8 @@
 			// getChapters(body.subject,false);
 			await getStreams();
 			await getSubjects();
+			await getChapters(body.subject);
+			await getTopics(body.chapter);
 			// await getChapters(body.subject, false);
 			// await getTopics(body.chapter, false);
 			// await getExams();
