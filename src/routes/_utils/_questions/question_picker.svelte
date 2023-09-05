@@ -486,7 +486,7 @@
 					<input
 						class="mt-7 border-[1px] w-full p-2"
 						placeholder="Search by ID"
-						bind:value={body.search_by_text_id}
+						bind:value={body.question_id}
 					/>
 				</div>
 			</div>
