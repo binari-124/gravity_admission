@@ -39,7 +39,7 @@
 
     // console.log(loginPath+'/auth/whoami');
     // loginPath = "/api"
-    const res = await fetch(loginPath + "/panel/results/"+test_Id , {
+    const res = await fetch(loginPath + "/panel/results/results/"+test_Id , {
       mode: "cors",
       method: "get",
       headers: { Authorization: "Bearer " + token },
@@ -53,6 +53,7 @@
         if (response.status == "success") {
           console.log("got questions");
           testresult = response.data;
+          console.log("This is test result");
           console.log(testresult);
           console.log(test_Id);
           console.log("This is test result");
@@ -84,6 +85,7 @@
 
 <div class="w3-round">
   {#if testresult}
+  
     <table class="w3-table-all w3-hoverable" width="100%">
       <thead>
         <tr class="w3-light-grey">

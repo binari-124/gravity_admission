@@ -53,7 +53,7 @@
 		body.topic = "-";
 		body.question_type = q_type;
 		body.subtopic = "-";
-		body.subject = subject;
+		body.subject = "-";
 		body.class_num = "-";
 		body.category = "-";
 		body.stream = "-";
@@ -231,6 +231,22 @@
 		}
 	}
 
+	function chapterdata(subject_id){
+		if(subject_id ==="-"){
+            chapters=null
+		}else{
+			getChapters(subject_id);
+		}
+	}
+
+	function topicdata(chapter_id){
+		if(chapter_id ==="-"){
+             topics=null;
+		}else{
+			getTopics(chapter_id);
+		}
+	}
+
 	async function getChapters(subject_id) {
 		// console.log(body);
 		var token = localStorage.getItem("token");
@@ -360,7 +376,7 @@
 						<select
 							class="w3-input w3-border w3-round mt-1"
 							bind:value={body.subject}
-							on:change={getChapters(body.subject)}
+							on:change={chapterdata(body.subject)}
 						>
 							<option value="-">Select Subject</option>
 							{#each subjects as subject}
@@ -383,7 +399,7 @@
 						id="question_topic"
 						class="w3-input w3-border w3-round"
 						bind:value={body.chapter}
-						on:change={getTopics(body.chapter)}
+						on:change={topicdata(body.chapter)}
 					>
 						<option value="-">Chapter(*)</option>
 
