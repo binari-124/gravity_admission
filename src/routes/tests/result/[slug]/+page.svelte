@@ -1,3 +1,5 @@
+
+
 <script>
   /** @type {import('./$types').PageData} */
   export let data;
@@ -9,6 +11,7 @@
   import { ApiUrl } from "../../../_utils/static_store.js";
   import { get } from "svelte/store";
   import { bubble } from "svelte/internal";
+  //-------------- import { read, utils, writeFile } from 'xlsx';
   // import Test from "../../../../_utils/_tests/general.svelte";
 
   let testresult;
@@ -75,30 +78,46 @@
     }
     //
   });
+  // function exportdata(){
+  //   var table2excel = new Table2Excel();
+  //   table2excel.export(document.querySelectorAll("#tabledata"));
+  // }
+
+
 </script>
+
+
 
 <!-- <div class="container w3-card" style="--template-color:red">
   {#if test}
   <Test edit={true} body={test} />
   {/if}
   </div> -->
-
+<!-- <div>
+  <button class="my-4 border-2 rounded-md  p-2" on:click={exportdata}>Export to Excel</button>
+</div> -->
 <div class="w3-round">
   {#if testresult}
-  
-    <table class="w3-table-all w3-hoverable" width="100%">
+    <table class="w3-table-all w3-hoverable" id="tabledata" width="100%">
       <thead>
         <tr class="w3-light-grey">
           <th>Name</th>
-          <th>Stream</th>
-          <th>Subject ID</th>
-          <th>Delete?</th>
+          <th>Student ID</th>
+          <th>Student Number</th>
+          <th>Max Marks</th>
+          <th>Marks Obtained</th>
+          
+          <!-- <th>Delete?</th> -->
         </tr>
       </thead>
       {#each testresult as result}
         <tr class="w3-hover-shadow">
-          <td>{subject.name}</td>
-          <td>
+          <td>{result.student.name}</td>
+          <td>{result.student._id}</td>
+          <td>{result.student.phone}</td>
+          <td>{result.max_marks}</td>
+          <td>{result.total}</td>
+          <!-- <td>
             {#each subject.streams as stream}
               {stream.name},
             {/each}
@@ -115,7 +134,7 @@
                 handleDelete(subject._id);
               }}>Delete</button
             ></td
-          >
+          > -->
         </tr>
       {/each}
     </table>
