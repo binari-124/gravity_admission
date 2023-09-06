@@ -25,7 +25,7 @@
   // let day= date.getDay();
 
   onMount(async () => {
-    console.log(testId);
+    console.log(test_Id);
     console.log("mounted");
     // localStorage.setItem("token","some value");
 
@@ -54,6 +54,7 @@
           console.log("got questions");
           testresult = response.data;
           console.log(testresult);
+          console.log(test_Id);
           console.log("This is test result");
         } else {
           console.log(response.message);
