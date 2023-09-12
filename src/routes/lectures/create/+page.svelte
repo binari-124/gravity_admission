@@ -199,10 +199,10 @@
 
 
 	<label>Lecture URL(AWS link)</label>
-	<input class="w3-input w3-border w3-round w3-margin w3-padding" type="text" bind:value={body.media} placeholder="Video URL" required/>
+	<input class="w3-input w3-border w3-round w3-margin w3-padding" type="text" bind:value={body.media} placeholder="Video URL" />
 
 	<label>Lecture TimeStamp</label>
-	<input class="w3-input w3-border w3-round w3-margin w3-padding" type="datetime-local" bind:value={body.timestamp} required/>
+	<input class="w3-input w3-border w3-round w3-margin w3-padding" type="datetime-local" bind:value={body.timestamp} />
 
 
 	<!-- <label>Select a stream</label>

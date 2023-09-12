@@ -58,7 +58,7 @@
 			await getChapters(body.subject);
 			await getTopics(body.chapter);
 			// getTopics(body.chapter, false);
-			// getsubTopics(body.topic, false);
+			getsubTopics(body.topic, false);
 
 			body.question = atob(body.question);
 			if (body.comprehension) {
