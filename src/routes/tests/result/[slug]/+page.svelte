@@ -11,7 +11,7 @@
   import { ApiUrl } from "../../../_utils/static_store.js";
   import { get } from "svelte/store";
   import { bubble } from "svelte/internal";
-  import { read, utils, writeFileXLSX } from 'xlsx';
+  // import { read, utils, writeFileXLSX } from 'xlsx';
   // import Test from "../../../../_utils/_tests/general.svelte";
 
   let testresult = [];
