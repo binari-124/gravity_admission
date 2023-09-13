@@ -11,7 +11,7 @@
   import { ApiUrl } from "../../../_utils/static_store.js";
   import { get } from "svelte/store";
   import { bubble } from "svelte/internal";
-  // import { read, utils, writeFileXLSX } from 'xlsx';
+  import { read, utils, writeFileXLSX } from 'xlsx';
   // import Test from "../../../../_utils/_tests/general.svelte";
 
   let testresult = [];
@@ -109,9 +109,9 @@
   <Test edit={true} body={test} />
   {/if}
   </div> -->
-<!-- <div>
+<div>
   <button class="my-4 border-2 rounded-md  p-2" on:click={exportdata}>Export to Excel</button>
-</div> -->
+</div>
 
 <div class="w3-round">
   {#if testresult}
