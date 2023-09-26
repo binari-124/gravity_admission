@@ -61,7 +61,8 @@
 	
 				<!-- <a class="  w3-round"  href="/students/">  <li class="w3-padding w3-hover-blue w3-round" aria-current="{segment === "students" ? 'page' : undefined}"><i class="fa-solid fa-user"></i>  Students</li></a><hr> -->
 				<a class=" " href="/tests/"> <li class="w3-padding w3-hover-blue w3-round w3-padding"  aria-current="{segment === "tests" ? 'page' : undefined}" ><i class="fa-solid fa-vials"></i>  Tests</li></a><hr>
-				<a class="" href="/questions/"><li  class="w3-hover-blue w3-round w3-padding" aria-current="{segment === "questions" ? 'page' : undefined}" ><i class="fa-solid fa-book-open"></i>  Questions</li></a><hr>
+				<a class=" " href="/results/"> <li class="w3-padding w3-hover-blue w3-round w3-padding"  aria-current="{segment === "tests" ? 'page' : undefined}" ><i class="fa-solid fa-square-poll-vertical"></i>  Results</li></a><hr>
+                <a class="" href="/questions/"><li  class="w3-hover-blue w3-round w3-padding" aria-current="{segment === "questions" ? 'page' : undefined}" ><i class="fa-solid fa-book-open"></i>  Questions</li></a><hr>
 				<a class=" " href="/chapters/"><li class="w3-hover-blue w3-round w3-padding" aria-current="{segment === "chapters" ? 'page' : undefined}" ><i class="fa-solid fa-book-open-reader"></i>  Chapters,Topics & Subtopics</li></a><hr>
 				<a class=" " href="/staff/"><li class="w3-hover-blue w3-round w3-padding" aria-current="{segment === "staff" ? 'page' : undefined}" ><i class="fa-solid fa-users"></i>  Staff</li></a><hr>
 				<a class=" " href="/faculties/"><li class="w3-hover-blue w3-round w3-padding" aria-current="{segment === "staff" ? 'page' : undefined}" ><i class="fa-solid fa-users"></i>  faculties</li></a><hr>

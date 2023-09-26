@@ -733,6 +733,30 @@
 				</div>
 			</div>
 
+			<div class="flex flex-row space-x-6 mt-6">
+				<div class="w-1/2">
+					<label for="question_difficulty">Question SubType</label>
+					<select
+						id="question_difficulty"
+						class="w3-input w3-border w3-round mt-1"
+						bind:value={body.question_subtype}
+					>
+						<option value="-">Select Question Type</option>
+						<option value="scq">Single Choice Question</option>
+						<option value="mcq">Multiple Choice Question</option>
+						<option value="integer">Integer</option>
+						<option value="matrix">Matrix</option>
+						<option value="fill_in_blanks"
+							>Fill in the blanks</option
+						>
+					</select>
+				</div>
+				<div class="w-1/2">
+					
+				</div>
+				
+			</div>
+
 			<!-- <div class="mt-4">
 				<label for="question_difficulty"> Difficulty</label>
 				<select

@@ -498,12 +498,13 @@
 						<option value="hard">Hard</option>
 						<option value="vary-hard">Very-Hard</option>
 					</select> -->
-
+                    
 					<input
 						class="mt-7 border-[1px] w-full p-2"
 						placeholder="Search by ID"
-						bind:value={body.question_id}
+						bind:value={body.id}
 					/>
+					<!-- bind:value={body.question_id} -->
 				</div>
 			</div>
 

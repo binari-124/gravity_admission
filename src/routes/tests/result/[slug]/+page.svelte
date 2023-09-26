@@ -16,6 +16,7 @@
 
   let testresult = [];
   
+  
   // let pres;
 
   // if(testresult){
@@ -36,12 +37,15 @@
   // let day= date.getDay();
 
   onMount(async () => {
-  const f = await (await fetch("https://sheetjs.com/pres.xlsx")).arrayBuffer();
-  const wb = read(f); // parse the array buffer
-  const ws = wb.Sheets[wb.SheetNames[0]]; // get the first worksheet
-  let xyz = utils.sheet_to_json(ws);
-  console.log("This is xyz");
-  console.log(xyz);
+  // const f = await (await fetch("https://sheetjs.com/pres.xlsx")).arrayBuffer();
+  // const wb = read(f); // parse the array buffer
+  // const ws = wb.Sheets[wb.SheetNames[0]]; // get the first worksheet
+  // let xyz = utils.sheet_to_json(ws);
+
+  // console.log("This is ws")
+  // console.log(ws);
+  // console.log("This is xyz");
+  // console.log(xyz);
     console.log(test_Id);
     console.log("mounted");
     // localStorage.setItem("token","some value");
@@ -92,13 +96,25 @@
     }
     //
   });
+  let myarr = [
+    {name:"Vikas",
+     abc:"gangwar",
+     wxy:58
+  },{name:"amit",
+     abc:"anand",
+     wxy:58
+  }
+  ]
   function exportdata(){
-  const ws = utils.json_to_sheet(testresult);
+  const ws = utils.json_to_sheet(myarr);
   const wb = utils.book_new();
   utils.book_append_sheet(wb, ws, "Data");
-  writeFileXLSX(wb, "SheetJSSvelteAoO.xlsx");
+  writeFileXLSX(wb, "abcd.xlsx");
+  
+  console.log("This is ws")
+  console.log(testresult);
   }
-
+ 
 
 </script>
 

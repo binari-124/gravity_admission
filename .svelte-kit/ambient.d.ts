@@ -56,6 +56,8 @@ declare module '$env/static/private' {
 	export const LS_COLORS: string;
 	export const MANDATORY_PATH: string;
 	export const NODE: string;
+	export const NO_AT_BRIDGE: string;
+	export const N_PREFIX: string;
 	export const ORIGINAL_XDG_CURRENT_DESKTOP: string;
 	export const PATH: string;
 	export const PWD: string;
@@ -116,6 +118,7 @@ declare module '$env/static/private' {
 	export const npm_config_metrics_registry: string;
 	export const npm_config_node_gyp: string;
 	export const npm_config_noproxy: string;
+	export const npm_config_npm_version: string;
 	export const npm_config_prefix: string;
 	export const npm_config_user_agent: string;
 	export const npm_config_userconfig: string;
@@ -186,6 +189,8 @@ declare module '$env/dynamic/private' {
 		LS_COLORS: string;
 		MANDATORY_PATH: string;
 		NODE: string;
+		NO_AT_BRIDGE: string;
+		N_PREFIX: string;
 		ORIGINAL_XDG_CURRENT_DESKTOP: string;
 		PATH: string;
 		PWD: string;
@@ -246,6 +251,7 @@ declare module '$env/dynamic/private' {
 		npm_config_metrics_registry: string;
 		npm_config_node_gyp: string;
 		npm_config_noproxy: string;
+		npm_config_npm_version: string;
 		npm_config_prefix: string;
 		npm_config_user_agent: string;
 		npm_config_userconfig: string;
