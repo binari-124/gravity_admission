@@ -115,6 +115,10 @@
 		} else {
 			console.log(await res.text());
 		}
+		console.log("Body ID");
+		console.log(body.id);
+		console.log(typeof(body.id));
+		console.log(body.id.length);
 	}
 
 	function serialize(obj) {

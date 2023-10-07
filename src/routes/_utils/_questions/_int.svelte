@@ -160,7 +160,7 @@
 				return;
 			}
 			body.correct_answer = rangeStart + "::" + rangeEnd;
-			body.question_subtype = "range";
+			body.question_subtype = "integer";
 		}
 		else{
 			if (isNaN(parseInt(body.correct_answer))) {
