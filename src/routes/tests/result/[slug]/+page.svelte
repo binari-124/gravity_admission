@@ -60,7 +60,8 @@
 
     // console.log(loginPath+'/auth/whoami');
     // loginPath = "/api"
-    const res = await fetch(loginPath + "/panel/results/results/"+test_Id , {
+    // const res = await fetch(loginPath + "/panel/results/results/"+test_Id , {
+    const res = await fetch(loginPath + "/panel/results/results_filter" , {
       mode: "cors",
       method: "get",
       headers: { Authorization: "Bearer " + token },
@@ -96,6 +97,7 @@
     }
     //
   });
+  
   let myarr = [
     {name:"Vikas",
      abc:"gangwar",
@@ -105,8 +107,10 @@
      wxy:58
   }
   ]
+  
   function exportdata(){
-  const ws = utils.json_to_sheet(myarr);
+  const ws = utils.json_to_sheet(testresult);
+  // const ws = utils.json_to_sheet(myarr);
   const wb = utils.book_new();
   utils.book_append_sheet(wb, ws, "Data");
   writeFileXLSX(wb, "abcd.xlsx");

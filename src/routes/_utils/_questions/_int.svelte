@@ -96,8 +96,8 @@
 			await getTopics(body.chapter);
 			//await getChapters(null,false);
 
-			getChapters(body.subject, false);
-			getTopics(body.chapter, false);
+			// getChapters(body.subject, false);
+			// getTopics(body.chapter, false);
 			getsubTopics(body.topic, false);
 
 			body.question = atob(body.question);
@@ -159,11 +159,11 @@
 				alert("Please enter a correct end range in the answer.");
 				return;
 			}
-			body.correct_answer = rangeStart + "::" + rangeEnd;
-			body.question_subtype = "integer";
+			data.correct_answer = rangeStart + "::" + rangeEnd;
+			data.question_subtype = "integer";
 		}
 		else{
-			if (isNaN(parseInt(body.correct_answer))) {
+			if (isNaN(parseInt(data.correct_answer))) {
 			alert("Please enter a correct Integer in the answer.");
 			return;
 			}
@@ -188,8 +188,8 @@
 		}
 
 		if (isRangeBased) {
-			body.correct_answer = rangeStart + "::" + rangeEnd;
-			body.question_subtype = "range";
+			data.correct_answer = rangeStart + "::" + rangeEnd;
+			data.question_subtype = "integer";
 		}
 
 		//checks end

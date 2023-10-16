@@ -1,29 +1,84 @@
 <script>
-    export let results = null;
-    </script>
-    
-    {#if results}
-    <table class="w3-table-all w3-hoverable"> 
-        <thead>
+  export let students = null;
+
+  import { ApiUrl } from "../../_utils/static_store";
+  import { get } from "svelte/store";
+
+  async function handleDelete(studentId) {
+      let confirmm = confirm("Really want to delete permanently?");
+      if (!confirmm) {
+          return;
+      }
+      var token = localStorage.getItem("token");
+      var loginPath = get(ApiUrl);
+      let res;
+      res = await fetch(loginPath + "/panel/student_delete/" + studentId, {
+          mode: "cors",
+          method: "post",
+          headers: {
+              Authorization: "Bearer " + token,
+              "Content-Type": "application/json",
+          },
+      });
+
+      if (res.status == 200) {
+          try {
+              let response = await res.text();
+              response = await JSON.parse(response);
+              if (response.status == "success") {
+                  location.reload();
+              } else {
+                  console.log(response.message);
+                  alert(response.message);
+              }
+          } catch (e) {
+              console.log("caught");
+
+              console.log(e);
+          }
+      } else {
+          console.log(await res.text());
+      }
+  }
+  
+</script>
+
+{#if students}
+  <table class="w3-table-all w3-hoverable">
+      <thead>
           <tr class="w3-light-grey">
-            <th>Test Name</th>
-            <th>Timestamp</th>
-            <th>Score</th>
-            <th>Percentage</th>
-            <th>Result ID</th>
-            <!-- <th>Email Id</th>
-            <th>Student ID</th> -->
-          </tr>
-        </thead>
-        {#each results as result}
-        <tr class="w3-hover-shadow">
-            <td>{result.test_id.name}</td>
-            <td>{result.createdAt}</td>
-            <td>{result.total}</td>
-            <td>{result.total}/{result.max_marks}</td>
+              <th>#</th>
+              <th>Name</th>
            
-            <td><a class="w3-text-blue"  href="/results/{result._id}">{result._id}</a></td> 
-        </tr>
-        {/each}
-      </table>
-    {/if}
+              <th>Email Id</th>
+              <th>Contact</th>
+              <th>Student ID</th>
+              <th>Delete?</th><th /></tr
+          >
+      </thead>
+      {#each students as student, ind}
+          <tr class="w3-hover-shadow">
+              <td>{ind + 1}</td>
+              <td>{student.name}</td>
+              <!-- <td>{student.stream.name}</td>
+          <td>{student.batch?student.batch.name:"-"}</td>
+          <td>{student.branch?student.branch.name:"-"}</td> -->
+              <td>{student.email}</td>
+              <td>{student.phone}</td>
+              <td
+                  ><a class="w3-text-blue" href="/students/{student._id}"
+                      >{student._id}</a
+                  ></td
+              >
+              <td
+                  ><button
+                      class="w3-text-red w3-center"
+                      on:click={() => {
+                          handleDelete(student._id);
+                      }}>Delete</button
+                  ></td
+              >
+          </tr>
+      {/each}
+  </table>
+{/if}
