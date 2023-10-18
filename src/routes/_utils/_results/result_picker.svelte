@@ -6,6 +6,7 @@
     import ResultsList from "$lib/components/lists/results.svelte";
 
     var results = null;
+    var tests = null;
 
     var 
     // streams = [],
@@ -54,7 +55,7 @@
         await getBranches();
 
         await getResults();
-        // await getTest();
+        await getTest();
     });
 
     // const forceUpdate = async (_) => {};
@@ -406,9 +407,9 @@
             </p>
         </div>
 
-        <!-- <div class="w3-padding w3-margin">
-            <ResultsList {results} />
-        </div> -->
+        <div class="w3-padding w3-margin">
+            <ResultsList {tests} />
+        </div>
     {:else}
         <p>No results found!</p>
     {/if}
