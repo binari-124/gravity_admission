@@ -1,6 +1,6 @@
 <script>
-    export let tests = null;
-    console.log(tests);
+    export let results = null;
+    console.log(results);
     import {ApiUrl} from '../../_utils/static_store.js';
   import { get } from 'svelte/store';
     // export mathjax=null;
@@ -43,30 +43,33 @@
       }
     </script>
     
-    {#if tests}
+    {#if results}
     <table class="w3-table-all w3-hoverable">
         <thead>
           <tr class="w3-light-grey">
-            <th>Test Name</th>
-            <th>Test Type</th>
-            <th>Streams</th>
+            <th> Name</th>
+            <th>Student ID</th>
+            <th>Student Number</th>
             <!-- <th>Batches</th> -->
-            <th>Duration(minutes)</th>
+            <th>Max Marks</th>
             <!-- <th>Test ID</th> -->
-            <th>Result</th>
-            <th>Delete?</th>
+            <th>Marks Obtained</th>
+           
           </tr>
         </thead>
-        {#each tests as test}
+        {#each results as result}
         <tr class="w3-hover-shadow">
-            <td >{test.name}</td>
-            <td>{test.test_type}</td>
-            <td>{test.streams.length>0?test.streams.map(s=>s.name).join(","):"-"}</td>
+          <td>{result.student.name}</td>
+          <td>{result.student._id}</td>
+          <td>{result.student.phone}</td>
+          <td>{result.max_marks}</td>
+          <td>{result.total}</td>
+            <!-- <td>{test.streams.length>0?test.streams.map(s=>s.name).join(","):"-"}</td> -->
             <!-- <td>{test.batches.length>0?test.batches.map(s=>s.name).join(","):"-"}</td> -->
-            <td >{test.duration}</td>
+          
             <!-- <td><a  class="w3-text-blue w3-center"  href="/tests/edit/{test.test_type}/{test._id}">{test._id}</a></td> -->
-            <td><a  class="w3-text-blue w3-center"  href="/results/result/{test._id}">Result</a></td>
-            <td><button class="w3-text-red w3-center w3-panel w3-border w3-round"  on:click={()=>{handleDelete(subject._id)}} >Delete</button></td>
+            <!-- <td><a  class="w3-text-blue w3-center"  href="/results/result/{test._id}">Result</a></td> -->
+            <!-- <td><button class="w3-text-red w3-center w3-panel w3-border w3-round"  on:click={()=>{handleDelete(subject._id)}} >Delete</button></td> -->
         </tr>
         {/each}
       </table>

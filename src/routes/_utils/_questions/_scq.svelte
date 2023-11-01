@@ -105,6 +105,39 @@
 		console.log("mounted");
 	});
 
+
+
+	let showdata_data = null;
+	function showdata(){
+		 showdata_data = cloneDeep(body);
+		showdata_data.question_type = "scq";
+		showdata_data.question_subtype = "simple";
+		showdata_data.question = btoa(tinymce.get("question").getContent());
+		showdata_data.solution = btoa(tinymce.get("solution").getContent());
+		for (var i = 0; i < showdata_data.options.length; i++) {
+			showdata_data.options[i].option_value = btoa(
+				tinymce.get("option" + i).getContent()
+			);
+		}
+
+		//checks for the question value!
+		var keys = Object.keys(showdata_data);
+
+		for (var key of keys) {
+			if (showdata_data[key] == "-") {
+				console.log("deleting: " + key);
+				delete showdata_data[key];
+			}
+		}
+
+		//checks end
+		console.log("showdata_data");
+		console.log(showdata_data);
+		console.log("showdata_data");
+	}
+
+
+
 	async function saveQuestion() {
 		let data = cloneDeep(body);
 		data.question_type = "scq";
@@ -466,6 +499,9 @@
 	console.log(body.options);
 	console.log("this is body");
 </script>
+
+<!-- <button class="btn" on:click={showdata} >Show data</button>
+<p>{showdata_data}</p> -->
 
 <h3 class="w3-black w3-round w3-padding width">
 	{edit ? "Edit a" : "Create a"}

@@ -11,6 +11,7 @@
     import { get } from "svelte/store";
     // import { roomId } from '../room/[slug].svelte';
     // export var roomId;
+    
 
     var results = null;
     var loginPath = get(ApiUrl);

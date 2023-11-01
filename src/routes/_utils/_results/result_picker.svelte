@@ -6,7 +6,7 @@
     import ResultsList from "$lib/components/lists/results.svelte";
 
     var results = null;
-    var tests = null;
+    // var tests = null;
 
     var 
     // streams = [],
@@ -21,6 +21,8 @@
 
     let body = {};
     var loginPath = get(ApiUrl);
+  
+    let batchId ;  
 
     function next() {
         body.skip += body.limit;
@@ -96,6 +98,10 @@
         // } else {
         //     console.log(await res.text());
         // }
+
+
+        // res = await fetch(loginPath + "/panel/results/results_filter?batch._id="+" 	64a282de5f687d8d38cd7bd9"+"&result_type="+"  "+ "&updatedAt=" + " " + "&branch._id=", {
+
          res = await fetch(loginPath + "/panel/results/results_filter", {
             mode: "cors",
             method: "get",
@@ -107,6 +113,9 @@
                 console.log(response);
                 response = await JSON.parse(response);
                 results = response.data;
+                console.log("This is results");
+                console.log(results);
+                console.log("This is results");
             } catch (e) {
                 console.log("caught");
 
@@ -408,7 +417,7 @@
         </div>
 
         <div class="w3-padding w3-margin">
-            <ResultsList {tests} />
+            <ResultsList {results} />
         </div>
     {:else}
         <p>No results found!</p>
