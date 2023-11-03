@@ -16,6 +16,9 @@
   let result_new = [];
   let result_export = [];
 
+  result_new = result_new;
+  result_export = result_export;
+
   // var tests = null;
 
   // streams = [],
@@ -135,28 +138,36 @@
   }
 
   async function exportResult() {
-    if (result_new.length != 0) {
-      const uniqueResultIds = new Set(); // Create a set to store unique result_id values
+    const uniqueResultIds = new Set(); // Create a set to store unique result_id values
 
-      let abcd = "12345678";
+    let abcd = "12345678";
 
-      for (let i = 0; i < result_new.length; i++) {
-        if (result_new[i].test !== " ") {
-          // Check if the result_id is already in the set
-          if (!uniqueResultIds.has(results[i].test)) {
-            // If it's not in the set, add it to both the set and the total_test_results array
-            uniqueResultIds.add(results[i].test);
-
-            total_test_results.push({
-              "S.No.": i + 1,
-              "Student Name": result_new[i].student.name,
-              "Email address": result_new[i].student.email,
-              // Sections:result_new[i].section_wise,
-              // Section:sectionResult(result_new[i].section_wise),
-              "Max Marks": result_new[i].max_marks,
-              "Marks Obtained": result_new[i].total,
-            });
+    for (let i = 0; i < result_new.length; i++) {
+      if (result_new[i].test !== " ") {
+        // Check if the result_id is already in the set
+        if (!uniqueResultIds.has(results[i].test)) {
+          // If it's not in the set, add it to both the set and the total_test_results array
+          uniqueResultIds.add(results[i].test);
+          var abcdef = {
+            "S.No.": i + 1,
+            "Student Name": result_new[i].student.name,
+            "Email address": result_new[i].student.email,
+            // "Max Marks": result_new[i].max_marks,
+            // "Marks Obtained": result_new[i].total,
+          };
+          let subject_wise = result_new[i].section_wise;
+          let sw = Object.keys(subject_wise);
+          for (var k = 0; k < sw.length; k++) {
+            abcdef[sw[k] + "-attempted"] = subject_wise[sw[k]].attempted;
+            abcdef[sw[k] + "-correct"] = subject_wise[sw[k]].correct;
+            abcdef[sw[k] + "-incorrect"] = subject_wise[sw[k]].incorrect;
+            abcdef[sw[k] + "-outOf"] = subject_wise[sw[k]].outOf;
+            abcdef[sw[k] + "-total"] = subject_wise[sw[k]].total;
           }
+        abcdef["Max Marks"] = result_new[i].max_marks;
+        abcdef["Marks Obtained"] = result_new[i].total;
+
+          total_test_results.push(abcdef);
         }
       }
     }
@@ -175,6 +186,8 @@
     { name: "amit", abc: "anand", wxy: 58 },
   ];
   function exportdata() {
+    console.log("abcdefgh");
+    console.log(total_test_results);
     const ws = utils.json_to_sheet(total_test_results);
     // const ws = utils.json_to_sheet(myarr);
     const wb = utils.book_new();
@@ -183,7 +196,7 @@
     console.log("This is ws");
     // console.log(testresult);
   }
-  
+  result_new = result_new;
 </script>
 
 <svelte:head>
@@ -221,7 +234,7 @@
   >
 </div>
 <div class="w3-round">
-  <p>This is result_new{result_new}</p>
+  <p>This is result_newefwet{result_new}</p>
   {#if results}
     <table class="w3-table-all w3-hoverable" id="tabledata" width="100%">
       <thead>
