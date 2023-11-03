@@ -1,6 +1,4 @@
-
-
-<script >
+<script>
   /** @type {import('./$types').PageData} */
   export let data;
   export let test_Id = data.test_Id;
@@ -11,19 +9,18 @@
   import { ApiUrl } from "../../../_utils/static_store.js";
   import { get } from "svelte/store";
   import { bubble } from "svelte/internal";
-  import { read, utils, writeFileXLSX } from 'xlsx';
+  import { read, utils, writeFileXLSX } from "xlsx";
   // import Test from "../../../../_utils/_tests/general.svelte";
 
   let testresult = [];
-  
-  
+
   // let pres;
 
   // if(testresult){
   //    pres = [testresult.student.name,testresult.student._id,testresult.student.phone, testresult.max_marks, testresult.total];
 
   // }
-  
+
   // let date= new Date(certificate.timestamp);
   // let d= new Date(date).toLocaleDateString('en-US', {
   // day: '2-digit',
@@ -37,15 +34,15 @@
   // let day= date.getDay();
 
   onMount(async () => {
-  // const f = await (await fetch("https://sheetjs.com/pres.xlsx")).arrayBuffer();
-  // const wb = read(f); // parse the array buffer
-  // const ws = wb.Sheets[wb.SheetNames[0]]; // get the first worksheet
-  // let xyz = utils.sheet_to_json(ws);
+    // const f = await (await fetch("https://sheetjs.com/pres.xlsx")).arrayBuffer();
+    // const wb = read(f); // parse the array buffer
+    // const ws = wb.Sheets[wb.SheetNames[0]]; // get the first worksheet
+    // let xyz = utils.sheet_to_json(ws);
 
-  // console.log("This is ws")
-  // console.log(ws);
-  // console.log("This is xyz");
-  // console.log(xyz);
+    // console.log("This is ws")
+    // console.log(ws);
+    // console.log("This is xyz");
+    // console.log(xyz);
     console.log(test_Id);
     console.log("mounted");
     // localStorage.setItem("token","some value");
@@ -61,7 +58,7 @@
     // console.log(loginPath+'/auth/whoami');
     // loginPath = "/api"
     // const res = await fetch(loginPath + "/panel/results/results/"+test_Id , {
-    const res = await fetch(loginPath + "/panel/results/results_filter" , {
+    const res = await fetch(loginPath + "/panel/results/results_filter", {
       mode: "cors",
       method: "get",
       headers: { Authorization: "Bearer " + token },
@@ -97,32 +94,23 @@
     }
     //
   });
-  
+
   let myarr = [
-    {name:"Vikas",
-     abc:"gangwar",
-     wxy:58
-  },{name:"amit",
-     abc:"anand",
-     wxy:58
-  }
-  ]
-  
-  function exportdata(){
-  const ws = utils.json_to_sheet(testresult);
-  // const ws = utils.json_to_sheet(myarr);
-  const wb = utils.book_new();
-  utils.book_append_sheet(wb, ws, "Data");
-  writeFileXLSX(wb, "abcd.xlsx");
-  
-  console.log("This is ws")
-  console.log(testresult);
-  }
- 
+    { name: "Vikas", abc: "gangwar", wxy: 58 },
+    { name: "amit", abc: "anand", wxy: 58 },
+  ];
 
+  function exportdata() {
+    const ws = utils.json_to_sheet(testresult);
+    // const ws = utils.json_to_sheet(myarr);
+    const wb = utils.book_new();
+    utils.book_append_sheet(wb, ws, "Data");
+    writeFileXLSX(wb, "abcd.xlsx");
+
+    console.log("This is ws");
+    console.log(testresult);
+  }
 </script>
-
-
 
 <!-- <div class="container w3-card" style="--template-color:red">
   {#if test}
@@ -130,7 +118,9 @@
   {/if}
   </div> -->
 <div>
-  <button class="my-4 border-2 rounded-md  p-2" on:click={exportdata}>Export to Excel</button>
+  <button class="my-4 border-2 rounded-md p-2" on:click={exportdata}
+    >Export to Excel</button
+  >
 </div>
 
 <div class="w3-round">
@@ -143,7 +133,7 @@
           <th>Student Number</th>
           <th>Max Marks</th>
           <th>Marks Obtained</th>
-          
+
           <!-- <th>Delete?</th> -->
         </tr>
       </thead>

@@ -1,140 +1,228 @@
-
-
-<script >
+<script>
   /** @type {import('./$types').PageData} */
   export let data;
   export let test_Id = data.test_Id;
   console.log("studentID from slug:" + test_Id);
 
   import { onMount } from "svelte";
-  import { Token } from "../../../_utils/dynamic_store.js";
-  import { ApiUrl } from "../../../_utils/static_store.js";
+  import { Token } from "$lib/dynamic_store.js";
+  import { ApiUrl } from "$lib/static_store.js";
   import { get } from "svelte/store";
+  // import ResultsList from "$lib/components/lists/results.svelte";
   import { bubble } from "svelte/internal";
-  import { read, utils, writeFileXLSX } from 'xlsx';
-  // import Test from "../../../../_utils/_tests/general.svelte";
+  import { read, utils, writeFileXLSX } from "xlsx";
 
-  let testresult = [];
-  
-  
-  // let pres;
+  var results = null;
+  let result_new = [];
+  let result_export = [];
 
-  // if(testresult){
-  //    pres = [testresult.student.name,testresult.student._id,testresult.student.phone, testresult.max_marks, testresult.total];
+  // var tests = null;
 
-  // }
-  
-  // let date= new Date(certificate.timestamp);
-  // let d= new Date(date).toLocaleDateString('en-US', {
-  // day: '2-digit',
-  // month: '2-digit',
-  // year: 'numeric',
-  // });
-  var token;
-  var loginPath;
-  // var jsonQuestion;
+  // streams = [],
+  // branches = [],
+  // batches = [];
+  // tests = null;
 
-  // let day= date.getDay();
+  let fresh = true;
+
+  let body = {};
+  var loginPath = get(ApiUrl);
+
+  let batchId;
+
+  let total_test_results = [
+    {
+      student: {
+        id: " ",
+      },
+    },
+  ];
+
+  function next() {
+    body.skip += body.limit;
+    getStudents();
+  }
+
+  function previous() {
+    body.skip -= body.limit;
+    if (body.skip < 0) body.skip = 0;
+    getStudents();
+  }
 
   onMount(async () => {
-  // const f = await (await fetch("https://sheetjs.com/pres.xlsx")).arrayBuffer();
-  // const wb = read(f); // parse the array buffer
-  // const ws = wb.Sheets[wb.SheetNames[0]]; // get the first worksheet
-  // let xyz = utils.sheet_to_json(ws);
-
-  // console.log("This is ws")
-  // console.log(ws);
-  // console.log("This is xyz");
-  // console.log(xyz);
-    console.log(test_Id);
     console.log("mounted");
     // localStorage.setItem("token","some value");
 
-    token = localStorage.getItem("token");
+    var token = localStorage.getItem("token");
     if (!token) {
       console.log("yes");
-      location.href = "/login";
+      // location.href="/login";
     }
     Token.set(token);
-    loginPath = get(ApiUrl);
 
-    // console.log(loginPath+'/auth/whoami');
-    // loginPath = "/api"
-    // const res = await fetch(loginPath + "/panel/results/results/"+test_Id , {
-    const res = await fetch(loginPath + "/panel/results/results_filter" , {
-      mode: "cors",
-      method: "get",
-      headers: { Authorization: "Bearer " + token },
-    });
+    body.batch = "-";
+    body.branch = "-";
+    // body.stream = "-";
+    body.skip = 0;
+    body.limit = 50;
+
+    // await getStreams();
+    // await getBatches();
+    // await getBranches();
+
+    await getResults();
+    await newResult();
+    await exportResult();
+  });
+
+  // const forceUpdate = async (_) => {};
+  // ``;
+
+  async function getResults(fresh = false) {
+    var res;
+    var token = localStorage.getItem("token");
+
+    // res = await fetch(loginPath + "/panel/results/results_filter?batch=" + " "+"&result_type="+"  "+ "&updatedAt=" + " " + "&branch=", {
+
+    res = await fetch(
+      loginPath + "/panel/results/results_filter?result_type=" + "general",
+      {
+        mode: "cors",
+        method: "get",
+        headers: { Authorization: "Bearer " + token },
+      }
+    );
     if (res.status == 200) {
       try {
         let response = await res.text();
         console.log(response);
-
         response = await JSON.parse(response);
-        if (response.status == "success") {
-          console.log("got questions");
-          testresult = response.data;
-          console.log("This is test result");
-          console.log(testresult);
-          console.log(test_Id);
-          console.log("This is test result");
-        } else {
-          console.log(response.message);
-          alert(response.message);
-        }
+        results = response.data;
+        console.log("This is results");
+        console.log(results);
+        console.log("This is results");
       } catch (e) {
         console.log("caught");
 
         console.log(e);
-      } finally {
       }
 
       // let data = JSON.parse(text);
     } else {
       console.log(await res.text());
-      // user.email="no logged";
+      user.email = "no logged";
     }
-    //
-  });
-  
-  let myarr = [
-    {name:"Vikas",
-     abc:"gangwar",
-     wxy:58
-  },{name:"amit",
-     abc:"anand",
-     wxy:58
   }
-  ]
-  
-  function exportdata(){
-  const ws = utils.json_to_sheet(testresult);
-  // const ws = utils.json_to_sheet(myarr);
-  const wb = utils.book_new();
-  utils.book_append_sheet(wb, ws, "Data");
-  writeFileXLSX(wb, "abcd.xlsx");
-  
-  console.log("This is ws")
-  console.log(testresult);
-  }
- 
 
+  async function newResult() {
+    if (results) {
+      for (let i = 0; i < results.length; i++) {
+        if (results[i].test == test_Id) {
+          result_new.push(results[i]);
+        }
+      }
+    }
+  }
+
+  function sectionResult(section_wise) {
+    let new_section_wise_result = {};
+    let section_wise_result = section_wise;
+
+    // console.log("This is new email");
+    // console.log(email);
+    // console.log("This is new email");
+    // return section_wise_result;
+  }
+
+  async function exportResult() {
+    if (result_new.length != 0) {
+      const uniqueResultIds = new Set(); // Create a set to store unique result_id values
+
+      let abcd = "12345678";
+
+      for (let i = 0; i < result_new.length; i++) {
+        if (result_new[i].test !== " ") {
+          // Check if the result_id is already in the set
+          if (!uniqueResultIds.has(results[i].test)) {
+            // If it's not in the set, add it to both the set and the total_test_results array
+            uniqueResultIds.add(results[i].test);
+
+            total_test_results.push({
+              "S.No.": i + 1,
+              "Student Name": result_new[i].student.name,
+              "Email address": result_new[i].student.email,
+              // Sections:result_new[i].section_wise,
+              // Section:sectionResult(result_new[i].section_wise),
+              "Max Marks": result_new[i].max_marks,
+              "Marks Obtained": result_new[i].total,
+            });
+          }
+        }
+      }
+    }
+  }
+
+  console.log("This is new results");
+  console.log(result_new);
+  console.log("This is new results");
+  total_test_results.shift();
+  console.log("This is new total_test_results");
+  console.log(total_test_results);
+  console.log("This is new total_test_results");
+
+  let myarr = [
+    { name: "Vikas", abc: "gangwar", wxy: 58 },
+    { name: "amit", abc: "anand", wxy: 58 },
+  ];
+  function exportdata() {
+    const ws = utils.json_to_sheet(total_test_results);
+    // const ws = utils.json_to_sheet(myarr);
+    const wb = utils.book_new();
+    utils.book_append_sheet(wb, ws, "Data");
+    writeFileXLSX(wb, "abcd.xlsx");
+    console.log("This is ws");
+    // console.log(testresult);
+  }
+  
 </script>
 
+<svelte:head>
+  <title>Chapter</title>
+</svelte:head>
 
+<!-- <div class="container w3-border w3-padding" style="--template-color:red"> -->
 
-<!-- <div class="container w3-card" style="--template-color:red">
-  {#if test}
-  <Test edit={true} body={test} />
-  {/if}
-  </div> -->
+<!-- {#if results}
+      <h3>Results({body.skip}-{body.skip + body.limit})</h3>
+      <div class="flex">
+          <p
+              class="w3-button w3-border w3-round w3-margin"
+              on:click={previous}
+          >
+              Previous
+          </p>
+          <p class="w3-button w3-border w3-round w3-margin" on:click={next}>
+              Next
+          </p>
+      </div>
+
+      <div class="w3-padding w3-margin">
+          <ResultsList {results} />
+      </div>
+  {:else}
+      <p>No results found!</p>
+  {/if} -->
+
+<!-- </div> -->
+<p>{test_Id}</p>
 <div>
-  <button class="my-4 border-2 rounded-md  p-2" on:click={exportdata}>Export to Excel</button>
+  <button class="my-4 border-2 rounded-md p-2" on:click={exportdata}
+    >Export to Excel</button
+  >
 </div>
-
 <div class="w3-round">
-  {#if testresult}
+  <p>This is result_new{result_new}</p>
+  {#if results}
     <table class="w3-table-all w3-hoverable" id="tabledata" width="100%">
       <thead>
         <tr class="w3-light-grey">
@@ -143,14 +231,15 @@
           <th>Student Number</th>
           <th>Max Marks</th>
           <th>Marks Obtained</th>
-          
+
           <!-- <th>Delete?</th> -->
         </tr>
       </thead>
-      {#each testresult as result}
+      {#each results as result}
         <tr class="w3-hover-shadow">
           <td>{result.student.name}</td>
-          <td>{result.student._id}</td>
+          <!-- <td>{result.student._id}</td> -->
+          <td>{result.test}</td>
           <td>{result.student.phone}</td>
           <td>{result.max_marks}</td>
           <td>{result.total}</td>
@@ -182,14 +271,6 @@
   * {
     color: rgb(51, 51, 51);
   }
-  /*
-  By default, CSS is locally scoped to the component,
-  and any unused styles are dead-code-eliminated.
-  In this page, Svelte can't know which elements are
-  going to appear inside the {{{post.html}}} block,
-  so we have to use the :global(...) modifier to target
-  all elements inside .content
-  */
   .content :global(h2) {
     font-size: 1.4em;
     font-weight: 500;
@@ -224,7 +305,7 @@
     padding: 10px;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: left;
 
     /* background: linear-gradient(45deg,rgb(134, 60, 253),var(--template-color)); */
   }
@@ -260,11 +341,33 @@
     padding: 20px;
   }
   p {
-    width: 100%;
+    /* width:100%; */
     margin: 0;
-    text-align: center;
+    text-align: left;
   }
   h1 {
-    margin: 300px;
+    margin: 00px;
+  }
+  div {
+    align-self: left;
+    justify-self: left;
+  }
+  .abs {
+    position: absolute;
+    top: 120px;
+    right: 130px;
+  }
+  a {
+    text-decoration: none;
+  }
+
+  h2,
+  h3 {
+    font-size: 250%;
+  }
+
+  button {
+    display: inline;
+    width: 200px;
   }
 </style>

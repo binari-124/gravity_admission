@@ -24,16 +24,16 @@
   
     let batchId ;  
 
-    function next() {
-        body.skip += body.limit;
-        getStudents();
-    }
+    // function next() {
+    //     body.skip += body.limit;
+    //     getStudents();
+    // }
 
-    function previous() {
-        body.skip -= body.limit;
-        if (body.skip < 0) body.skip = 0;
-        getStudents();
-    }
+    // function previous() {
+    //     body.skip -= body.limit;
+    //     if (body.skip < 0) body.skip = 0;
+    //     getStudents();
+    // }
 
     onMount(async () => {
         console.log("mounted");
@@ -49,8 +49,8 @@
         body.batch = "-";
         body.branch = "-";
         // body.stream = "-";
-        body.skip = 0;
-        body.limit = 50;
+        // body.skip = 0;
+        // body.limit = 50;
 
         // await getStreams();
         await getBatches();
@@ -100,9 +100,13 @@
         // }
 
 
-        // res = await fetch(loginPath + "/panel/results/results_filter?batch._id="+" 	64a282de5f687d8d38cd7bd9"+"&result_type="+"  "+ "&updatedAt=" + " " + "&branch._id=", {
+        // res = await fetch(loginPath + "/panel/results/results_filter?batch=" + " "+"&result_type="+"  "+ "&updatedAt=" + " " + "&branch=", {
+            // res = await fetch(loginPath + "/panel/results/results_filter?"+ "&result_type="+" general ", {
 
-         res = await fetch(loginPath + "/panel/results/results_filter", {
+            res = await fetch(loginPath + "/panel/results/results_filter?"+ serialize(body) , {
+        //  res = await fetch(loginPath + "/panel/results/results_filter?batch=" + "body.batch"+ "&branch=" +"body.branch", {
+            // res = await fetch(`${loginPath}/panel/results/results_filter?batch=${body.batch}&result_type=${body.result_type}&branch=${body.branch}`,{
+        // res = await fetch(`${loginPath}/panel/results/results_filter?batch=${body.batch}&result_type=${body.result_type}&branch=${body.branch}`, {
             mode: "cors",
             method: "get",
             headers: { Authorization: "Bearer " + token },
@@ -129,18 +133,20 @@
         }
     }
 
-    // function serialize(obj) {
-    //     var str = [];
-    //     for (var p in obj)
-    //         if (obj.hasOwnProperty(p)) {
-    //             if (obj[p] != "-") {
-    //                 str.push(
-    //                     encodeURIComponent(p) + "=" + encodeURIComponent(obj[p])
-    //                 );
-    //             }
-    //         }
-    //     return str.join("&");
-    // }
+    function serialize(obj) {
+        var str = [];
+        for (var p in obj)
+            if (obj.hasOwnProperty(p)) {
+                if (obj[p] != "-") {
+                    str.push(
+                        encodeURIComponent(p) + "=" + encodeURIComponent(obj[p])
+                    );
+                }
+            }
+        return str.join("&");
+    }
+
+    
 
     async function getStreams() {
         // console.log(body);
@@ -403,7 +409,9 @@
     </form>
 
     {#if results}
-        <h3>Results({body.skip}-{body.skip + body.limit})</h3>
+        <!-- <h3>Results({body.skip}-{body.skip + body.limit})</h3> -->
+        <h3>Results</h3>
+
         <div class="flex">
             <p
                 class="w3-button w3-border w3-round w3-margin"
