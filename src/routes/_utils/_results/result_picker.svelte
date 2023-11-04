@@ -100,10 +100,12 @@
         // }
 
 
-        // res = await fetch(loginPath + "/panel/results/results_filter?batch=" + " "+"&result_type="+"  "+ "&updatedAt=" + " " + "&branch=", {
+        // res = await fetch(loginPath + "/panel/results/results_filter?batch=" + " "+"&result_type="+"  "+ "&updatedAt=" + " " + "&branch="+ " ", {
             // res = await fetch(loginPath + "/panel/results/results_filter?"+ "&result_type="+" general ", {
-
-            res = await fetch(loginPath + "/panel/results/results_filter?"+ serialize(body) , {
+            let xyz = loginPath + "/panel/results/results_filter?"+ serialize(body);
+            console.log("xyz");
+            console.log(xyz);
+            res = await fetch( xyz, {
         //  res = await fetch(loginPath + "/panel/results/results_filter?batch=" + "body.batch"+ "&branch=" +"body.branch", {
             // res = await fetch(`${loginPath}/panel/results/results_filter?batch=${body.batch}&result_type=${body.result_type}&branch=${body.branch}`,{
         // res = await fetch(`${loginPath}/panel/results/results_filter?batch=${body.batch}&result_type=${body.result_type}&branch=${body.branch}`, {
@@ -143,6 +145,8 @@
                     );
                 }
             }
+            console.log("serialized body");
+            console.log(str.join("&"))
         return str.join("&");
     }
 
@@ -280,6 +284,8 @@
             // user.email = "no logged";
         }
     }
+
+    
 
     
 </script>

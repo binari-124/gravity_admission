@@ -12,12 +12,11 @@
   import { bubble } from "svelte/internal";
   import { read, utils, writeFileXLSX } from "xlsx";
 
-  var results = null;
-  let result_new = [];
+  var result_new = null;
+  // let result_new = [];
   let result_export = [];
 
-  result_new = result_new;
-  result_export = result_export;
+
 
   // var tests = null;
 
@@ -41,16 +40,16 @@
     },
   ];
 
-  function next() {
-    body.skip += body.limit;
-    getStudents();
-  }
+  // function next() {
+  //   body.skip += body.limit;
+  //   getStudents();
+  // }
 
-  function previous() {
-    body.skip -= body.limit;
-    if (body.skip < 0) body.skip = 0;
-    getStudents();
-  }
+  // function previous() {
+  //   body.skip -= body.limit;
+  //   if (body.skip < 0) body.skip = 0;
+  //   getStudents();
+  // }
 
   onMount(async () => {
     console.log("mounted");
@@ -74,7 +73,7 @@
     // await getBranches();
 
     await getResults();
-    await newResult();
+    // await newResult();
     await exportResult();
   });
 
@@ -86,9 +85,12 @@
     var token = localStorage.getItem("token");
 
     // res = await fetch(loginPath + "/panel/results/results_filter?batch=" + " "+"&result_type="+"  "+ "&updatedAt=" + " " + "&branch=", {
+      let xyz = loginPath + "/panel/results/results_filter?test=" + test_Id;
+            console.log("xyz");
+            console.log(xyz);
 
     res = await fetch(
-      loginPath + "/panel/results/results_filter?result_type=" + "general",
+      loginPath + "/panel/results/results_filter?test=" + test_Id,
       {
         mode: "cors",
         method: "get",
@@ -100,9 +102,9 @@
         let response = await res.text();
         console.log(response);
         response = await JSON.parse(response);
-        results = response.data;
+        result_new = response.data;
         console.log("This is results");
-        console.log(results);
+        console.log(result_new);
         console.log("This is results");
       } catch (e) {
         console.log("caught");
@@ -117,41 +119,33 @@
     }
   }
 
-  async function newResult() {
-    if (results) {
-      for (let i = 0; i < results.length; i++) {
-        if (results[i].test == test_Id) {
-          result_new.push(results[i]);
-        }
-      }
-    }
-  }
+  // async function newResult() {
+  //   if (results) {
+  //     for (let i = 0; i < results.length; i++) {
+  //       if (results[i].test == test_Id) {
+  //         result_new.push(results[i]);
+  //       }
+  //     }
+  //   }
+  // }
 
-  function sectionResult(section_wise) {
-    let new_section_wise_result = {};
-    let section_wise_result = section_wise;
 
-    // console.log("This is new email");
-    // console.log(email);
-    // console.log("This is new email");
-    // return section_wise_result;
-  }
 
   async function exportResult() {
     const uniqueResultIds = new Set(); // Create a set to store unique result_id values
 
-    let abcd = "12345678";
-
+   
+    let serialNo = 1;
     for (let i = 0; i < result_new.length; i++) {
-      if (result_new[i].test !== " ") {
+      if (result_new[i].student._id !== " ") {
         // Check if the result_id is already in the set
-        if (!uniqueResultIds.has(results[i].test)) {
+        if (!uniqueResultIds.has(result_new[i].student._id)) {
           // If it's not in the set, add it to both the set and the total_test_results array
-          uniqueResultIds.add(results[i].test);
+          uniqueResultIds.add(result_new[i].student._id);
           var abcdef = {
-            "S.No.": i + 1,
+            "S.No.": serialNo++,
             "Student Name": result_new[i].student.name,
-            "Email address": result_new[i].student.email,
+            "Phone No": result_new[i].student.phone,
             // "Max Marks": result_new[i].max_marks,
             // "Marks Obtained": result_new[i].total,
           };
@@ -166,6 +160,7 @@
           }
         abcdef["Max Marks"] = result_new[i].max_marks;
         abcdef["Marks Obtained"] = result_new[i].total;
+        abcdef["Student ID"] = result_new[i].student._id;
 
           total_test_results.push(abcdef);
         }
@@ -196,7 +191,7 @@
     console.log("This is ws");
     // console.log(testresult);
   }
-  result_new = result_new;
+  
 </script>
 
 <svelte:head>
@@ -235,7 +230,7 @@
 </div>
 <div class="w3-round">
   <p>This is result_newefwet{result_new}</p>
-  {#if results}
+  {#if result_new}
     <table class="w3-table-all w3-hoverable" id="tabledata" width="100%">
       <thead>
         <tr class="w3-light-grey">
@@ -248,7 +243,35 @@
           <!-- <th>Delete?</th> -->
         </tr>
       </thead>
-      {#each results as result}
+      <!-- {#each total_test_results as result}
+        <tr class="w3-hover-shadow">
+          <td>{result["Student Name"]}</td>
+          <td>{result.student._id}</td>
+          <td>{result["Student ID"]}</td>
+          <td>{result["Phone No"]}</td>
+          <td>{result["Max Marks"]}</td>
+          <td>{result["Marks Obtained"]}</td>
+          <td>
+            {#each subject.streams as stream}
+              {stream.name},
+            {/each}
+          </td>
+          <td
+            ><a class="w3-text-blue" href="/subjects/{subject._id}"
+              >{subject._id}</a
+            ></td
+          >
+          <td
+            ><button
+              class="w3-text-red w3-center"
+              on:click={() => {
+                handleDelete(subject._id);
+              }}>Delete</button
+            ></td
+          >
+        </tr>
+      {/each} -->
+      {#each result_new as result}
         <tr class="w3-hover-shadow">
           <td>{result.student.name}</td>
           <!-- <td>{result.student._id}</td> -->
