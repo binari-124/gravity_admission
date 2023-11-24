@@ -432,13 +432,13 @@
             </p>
         </div>
 
-        <!-- {#await forceUpdate(questions) then _}
-				<Questions {picker} bind:selectedQuestions {questions} />
-			{/await} -->
+        {#await forceUpdate(results) then _}
+				<ResultsList   {results} />
+			{/await}
 
-        <div class="w3-padding w3-margin">
+        <!-- <div class="w3-padding w3-margin">
             <ResultsList {results} />
-        </div>
+        </div> -->
     {:else}
         <p>No results found!</p>
     {/if}
