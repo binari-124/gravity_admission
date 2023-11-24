@@ -182,13 +182,13 @@
 <table class="w3-table-all w3-hoverable">
   <thead>
     <tr class="w3-light-grey">
-      <th>Batch ID</th>
+      <th>Batch Name</th>
       <th>Class</th>
       <th>Centre</th>
       <th>Stream</th>
       <th>#Lectures</th>
       <th>#Students</th>
-      <th>Student Added</th>
+      <!-- <th>Student Added</th> -->
       <th>Toggle Entry</th>
       <!-- <th>Email Id</th>
       <th>Student ID</th> -->
@@ -196,13 +196,13 @@
   </thead>
   {#each student_compatible as batch}
   <tr class="w3-hover-shadow">
-      <td>{batch._id}</td>
+      <td>{batch.name}</td>
       <td>{batch.class_number}</td>
       <td>{batch.branch.name}</td>
       <td>{batch.stream.name}</td>
       <td>{batch.lectures.length}</td>
       <td>{batch.students.length}</td>
-      <td>{student_batches.includes(batch._id)}</td>
+      <!-- <td>{student_batches.includes(batch._id)}</td> -->
       {#if student_batches.includes(batch._id)}
       <td><button class="btn" on:click={()=>batchRemoveStudent(batch._id)}>Remove</button></td>
       {:else}

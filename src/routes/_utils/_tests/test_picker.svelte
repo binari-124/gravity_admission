@@ -330,14 +330,16 @@
 </svelte:head>
 
 
-<div class="container w3-border w3-padding" style="--template-color:red">
+<!-- <div class="container w3-border w3-padding" style="--template-color:red"> -->
+	<div class="container  w3-padding" style="--template-color:red">
+
 	{#if picker}
 		Picker
 	{/if}
     <h4>Filters</h4>
    <form  on:submit|preventDefault={getTests}>
 	{#if streams}
-	<p>Select Stream</p><br>
+	<!-- <p>Select Stream</p><br> -->
 	<select class="w3-input w3-border w3-round w3-margin" bind:value={body.stream}>
 		<option value="-">Select Stream</option>
 		{#each streams as stream}
@@ -346,11 +348,11 @@
 			<!-- <input class="w3-checkbox w3-input" type="checkbox"  bind:group={body.streams} /> -->
 		{/each}
 
-	</select>
+	</select><br>
 	{/if}
 
 	{#if subjects}
-	<p>Select Subject</p><br>
+	<!-- <p>Select Subject</p><br> -->
 	<select class="w3-input w3-border w3-round w3-margin" bind:value={body.subject}>
 		<option value="-">Select Subject</option>
 		{#each subjects as subject}
@@ -359,11 +361,11 @@
 			<!-- <input class="w3-checkbox w3-input" type="checkbox"  bind:group={body.streams} /> -->
 		{/each}
 
-	</select>
+	</select><br>
 	{/if}
 
 	{#if batches}
-	<p>Select Batches</p><br>
+	<!-- <p>Select Batches</p><br> -->
 	<select class="w3-input w3-border w3-round w3-margin" bind:value={body.batch}>
 		<option value="-">Select Batch</option>
 		{#each batches as batch}
@@ -372,7 +374,7 @@
 			<!-- <input class="w3-checkbox w3-input" type="checkbox"  bind:group={body.streams} /> -->
 		{/each}
 
-	</select>
+	</select><br>
 	{/if}
 
     <input class="w3-button w3-round w3-border" type="submit" value="Apply filters" >

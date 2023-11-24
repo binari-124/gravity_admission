@@ -8,7 +8,7 @@
   </script>
   
   <div class="w3-round">
-    <p>This is result_newefwet{total_test_results}</p>
+    <!-- <p>This is result_{total_test_results}</p> -->
     {#if total_test_results}
       <table class="w3-table-all w3-hoverable" id="tabledata" width="100%">
         <thead>

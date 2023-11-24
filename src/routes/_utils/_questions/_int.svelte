@@ -149,7 +149,7 @@
 		let data = cloneDeep(body);
 		// console.log(data);
 		data.question_type = "integer";
-		data.question_subtype = "simple";
+		data.question_subtype = "integer";
 		if (isRangeBased) {
 			if (isNaN(parseInt(rangeStart))) {
 				alert("Please enter a correct start range in the answer.");

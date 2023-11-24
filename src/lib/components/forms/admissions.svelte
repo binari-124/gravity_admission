@@ -332,7 +332,7 @@
       />
       <div class=" flex flex-col">
         {#if branches}
-          <p class="w3-left">Select Branch</p>
+          <!-- <p class="w3-left">Select Branch</p> -->
 
           <select
             class="w3-input w3-border w3-round w3-margin"
@@ -351,7 +351,7 @@
         {/if}
 
         {#if streams}
-          <p class="w3-left">Select Stream</p>
+          <!-- <p class="w3-left">Select Stream</p> -->
 
           <select
             class="w3-input w3-border w3-round w3-margin"
@@ -383,7 +383,7 @@
           </select>
         {/if} -->
         
-        <label for="class">Class</label>
+        <!-- <label for="class">Class</label> -->
         <select
           class="w3-input w3-border w3-round w3-margin"
           id="class"

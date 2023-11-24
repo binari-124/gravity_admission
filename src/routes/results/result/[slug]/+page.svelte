@@ -12,13 +12,13 @@
   import { bubble } from "svelte/internal";
   import { read, utils, writeFileXLSX } from "xlsx";
   import ResultsView from "$lib/components/lists/result_view.svelte";
-    import ResultView from "../../../../lib/components/lists/result_view.svelte";
+  import ResultView from "../../../../lib/components/lists/result_view.svelte";
 
 
-  var result_new = null;
+  let result_new = null;
   // let result_new = [];
   let result_export = [];
-
+  let atc = "12345678";
 
 
   // var tests = null;
@@ -35,13 +35,16 @@
 
   let batchId;
 
-  let total_test_results = [
-    {
-      student: {
-        id: " ",
-      },
-    },
-  ];
+  // let total_test_results = [
+  //   // {
+  //   //   student: {
+  //   //     id: " ",
+  //   //   },
+  //   // },
+  // ];
+
+  let total_test_results;
+  
 
   // function next() {
   //   body.skip += body.limit;
@@ -78,6 +81,7 @@
     await getResults();
     // await newResult();
     await exportResult();
+    atc = "abcdefgh";
   });
 
   // const forceUpdate = async (_) => {};
@@ -106,6 +110,7 @@
         console.log(response);
         response = await JSON.parse(response);
         result_new = response.data;
+        result_new = result_new;
         console.log("This is results");
         console.log(result_new);
         console.log("This is results");
@@ -135,6 +140,7 @@
 
 
   async function exportResult() {
+    total_test_results = [];
     const uniqueResultIds = new Set(); // Create a set to store unique result_id values
 
    
@@ -163,26 +169,31 @@
           }
         abcdef["Max Marks"] = result_new[i].max_marks;
         abcdef["Marks Obtained"] = result_new[i].total;
-        abcdef["Student ID"] = result_new[i].student._id;
-
+        // abcdef["Student ID"] = result_new[i].student._id;
+        abcdef["Batch Name"] = result_new[i].batch.name;
           total_test_results.push(abcdef);
         }
       }
     }
   }
 
+  console.log("ATC");
+  console.log(atc);
+
   console.log("This is new results");
   console.log(result_new);
   console.log("This is new results");
-  total_test_results.shift();
-  console.log("This is new total_test_results");
-  console.log(total_test_results);
-  console.log("This is new total_test_results");
+  // total_test_results.shift();
+  // console.log("This is new total_test_results");
+  // console.log(total_test_results);
+  // console.log("This is new total_test_results");
 
   let myarr = [
     { name: "Vikas", abc: "gangwar", wxy: 58 },
     { name: "amit", abc: "anand", wxy: 58 },
   ];
+
+  
   function exportdata() {
     console.log("abcdefgh");
     console.log(total_test_results);
@@ -190,9 +201,11 @@
     // const ws = utils.json_to_sheet(myarr);
     const wb = utils.book_new();
     utils.book_append_sheet(wb, ws, "Data");
-    writeFileXLSX(wb, "abcd.xlsx");
+    writeFileXLSX(wb, result_new.result_name+"abcd.xlsx");
+
     console.log("This is ws");
     // console.log(testresult);
+    console.log(result_new.result_name);
   }
   
 </script>
@@ -225,13 +238,16 @@
   {/if} -->
 
 <!-- </div> -->
-<p>{test_Id}</p>
+<!-- <p>{test_Id}</p> -->
 <div>
   <button class="my-4 border-2 rounded-md p-2" on:click={exportdata}
     >Export to Excel</button
   >
 </div>
+{#if total_test_results}
 <ResultView {total_test_results} />
+{/if}
+<!-- <ResultView {total_test_results} /> -->
 
 <style>
   * {

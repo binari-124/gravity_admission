@@ -4,7 +4,8 @@
     export let selectedQuestions=[];
   
     export let eventFunction=function(qId,inserted){};
-  
+    console.log("Selected questions");
+    console.log(selectedQuestions);
     function setType(){
       setTimeout(()=>{window.MathJax.typeset()},1000);
       return "";

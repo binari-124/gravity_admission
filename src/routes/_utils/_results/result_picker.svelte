@@ -5,7 +5,7 @@
     import { get } from "svelte/store";
     import ResultsList from "$lib/components/lists/results.svelte";
 
-    var results = null;
+    let results ;
     // var tests = null;
 
     var 
@@ -62,6 +62,7 @@
 
     // const forceUpdate = async (_) => {};
     // ``;
+    const forceUpdate = async (_) => {};
 
     async function getResults(fresh = false) {
         var res;
@@ -102,7 +103,7 @@
 
         // res = await fetch(loginPath + "/panel/results/results_filter?batch=" + " "+"&result_type="+"  "+ "&updatedAt=" + " " + "&branch="+ " ", {
             // res = await fetch(loginPath + "/panel/results/results_filter?"+ "&result_type="+" general ", {
-            let xyz = loginPath + "/panel/results/results_filter?"+ serialize(body);
+            let xyz = loginPath + "/panel/results/results_filter_third?"+ serialize(body);
             console.log("xyz");
             console.log(xyz);
             res = await fetch( xyz, {
@@ -119,6 +120,7 @@
                 console.log(response);
                 response = await JSON.parse(response);
                 results = response.data;
+                results = results;
                 console.log("This is results");
                 console.log(results);
                 console.log("This is results");
@@ -429,6 +431,10 @@
                 Next
             </p>
         </div>
+
+        <!-- {#await forceUpdate(questions) then _}
+				<Questions {picker} bind:selectedQuestions {questions} />
+			{/await} -->
 
         <div class="w3-padding w3-margin">
             <ResultsList {results} />

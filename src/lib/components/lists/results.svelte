@@ -16,17 +16,17 @@
   //   result_type:" "
   // }
   let total_test_results = [
-    {
-      result_id: " ",
-      result_name: " ",
-      batch_id: " ",
-      batch_name: " ",
-      branch_id: " ",
-      branch_name: " ",
-      date: " ",
-      result_type: " ",
+    // {
+    //   result_id: " ",
+    //   result_name: " ",
+    //   batch_id: " ",
+    //   batch_name: " ",
+    //   branch_id: " ",
+    //   branch_name: " ",
+    //   date: " ",
+    //   result_type: " ",
 
-    },
+    // },
   ];
 
   let total_result_data = {};
@@ -102,17 +102,7 @@ if (results.length != 0) {
         // If it's not in the set, add it to both the set and the total_test_results array
         uniqueResultIds.add(results[i].test);
 
-        total_test_results.push({
-          result_id: results[i].test,
-          result_name: results[i].result_name,
-          batch_id: results[i].batch._id,
-          batch_name: results[i].batch.name,
-          branch_id: results[i].branch._id,
-          branch_name: results[i].branch.name,
-          date: results[i].declaration_time,
-          result_type: results[i].result_type,
-        
-        });
+        total_test_results.push(results[i]);
       }
     }
   }
@@ -159,7 +149,7 @@ if (results.length != 0) {
   console.log("total_test_results");
   console.log(total_test_results);
   console.log("total_test_results");
-  total_test_results.shift();
+  // total_test_results.shift();
 </script>
 
 <!-- {#if results}
@@ -204,7 +194,7 @@ if (results.length != 0) {
   </table>
 {/if} -->
 
-{#if total_test_results}
+<!-- {#if total_test_results}
 
   <table class="w3-table-all w3-hoverable">
     <thead>
@@ -224,8 +214,34 @@ if (results.length != 0) {
         <td>{result.branch_name}</td>
           <td>{result.result_id}</td>
           <td>{result.result_type}</td>
-          <!-- <td>{result.total}</td> -->
           <td><a  class="w3-text-blue w3-center"  href="/results/result/{result.result_id}">Result</a></td>
+
+      </tr>
+    {/each}
+  </table>
+{/if} -->
+<!-- <h1>{results.results[0].test}</h1> -->
+{#if results}
+
+  <table class="w3-table-all w3-hoverable">
+    <thead>
+      <tr class="w3-light-grey">
+        <th>Exam Name </th>
+        <th>Batch </th>
+            <th>Branch</th>
+            <th>Date</th>
+            <th>Type</th>
+            <th>Result</th>
+      </tr>
+    </thead>
+    {#each results as result}
+      <tr class="w3-hover-shadow">
+        <td>{result.results[0].result_name}</td>
+        <td>{result.results[0].batch.name}</td>
+        <td>{result.results[0].branch.name}</td>
+          <td>{result.results[0].declaration_time}</td>
+          <td>{result.results[0].result_type}</td>
+          <td><a  class="w3-text-blue w3-center"  href="/results/result/{result.results[0].test}">Result</a></td>
 
       </tr>
     {/each}
