@@ -72,6 +72,9 @@
         // if (fresh) {
         //     body.skip = 0;
         // }
+
+        console.log("startDate");
+        console.log(body.startDate);
         
         // res = await fetch(loginPath + "/panel/students?" + serialize(body), {
         //     mode: "cors",
@@ -382,8 +385,13 @@
             </div>
 
             <div class="w-1/4 ">
-                <label for="exam_date">Exam Date</label><br>
-                <input class="mt-2" type="date" name="exam date" id="exam_date" bind:value={body.exam_date}>
+                <label for="exam_date">Start Date</label><br>
+                <input class="mt-2" type="date" name="exam date" id="exam_date" bind:value={body.startDate}>
+            </div>
+
+            <div class="w-1/4 ">
+                <label for="exam_date">End Date</label><br>
+                <input class="mt-2" type="date" name="exam date" id="exam_date" bind:value={body.endDate}>
             </div>
 
 
@@ -395,16 +403,16 @@
                     
                 <input
                     class="mt-7 border-[1px] w-full p-2"
-                    placeholder="Search by Exam Name or Exam ID"
-                    bind:value={body.exam_id}
+                    placeholder="Search by Result ID"
+                    bind:value={body._id}
                 />
             </div>
             <div class="w-1/2 ">
                     
                 <input
                     class="mt-7 border-[1px] w-full p-2"
-                    placeholder="Search by Batch Name and Batch ID"
-                    bind:value={body.batch_id}
+                    placeholder="Search by Result Name"
+                    bind:value={body.result_name}
                 />
             </div>
         </div>
