@@ -573,7 +573,7 @@ import { bind, prevent_default } from 'svelte/internal';
 		{/if} -->
 
 		{#if batches && body.batches}
-		<div class="w3-dropdown-hover w3-card  w3-round w3-margin">
+		<!-- <div class="w3-dropdown-hover w3-card  w3-round w3-margin">
 			<p class="w3-button">Batches</p>
 			<div class="w3-dropdown-content w3-bar-block w3-border ztop">
 				{#each batches as batch}
@@ -583,7 +583,7 @@ import { bind, prevent_default } from 'svelte/internal';
 				</div>
 				{/each}
 			</div>
-		  </div> 
+		  </div>  -->
             
 		{/if}
 		<hr>
