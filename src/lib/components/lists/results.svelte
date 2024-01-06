@@ -150,6 +150,11 @@ if (results.length != 0) {
   console.log(total_test_results);
   console.log("total_test_results");
   // total_test_results.shift();
+
+  function resultdate(declarationtime){
+      let declarationTime = declarationtime.toString().split('T')[0];
+      return declarationTime
+  }
 </script>
 
 <!-- {#if results}
@@ -239,7 +244,7 @@ if (results.length != 0) {
         <td>{result.results[0].result_name}</td>
         <td>{result.results[0].batch.name}</td>
         <td>{result.results[0].branch.name}</td>
-          <td>{result.results[0].declaration_time}</td>
+          <td>{resultdate(result.results[0].declaration_time)}</td>
           <td>{result.results[0].result_type}</td>
           <td><a  class="w3-text-blue w3-center"  href="/results/result/{result.results[0].test}">Result</a></td>
 

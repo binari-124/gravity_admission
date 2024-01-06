@@ -81,7 +81,24 @@
 		var d=document.getElementById(id);
 		d.classList.toggle("w3-hide");
 	}
-	
+
+	function toggleSelectedQuestions(qId) {
+    let q = questions.filter((question) => question._id == qId)[0];
+    if (selectedQuestions.includes(qId)) {
+      let ind = selectedQuestions.indexOf(qId);
+      selectedQuestions.splice(ind, 1);
+      eventFunction(q, false);
+    }
+	//  else {
+    //   selectedQuestions.push(qId);
+    //   eventFunction(q, true);
+    // }
+    selectedQuestions = selectedQuestions;
+    console.log(selectedQuestions);
+  }
+
+console.log("body.questions");
+console.log(body.questions);	
 </script>
 
 <style>
@@ -292,6 +309,14 @@
                         
                         </select>
 					</td>
+					<!-- <td>{questionAndMarking.question}</td> -->
+                    <td
+            ><a
+              class="w3-text-blue"
+              target="_blank"
+              href="/questions/edit/{questionAndMarking.question}">{questionAndMarking.question}</a
+            ></td
+          >
 			</tr>
             </table>
 			{/each}

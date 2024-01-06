@@ -49,8 +49,8 @@
     <table class="w3-table-all w3-hoverable">
         <thead>
             <tr class="w3-light-grey">
-                <th>All <br>
-                    <input type="checkbox"></th>
+                <!-- <th>All <br>
+                    <input type="checkbox"></th> -->
                 <th>#</th>
                 <th>Name</th>
              
@@ -65,7 +65,7 @@
         </thead>
         {#each students as student, ind}
             <tr class="w3-hover-shadow">
-                <td><input type="checkbox" ></td>
+                <!-- <td><input type="checkbox" ></td> -->
                 <td>{ind + 1}</td>
                 <td>{student.name}</td>
                 <!-- <td>{student.stream.name}</td>

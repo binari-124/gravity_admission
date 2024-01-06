@@ -1,6 +1,10 @@
-let host="http://localhost:12000";
+// let host="http://localhost:12000";
+let host="http://localhost:16000";
+
 // let api_target = "https://206.189.139.76:16001";
-let api_target = "http://localhost:8000";
+// let api_target = "http://localhost:8000";
+let api_target = "http://localhost:16000";
+
 // let api_target = "https://ts.grcls.in";
 
 
@@ -10,24 +14,38 @@ export async function handle({ event, resolve }) {
   if (event.request.url.startsWith(host+'/api/user/authentication/')) {
     console.log("done");
     const myHeaders = new Headers();
-    myHeaders.append("host", 'ts.grcls.in');
+    // myHeaders.append("host", 'ts.grcls.in');
+    myHeaders.append("host", 'api.grcls.in');
+
     const myInit = {
       method: 'GET',
       headers:myHeaders,
       mode:'cors'
     }
     
-    event.headers.append("Host", 'ts.grcls.in');
-    event.headers.append("host", 'ts.grcls.in');
-    event.setHeaders({"asd": 'ts.grcls.in'});
-    event.setHeaders({"hoffgasst": 'ts.grcls.in'});
+    // event.headers.append("Host", 'ts.grcls.in');
+    event.headers.append("Host", 'api.grcls.in');
+
+    // event.headers.append("host", 'ts.grcls.in');
+    event.headers.append("host", 'api.grcls.in');
+
+    // event.setHeaders({"asd": 'ts.grcls.in'});
+    event.setHeaders({"asd": 'api.grcls.in'});
+
+    // event.setHeaders({"hoffgasst": 'ts.grcls.in'});
+    event.setHeaders({"hoffgasst": 'api.grcls.in'});
+
     event.headers.asdasd = "asdasd";
     // console.log(event.headers);
     let r = {...event.request};
     r.headers.host = "ASdasd";
     let req=new Request(event.request.url.replace(host,api_target),r);
-    req.setHeaders({"asd": 'ts.grcls.in'});
-    req.setHeaders({"Host": 'ts.grcls.in'});
+    // req.setHeaders({"asd": 'ts.grcls.in'});
+    req.setHeaders({"asd": 'api.grcls.in'});
+
+    // req.setHeaders({"Host": 'ts.grcls.in'});
+    req.setHeaders({"Host": 'api.grcls.in'});
+
     // console.log("req.headers.host");
 
     // console.log(req.headers.host);

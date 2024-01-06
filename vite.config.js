@@ -8,12 +8,12 @@ export default defineConfig({
 	plugins: [sveltekit()],
 	server: {
 		expose:true,
-		port: 12000,
+		port: 16000,
 		strictPort: false,
 	},
 
 	preview: {
-		port: 12000,
+		port: 16000,
 		strictPort: false,
 	}
 });

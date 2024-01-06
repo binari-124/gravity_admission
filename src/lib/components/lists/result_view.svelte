@@ -1,6 +1,7 @@
 <script>
     export let total_test_results = null;
     console.log("wxyz");
+    console.log("total test result");
     console.log(total_test_results);
     import { ApiUrl } from "../../_utils/static_store.js";
     import { get } from "svelte/store";
@@ -14,7 +15,7 @@
         <thead>
           <tr class="w3-light-grey">
             <th>Name</th>
-            <th>Student ID</th>
+            <!-- <th>Student ID</th> -->
             <th>Student Number</th>
             <th>Max Marks</th>
             <th>Marks Obtained</th>
@@ -26,7 +27,7 @@
           <tr class="w3-hover-shadow">
             <td>{result["Student Name"]}</td>
             <!-- <td>{result.student._id}</td> -->
-            <td>{result["Student ID"]}</td>
+            <!-- <td>{result["Student ID"]}</td> -->
             <td>{result["Phone No"]}</td>
             <td>{result["Max Marks"]}</td>
             <td>{result["Marks Obtained"]}</td>

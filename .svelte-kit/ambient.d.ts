@@ -29,6 +29,12 @@ declare module '$env/static/private' {
 	export const CHROME_DESKTOP: string;
 	export const COLOR: string;
 	export const COLORTERM: string;
+	export const CONDA_DEFAULT_ENV: string;
+	export const CONDA_EXE: string;
+	export const CONDA_PREFIX: string;
+	export const CONDA_PROMPT_MODIFIER: string;
+	export const CONDA_PYTHON_EXE: string;
+	export const CONDA_SHLVL: string;
 	export const DBUS_SESSION_BUS_ADDRESS: string;
 	export const DBUS_STARTER_ADDRESS: string;
 	export const DBUS_STARTER_BUS_TYPE: string;
@@ -108,6 +114,8 @@ declare module '$env/static/private' {
 	export const XDG_SESSION_TYPE: string;
 	export const XMODIFIERS: string;
 	export const _: string;
+	export const _CE_CONDA: string;
+	export const _CE_M: string;
 	export const npm_command: string;
 	export const npm_config_cache: string;
 	export const npm_config_global_prefix: string;
@@ -161,6 +169,12 @@ declare module '$env/dynamic/private' {
 		CHROME_DESKTOP: string;
 		COLOR: string;
 		COLORTERM: string;
+		CONDA_DEFAULT_ENV: string;
+		CONDA_EXE: string;
+		CONDA_PREFIX: string;
+		CONDA_PROMPT_MODIFIER: string;
+		CONDA_PYTHON_EXE: string;
+		CONDA_SHLVL: string;
 		DBUS_SESSION_BUS_ADDRESS: string;
 		DBUS_STARTER_ADDRESS: string;
 		DBUS_STARTER_BUS_TYPE: string;
@@ -240,6 +254,8 @@ declare module '$env/dynamic/private' {
 		XDG_SESSION_TYPE: string;
 		XMODIFIERS: string;
 		_: string;
+		_CE_CONDA: string;
+		_CE_M: string;
 		npm_command: string;
 		npm_config_cache: string;
 		npm_config_global_prefix: string;

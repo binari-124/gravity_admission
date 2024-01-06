@@ -11,7 +11,7 @@
   // import ResultsList from "$lib/components/lists/results.svelte";
   import { bubble } from "svelte/internal";
   import { read, utils, writeFileXLSX } from "xlsx";
-  import ResultsView from "$lib/components/lists/result_view.svelte";
+  // import ResultsView from "$lib/components/lists/result_view.svelte";
   import ResultView from "../../../../lib/components/lists/result_view.svelte";
 
 
@@ -138,7 +138,46 @@
   // }
 
 
+  // This one code is for unique results
+  // async function exportResult() {
+  //   total_test_results = [];
+  //   const uniqueResultIds = new Set(); // Create a set to store unique result_id values
 
+   
+  //   let serialNo = 1;
+  //   for (let i = 0; i < result_new.length; i++) {
+  //     if (result_new[i].student._id !== " ") {
+  //       // Check if the result_id is already in the set
+  //       if (!uniqueResultIds.has(result_new[i].student._id)) {
+  //         // If it's not in the set, add it to both the set and the total_test_results array
+  //         uniqueResultIds.add(result_new[i].student._id);
+  //         var abcdef = {
+  //           "S.No.": serialNo++,
+  //           "Student Name": result_new[i].student.name,
+  //           "Phone No": result_new[i].student.phone,
+  //           // "Max Marks": result_new[i].max_marks,
+  //           // "Marks Obtained": result_new[i].total,
+  //         };
+  //         let subject_wise = result_new[i].section_wise;
+  //         let sw = Object.keys(subject_wise);
+  //         for (var k = 0; k < sw.length; k++) {
+  //           abcdef[sw[k] + "-attempted"] = subject_wise[sw[k]].attempted;
+  //           abcdef[sw[k] + "-correct"] = subject_wise[sw[k]].correct;
+  //           abcdef[sw[k] + "-incorrect"] = subject_wise[sw[k]].incorrect;
+  //           abcdef[sw[k] + "-outOf"] = subject_wise[sw[k]].outOf;
+  //           abcdef[sw[k] + "-total"] = subject_wise[sw[k]].total;
+  //         }
+  //       abcdef["Max Marks"] = result_new[i].max_marks;
+  //       abcdef["Marks Obtained"] = result_new[i].total;
+  //       // abcdef["Student ID"] = result_new[i].student._id;
+  //       abcdef["Batch Name"] = result_new[i].batch.name;
+  //         total_test_results.push(abcdef);
+  //       }
+  //     }
+  //   }
+  // }
+
+  // this one code is for non uniue results
   async function exportResult() {
     total_test_results = [];
     const uniqueResultIds = new Set(); // Create a set to store unique result_id values
@@ -148,9 +187,9 @@
     for (let i = 0; i < result_new.length; i++) {
       if (result_new[i].student._id !== " ") {
         // Check if the result_id is already in the set
-        if (!uniqueResultIds.has(result_new[i].student._id)) {
+        if (result_new[i].student._id) {
           // If it's not in the set, add it to both the set and the total_test_results array
-          uniqueResultIds.add(result_new[i].student._id);
+          // uniqueResultIds.add(result_new[i].student._id);
           var abcdef = {
             "S.No.": serialNo++,
             "Student Name": result_new[i].student.name,
